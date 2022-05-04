@@ -13,6 +13,9 @@ SERVER_SRC	=	\
 CLIENT_SRC	=	\
 				../client/src/client.c\
 
+LIB_SRC	=	\
+			../libs/circularbuffer/circular_buffer.c\
+
 TEST_SRC	=	base_test.c\
 
 CFLAGS	=	-Wall -Werror

@@ -10,9 +10,11 @@ NAME	=	myteams_cli
 SRC	=	src/main.c\
 		src/client.c\
 
-OBJ	=	${SRC:.c=.o}
+LIB	=	../libs/circularbuffer/circular_buffer.c\
 
-CFLAGS	=	-Wall -Werror -I include/ -I ../libs/myteams -g
+OBJ	=	$(SRC:.c=.o) $(LIB:.c=.o)
+
+CFLAGS	=	-Wall -Werror -I include/ -I ../libs/myteams -I ../libs/circularbuffer -g
 
 CC	=	gcc
 
