@@ -12,7 +12,7 @@ SRC	=	src/main.c\
 
 OBJ	=	${SRC:.c=.o}
 
-CFLAGS	=	-Wall -Werror -I ../include/ -g
+CFLAGS	=	-Wall -Werror -I include/ -I ../libs/myteams -g
 
 CC	=	gcc
 
