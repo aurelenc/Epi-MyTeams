@@ -9,12 +9,7 @@
 
 #include "user.h"
 #include "team.h"
-
-typedef struct channels_s {
-    id_t id;
-    char *name;
-    id_t team_id;
-} channels_t;
+#include "channel.h"
 
 typedef struct msg_s
 {

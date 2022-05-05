@@ -19,6 +19,7 @@ team_t *team_init(id_t id, const char *name)
         perror("Team creation");
         exit (84);
     }
+    team->id = id;
     team->name = strdup(name);
     if (!team->name) {
         perror("Team creation");

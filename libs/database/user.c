@@ -19,6 +19,7 @@ user_t *user_init(id_t id, const char *pseudo, const char *password)
         perror("User creation");
         exit (84);
     }
+    user->id = id;
     user->pseudo = strdup(pseudo);
     user->password = strdup(password);
     if (!user->pseudo || ! user->password) {
