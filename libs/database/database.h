@@ -8,11 +8,7 @@
 #pragma once
 
 #include "user.h"
-
-typedef struct team_s {
-    id_t id;
-    char *name;
-} team_t;
+#include "team.h"
 
 typedef struct channels_s {
     id_t id;

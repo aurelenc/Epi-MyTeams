@@ -25,7 +25,7 @@ typedef struct user_s {
 ///
 /// @return A pointer to a user_t structure.
 ///
-user_t *init_user(id_t id, const char *name, const char *password);
+user_t *user_init(id_t id, const char *name, const char *password);
 
 ///
 /// @brief It frees the memory allocated for the password and pseudo of a user
