@@ -10,16 +10,7 @@
 #include "user.h"
 #include "team.h"
 #include "channel.h"
-
-typedef struct msg_s
-{
-    id_t id;
-    char *content;
-    id_t user_id;
-    id_t thread_id;
-    id_t channel_id;
-    id_t discussion_id;
-} msg_t;
+#include "message.h"
 
 typedef struct thread_s {
     id_t id;
