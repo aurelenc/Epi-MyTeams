@@ -11,11 +11,7 @@
 #include "team.h"
 #include "channel.h"
 #include "message.h"
-
-typedef struct thread_s {
-    id_t id;
-    id_t start_msg_id;
-} thread_t;
+#include "thread.h"
 
 typedef struct discussion_s {
     id_t id;
