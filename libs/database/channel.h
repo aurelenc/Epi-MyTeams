@@ -24,7 +24,7 @@ typedef struct channel_s {
 ///
 /// @return A pointer to a channel_t struct.
 ///
-channel_t *channel_init(id_t id, const char *name);
+channel_t *channel_init(id_t id, const char *name, id_t team_id);
 
 ///
 /// @brief It frees the memory allocated for the name of the channel
