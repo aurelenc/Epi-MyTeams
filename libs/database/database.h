@@ -7,13 +7,7 @@
 
 #pragma once
 
-typedef unsigned int id_t;
-
-typedef struct user_s {
-    id_t id;
-    char *pseudo;
-    char *password;
-} user_t ;
+#include "user.h"
 
 typedef struct team_s {
     id_t id;
