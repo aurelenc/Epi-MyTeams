@@ -16,7 +16,7 @@ thread_t *thread_init(id_t id, id_t start_msg_id)
     thread_t *thread = calloc(sizeof(thread_t), 1);
 
     if (!thread) {
-        perror("Message creation");
+        perror("Thread creation");
         exit (84);
     }
     thread->id = id;

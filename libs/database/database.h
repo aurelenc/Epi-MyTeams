@@ -12,13 +12,7 @@
 #include "channel.h"
 #include "message.h"
 #include "thread.h"
-
-typedef struct discussion_s {
-    id_t id;
-    char *name;
-    id_t user_one_id;
-    id_t user_txo_id;
-} discussion_t;
+#include "discussion.h"
 
 typedef struct database_s
 {

@@ -16,8 +16,8 @@ typedef struct thread_s {
 
 
 ///
-/// @brief It creates a thread_t structure and initializes it with the given id and
-/// start_msg_id
+/// @brief It creates a thread_t structure and initializes it with the given id
+/// and start_msg_id
 ///
 /// @param id the id of the thread
 /// @param start_msg_id the id of the first message of the thread
