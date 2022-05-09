@@ -39,6 +39,8 @@ unit_tests: re
 
 tests_run: unit_tests
 	./$(TESTS_NAME)
+	gcovr --exclude tests/
+	gcovr --exclude tests/ --branches
 
 all:	$(NAME)
 

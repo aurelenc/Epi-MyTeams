@@ -7,6 +7,7 @@
 
 #include "llist.h"
 #include "llist_tools.h"
+#include <stdlib.h>
 
 bool llist_pop_front(llist_t *list)
 {
@@ -63,5 +64,5 @@ bool llist_delete_at(llist_t *list, unsigned int position)
 void llist_clear(llist_t *list)
 {
     while (list->first)
-        list_del_elem_at_front(list);
+        llist_pop_front(list);
 }

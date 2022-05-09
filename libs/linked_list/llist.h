@@ -24,6 +24,10 @@ typedef struct llist_s
 ** Functions
 */
 
+/* Initialization */
+
+llist_t *llist_init(void);
+
 /* Informations */
 
 unsigned int llist_get_size(llist_t *list);
@@ -50,3 +54,6 @@ void llist_clear(llist_t *list);
 void *llist_front(llist_t *list);
 void *llist_back(llist_t *list);
 void *llist_get(llist_t *list, unsigned int position);
+
+/* List destruction */
+llist_t *llist_destruction(llist_t *list);

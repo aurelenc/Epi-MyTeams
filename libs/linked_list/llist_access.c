@@ -11,7 +11,7 @@
 
 void *llist_front(llist_t *list)
 {
-    if (list_is_empty(list))
+    if (llist_is_empty(list))
         return 0;
     return list->first->data;
 }
@@ -34,7 +34,6 @@ void *llist_back(llist_t *list)
 void *llist_get(llist_t *list, unsigned int position)
 {
     node_t *ptr;
-    unsigned int i = 0;
 
     if (!list)
         return 0;

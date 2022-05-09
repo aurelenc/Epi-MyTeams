@@ -7,6 +7,7 @@
 
 #include "llist.h"
 #include "llist_tools.h"
+#include <stdlib.h>
 
 bool llist_push_front(llist_t *list, void *elem)
 {
@@ -54,7 +55,7 @@ bool llist_insert(llist_t *list, void *elem, unsigned int position)
     if (!list)
         return false;
     if (position == 0)
-        return list_push_front(list, elem);
+        return llist_push_front(list, elem);
     new_node = calloc(sizeof(*new_node), 1);
     if (!new_node)
         return false;
