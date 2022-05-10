@@ -49,7 +49,7 @@ database_t *db_destuction(database_t *database);
  *
  * @return A boolean value.
  */
-bool db_add_user(database_t *db, user_t *user)
+bool db_add_user(database_t *db, user_t *user);
 
 /**
  * @brief It searches the database for a user with the given id
@@ -59,7 +59,7 @@ bool db_add_user(database_t *db, user_t *user)
  *
  * @return A pointer to a user_t struct.
  */
-user_t *db_search_user_by_id(database_t *db, const id_t id)
+user_t *db_search_user_by_id(database_t *db, const id_t id);
 
 /**
  * @brief It searches the database for a user with the given pseudo
@@ -69,4 +69,4 @@ user_t *db_search_user_by_id(database_t *db, const id_t id)
  *
  * @return A pointer to the user_t struct.
  */
-user_t *db_search_user_by_pseudo(database_t *db, const char *pseudo)
+user_t *db_search_user_by_pseudo(database_t *db, const char *pseudo);
