@@ -40,3 +40,33 @@ database_t *db_creation(void);
  * @return A pointer to a database_t struct.
  */
 database_t *db_destuction(database_t *database);
+
+/**
+ * @brief Add a user to the database.
+ *
+ * @param db The database to add the user to.
+ * @param user The user to add to the database.
+ *
+ * @return A boolean value.
+ */
+bool db_add_user(database_t *db, user_t *user)
+
+/**
+ * @brief It searches the database for a user with the given id
+ *
+ * @param db The database to search in.
+ * @param id The id of the user to search for.
+ *
+ * @return A pointer to a user_t struct.
+ */
+user_t *db_search_user_by_id(database_t *db, const id_t id)
+
+/**
+ * @brief It searches the database for a user with the given pseudo
+ *
+ * @param db the database
+ * @param pseudo the pseudo of the user to search for
+ *
+ * @return A pointer to the user_t struct.
+ */
+user_t *db_search_user_by_pseudo(database_t *db, const char *pseudo)
