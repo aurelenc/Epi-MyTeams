@@ -10,16 +10,16 @@ NAME	=	myteams_server
 SRC	=	src/main.c\
 		src/server.c\
 
-LIB	=	../libs/circularbuffer/circular_buffer.c\
+LIB	=	../libs/circularbuffer/circular_buffer.c	\
 
-DATABASE =	../libs/database/channel.c				\
-			../libs/database/discussion.c			\
-			../libs/database/message.c				\
-			../libs/database/team.c				\
-			../libs/database/thread.c				\
-			../libs/database/user.c					\
-			../libs/database/database_init.c		\
-			../libs/database/database_destruction.c	\
+DATABASE =	../libs/database/fields/channel.c			\
+			../libs/database/fields/discussion.c		\
+			../libs/database/fields/message.c			\
+			../libs/database/fields/team.c				\
+			../libs/database/fields/thread.c			\
+			../libs/database/fields/user.c				\
+			../libs/database/database_init.c			\
+			../libs/database/database_destruction.c		\
 
 LIB_LINKED_LIST =	../libs/linked_list/llist_creation.c		\
 					../libs/linked_list/llist_destruction.c		\
@@ -31,7 +31,7 @@ LIB_LINKED_LIST =	../libs/linked_list/llist_creation.c		\
 
 OBJ	=	$(SRC:.c=.o) $(LIB:.c=.o) $(LIB_LINKED_LIST:.c=.o) $(DATABASE:.c=.o)
 
-CFLAGS	=	-Wall -Werror -I include/ -I ../libs/myteams -I ../libs/circularbuffer -I ../libs/linked_list/ -g
+CFLAGS	=	-Wall -Werror -I include/ -I ../libs/myteams -I ../libs/circularbuffer -I ../libs/linked_list/ -I ../libs/database -g
 
 CC	=	gcc
 

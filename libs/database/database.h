@@ -7,12 +7,12 @@
 
 #pragma once
 
-#include "user.h"
-#include "team.h"
-#include "channel.h"
-#include "message.h"
-#include "thread.h"
-#include "discussion.h"
+#include "fields/user.h"
+#include "fields/team.h"
+#include "fields/channel.h"
+#include "fields/message.h"
+#include "fields/thread.h"
+#include "fields/discussion.h"
 #include "llist.h"
 
 typedef struct database_s
@@ -30,7 +30,7 @@ typedef struct database_s
  *
  * @return A pointer to a database_t struct.
  */
-database_t *database_creation(void);
+database_t *db_creation(void);
 
 /**
  * @brief It frees all the linked lists in the database
@@ -39,4 +39,4 @@ database_t *database_creation(void);
  *
  * @return A pointer to a database_t struct.
  */
-database_t *database_destuction(database_t *database)
+database_t *db_destuction(database_t *database);
