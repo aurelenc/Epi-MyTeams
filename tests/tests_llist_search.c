@@ -35,7 +35,7 @@ Test (none_list, llist_search)
     cr_assert_eq(0, llist_search(list, &compare, "Hello"));
 }
 
-Test (search_not_find, llist_search)
+Test (search_not_found, llist_search)
 {
     llist_t *list = llist_init();
 
