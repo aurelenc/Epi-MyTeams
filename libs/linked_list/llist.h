@@ -177,6 +177,11 @@ void *llist_back(llist_t *list);
  */
 void *llist_get(llist_t *list, unsigned int position);
 
+
+typedef bool (*data_search_t)(const void *elem, const void *search);
+
+void *llist_search(llist_t *list, data_search_t search_fun, void *search);
+
 /* List destruction */
 
 /**
