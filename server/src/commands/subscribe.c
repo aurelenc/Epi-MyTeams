@@ -5,10 +5,10 @@
 ** subscribe
 */
 
-#include "server.h"
 #include "reply_codes.h"
+#include "server.h"
 
-int command_subscribe(client_sock_t *clients, int id, server_t *srv, params_t arg)
+int command_subscribe(command_param_t *param)
 {
     return REPLY_NOT_IMPLEMENTED;
 }
