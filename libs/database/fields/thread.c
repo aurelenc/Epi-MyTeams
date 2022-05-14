@@ -26,5 +26,4 @@ thread_t *thread_init(id_t id, id_t start_msg_id)
 
 void thread_destruction(thread_t *thread)
 {
-    (void *)thread;
 }
