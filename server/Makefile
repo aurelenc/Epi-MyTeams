@@ -59,7 +59,7 @@ LIB_LINKED_LIST =	../libs/linked_list/llist_creation.c		\
 					../libs/linked_list/llist_insertion.c		\
 					../libs/linked_list/llist_tools.c			\
 
-OBJ	=	$(SRC:.c=.o) $(LIB:.c=.o) $(LIB_LINKED_LIST:.c=.o) $(DATABASE:.c=.o)
+OBJ	=	$(SRC:.c=.o) $(COMMANDS_SRC:.c=.o) $(LIB:.c=.o) $(LIB_LINKED_LIST:.c=.o) $(DATABASE:.c=.o)
 
 CFLAGS	=	-Wall -Werror -I include/ -I ../libs/myteams -I ../libs/circularbuffer -I ../libs/linked_list/ -I ../libs/database -g
 
