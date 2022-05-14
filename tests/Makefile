@@ -39,6 +39,7 @@ TEST_SRC	=	tests_llist_init.c				\
 				tests_llist_back.c				\
 				tests_llist_front.c				\
 				tests_llist_get.c				\
+				tests_llist_search.c			\
 
 CFLAGS	=	-Wall -Werror
 

@@ -43,3 +43,18 @@ void *llist_get(llist_t *list, unsigned int position)
     else
         return 0;
 }
+
+void *llist_search(llist_t *list, data_search_t search_fun, void *search)
+{
+    node_t *ptr;
+
+    if (!list)
+        return (0);
+    ptr = list->first;
+    while (ptr) {
+        if (search_fun(ptr->data, search))
+            return (ptr->data);
+        ptr = ptr->next;
+    }
+    return (ptr);
+}
