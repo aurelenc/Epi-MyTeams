@@ -29,12 +29,15 @@ COMMANDS_SRC	=	\
 					src/commands/create_team.c\
 					src/commands/create_channel.c\
 					src/commands/create_thread.c\
+					src/commands/create_reply.c\
 					src/commands/list_teams.c\
 					src/commands/list_channels.c\
 					src/commands/list_threads.c\
+					src/commands/list_replies.c\
 					src/commands/info_team.c\
 					src/commands/info_channel.c\
 					src/commands/info_thread.c\
+					src/commands/info_user.c\
 
 LIB	=	../libs/circularbuffer/circular_buffer.c\
 

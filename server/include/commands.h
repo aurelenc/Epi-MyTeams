@@ -75,11 +75,6 @@ int command_use_channel(command_param_t *param);
 /// @return The reply code
 int command_use_thread(command_param_t *param);
 
-/// @brief Create a new reply
-/// @param param The command param structure
-/// @return The reply code
-int command_create_reply(command_param_t *param);
-
 /// @brief Create a new team
 /// @param param The command param structure
 /// @return The reply code
@@ -95,10 +90,10 @@ int command_create_channel(command_param_t *param);
 /// @return The reply code
 int command_create_thread(command_param_t *param);
 
-/// @brief List all existing replies
+/// @brief Create a new reply
 /// @param param The command param structure
 /// @return The reply code
-int command_list_teams(command_param_t *param);
+int command_create_reply(command_param_t *param);
 
 /// @brief List all existing teams
 /// @param param The command param structure
@@ -115,10 +110,10 @@ int command_list_channels(command_param_t *param);
 /// @return The reply code
 int command_list_threads(command_param_t *param);
 
-/// @brief Display currently logged user infos
+/// @brief List all existing replies
 /// @param param The command param structure
 /// @return The reply code
-int command_info_user(command_param_t *param);
+int command_list_replies(command_param_t *param);
 
 /// @brief Display currently selected team infos
 /// @param param The command param structure
@@ -134,6 +129,11 @@ int command_info_channel(command_param_t *param);
 /// @param param The command param structure
 /// @return The reply code
 int command_info_thread(command_param_t *param);
+
+/// @brief Display currently logged user infos
+/// @param param The command param structure
+/// @return The reply code
+int command_info_user(command_param_t *param);
 
 
 #endif /* !COMMANDS_H_ */
