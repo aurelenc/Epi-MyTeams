@@ -9,6 +9,12 @@ NAME	=	myteams_server
 
 SRC	=	src/main.c\
 		src/server.c\
+		src/reply_codes.c\
+		src/commands.c\
+
+COMMANDS_SRC	=	\
+					src/commands/login.c\
+					src/commands/logout.c\
 
 LIB	=	../libs/circularbuffer/circular_buffer.c	\
 
