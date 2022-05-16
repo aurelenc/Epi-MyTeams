@@ -15,6 +15,29 @@ SRC	=	src/main.c\
 COMMANDS_SRC	=	\
 					src/commands/login.c\
 					src/commands/logout.c\
+					src/commands/users.c\
+					src/commands/user.c\
+					src/commands/send.c\
+					src/commands/messages.c\
+					src/commands/subscribe.c\
+					src/commands/subscribed_teams.c\
+					src/commands/subscribed_users.c\
+					src/commands/unsubscribe.c\
+					src/commands/use_team.c\
+					src/commands/use_channel.c\
+					src/commands/use_thread.c\
+					src/commands/create_team.c\
+					src/commands/create_channel.c\
+					src/commands/create_thread.c\
+					src/commands/create_reply.c\
+					src/commands/list_teams.c\
+					src/commands/list_channels.c\
+					src/commands/list_threads.c\
+					src/commands/list_replies.c\
+					src/commands/info_team.c\
+					src/commands/info_channel.c\
+					src/commands/info_thread.c\
+					src/commands/info_user.c\
 
 LIB	=	../libs/circularbuffer/circular_buffer.c	\
 
@@ -36,7 +59,7 @@ LIB_LINKED_LIST =	../libs/linked_list/llist_creation.c		\
 					../libs/linked_list/llist_insertion.c		\
 					../libs/linked_list/llist_tools.c			\
 
-OBJ	=	$(SRC:.c=.o) $(LIB:.c=.o) $(LIB_LINKED_LIST:.c=.o) $(DATABASE:.c=.o)
+OBJ	=	$(SRC:.c=.o) $(COMMANDS_SRC:.c=.o) $(LIB:.c=.o) $(LIB_LINKED_LIST:.c=.o) $(DATABASE:.c=.o)
 
 CFLAGS	=	-Wall -Werror -I include/ -I ../libs/myteams -I ../libs/circularbuffer -I ../libs/linked_list/ -I ../libs/database -g
 
