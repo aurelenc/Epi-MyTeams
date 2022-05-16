@@ -12,14 +12,14 @@
 #include <stdio.h>
 #include "circular_buffer.h"
 
-static void set_client_strings(client_sock_t *clients, int id, char *path)
+static void set_client_strings(client_sock_t *clients, int id)
 {
     memset(clients[id].rbuf, 0, MAX_BUFF_SIZE);
     memset(clients[id].wbuf, 0, MAX_BUFF_SIZE);
     memset(clients[id].user, 0, MAX_USER_SIZE);
 }
 
-void new_client(client_sock_t *clients, int client_socket, char *default_path)
+void new_client(client_sock_t *clients, int client_socket)
 {
     int i = 0;
 
@@ -29,7 +29,7 @@ void new_client(client_sock_t *clients, int client_socket, char *default_path)
         return;
     }
     clients[i].socket = client_socket;
-    set_client_strings(clients, i, default_path);
+    set_client_strings(clients, i);
     dprintf(client_socket, reply_codes[get_reply(220)].message);
 }
 

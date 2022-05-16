@@ -37,7 +37,6 @@ typedef struct server_s {
     fd_set wfd;
     struct sockaddr_in addr;
     socklen_t len;
-    char *default_path;
 } server_t;
 
 typedef struct params_s {
@@ -67,7 +66,7 @@ bool has_param_error(int ac, char **av);
 int display_help(void);
 
 /// Clients
-void new_client(client_sock_t *clients, int client_socket, char *default_path);
+void new_client(client_sock_t *clients, int client_socket);
 void remove_client(client_sock_t *clients, int remove_index);
 void listen_clients(client_sock_t *clients, server_t *server);
 void write_client_buff(client_sock_t *clients, int i, char *message);

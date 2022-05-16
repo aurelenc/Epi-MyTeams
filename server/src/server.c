@@ -29,7 +29,7 @@ client_sock_t *init_clients(void)
     return clients;
 }
 
-int configure_server(server_t *server, char *port_param, char *path_param)
+int configure_server(server_t *server, char *port_param)
 {
     server->socket = socket(AF_INET, SOCK_STREAM, 0);
     if (server->socket < 0)
@@ -38,7 +38,6 @@ int configure_server(server_t *server, char *port_param, char *path_param)
     server->addr.sin_port = htons(atoi(port_param));
     server->addr.sin_addr.s_addr = INADDR_ANY;
     server->len = sizeof(server->addr);
-    server->default_path = path_param;
     if (bind(server->socket, (struct sockaddr *)&server->addr,
         server->len) < 0)
         return -1;
@@ -57,7 +56,7 @@ void server_loop(client_sock_t *clients, server_t *server)
     select(FD_SETSIZE, &server->rfd, &server->wfd, NULL, NULL);
     if (FD_ISSET(server->socket, &server->rfd)) {
         new_client(clients, accept(server->socket,
-        (struct sockaddr *)&server->addr, &server->len), server->default_path);
+        (struct sockaddr *)&server->addr, &server->len));
     }
     listen_clients(clients, server);
 }
@@ -71,7 +70,7 @@ int my_teams_server(int ac, char **av)
         return 84;
     if (strcmp(av[1], "-help") == 0)
         return display_help();
-    if (configure_server(&server, av[1], av[2]) < 0)
+    if (configure_server(&server, av[1]) < 0)
         return 84;
     clients = init_clients();
     if (!clients) {
