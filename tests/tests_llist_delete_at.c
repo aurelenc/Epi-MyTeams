@@ -41,8 +41,9 @@ Test (list_of_more_than_one_elem, llist_delete_at)
     llist_push_front(list, "5");
     llist_push_front(list, "2");
     llist_push_front(list, "10");
-    llist_delete_at(list, 1);
-    cr_assert_str_eq("5", llist_get(list, 1));
+    llist_delete_at(list, 2);
+    cr_assert_str_eq("2", llist_get(list, 1));
+    cr_assert_eq(NULL, llist_get(list, 2));
     cr_assert_eq(2, llist_get_size(list));
 }
 

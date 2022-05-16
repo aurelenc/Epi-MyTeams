@@ -6,18 +6,9 @@
 */
 
 #include "llist.h"
+#include "tests_tools.h"
 #include <criterion/criterion.h>
-#include <string.h>
 
-static bool compare(const void *elem, const void *data)
-{
-    const char *e = (const char *)elem;
-    const char *d = (const char *)data;
-
-    if (strcmp(e, d) == 0)
-        return true;
-    return false;
-}
 
 Test (good_search, llist_search)
 {

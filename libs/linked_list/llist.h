@@ -24,6 +24,17 @@ typedef struct llist_s
 ** Functions
 */
 
+/**
+ * @brief Defining a function pointer whose purpose is to compare two given
+ * parameters
+ */
+typedef bool (*data_search_t)(const void *elem, const void *search);
+
+/**
+ * @brief Define a function pointer which have to purpose to display data.
+ */
+typedef void (*data_displayer_t)(const void *data);
+
 /* Initialization */
 
 /**
@@ -52,11 +63,6 @@ unsigned int llist_get_size(llist_t *list);
  * @return The size of the list.
  */
 bool llist_is_empty(llist_t *list);
-
-/**
- * @brief Define a function pointer which have to purpose to display data.
- */
-typedef void (*data_displayer_t)(const void *data);
 
 /**
  * @brief It displays the contents of the list
@@ -139,6 +145,8 @@ bool llist_pop_back(llist_t *list);
  */
 bool llist_delete_at(llist_t *list, unsigned int position);
 
+bool llist_delif(llist_t *list, data_search_t search_fun, void *search);
+
 /**
  * @brief Clear the entire list.
  *
@@ -176,13 +184,6 @@ void *llist_back(llist_t *list);
  * @return The data of the node at the given position.
  */
 void *llist_get(llist_t *list, unsigned int position);
-
-
-/**
- * @brief Defining a function pointer whose purpose is to compare two given
- * parameters
- */
-typedef bool (*data_search_t)(const void *elem, const void *search);
 
 /**
  * @brief It searches for a data in the list that matches the search criteria
