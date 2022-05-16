@@ -24,7 +24,11 @@ DATABASE =	../libs/database/fields/channel.c			\
 			../libs/database/fields/team.c				\
 			../libs/database/fields/thread.c			\
 			../libs/database/fields/user.c				\
-			../libs/database/search/user_search.c				\
+			../libs/database/search/channel_search.c	\
+			../libs/database/search/message_search.c	\
+			../libs/database/search/team_search.c		\
+			../libs/database/search/thread_search.c		\
+			../libs/database/search/user_search.c		\
 			../libs/database/database_init.c			\
 			../libs/database/database_destruction.c		\
 

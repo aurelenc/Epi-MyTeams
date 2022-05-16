@@ -69,7 +69,7 @@ static inline bool db_add_user(database_t *db, user_t *user)
 ///
 static inline user_t *db_search_user_by_id(database_t *db, const id_t id)
 {
-    return llist_search(db->users, &user_id_compare, id);
+    return (user_t *)llist_search(db->users, &user_id_compare, &id);
 };
 
 ///
@@ -83,7 +83,7 @@ static inline user_t *db_search_user_by_id(database_t *db, const id_t id)
 static inline user_t *db_search_user_by_pseudo(database_t *db,
 const char *pseudo)
 {
-    return llist_search(db->users, &user_pseudo_compare, pseudo);
+    return (user_t *)llist_search(db->users, &user_pseudo_compare, pseudo);
 };
 
 ///
@@ -96,7 +96,7 @@ const char *pseudo)
 ///
 static inline bool db_delete_user_by_id(database_t *db, const id_t id)
 {
-    return llist_delif(db->users, &user_id_compare, id);
+    return llist_delif(db->users, &user_id_compare, &id);
 }
 
 ///
@@ -141,7 +141,7 @@ static inline bool db_add_team(database_t *db, team_t *team)
 
 static inline team_t *db_search_team_by_id(database_t *db, const id_t id)
 {
-    return llist_search(db->teams, &team_id_compare, id);
+    return (team_t *)llist_search(db->teams, &team_id_compare, &id);
 };
 
 ///
@@ -154,7 +154,7 @@ static inline team_t *db_search_team_by_id(database_t *db, const id_t id)
 ///
 static inline team_t *db_search_team_by_name(database_t *db, const char *name)
 {
-    return llist_search(db->teams, &team_name_compare, name);
+    return (team_t *)llist_search(db->teams, &team_name_compare, name);
 };
 
 ///
@@ -167,7 +167,7 @@ static inline team_t *db_search_team_by_name(database_t *db, const char *name)
 ///
 static inline bool db_delete_team_by_id(database_t *db, const id_t id)
 {
-    return llist_delif(db->teams, &team_id_compare, id);
+    return llist_delif(db->teams, &team_id_compare, &id);
 }
 
 ///
@@ -211,7 +211,7 @@ static inline bool db_add_channel(database_t *db, channel_t *channel)
 ///
 static inline channel_t *db_search_channel_by_id(database_t *db, const id_t id)
 {
-    return llist_search(db->channels, &channel_id_compare, id);
+    return (channel_t *)llist_search(db->channels, &channel_id_compare, &id);
 };
 
 ///
@@ -225,7 +225,7 @@ static inline channel_t *db_search_channel_by_id(database_t *db, const id_t id)
 static inline channel_t *db_search_channel_by_name(database_t *db,
 const char *name)
 {
-    return llist_search(db->channels, &channel_name_compare, name);
+    return (channel_t *)llist_search(db->channels, &channel_name_compare, name);
 };
 
 ///
@@ -240,7 +240,8 @@ const char *name)
 static inline channel_t *db_search_channel_by_team_id(database_t *db,
 const id_t team_id)
 {
-    return llist_search(db->channels, &channel_team_id_compare, team_id);
+    return (channel_t *)llist_search(db->channels, &channel_team_id_compare,
+    &team_id);
 };
 
 ///
@@ -253,7 +254,7 @@ const id_t team_id)
 ///
 static inline bool db_delete_channel_by_id(database_t *db, const id_t id)
 {
-    return llist_delif(db->channels, &channel_id_compare, id);
+    return llist_delif(db->channels, &channel_id_compare, &id);
 }
 
 ///
@@ -271,8 +272,8 @@ const char *name)
 }
 
 ///
-/// @brief It deletes a channel from the database if it has the same team id as the one
-///passed in
+/// @brief It deletes a channel from the database if it has the same team id as
+/// the one passed in
 ///
 /// @param db The database to delete the channel from.
 /// @param team_id The id of the team to delete the channel of.
@@ -282,7 +283,7 @@ const char *name)
 static inline bool db_delete_channel_by_team_id(database_t *db,
 const id_t team_id)
 {
-    return llist_delif(db->channels, &channel_team_id_compare, team_id);
+    return llist_delif(db->channels, &channel_team_id_compare, &team_id);
 };
 
 /*
@@ -312,7 +313,7 @@ static inline bool db_add_msg(database_t *db, msg_t *message)
 ///
 static inline msg_t *db_search_msg_by_id(database_t *db, const id_t id)
 {
-    return llist_search(db->messages, &msg_id_compare, id);
+    return (msg_t *)llist_search(db->messages, &msg_id_compare, &id);
 };
 
 ///
@@ -327,7 +328,7 @@ static inline msg_t *db_search_msg_by_id(database_t *db, const id_t id)
 static inline msg_t *db_search_msg_by_user_id(database_t *db,
 const id_t user_id)
 {
-    return llist_search(db->messages, &msg_user_id_compare, user_id);
+    return (msg_t *)llist_search(db->messages, &msg_user_id_compare, &user_id);
 };
 
 ///
@@ -342,7 +343,8 @@ const id_t user_id)
 static inline msg_t *db_search_msg_by_thread_id(database_t *db,
 const id_t thread_id)
 {
-    return llist_search(db->messages, &msg_thread_id_compare, thread_id);
+    return (msg_t *)llist_search(db->messages, &msg_thread_id_compare,
+    &thread_id);
 };
 
 ///
@@ -357,7 +359,8 @@ const id_t thread_id)
 static inline msg_t *db_search_msg_by_channel_id(database_t *db,
 const id_t channel_id)
 {
-    return llist_search(db->messages, &msg_channel_id_compare, channel_id);
+    return (msg_t *)llist_search(db->messages, &msg_channel_id_compare,
+    &channel_id);
 };
 
 ///
@@ -372,7 +375,8 @@ const id_t channel_id)
 static inline msg_t *db_search_msg_by_discussion_id(database_t *db,
 const id_t discu_id)
 {
-    return llist_search(db->messages, &msg_discussion_id_compare, discu_id);
+    return (msg_t *)llist_search(db->messages, &msg_discussion_id_compare,
+    &discu_id);
 };
 
 ///
@@ -385,12 +389,12 @@ const id_t discu_id)
 ///
 static inline bool db_delete_msg_by_id(database_t *db, const id_t id)
 {
-    return llist_delif(db->messages, &msg_id_compare, id);
+    return llist_delif(db->messages, &msg_id_compare, &id);
 }
 
 ///
-/// @brief It deletes a message from the database if it has the same user id as the one
-///passed in
+/// @brief It deletes a message from the database if it has the same user id as
+/// the one passed in
 ///
 /// @param db The database to delete the message from.
 /// @param user_id The id of the user to delete the message of.
@@ -400,12 +404,12 @@ static inline bool db_delete_msg_by_id(database_t *db, const id_t id)
 static inline bool db_delete_msg_by_user_id(database_t *db,
 const id_t user_id)
 {
-    return llist_delif(db->messages, &msg_user_id_compare, user_id);
+    return llist_delif(db->messages, &msg_user_id_compare, &user_id);
 };
 
 ///
-/// @brief It deletes a message from the database if it has the same thread id as the one
-///passed in
+/// @brief It deletes a message from the database if it has the same thread id
+/// as the one passed in
 ///
 /// @param db The database to delete the message from.
 /// @param thread_id The id of the thread to delete the message of.
@@ -415,12 +419,12 @@ const id_t user_id)
 static inline bool db_delete_msg_by_thread_id(database_t *db,
 const id_t thread_id)
 {
-    return llist_delif(db->messages, &msg_thread_id_compare, thread_id);
+    return llist_delif(db->messages, &msg_thread_id_compare, &thread_id);
 };
 
 ///
-/// @brief It deletes a message from the database if it has the same channel id as the one
-///passed in
+/// @brief It deletes a message from the database if it has the same channel id
+// as the one passed in
 ///
 /// @param db The database to delete the message from.
 /// @param channel_id The id of the channel to delete the message of.
@@ -430,12 +434,12 @@ const id_t thread_id)
 static inline bool db_delete_msg_by_channel_id(database_t *db,
 const id_t channel_id)
 {
-    return llist_delif(db->messages, &msg_channel_id_compare, channel_id);
+    return llist_delif(db->messages, &msg_channel_id_compare, &channel_id);
 };
 
 ///
-/// @brief It deletes a message from the database if it has the same discussion id as the one
-///passed in
+/// @brief It deletes a message from the database if it has the same discussion
+/// id as the one passed in
 ///
 /// @param db The database to delete the message from.
 /// @param discu_id The id of the discussion to delete the message of.
@@ -445,7 +449,7 @@ const id_t channel_id)
 static inline bool db_delete_msg_by_discussion_id(database_t *db,
 const id_t discu_id)
 {
-    return llist_delif(db->messages, &msg_discussion_id_compare, discu_id);
+    return llist_delif(db->messages, &msg_discussion_id_compare, &discu_id);
 };
 
 /*
@@ -475,7 +479,7 @@ static inline bool db_add_thread(database_t *db, thread_t *thread)
 ///
 static inline thread_t *db_search_thread_by_id(database_t *db, const id_t id)
 {
-    return llist_search(db->threads, &thread_id_compare, id);
+    return (thread_t *)llist_search(db->threads, &thread_id_compare, &id);
 };
 
 ///
@@ -488,9 +492,10 @@ static inline thread_t *db_search_thread_by_id(database_t *db, const id_t id)
 /// @return A pointer to a thread_t struct.
 ///
 static inline thread_t *db_search_thread_by_start_msg_id(database_t *db,
-const id_t s_msg_id)
+const id_t start_msg_id)
 {
-    return llist_search(db->threads, &thread_start_msg_id_compare, s_msg_id);
+    return (thread_t *)llist_search(db->threads, &thread_start_msg_id_compare,
+    &start_msg_id);
 };
 
 ///
@@ -503,7 +508,7 @@ const id_t s_msg_id)
 ///
 static inline bool db_delete_thread_by_id(database_t *db, const id_t id)
 {
-    return llist_delif(db->threads, &thread_id_compare, id);
+    return llist_delif(db->threads, &thread_id_compare, &id);
 }
 
 ///
@@ -518,5 +523,6 @@ static inline bool db_delete_thread_by_id(database_t *db, const id_t id)
 static inline bool db_delete_thread_by_start_msg_id(database_t *db,
 const id_t start_msg_id)
 {
-    return llist_delif(db->threads, &thread_start_msg_id_compare, start_msg_id);
+    return llist_delif(db->threads, &thread_start_msg_id_compare,
+    &start_msg_id);
 };

@@ -154,7 +154,7 @@ bool llist_delete_at(llist_t *list, unsigned int position);
 ///
 /// @return A boolean value.
 ///
-bool llist_delif(llist_t *list, data_search_t search_fun, void *search);
+bool llist_delif(llist_t *list, data_search_t search_fun, const void *search);
 
 ///
 /// @brief Clear the entire list.
@@ -204,7 +204,7 @@ void *llist_get(llist_t *list, unsigned int position);
 ///
 /// @return The data of the node that matches the search criteria.
 ///
-void *llist_search(llist_t *list, data_search_t search_fun, void *search);
+void *llist_search(llist_t *list, data_search_t search_fun, const void *search);
 
 /* List destruction */
 

@@ -44,7 +44,7 @@ void *llist_get(llist_t *list, unsigned int position)
         return 0;
 }
 
-void *llist_search(llist_t *list, data_search_t search_fun, void *search)
+void *llist_search(llist_t *list, data_search_t search_fun, const void *search)
 {
     node_t *ptr;
 
