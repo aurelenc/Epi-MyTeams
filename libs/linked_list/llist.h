@@ -112,7 +112,6 @@ bool llist_append(llist_t *list, void *elem);
  */
 bool llist_insert(llist_t *list, void *elem, unsigned int position);
 
-
 /**
  * @brief If the list is not empty,
  * remove the first node from the list and free it

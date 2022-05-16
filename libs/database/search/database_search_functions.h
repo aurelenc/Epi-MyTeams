@@ -30,4 +30,3 @@ bool user_id_compare(const void *elem, const void *search);
  * @return A boolean value.
  */
 bool user_pseudo_compare(const void *elem, const void *search);
-
