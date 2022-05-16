@@ -63,7 +63,7 @@ static inline bool db_add_user(database_t *db, user_t *user)
  *
  * @return A pointer to a user_t struct.
  */
-user_t *db_search_user_by_id(database_t *db, const id_t id)
+static inline user_t *db_search_user_by_id(database_t *db, const id_t id)
 {
     return llist_search(db->users, &user_id_compare, id);
 };
@@ -76,7 +76,7 @@ user_t *db_search_user_by_id(database_t *db, const id_t id)
  *
  * @return A pointer to the user_t struct.
  */
-user_t *db_search_user_by_pseudo(database_t *db, const char *pseudo)
+static inline user_t *db_search_user_by_pseudo(database_t *db, const char *pseudo)
 {
     return llist_search(db->users, &user_pseudo_compare, pseudo);
 };
@@ -89,7 +89,7 @@ user_t *db_search_user_by_pseudo(database_t *db, const char *pseudo)
  *
  * @return A boolean value.
  */
-bool db_delete_user_by_id(database_t *db, const id_t id)
+static inline bool db_delete_user_by_id(database_t *db, const id_t id)
 {
     return llist_delif(db->users, &user_id_compare, id);
 }
@@ -102,7 +102,7 @@ bool db_delete_user_by_id(database_t *db, const id_t id)
  *
  * @return A boolean value.
  */
-bool db_search_user_by_pseudo(database_t *db, const char *pseudo)
+static inline bool db_search_user_by_pseudo(database_t *db, const char *pseudo)
 {
     return llist_delif(db->users, &user_pseudo_compare, pseudo);
 }
