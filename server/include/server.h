@@ -50,11 +50,18 @@ typedef struct params_s {
     int nb;
 } params_t;
 
+typedef struct command_param_s {
+    client_sock_t *clients;
+    int id;
+    server_t *srv;
+    params_t arg;
+} command_param_t;
+
 typedef struct command_s {
     char *cmd;
     int required_params_nb;
     int optional_params_nb;
-    int (*func)(client_sock_t *, int, server_t *, params_t);
+    int (*func)(command_param_t *);
     bool auth_required;
 } command_t;
 
