@@ -11,6 +11,9 @@ SRC	=	src/main.c\
 		src/server.c\
 		src/reply_codes.c\
 		src/commands.c\
+		src/clients.c\
+		src/client_input.c\
+		src/cli_launch.c\
 
 COMMANDS_SRC	=	\
 					src/commands/login.c\
