@@ -145,6 +145,16 @@ bool llist_pop_back(llist_t *list);
  */
 bool llist_delete_at(llist_t *list, unsigned int position);
 
+/**
+ * @brief It deletes a node in the list that matches the search criteria
+ *
+ * @param list the list to search
+ * @param search_fun a function that takes two void pointers as parameters and
+ * returns an bool.
+ * @param search the data to search for
+ *
+ * @return A boolean value.
+ */
 bool llist_delif(llist_t *list, data_search_t search_fun, void *search);
 
 /**
