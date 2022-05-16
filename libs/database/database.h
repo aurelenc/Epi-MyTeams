@@ -526,3 +526,141 @@ const id_t start_msg_id)
     return llist_delif(db->threads, &thread_start_msg_id_compare,
     &start_msg_id);
 };
+
+/*
+** Discussion
+*/
+
+///
+/// @brief It adds a discussion to the database
+///
+/// @param db The database object
+/// @param discussion The discussion to add to the database.
+///
+/// @return A boolean value.
+///
+static inline bool db_add_discussion(database_t *db, discussion_t *discussion)
+{
+    return llist_append(db->discussions, discussion);
+};
+
+///
+/// @brief It searches the database for a discussion with the given id
+///
+/// @param db The database to search in.
+/// @param id The id of the discussion to search for.
+///
+/// @return A pointer to a discussion_t struct.
+///
+static inline discussion_t *db_search_discussion_by_id(database_t *db,
+const id_t id)
+{
+    return (discussion_t *)llist_search(db->discussions,
+    &discussion_id_compare, &id);
+};
+
+///
+/// @brief It searches the database for a discussion with the given name
+///
+/// @param db The database to search in.
+/// @param name The name of the discussion to search for.
+///
+/// @return A pointer to a discussion_t struct.
+///
+static inline discussion_t *db_search_discussion_by_name(database_t *db,
+const char *name)
+{
+    return (discussion_t *)llist_search(db->discussions,
+    &discussion_name_compare, name);
+};
+
+///
+/// @brief It searches the database's
+///discussion list for a discussion with the given user one ID
+///
+/// @param db The database to search in.
+/// @param user_one_id The user one ID to search for.
+///
+/// @return A pointer to a discussion_t struct.
+///
+static inline discussion_t *db_search_discussion_by_user_one_id(database_t *db,
+const id_t user_one_id)
+{
+    return (discussion_t *)llist_search(db->discussions,
+    &discussion_user_one_id_compare, &user_one_id);
+};
+
+///
+/// @brief It searches the database's
+/// discussion list for a discussion with the given user two ID
+///
+/// @param db The database to search in.
+/// @param user_two_id The user two ID to search for.
+///
+/// @return A pointer to a discussion_t struct.
+///
+static inline discussion_t *db_search_discussion_by_user_two_id(database_t *db,
+const id_t user_two_id)
+{
+    return (discussion_t *)llist_search(db->discussions,
+    &discussion_user_two_id_compare, &user_two_id);
+};
+
+///
+/// @brief It deletes a discussion from the database by its id
+///
+/// @param db The database to delete the discussion from.
+/// @param id The id of the discussion to delete.
+///
+/// @return A boolean value.
+///
+static inline bool db_delete_discussion_by_id(database_t *db, const id_t id)
+{
+    return llist_delif(db->discussions, &discussion_id_compare, &id);
+};
+
+///
+/// @brief It deletes a discussion from the database by name
+///
+/// @param db The database to delete the discussion from.
+/// @param name The name of the discussion to delete.
+///
+/// @return A boolean value.
+///
+static inline bool db_delete_discussion_by_name(database_t *db,
+const char *name)
+{
+    return llist_delif(db->discussions, &discussion_name_compare, name);
+};
+
+///
+/// @brief It deletes a discussion from the database if it has the same user one
+/// id as the one passed in
+///
+/// @param db The database to delete the discussion from.
+/// @param user_one_id The id of the user one to delete the discussion of.
+///
+/// @return A boolean value.
+///
+static inline bool db_delete_discussion_by_user_one_id(database_t *db,
+const id_t user_one_id)
+{
+    return llist_delif(db->discussions, &discussion_user_one_id_compare,
+    &user_one_id);
+};
+
+///
+/// @brief It deletes a discussion from the database if it has the same user two
+/// id as the two passed in
+///
+/// @param db The database to delete the discussion from.
+/// @param user_two_id The id of the user two to delete the discussion of.
+///
+/// @return A boolean value.
+///
+static inline bool db_delete_discussion_by_user_two_id(database_t *db,
+const id_t user_two_id)
+{
+    return llist_delif(db->discussions, &discussion_user_two_id_compare,
+    &user_two_id);
+};
