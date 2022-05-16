@@ -31,6 +31,10 @@ bool user_id_compare(const void *elem, const void *search);
 ///
 bool user_pseudo_compare(const void *elem, const void *search);
 
+/*
+** Team
+*/
+
 ///
 /// @brief It compares the id of a team with the id of a user
 ///
@@ -50,3 +54,37 @@ bool team_id_compare(const void *elem, const void *search);
 /// @return A pointer to the team_t struct.
 ///
 bool team_name_compare(const void *elem, const void *search);
+
+/*
+** Channel
+*/
+
+///
+/// @brief It compares the id of a channel with the id of a user
+///
+/// @param elem The element to compare.
+/// @param search The search key.
+///
+/// @return A boolean value.
+///
+bool channel_id_compare(const void *elem, const void *search);
+
+///
+/// @brief It compares the name of a channel with a string
+///
+/// @param elem The element to compare.
+/// @param search The search key.
+///
+/// @return A boolean value.
+///
+bool channel_name_compare(const void *elem, const void *search);
+
+///
+/// @brief It compares the name of a channel with a string
+///
+/// @param elem The element to compare.
+/// @param search The search key.
+///
+/// @return A boolean value.
+///
+bool channel_team_id_compare(const void *elem, const void *search);

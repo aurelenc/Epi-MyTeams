@@ -42,6 +42,10 @@ database_t *db_creation(void);
 ///
 database_t *db_destuction(database_t *database);
 
+/*
+** Users
+*/
+
 ///
 /// @brief Add a user to the database.
 ///
@@ -109,6 +113,10 @@ const char *pseudo)
     return llist_delif(db->users, &user_pseudo_compare, pseudo);
 }
 
+/*
+** Team
+*/
+
 ///
 /// @brief It adds a team to the database
 ///
@@ -175,3 +183,104 @@ static inline bool db_delete_team_by_name(database_t *db, const char *name)
 {
     return llist_delif(db->teams, &team_name_compare, name);
 }
+
+/*
+** Channel
+*/
+
+///
+/// @brief It adds a channel to the database
+///
+/// @param db The database object
+/// @param channel The channel to add to the database.
+///
+/// @return A boolean value.
+///
+static inline bool db_add_channel(database_t *db, channel_t *channel)
+{
+    return llist_append(db->channels, channel);
+};
+
+///
+/// @brief It searches the database for a channel with the given id
+///
+/// @param db The database to search in.
+/// @param id The id of the channel to search for.
+///
+/// @return A pointer to a channel_t struct.
+///
+static inline channel_t *db_search_channel_by_id(database_t *db, const id_t id)
+{
+    return llist_search(db->channels, &channel_id_compare, id);
+};
+
+///
+/// @brief It searches the database for a channel with the given name
+///
+/// @param db The database to search in.
+/// @param name The name of the channel to search for.
+///
+/// @return A pointer to a channel_t struct.
+///
+static inline channel_t *db_search_channel_by_name(database_t *db,
+const char *name)
+{
+    return llist_search(db->channels, &channel_name_compare, name);
+};
+
+///
+/// @brief It searches the database's
+///channel list for a channel with the given team ID
+///
+/// @param db The database to search in.
+/// @param team_id The team ID to search for.
+///
+/// @return A pointer to a channel_t struct.
+///
+static inline channel_t *db_search_channel_by_team_id(database_t *db,
+const id_t team_id)
+{
+    return llist_search(db->channels, &channel_team_id_compare, team_id);
+};
+
+///
+/// @brief It deletes a channel from the database by its id
+///
+/// @param db The database to delete the channel from.
+/// @param id The id of the channel to delete.
+///
+/// @return A boolean value.
+///
+static inline bool db_delete_channel_by_id(database_t *db, const id_t id)
+{
+    return llist_delif(db->channels, &channel_id_compare, id);
+}
+
+///
+/// @brief It deletes a channel from the database by name
+///
+/// @param db The database to delete the channel from.
+/// @param name The name of the channel to delete.
+///
+/// @return A boolean value.
+///
+static inline bool db_delete_channel_by_name(database_t *db,
+const char *name)
+{
+    return llist_delif(db->channels, &channel_name_compare, name);
+}
+
+///
+/// @brief It deletes a channel from the database if it has the same team id as the one
+///passed in
+///
+/// @param db The database to delete the channel from.
+/// @param team_id The id of the team to delete the channel of.
+///
+/// @return A boolean value.
+///
+static inline bool db_delete_channel_by_team_id(database_t *db,
+const id_t team_id)
+{
+    return llist_delif(db->channels, &channel_team_id_compare, team_id);
+};
