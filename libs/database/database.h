@@ -284,3 +284,166 @@ const id_t team_id)
 {
     return llist_delif(db->channels, &channel_team_id_compare, team_id);
 };
+
+/*
+** Message
+*/
+
+///
+/// @brief It adds a message to the database
+///
+/// @param db The database object
+/// @param message The message to add to the database.
+///
+/// @return A boolean value.
+///
+static inline bool db_add_msg(database_t *db, msg_t *message)
+{
+    return llist_append(db->messages, message);
+};
+
+///
+/// @brief It searches the database for a message with the given id
+///
+/// @param db The database to search in.
+/// @param id The id of the message to search for.
+///
+/// @return A pointer to a msg_t struct.
+///
+static inline msg_t *db_search_msg_by_id(database_t *db, const id_t id)
+{
+    return llist_search(db->messages, &msg_id_compare, id);
+};
+
+///
+/// @brief It searches the database's
+/// message list for a message with the given user ID
+///
+/// @param db The database to search in.
+/// @param user_id The user ID to search for.
+///
+/// @return A pointer to a msg_t struct.
+///
+static inline msg_t *db_search_msg_by_user_id(database_t *db,
+const id_t user_id)
+{
+    return llist_search(db->messages, &msg_user_id_compare, user_id);
+};
+
+///
+/// @brief It searches the database's
+/// message list for a message with the given thread ID
+///
+/// @param db The database to search in.
+/// @param thread_id The thread ID to search for.
+///
+/// @return A pointer to a msg_t struct.
+///
+static inline msg_t *db_search_msg_by_thread_id(database_t *db,
+const id_t thread_id)
+{
+    return llist_search(db->messages, &msg_thread_id_compare, thread_id);
+};
+
+///
+/// @brief It searches the database's
+/// message list for a message with the given channel ID
+///
+/// @param db The database to search in.
+/// @param channel_id The channel ID to search for.
+///
+/// @return A pointer to a msg_t struct.
+///
+static inline msg_t *db_search_msg_by_channel_id(database_t *db,
+const id_t channel_id)
+{
+    return llist_search(db->messages, &msg_channel_id_compare, channel_id);
+};
+
+///
+/// @brief It searches the database's
+/// message list for a message with the given discussion ID
+///
+/// @param db The database to search in.
+/// @param discu_id The discussion ID to search for.
+///
+/// @return A pointer to a msg_t struct.
+///
+static inline msg_t *db_search_msg_by_discussion_id(database_t *db,
+const id_t discu_id)
+{
+    return llist_search(db->messages, &msg_discussion_id_compare, discu_id);
+};
+
+///
+/// @brief It deletes a message from the database by its id
+///
+/// @param db The database to delete the message from.
+/// @param id The id of the message to delete.
+///
+/// @return A boolean value.
+///
+static inline bool db_delete_msg_by_id(database_t *db, const id_t id)
+{
+    return llist_delif(db->messages, &msg_id_compare, id);
+}
+
+///
+/// @brief It deletes a message from the database if it has the same user id as the one
+///passed in
+///
+/// @param db The database to delete the message from.
+/// @param user_id The id of the user to delete the message of.
+///
+/// @return A boolean value.
+///
+static inline bool db_delete_msg_by_user_id(database_t *db,
+const id_t user_id)
+{
+    return llist_delif(db->messages, &msg_user_id_compare, user_id);
+};
+
+///
+/// @brief It deletes a message from the database if it has the same thread id as the one
+///passed in
+///
+/// @param db The database to delete the message from.
+/// @param thread_id The id of the thread to delete the message of.
+///
+/// @return A boolean value.
+///
+static inline bool db_delete_msg_by_thread_id(database_t *db,
+const id_t thread_id)
+{
+    return llist_delif(db->messages, &msg_thread_id_compare, thread_id);
+};
+
+///
+/// @brief It deletes a message from the database if it has the same channel id as the one
+///passed in
+///
+/// @param db The database to delete the message from.
+/// @param channel_id The id of the channel to delete the message of.
+///
+/// @return A boolean value.
+///
+static inline bool db_delete_msg_by_channel_id(database_t *db,
+const id_t channel_id)
+{
+    return llist_delif(db->messages, &msg_channel_id_compare, channel_id);
+};
+
+///
+/// @brief It deletes a message from the database if it has the same discussion id as the one
+///passed in
+///
+/// @param db The database to delete the message from.
+/// @param discu_id The id of the discussion to delete the message of.
+///
+/// @return A boolean value.
+///
+static inline bool db_delete_msg_by_discussion_id(database_t *db,
+const id_t discu_id)
+{
+    return llist_delif(db->messages, &msg_discussion_id_compare, discu_id);
+};
