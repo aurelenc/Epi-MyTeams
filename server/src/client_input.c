@@ -10,12 +10,12 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
+#include "circular_buffer.h"
 
 void write_client_buff(client_sock_t *clients, int i, char *message)
 {
-    if (strlen(clients[i].wbuf) + strlen(message) > MAX_BUFF_SIZE)
+    if (cbuff_push(clients[i].wbuf, message) == BUFFER_FULL)
         remove_client(clients, i);
-    strcat(clients[i].wbuf, message);
 }
 
 int get_command_params(char **dest, char *src)

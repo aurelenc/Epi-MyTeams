@@ -10,6 +10,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdio.h>
+#include "circular_buffer.h"
 
 static void set_client_strings(client_sock_t *clients, int id, char *path)
 {
@@ -41,8 +42,11 @@ void remove_client(client_sock_t *clients, int remove_index)
 
 void write_to_client(client_sock_t *client)
 {
+    char buff[MAX_BUFF_SIZE];
+
+    if (cbuff_pop(client->wbuf, buff, MAX_BUFF_SIZE) == BUFFER_NO_DATA)
+        return;
     dprintf(client->socket, client->wbuf);
-    memset(client->wbuf, 0, MAX_BUFF_SIZE);
 }
 
 void listen_clients(client_sock_t *clients, server_t *server)
