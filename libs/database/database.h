@@ -102,7 +102,74 @@ static inline bool db_delete_user_by_id(database_t *db, const id_t id)
  *
  * @return A boolean value.
  */
-static inline bool db_search_user_by_pseudo(database_t *db, const char *pseudo)
+static inline bool db_delete_user_by_pseudo(database_t *db, const char *pseudo)
 {
     return llist_delif(db->users, &user_pseudo_compare, pseudo);
+}
+
+/**
+ * @brief It adds a team to the database
+ *
+ * @param db The database to add the team to.
+ * @param team The team to add to the database.
+ *
+ * @return A boolean value.
+ */
+static inline bool db_add_team(database_t *db, team_t *team)
+{
+    return llist_append(db->teams, team);
+};
+
+/**
+ * @brief It searches the database for a team with the given id
+ *
+ * @param db The database to search in.
+ * @param id The id of the team to search for.
+ *
+ * @return A pointer to a team_t struct.
+ */
+
+static inline team_t *db_search_team_by_id(database_t *db, const id_t id)
+{
+    return llist_search(db->teams, &team_id_compare, id);
+};
+
+/**
+ * @brief It searches the database for a team with the given name
+ *
+ * @param db The database to search in.
+ * @param name The name of the team to search for.
+ *
+ * @return A pointer to a team_t struct.
+ */
+static inline team_t *db_search_team_by_name(database_t *db, const char *name)
+{
+    return llist_search(db->teams, &team_name_compare, name);
+};
+
+/**
+ * @brief It deletes a team from the database by its id
+ *
+ * @param db The database to delete the team from.
+ * @param id The id of the team to delete
+ *
+ * @return A boolean value.
+ */
+static inline bool db_delete_team_by_id(database_t *db, const id_t id)
+{
+    return llist_delif(db->teams, &team_id_compare, id);
+}
+
+/**
+ * @brief It deletes the first team in the database whose name matches the given
+ * name
+ *
+ * @param db The database to search in.
+ * @param name The name of the team to search for.
+ *
+ * @return A boolean value.
+ */
+static inline bool db_delete_team_by_name(database_t *db, const char *name)
+{
+    return llist_delif(db->teams, &team_name_compare, name);
 }
