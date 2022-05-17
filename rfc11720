@@ -1,58 +1,85 @@
 # The Epitech myTeams project RFC
 
-1. INTRODUCTION
+### 1. INTRODUCTION
 
 The objectives of the myTeams project RFC is to allow communication between myTeams servers and myTeams clients
 
-2. OVERVIEW
+### 2. OVERVIEW
 
-- LOGI ["user_name"]
+- LOGI <SP> ["user_name"] <EOL>
     -   Set the user_name used by client
 - LOGO
     -   Disconnect the client from the server
 - USRS
     -   Get the list of all users that exist on the domain
-- USR ["user_uuid"]
+- USR <SP> ["user_uuid"] <EOL>
     -   Get information about a user
-- SEND ["user_uuid"] ["message_body"]
+- SEND <SP> ["user_uuid"] <SP> ["message_body"] <EOL>
     -   Send a message to a user
-- MSG ["user_uuid"]
+- MSG <SP> ["user_uuid"] <EOL>
     -   List all messages exchange with an user
-- SUB ["team_uuid"]
+- SUB <SP> ["team_uuid"] <EOL>
     -   Subscribe to the event of a team and its sub directories (enable reception of all events from a team)
 - SUBT
     -   List all subscribed teams
-- SUBU ["team_uuid"]
+- SUBU <SP> ["team_uuid"] <EOL>
     -   List all users subscribed to a team
-- USUB ["team_uuid"]
+- USUB <SP> ["team_uuid"] <EOL>
     -   Unsubscribe from a team
-- USTE ["team_uuid"]
+- USTE <SP> ["team_uuid"] <EOL>
     -   Use specify a context team
-- USCH ["channel_uuid"]
+- USCH <SP> ["channel_uuid"] <EOL>
     -   Use specify a context channel
-- USTH ["thread_uuid"]
+- USTH <SP> ["thread_uuid"] <EOL>
     -   Use specify a context thread
-- CRTE ["team_name"] ["team_description"]
+- CRTE <SP> ["team_name"] <SP> ["team_description"] <EOL>
     -   Create a new team
-- CRCH ["channel_name"] ["channel_description"]
+- CRCH <SP> ["channel_name"] <SP> ["channel_description"] <EOL>
     -   Create a new channel
-- CRTH ["thread_name"] ["thread_description"]
+- CRTH <SP> ["thread_name"] <SP> ["thread_description"] <EOL>
     -   Create a new thread
-- CRRE ["comment_body"]
+- CRRE <SP> ["comment_body"] <EOL>
     -   Create a new reply
-- LSTE
+- LSTE <EOL>
     -   List all existing teams
-- LSCH
+- LSCH <EOL>
     -   List all existing channels
-- LSTH
+- LSTH <EOL>
     -   List all existing threads
-- LSRE
+- LSRE <EOL>
     -   List all existing replies
-- IFTE
+- IFTE <EOL>
     -   Display currently selected team infos
-- IFCH
+- IFCH <EOL>
     -   Display currently selected channel infos
-- IFTH
+- IFTH <EOL>
     -   Display currently selected thread infos
-- IFUS
+- IFUS <EOL>
     -   Display currently logged user infos
+
+### 3. REPLY CODES
+
+- 00
+    - Success
+- 01
+    - Client connected
+
+- 10
+    - Internal server error
+- 11
+    - Server is full
+- 12
+    - Too many requests
+- 13
+    - Unrecognized command
+- 14
+    - Not found
+
+
+- 20
+    - Unknown client error
+- 21
+    - Missing parameter
+- 22
+    - Invalid format
+
