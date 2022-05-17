@@ -24,7 +24,8 @@ LIB_LINKED_LIST_SRC =	../libs/linked_list/llist_creation.c		\
 						../libs/linked_list/llist_insertion.c		\
 						../libs/linked_list/llist_tools.c			\
 
-TEST_SRC	=	tests_llist_init.c				\
+TEST_SRC	=	tests_tools.c					\
+				tests_llist_init.c				\
 				tests_llist_destruction.c		\
 				tests_llist_append.c			\
 				tests_llist_push_front.c		\
@@ -40,6 +41,7 @@ TEST_SRC	=	tests_llist_init.c				\
 				tests_llist_front.c				\
 				tests_llist_get.c				\
 				tests_llist_search.c			\
+				tests_llist_delif.c				\
 
 CFLAGS	=	-Wall -Werror
 
