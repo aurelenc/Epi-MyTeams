@@ -1,0 +1,58 @@
+# The Epitech myTeams project RFC
+
+1. INTRODUCTION
+
+The objectives of the myTeams project RFC is to allow communication between myTeams servers and myTeams clients
+
+2. OVERVIEW
+
+- LOGI ["user_name"]
+    -   Set the user_name used by client
+- LOGO
+    -   Disconnect the client from the server
+- USRS
+    -   Get the list of all users that exist on the domain
+- USR ["user_uuid"]
+    -   Get information about a user
+- SEND ["user_uuid"] ["message_body"]
+    -   Send a message to a user
+- MSG ["user_uuid"]
+    -   List all messages exchange with an user
+- SUB ["team_uuid"]
+    -   Subscribe to the event of a team and its sub directories (enable reception of all events from a team)
+- SUBT
+    -   List all subscribed teams
+- SUBU ["team_uuid"]
+    -   List all users subscribed to a team
+- USUB ["team_uuid"]
+    -   Unsubscribe from a team
+- USTE ["team_uuid"]
+    -   Use specify a context team
+- USCH ["channel_uuid"]
+    -   Use specify a context channel
+- USTH ["thread_uuid"]
+    -   Use specify a context thread
+- CRTE ["team_name"] ["team_description"]
+    -   Create a new team
+- CRCH ["channel_name"] ["channel_description"]
+    -   Create a new channel
+- CRTH ["thread_name"] ["thread_description"]
+    -   Create a new thread
+- CRRE ["comment_body"]
+    -   Create a new reply
+- LSTE
+    -   List all existing teams
+- LSCH
+    -   List all existing channels
+- LSTH
+    -   List all existing threads
+- LSRE
+    -   List all existing replies
+- IFTE
+    -   Display currently selected team infos
+- IFCH
+    -   Display currently selected channel infos
+- IFTH
+    -   Display currently selected thread infos
+- IFUS
+    -   Display currently logged user infos
