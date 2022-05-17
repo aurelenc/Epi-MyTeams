@@ -25,11 +25,14 @@ const command_t commands[] = {
     {"CRTE", 1, 0, &command_create_team, true},
     {"CRCH", 1, 0, &command_create_channel, true},
     {"CRTH", 1, 0, &command_create_thread, true},
+    {"CRTE", 1, 0, &command_create_reply, true},
     {"LSTE", 1, 0, &command_list_teams, true},
     {"LSCH", 1, 0, &command_list_channels, true},
     {"LSTH", 1, 0, &command_list_threads, true},
+    {"LSTE", 1, 0, &command_list_replies, true},
     {"IFTE", 1, 0, &command_info_team, true},
     {"IFCH", 1, 0, &command_info_channel, true},
     {"IFTH", 1, 0, &command_info_thread, true},
+    {"IFTH", 1, 0, &command_info_user, true},
     {"NULL", 0, 0, NULL, false}
 };

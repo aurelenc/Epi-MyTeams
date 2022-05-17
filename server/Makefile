@@ -32,14 +32,27 @@ COMMANDS_SRC	=	\
 					src/commands/create_team.c\
 					src/commands/create_channel.c\
 					src/commands/create_thread.c\
+					src/commands/create_reply.c\
 					src/commands/list_teams.c\
 					src/commands/list_channels.c\
 					src/commands/list_threads.c\
+					src/commands/list_replies.c\
 					src/commands/info_team.c\
 					src/commands/info_channel.c\
 					src/commands/info_thread.c\
+					src/commands/info_user.c\
 
-LIB	=	../libs/circularbuffer/circular_buffer.c\
+LIB	=	../libs/circularbuffer/circular_buffer.c	\
+
+DATABASE =	../libs/database/fields/channel.c			\
+			../libs/database/fields/discussion.c		\
+			../libs/database/fields/message.c			\
+			../libs/database/fields/team.c				\
+			../libs/database/fields/thread.c			\
+			../libs/database/fields/user.c				\
+			../libs/database/search/user_search.c				\
+			../libs/database/database_init.c			\
+			../libs/database/database_destruction.c		\
 
 LIB_LINKED_LIST =	../libs/linked_list/llist_creation.c		\
 					../libs/linked_list/llist_destruction.c		\
@@ -49,9 +62,9 @@ LIB_LINKED_LIST =	../libs/linked_list/llist_creation.c		\
 					../libs/linked_list/llist_insertion.c		\
 					../libs/linked_list/llist_tools.c			\
 
-OBJ	=	$(SRC:.c=.o) $(COMMANDS_SRC:.c=.o) $(LIB:.c=.o) $(LIB_LINKED_LIST:.c=.o)
+OBJ	=	$(SRC:.c=.o) $(COMMANDS_SRC:.c=.o) $(LIB:.c=.o) $(LIB_LINKED_LIST:.c=.o) $(DATABASE:.c=.o)
 
-CFLAGS	=	-Wall -Werror -I include/ -I ../libs/myteams -I ../libs/circularbuffer -I ../libs/linked_list/ -g
+CFLAGS	=	-Wall -Werror -I include/ -I ../libs/myteams -I ../libs/circularbuffer -I ../libs/linked_list/ -I ../libs/database -g
 
 CC	=	gcc
 

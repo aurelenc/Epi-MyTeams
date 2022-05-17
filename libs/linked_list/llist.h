@@ -177,6 +177,25 @@ void *llist_back(llist_t *list);
  */
 void *llist_get(llist_t *list, unsigned int position);
 
+
+/**
+ * @brief Defining a function pointer whose purpose is to compare two given
+ * parameters
+ */
+typedef bool (*data_search_t)(const void *elem, const void *search);
+
+/**
+ * @brief It searches for a data in the list that matches the search criteria
+ *
+ * @param list the list to search
+ * @param search_fun a function that takes two void pointers as parameters and
+ * returns an bool.
+ * @param search the data to search for
+ *
+ * @return The data of the node that matches the search criteria.
+ */
+void *llist_search(llist_t *list, data_search_t search_fun, void *search);
+
 /* List destruction */
 
 /**
