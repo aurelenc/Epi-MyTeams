@@ -7,55 +7,73 @@ The objectives of the myTeams project RFC is to allow communication between myTe
 ### 2. OVERVIEW
 
 - LOGI <SP> ["user_name"] <EOL>
-    -   Set the user_name used by client
+    -   This protocol is used to set the user_name used by client
+        -   user_name: The name of the user to connect to
 - LOGO
-    -   Disconnect the client from the server
+    -   This protocol is used to disconnect the client from the server
 - USRS
-    -   Get the list of all users that exist on the domain
+    -   This protocol is used to get the list of all users that exist on the domain
 - USR <SP> ["user_uuid"] <EOL>
-    -   Get information about a user
+    -   This protocol is used to get information about a user
+        -   user_uuid: UUID of the selected user
 - SEND <SP> ["user_uuid"] <SP> ["message_body"] <EOL>
-    -   Send a message to a user
+    -   This protocol is used to send a message to a user
+        -   user_uuid: UUID of the selected user
+        -   message_body: The message to send to the selected user
 - MSG <SP> ["user_uuid"] <EOL>
-    -   List all messages exchange with an user
+    -   This protocol is used to list all messages exchange with an user
+        -   user_uuid: UUID of the selected user
 - SUB <SP> ["team_uuid"] <EOL>
-    -   Subscribe to the event of a team and its sub directories (enable reception of all events from a team)
+    -   This protocol is used to subscribe to the event of a team and its sub directories (enable reception of all events from a team)
+        -   team_uuid: UUID of the selected team
 - SUBT
-    -   List all subscribed teams
+    -   This protocol is used to list all subscribed teams
 - SUBU <SP> ["team_uuid"] <EOL>
-    -   List all users subscribed to a team
+    -   This protocol is used to list all users subscribed to a team
+        -   team_uuid: UUID of the selected team
 - USUB <SP> ["team_uuid"] <EOL>
-    -   Unsubscribe from a team
+    -   This protocol is used to unsubscribe from a team
+        -   team_uuid: UUID of the selected team
 - USTE <SP> ["team_uuid"] <EOL>
-    -   Use specify a context team
+    -   This protocol is used to use specify a context team
+        -   team_uuid: UUID of the selected team
 - USCH <SP> ["channel_uuid"] <EOL>
-    -   Use specify a context channel
+    -   This protocol is used to use specify a context channel
+        -   channel_uuid: UUID of the selected channel
 - USTH <SP> ["thread_uuid"] <EOL>
-    -   Use specify a context thread
+    -   This protocol is used to use specify a context thread
+        -   thread_uuid: UUID of the selected thread
 - CRTE <SP> ["team_name"] <SP> ["team_description"] <EOL>
-    -   Create a new team
+    -   This protocol is used to create a new team
+        -   team_name: The name of the new team
+        -   team_description: The description of the new team
 - CRCH <SP> ["channel_name"] <SP> ["channel_description"] <EOL>
-    -   Create a new channel
+    -   This protocol is used to create a new channel
+        -   channel_name: The name of the new channel
+        -   channel_description: The description of the new channel
 - CRTH <SP> ["thread_name"] <SP> ["thread_description"] <EOL>
-    -   Create a new thread
+    -   This protocol is used to create a new thread
+        -   thread_name: The name of the new thread
+        -   thread_description: The description of the new thread
 - CRRE <SP> ["comment_body"] <EOL>
-    -   Create a new reply
+    -   This protocol is used to create a new reply
+        -   comment_body: The comment to send
 - LSTE <EOL>
-    -   List all existing teams
+    -   This protocol is used to list all existing teams
 - LSCH <EOL>
-    -   List all existing channels
+    -   This protocol is used to list all existing channels
 - LSTH <EOL>
-    -   List all existing threads
+    -   This protocol is used to list all existing threads
 - LSRE <EOL>
-    -   List all existing replies
+    -   This protocol is used to list all existing replies
 - IFTE <EOL>
-    -   Display currently selected team infos
+    -   This protocol is used to display currently selected team infos
 - IFCH <EOL>
-    -   Display currently selected channel infos
+    -   This protocol is used to display currently selected channel infos
 - IFTH <EOL>
-    -   Display currently selected thread infos
+    -   This protocol is used to display currently selected thread infos
 - IFUS <EOL>
-    -   Display currently logged user infos
+    -   This protocol is used to display currently logged user infos
 
 ### 3. REPLY CODES
 
