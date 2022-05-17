@@ -71,15 +71,17 @@ The objectives of the myTeams project RFC is to allow communication between myTe
 - 12
     - Too many requests
 - 13
-    - Unrecognized command
+    - Forbidden
 - 14
     - Not found
 
 
 - 20
     - Unknown client error
-- 21
-    - Missing parameter
+- 11
+    - Unrecognized command
 - 22
+    - Missing parameter
+- 23
     - Invalid format
 
