@@ -5,26 +5,26 @@
 ** team_searchs
 */
 
-#include "../fields/team.h"
+#include "fields/team.h"
 #include <stdbool.h>
 #include <string.h>
 
 bool team_id_compare(const void *elem, const void *search)
 {
-    const team_t *u = (const team_t *)elem;
+    const team_t *team = (const team_t *)elem;
     const id_t *id = (const id_t *)search;
 
-    if (u->id == *id)
+    if (team->id == *id)
         return true;
     return false;
 }
 
 bool team_name_compare(const void *elem, const void *search)
 {
-    const team_t *u = (const team_t *)elem;
+    const team_t *team = (const team_t *)elem;
     const char *name = (const char *)search;
 
-    if (strcmp(u->name, name) == 0)
+    if (strcmp(team->name, name) == 0)
         return true;
     return false;
 }
