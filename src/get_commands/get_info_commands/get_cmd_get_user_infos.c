@@ -1,0 +1,8 @@
+/*
+** EPITECH PROJECT, 2022
+** My_Teams
+** File description:
+** get_cmd_get_user_infos
+*/
+
+

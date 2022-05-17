@@ -15,9 +15,6 @@ typedef	struct tab_command_s {
   void (*function)(char *);
 } tab_command_t;
 
-
 extern tab_command_t gptrtab[22];
-
-
 
 #endif /* !COMMAND_H_ */
