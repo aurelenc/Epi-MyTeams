@@ -37,4 +37,5 @@ void msg_destruction(msg_t *msg)
     if (!msg)
         return;
     free(msg->content);
+    free(msg);
 }

@@ -40,4 +40,5 @@ void discussion_destruction(discussion_t *discussion)
     if (!discussion)
         return;
     free(discussion->name);
+    free(discussion);
 }

@@ -33,4 +33,5 @@ void team_destruction(team_t *team)
     if (!team)
         return;
     free(team->name);
+    free(team);
 }

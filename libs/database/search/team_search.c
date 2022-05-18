@@ -5,7 +5,7 @@
 ** team_searchs
 */
 
-#include "fields/team.h"
+#include "tables/team.h"
 #include <stdbool.h>
 #include <string.h>
 

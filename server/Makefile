@@ -18,12 +18,12 @@ COMMANDS_SRC	=	\
 
 LIB	=	../libs/circularbuffer/circular_buffer.c	\
 
-DATABASE =	../libs/database/fields/channel.c			\
-			../libs/database/fields/discussion.c		\
-			../libs/database/fields/message.c			\
-			../libs/database/fields/team.c				\
-			../libs/database/fields/thread.c			\
-			../libs/database/fields/user.c				\
+DATABASE =	../libs/database/tables/channel.c			\
+			../libs/database/tables/discussion.c		\
+			../libs/database/tables/message.c			\
+			../libs/database/tables/team.c				\
+			../libs/database/tables/thread.c			\
+			../libs/database/tables/user.c				\
 			../libs/database/search/channel_search.c	\
 			../libs/database/search/discussion_search.c	\
 			../libs/database/search/message_search.c	\

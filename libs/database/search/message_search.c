@@ -5,7 +5,7 @@
 ** message_search
 */
 
-#include "fields/message.h"
+#include "tables/message.h"
 #include <stdbool.h>
 
 bool msg_id_compare(const void *elem, const void *search)

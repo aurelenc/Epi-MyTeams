@@ -7,12 +7,12 @@
 
 #pragma once
 
-#include "fields/user.h"
-#include "fields/team.h"
-#include "fields/channel.h"
-#include "fields/message.h"
-#include "fields/thread.h"
-#include "fields/discussion.h"
+#include "tables/user.h"
+#include "tables/team.h"
+#include "tables/channel.h"
+#include "tables/message.h"
+#include "tables/thread.h"
+#include "tables/discussion.h"
 #include "llist.h"
 #include "search/database_search_functions.h"
 
@@ -24,6 +24,7 @@ typedef struct database_s
     llist_t *messages;
     llist_t *threads;
     llist_t *discussions;
+    llist_t *users_teams;
 } database_t;
 
 ///
@@ -40,7 +41,7 @@ database_t *db_creation(void);
 ///
 /// @return A pointer to a database_t struct.
 ///
-database_t *db_destuction(database_t *database);
+database_t *db_destruction(database_t *database);
 
 /*
 ** Users

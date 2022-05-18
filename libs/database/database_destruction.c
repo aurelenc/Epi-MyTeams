@@ -8,7 +8,7 @@
 #include "database.h"
 #include <stdlib.h>
 
-database_t *db_destuction(database_t *database)
+database_t *db_destruction(database_t *database)
 {
     if (!database)
         return (0);

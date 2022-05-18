@@ -34,4 +34,5 @@ void channel_destruction(channel_t *channel)
     if (!channel)
         return;
     free(channel->name);
+    free(channel);
 }

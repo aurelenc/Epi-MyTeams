@@ -35,4 +35,5 @@ void user_destruction(user_t *user)
         return;
     free(user->password);
     free(user->pseudo);
+    free(user);
 }
