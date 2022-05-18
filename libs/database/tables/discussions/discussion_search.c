@@ -5,7 +5,7 @@
 ** discussion_searchs
 */
 
-#include "tables/discussion.h"
+#include "discussion.h"
 #include <stdbool.h>
 #include <string.h>
 

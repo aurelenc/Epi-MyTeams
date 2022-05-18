@@ -5,7 +5,7 @@
 ** thread_searchs
 */
 
-#include "tables/thread.h"
+#include "thread.h"
 #include <stdbool.h>
 #include <string.h>
 

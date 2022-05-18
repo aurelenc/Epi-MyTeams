@@ -5,7 +5,7 @@
 ** channel_searchs
 */
 
-#include "tables/channel.h"
+#include "channel.h"
 #include <stdbool.h>
 #include <string.h>
 

@@ -41,20 +41,19 @@ COMMANDS_SRC	=	\
 
 LIB	=	../libs/circularbuffer/circular_buffer.c	\
 
-DATABASE =	../libs/database/tables/channel.c			\
-			../libs/database/tables/discussion.c		\
-			../libs/database/tables/message.c			\
-			../libs/database/tables/team.c				\
-			../libs/database/tables/thread.c			\
-			../libs/database/tables/user.c				\
-			../libs/database/search/channel_search.c	\
-			../libs/database/search/discussion_search.c	\
-			../libs/database/search/message_search.c	\
-			../libs/database/search/team_search.c		\
-			../libs/database/search/thread_search.c		\
-			../libs/database/search/user_search.c		\
-			../libs/database/database_init.c			\
-			../libs/database/database_destruction.c		\
+DATABASE =	../libs/database/tables/channels/channel.c					\
+			../libs/database/tables/channels/channel_search.c			\
+			../libs/database/tables/discussions/discussion.c			\
+			../libs/database/tables/discussions/discussion_search.c		\
+			../libs/database/tables/messages/message.c					\
+			../libs/database/tables/messages/message_search.c			\
+			../libs/database/tables/teams/team.c						\
+			../libs/database/tables/teams/team_search.c					\
+			../libs/database/tables/threads/thread.c					\
+			../libs/database/tables/threads/thread_search.c				\
+			../libs/database/tables/users/user.c						\
+			../libs/database/tables/users/user_search.c					\
+			../libs/database/database_management.c						\
 
 LIB_LINKED_LIST =	../libs/linked_list/llist_creation.c		\
 					../libs/linked_list/llist_destruction.c		\

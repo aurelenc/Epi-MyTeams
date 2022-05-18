@@ -5,7 +5,7 @@
 ** user_searchs
 */
 
-#include "tables/user.h"
+#include "user.h"
 #include <stdbool.h>
 #include <string.h>
 

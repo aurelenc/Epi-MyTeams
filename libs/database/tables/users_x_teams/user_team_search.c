@@ -5,7 +5,7 @@
 ** user_team_search
 */
 
-#include "tables/users_x_teams.h"
+#include "users_x_teams.h"
 #include <stdbool.h>
 
 bool user_team_user_id_compare(const void *elem, const void *search)
