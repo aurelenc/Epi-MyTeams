@@ -8,22 +8,24 @@
 #include "database.h"
 #include <stdlib.h>
 
-database_t *db_destruction(database_t *database)
+database_t *db_destruction(database_t *db)
 {
-    if (!database)
+    if (!db)
         return (0);
-    if (database->users)
-        database->users = llist_destruction(database->users);
-    if (database->teams)
-        database->teams = llist_destruction(database->teams);
-    if (database->channels)
-        database->channels = llist_destruction(database->channels);
-    if (database->messages)
-        database->messages = llist_destruction(database->messages);
-    if (database->threads)
-        database->threads = llist_destruction(database->threads);
-    if (database->discussions)
-        database->discussions = llist_destruction(database->discussions);
-    free(database);
+    if (db->users)
+        db->users = llist_destruction(db->users);
+    if (db->teams)
+        db->teams = llist_destruction(db->teams);
+    if (db->channels)
+        db->channels = llist_destruction(db->channels);
+    if (db->messages)
+        db->messages = llist_destruction(db->messages);
+    if (db->threads)
+        db->threads = llist_destruction(db->threads);
+    if (db->discussions)
+        db->discussions = llist_destruction(db->discussions);
+    if (db->users_teams)
+        db->users_teams = llist_destruction(db->users_teams);
+    free(db);
     return (0);
 }

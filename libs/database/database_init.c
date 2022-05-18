@@ -24,8 +24,9 @@ database_t *db_creation(void)
     db->messages = llist_init();
     db->threads = llist_init();
     db->discussions = llist_init();
-    if (!db->users || db->teams || db->channels ||
-        db->messages || db->threads || db->discussions) {
+    db->users_teams = llist_init();
+    if (!db->users || !db->teams || !db->channels || !db->messages
+        || !db->threads || !db->discussions || !db->users_teams) {
         perror("Database creation");
         exit (84);
     }
