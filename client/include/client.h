@@ -33,5 +33,6 @@ typedef struct client_s {
     bool is_in_thread;
     bool is_connected;
     int socket;
+    int server_socket;
     struct sockaddr_in servaddr;
 } client_t;

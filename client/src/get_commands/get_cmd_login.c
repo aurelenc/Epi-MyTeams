@@ -5,9 +5,10 @@
 ** get_cmd_login
 */
 
+#include <unistd.h>
 #include "../../include/get_command.h"
 
-int log_client(char *av)
+int log_client(char *av, int socket)
 {
     char *params;
     char *buff;
@@ -25,6 +26,7 @@ int log_client(char *av)
         strcat(buff, av);
         strcat(buff, "\n");
         printf("La command c'est = [%s]\n", buff);
+         write(socket, buff, strlen(buff));
     }
     return 0;
 }

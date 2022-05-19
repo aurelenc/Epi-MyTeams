@@ -61,11 +61,11 @@ tab_command_sending_t tab_command_sending[] = {
  * @param command the command to execute
  * @param av the arguments of the command
  */
-void get_rfds_command(char *command, char *av)
+void get_rfds_command(char *command, char *av, int socket)
 {
     for (int i = 0; tab_command_sending[i].cmd != NULL; i++)
         if (!strcmp(tab_command_sending[i].cmd, command))
-            tab_command_sending[i].function(av);
+            tab_command_sending[i].function(av, socket);
 }
 
 /**
@@ -76,7 +76,7 @@ void get_rfds_command(char *command, char *av)
  * 
  * @return The return value is the number of bytes received.
  */
-int parse_command(char *input)
+int parse_command(char *input, int socket)
 {
     char *cmdClient = strtok(input, "\r\n");
     char *command = NULL;
@@ -86,7 +86,7 @@ int parse_command(char *input)
     while (cmdClient) {
         command = strsep(&cmdClient, " ");
         arguments = cmdClient;
-        get_rfds_command(command, arguments);
+        get_rfds_command(command, arguments, socket);
         cmdClient = strtok(NULL, "\r\t");
     }
     return (0);
