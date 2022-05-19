@@ -22,12 +22,14 @@ void write_client_buff(client_sock_t *clients, int i, char *message)
 int get_command_params(char **dest, char *src)
 {
     int i = 0;
+    char *tmp = strdup(src);
 
     for (; i < MAX_PARAMS_NB; i++) {
-        dest[i] = strtok(i == 0 ? src : NULL, " \t\r\n");
+        dest[i] = strtok(i == 0 ? tmp : NULL, " \t\r\n");
         if (!dest[i])
             break;
     }
+    free(tmp);
     return i;
 }
 
