@@ -7,14 +7,17 @@
 
 NAME	=	myteams_cli
 
-SRC	=	src/main.c\
+SRC	=	main.c\
 		src/client.c\
+		src/manage_commands/manage_command.c	\
+		src/get_commands/get_cmd_login.c	\
+		src/get_commands/check_params.c
 
 LIB	=	../libs/circularbuffer/circular_buffer.c\
 
 OBJ	=	$(SRC:.c=.o) $(LIB:.c=.o)
 
-CFLAGS	=	-Wall -Werror -I include/ -I ../libs/myteams -I ../libs/circularbuffer -g
+CFLAGS	=	-Wall -Werror -I ../include -I include/ -I ../libs/myteams -I ../libs/circularbuffer -g
 
 CC	=	gcc
 
