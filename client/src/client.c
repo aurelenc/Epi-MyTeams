@@ -64,9 +64,9 @@ void running_teams(client_t *client)
         //write(sockfd, buff, sizeof(buff));
         //bzero(buff, sizeof(buff));
         printf("Command is = [%s]\n", buff);
-        read(client->socket, server_respons, sizeof(buff));
         printf("Command 2 = [%s]\n", buff);
         parse_command(buff, client->socket);
+        read(client->socket, server_respons, sizeof(buff));
         printf("From Server : %s\n", buff);
         if ((strncmp(buff, "exit", 4)) == 0) {
             printf("Client Exit...\n");
