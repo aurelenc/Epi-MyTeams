@@ -61,6 +61,23 @@ bool llist_delete_at(llist_t *list, unsigned int position)
     return 1;
 }
 
+bool llist_delif(llist_t *list, data_search_t search_fun, const void *search)
+{
+    node_t *ptr;
+    unsigned int count = 0;
+
+    if (!list)
+        return (0);
+    ptr = list->first;
+    while (ptr) {
+        if (search_fun(ptr->data, search))
+            break;
+        ptr = ptr->next;
+        count ++;
+    }
+    return (llist_delete_at(list, count));
+}
+
 void llist_clear(llist_t *list)
 {
     while (list->first)
