@@ -12,6 +12,6 @@
 int command_login(command_param_t *param)
 {
     printf("login\n");
-    write_client_buff(param->clients, param->id, "logged in\n");
+    write_client_buff(param->clients, param->id, "777\n");
     return REPLY_NOT_IMPLEMENTED;
 }

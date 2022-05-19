@@ -54,19 +54,18 @@ void connect_client(client_t *client)
 void running_teams(client_t *client)
 {
     char buff[MAX];
-    char server_respons[MAX];
 
     client->is_connected = true;
+    read(client->socket, buff, MAX);
+    printf("Buff = [%s]\n", buff);
+    memset(buff, 0, MAX);
     while (client->is_connected) {
         bzero(buff, sizeof(buff));
         printf("Enter the command : ");
         for (int i = 0; (buff[i] = getchar()) != '\n'; i++);
         //write(sockfd, buff, sizeof(buff));
         //bzero(buff, sizeof(buff));
-        printf("Command is = [%s]\n", buff);
-        printf("Command 2 = [%s]\n", buff);
         parse_command(buff, client->socket);
-        read(client->socket, server_respons, sizeof(buff));
         printf("From Server : %s\n", buff);
         if ((strncmp(buff, "exit", 4)) == 0) {
             printf("Client Exit...\n");
