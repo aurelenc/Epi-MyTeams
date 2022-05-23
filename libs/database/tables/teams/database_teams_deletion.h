@@ -25,6 +25,20 @@ static inline bool db_delete_team_by_id(database_t *db, const id_t id)
 }
 
 ///
+/// @brief It deletes the first team in the database whose uuid matches the
+/// given uuid
+///
+/// @param db The database to search in.
+/// @param uuid The uuid of the team to search for.
+///
+/// @return A boolean value.
+///
+static inline bool db_delete_team_by_uuid(database_t *db, const char *uuid)
+{
+    return llist_delif(db->teams, &team_uuid_compare, uuid);
+}
+
+///
 /// @brief It deletes the first team in the database whose name matches the
 /// given name
 ///

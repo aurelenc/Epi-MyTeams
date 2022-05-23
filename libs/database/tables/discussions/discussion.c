@@ -6,6 +6,7 @@
 */
 
 #include "discussion.h"
+#include "tables/uuid_gen.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
@@ -21,13 +22,11 @@ discussion_t *discussion_init(id_t id, const char *name,
         exit (84);
     }
     discussion->id = id;
-    discussion->user_one_id = user_one_id;if (!discussion) {
-        perror("Discussion creation");
-        exit (84);
-    }
+    discussion->user_one_id = user_one_id;
     discussion->user_two_id = user_two_id;
+    discussion->uuid = uuid_gen();
     discussion->name = strdup(name);
-    if (!discussion->name) {
+    if (!discussion->uuid || !discussion->name) {
         perror("Discussion creation");
         exit (84);
     }

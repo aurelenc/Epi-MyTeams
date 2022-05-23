@@ -6,6 +6,7 @@
 */
 
 #include "team.h"
+#include "tables/uuid_gen.h"
 #include <stdlib.h>
 #include <errno.h>
 #include <string.h>
@@ -20,8 +21,9 @@ team_t *team_init(id_t id, const char *name)
         exit (84);
     }
     team->id = id;
+    team->uuid = uuid_gen();
     team->name = strdup(name);
-    if (!team->name) {
+    if (!team->uuid || !team->name) {
         perror("Team creation");
         exit (84);
     }

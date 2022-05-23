@@ -6,6 +6,7 @@
 */
 
 #include "thread.h"
+#include "tables/uuid_gen.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
@@ -20,6 +21,11 @@ thread_t *thread_init(id_t id, id_t start_msg_id)
         exit (84);
     }
     thread->id = id;
+    thread->uuid = uuid_gen();
+    if (!thread->uuid) {
+        perror("Thread creation");
+        exit (84);
+    }
     thread->start_msg_id = start_msg_id;
     return (thread);
 }

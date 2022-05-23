@@ -17,6 +17,18 @@
 ///
 bool user_id_compare(const void *elem, const void *search);
 
+
+///
+/// @brief It compares the uuid of a user with a given uuid
+///
+/// @param elem the element to compare
+/// @param search the value to search for
+///
+/// @return A boolean value.
+///
+bool user_uuid_compare(const void *elem, const void *search);
+
+
 ///
 /// @brief It compares the pseudo of a user with a given pseudo
 ///

@@ -27,6 +27,21 @@ const id_t id)
 };
 
 ///
+/// @brief It searches the database for a discussion with the given uuid
+///
+/// @param db The database to search in.
+/// @param uuid The uuid of the discussion to search for.
+///
+/// @return A pointer to a discussion_t struct.
+///
+static inline discussion_t *db_search_discussion_by_uuid(database_t *db,
+const char *uuid)
+{
+    return (discussion_t *)llist_search(db->discussions,
+    &discussion_uuid_compare, uuid);
+};
+
+///
 /// @brief It searches the database for a discussion with the given name
 ///
 /// @param db The database to search in.

@@ -11,6 +11,7 @@ typedef unsigned int id_t;
 
 typedef struct discussion_s {
     id_t id;
+    char *uuid;
     char *name;
     id_t user_one_id;
     id_t user_two_id;

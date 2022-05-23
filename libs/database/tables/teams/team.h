@@ -11,6 +11,7 @@ typedef unsigned int id_t;
 
 typedef struct team_s {
     id_t id;
+    char *uuid;
     char *name;
 } team_t;
 

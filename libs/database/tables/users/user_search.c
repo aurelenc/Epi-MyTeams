@@ -19,6 +19,16 @@ bool user_id_compare(const void *elem, const void *search)
     return false;
 }
 
+bool user_uuid_compare(const void *elem, const void *search)
+{
+    const user_t *user = (const user_t *)elem;
+    const char *uuid = (const char *)search;
+
+    if (strcmp(user->uuid, uuid) == 0)
+        return true;
+    return false;
+}
+
 bool user_pseudo_compare(const void *elem, const void *search)
 {
     const user_t *user = (const user_t *)elem;

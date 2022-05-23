@@ -11,6 +11,7 @@ typedef unsigned int id_t;
 
 typedef struct thread_s {
     id_t id;
+    char *uuid;
     id_t start_msg_id;
 } thread_t;
 

@@ -11,6 +11,7 @@ typedef unsigned int id_t;
 
 typedef struct user_s {
     id_t id;
+    char *uuid;
     char *pseudo;
     char *password;
 } user_t ;

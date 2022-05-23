@@ -19,6 +19,16 @@ bool discussion_id_compare(const void *elem, const void *search)
     return false;
 }
 
+bool discussion_uuid_compare(const void *elem, const void *search)
+{
+    const discussion_t *discussion = (const discussion_t *)elem;
+    const char *uuid = (const char *)search;
+
+    if (strcmp(discussion->uuid, uuid) == 0)
+        return true;
+    return false;
+}
+
 bool discussion_name_compare(const void *elem, const void *search)
 {
     const discussion_t *discussion = (const discussion_t *)elem;

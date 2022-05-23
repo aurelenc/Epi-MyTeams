@@ -25,6 +25,20 @@ static inline user_t *db_search_user_by_id(database_t *db, const id_t id)
 };
 
 ///
+/// @brief It searches the database for a user with the given uuid
+///
+/// @param db the database
+/// @param uuid the uuid of the user to search for
+///
+/// @return A pointer to the user_t struct.
+///
+static inline user_t *db_search_user_by_uuid(database_t *db,
+const char *uuid)
+{
+    return (user_t *)llist_search(db->users, &user_uuid_compare, uuid);
+};
+
+///
 /// @brief It searches the database for a user with the given pseudo
 ///
 /// @param db the database

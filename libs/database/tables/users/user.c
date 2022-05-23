@@ -6,6 +6,7 @@
 */
 
 #include "user.h"
+#include "tables/uuid_gen.h"
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -20,9 +21,10 @@ user_t *user_init(id_t id, const char *pseudo, const char *password)
         exit (84);
     }
     user->id = id;
+    user->uuid = uuid_gen();
     user->pseudo = strdup(pseudo);
     user->password = strdup(password);
-    if (!user->pseudo || ! user->password) {
+    if (!user->uuid || !user->pseudo || ! user->password) {
         perror("User creation");
         exit (84);
     }

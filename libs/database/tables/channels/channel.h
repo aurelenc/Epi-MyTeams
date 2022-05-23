@@ -7,10 +7,13 @@
 
 #pragma once
 
+#include <uuid/uuid.h>
+
 typedef unsigned int id_t;
 
 typedef struct channel_s {
     id_t id;
+    char *uuid;
     char *name;
     id_t team_id;
 } channel_t;

@@ -18,6 +18,16 @@
 bool msg_id_compare(const void *elem, const void *search);
 
 ///
+/// It compares the uuid of a message with the uuid of a search
+///
+/// @param elem The element to compare.
+/// @param search The value to search for.
+///
+/// @return A boolean value.
+///
+bool msg_uuid_compare(const void *elem, const void *search);
+
+///
 /// It compares the user_id of a message with the user_id passed in as a
 /// parameter
 ///

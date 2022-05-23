@@ -25,6 +25,20 @@ static inline bool db_delete_discussion_by_id(database_t *db, const id_t id)
 };
 
 ///
+/// @brief It deletes a discussion from the database by uuid
+///
+/// @param db The database to delete the discussion from.
+/// @param uuid The uuid of the discussion to delete.
+///
+/// @return A boolean value.
+///
+static inline bool db_delete_discussion_by_uuid(database_t *db,
+const char *uuid)
+{
+    return llist_delif(db->discussions, &discussion_uuid_compare, uuid);
+};
+
+///
 /// @brief It deletes a discussion from the database by name
 ///
 /// @param db The database to delete the discussion from.

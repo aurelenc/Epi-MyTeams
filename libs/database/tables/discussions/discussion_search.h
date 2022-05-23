@@ -18,6 +18,16 @@
 bool discussion_id_compare(const void *elem, const void *search);
 
 ///
+/// @brief It compares the uuid of a discussion to a string
+///
+/// @param elem The element to compare.
+/// @param search The search key.
+///
+/// @return A boolean value.
+///
+bool discussion_uuid_compare(const void *elem, const void *search);
+
+///
 /// @brief It compares the name of a discussion to a string
 ///
 /// @param elem The element to compare.

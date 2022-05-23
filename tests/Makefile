@@ -45,7 +45,7 @@ TEST_SRC	=	tests_tools.c					\
 
 CFLAGS	=	-Wall -Werror
 
-LDFLAGS = -lcriterion --coverage -I ../libs/linked_list
+LDFLAGS = -lcriterion -luuid --coverage -I ../libs/linked_list
 
 CC	=	gcc
 

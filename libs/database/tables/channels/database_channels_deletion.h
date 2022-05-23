@@ -25,6 +25,20 @@ static inline bool db_delete_channel_by_id(database_t *db, const id_t id)
 }
 
 ///
+/// @brief It deletes a channel from the database by uuid
+///
+/// @param db The database to delete the channel from.
+/// @param uuid The uuid of the channel to delete.
+///
+/// @return A boolean value.
+///
+static inline bool db_delete_channel_by_uuid(database_t *db,
+const char *uuid)
+{
+    return llist_delif(db->channels, &channel_uuid_compare, uuid);
+}
+
+///
 /// @brief It deletes a channel from the database by name
 ///
 /// @param db The database to delete the channel from.

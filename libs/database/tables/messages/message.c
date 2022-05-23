@@ -6,6 +6,7 @@
 */
 
 #include "message.h"
+#include "tables/uuid_gen.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
@@ -20,11 +21,12 @@ msg_t *msg_init(id_t id, const char *content, id_t user_id, int relation[3])
         exit (84);
     }
     msg->id = id;
-    msg->content = strdup(content);
     msg->thread_id = relation[0];
     msg->channel_id = relation[1];
     msg->discussion_id = relation[2];
-    if (!msg->content) {
+    msg->uuid = uuid_gen();
+    msg->content = strdup(content);
+    if (!msg->content || !msg->content) {
         perror("Message creation");
         exit (84);
     }

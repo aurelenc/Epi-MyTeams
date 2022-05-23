@@ -6,6 +6,7 @@
 */
 
 #include "channel.h"
+#include "tables/uuid_gen.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
@@ -19,13 +20,14 @@ channel_t *channel_init(id_t id, const char *name, id_t team_id)
         perror("Channel creation");
         exit (84);
     }
-    channel->id = id;
-    channel->team_id = team_id;
     channel->name = strdup(name);
-    if (!channel->name) {
+    channel->uuid = uuid_gen();
+    if (!channel->name || !channel->uuid) {
         perror("Channel creation");
         exit (84);
     };
+    channel->id = id;
+    channel->team_id = team_id;
     return channel;
 }
 

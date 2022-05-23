@@ -25,6 +25,19 @@ static inline thread_t *db_search_thread_by_id(database_t *db, const id_t id)
 };
 
 ///
+/// @brief It searches the database for a thread with the given uuid
+///
+/// @param db The database to search in.
+/// @param uuid The uuid of the thread to search for.
+///
+/// @return A pointer to a thread_t struct.
+///
+static inline thread_t *db_search_thread_by_uuid(database_t *db, const char *uuid)
+{
+    return (thread_t *)llist_search(db->threads, &thread_uuid_compare, uuid);
+};
+
+///
 /// @brief It searches the database's
 ///thread list for a thread with the given start message ID
 ///

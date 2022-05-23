@@ -41,12 +41,14 @@ COMMANDS_SRC	=	\
 
 LIB	=	../libs/circularbuffer/circular_buffer.c	\
 
-DATABASE =	../libs/database/tables/channels/channel.c					\
+DATABASE =	../libs/database/tables/uuid_gen.c							\
+			../libs/database/tables/channels/channel.c					\
 			../libs/database/tables/channels/channel_search.c			\
 			../libs/database/tables/discussions/discussion.c			\
 			../libs/database/tables/discussions/discussion_search.c		\
 			../libs/database/tables/messages/message.c					\
 			../libs/database/tables/messages/message_search.c			\
+			../libs/database/tables/messages/message_search_relation.c	\
 			../libs/database/tables/teams/team.c						\
 			../libs/database/tables/teams/team_search.c					\
 			../libs/database/tables/threads/thread.c					\
@@ -65,7 +67,7 @@ LIB_LINKED_LIST =	../libs/linked_list/llist_creation.c		\
 
 OBJ	=	$(SRC:.c=.o) $(COMMANDS_SRC:.c=.o) $(LIB:.c=.o) $(LIB_LINKED_LIST:.c=.o) $(DATABASE:.c=.o)
 
-CFLAGS	=	-Wall -Werror -I include/ -I ../libs/myteams -I ../libs/circularbuffer -I ../libs/linked_list/ -I ../libs/database -g
+CFLAGS	=	-Wall -Werror -I include/ -luuid -I ../libs/myteams -I ../libs/circularbuffer -I ../libs/linked_list/ -I ../libs/database
 
 CC	=	gcc
 
