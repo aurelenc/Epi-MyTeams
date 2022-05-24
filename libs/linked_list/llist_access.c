@@ -58,3 +58,21 @@ void *llist_search(llist_t *list, data_search_t search_fun, const void *search)
     }
     return (ptr);
 }
+
+llist_t *llist_multiple_search(llist_t *list, data_search_t search_fun, const void *search)
+{
+    node_t *ptr;
+    llist_t *found = llist_init();
+
+    if (!found)
+        return (0);
+    if (!list)
+        return (found);
+    ptr = list->first;
+    while (ptr) {
+        if (search_fun(ptr->data, search))
+            llist_append(found, (ptr->data));
+        ptr = ptr->next;
+    }
+    return (found);
+}

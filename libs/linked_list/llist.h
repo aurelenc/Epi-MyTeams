@@ -206,6 +206,19 @@ void *llist_get(llist_t *list, unsigned int position);
 ///
 void *llist_search(llist_t *list, data_search_t search_fun, const void *search);
 
+/**
+ * @brief It searches for all the elements in the list that match the search criteria and
+ * returns a new list containing all the elements that match
+ *
+ * @param list the list to search
+ * @param search_fun a function that takes two parameters, the first is the data of
+ * the node, the second is the search parameter.
+ * @param search the data to search for
+ *
+ * @return A pointer to a linked list.
+ */
+llist_t *llist_multiple_search(llist_t *list, data_search_t search_fun, const void *search);
+
 /* List destruction */
 
 ///
