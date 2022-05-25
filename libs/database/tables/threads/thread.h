@@ -7,25 +7,30 @@
 
 #pragma once
 
+#include <time.h>
+
 typedef unsigned int id_t;
 
 typedef struct thread_s {
     id_t id;
     char *uuid;
-    id_t start_msg_id;
+    char *title;
+    char *body;
+    id_t channel_id;
+    time_t timestamp;
 } thread_t;
 
 
 ///
 /// @brief It creates a thread_t structure and initializes it with the given id
-/// and start_msg_id
+/// and channel
 ///
 /// @param id the id of the thread
-/// @param start_msg_id the id of the first message of the thread
+/// @param channel the id of the channel
 ///
 /// @return A pointer to a thread_t struct.
 ///
-thread_t *thread_init(id_t id, id_t start_msg_id);
+thread_t *thread_init(id_t id, char *title, char *body, id_t channel);
 
 ///
 /// @brief It frees the memory allocated for a team.

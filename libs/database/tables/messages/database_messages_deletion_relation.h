@@ -42,21 +42,6 @@ const id_t thread_id)
 };
 
 ///
-/// @brief It deletes a message from the database if it has the same channel id
-// as the one passed in
-///
-/// @param db The database to delete the message from.
-/// @param channel_id The id of the channel to delete the message of.
-///
-/// @return A boolean value.
-///
-static inline bool db_delete_msg_by_channel_id(database_t *db,
-const id_t channel_id)
-{
-    return llist_delif(db->messages, &msg_channel_id_compare, &channel_id);
-};
-
-///
 /// @brief It deletes a message from the database if it has the same discussion
 /// id as the one passed in
 ///

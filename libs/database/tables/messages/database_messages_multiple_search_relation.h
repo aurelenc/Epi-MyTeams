@@ -35,17 +35,6 @@ database_t *db_multiple_search_msg_by_thread_id(database_t *db,
 const id_t thread_id);
 
 ///
-/// @brief It searches for messages in the database that have the same channel id as the one passed as argument
-///
-/// @param db the database to search in
-/// @param channel_id The id of the channel to search for.
-///
-/// @return A pointer to an allocated database_t structure
-///
-database_t *db_multiple_search_msg_by_channel_id(database_t *db,
-const id_t channel_id);
-
-///
 /// @brief It searches for messages in the database that have the same discussion id as the one passed as argument
 ///
 /// @param db the database to search in

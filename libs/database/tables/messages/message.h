@@ -16,7 +16,6 @@ typedef struct msg_s
     char *content;
     id_t user_id;
     id_t thread_id;
-    id_t channel_id;
     id_t discussion_id;
 } msg_t;
 
@@ -31,7 +30,7 @@ typedef struct msg_s
 ///
 /// @return A pointer to a message structure.
 ///
-msg_t *msg_init(id_t id, const char *content, id_t user_id, int relation[3]);
+msg_t *msg_init(id_t id, const char *content, id_t user_id, int relation[2]);
 
 ///
 /// @brief It frees the memory allocated for the content of the message

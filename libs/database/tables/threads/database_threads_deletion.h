@@ -42,13 +42,13 @@ static inline bool db_delete_thread_by_uuid(database_t *db, const char *uuid)
 /// message id as the one passed in
 ///
 /// @param db The database to delete the thread from.
-/// @param start_msg_id The id of the start message to delete the thread of.
+/// @param channel_id The id of the start message to delete the thread of.
 ///
 /// @return A boolean value.
 ///
-static inline bool db_delete_thread_by_start_msg_id(database_t *db,
-const id_t start_msg_id)
+static inline bool db_delete_thread_by_channel_id(database_t *db,
+const id_t channel_id)
 {
-    return llist_delif(db->threads, &thread_start_msg_id_compare,
-    &start_msg_id);
+    return llist_delif(db->threads, &thread_channel_id_compare,
+    &channel_id);
 };

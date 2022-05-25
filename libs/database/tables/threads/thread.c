@@ -12,7 +12,7 @@
 #include <errno.h>
 
 
-thread_t *thread_init(id_t id, id_t start_msg_id)
+thread_t *thread_init(id_t id, char *title, char *body, id_t channel_id)
 {
     thread_t *thread = calloc(sizeof(thread_t), 1);
 
@@ -20,13 +20,16 @@ thread_t *thread_init(id_t id, id_t start_msg_id)
         perror("Thread creation");
         exit (84);
     }
+    thread->timestamp = time(NULL);
     thread->id = id;
+    thread->title = title;
+    thread->body = body;
     thread->uuid = uuid_gen();
     if (!thread->uuid) {
         perror("Thread creation");
         exit (84);
     }
-    thread->start_msg_id = start_msg_id;
+    thread->channel_id = channel_id;
     return (thread);
 }
 

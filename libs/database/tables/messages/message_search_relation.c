@@ -28,16 +28,6 @@ bool msg_thread_id_compare(const void *elem, const void *search)
     return false;
 }
 
-bool msg_channel_id_compare(const void *elem, const void *search)
-{
-    const msg_t *msg = (const msg_t *)elem;
-    const id_t *id = (const id_t *)search;
-
-    if (msg->channel_id == *id)
-        return true;
-    return false;
-}
-
 bool msg_discussion_id_compare(const void *elem, const void *search)
 {
     const msg_t *msg = (const msg_t *)elem;

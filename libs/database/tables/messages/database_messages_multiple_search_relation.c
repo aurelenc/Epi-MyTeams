@@ -33,18 +33,6 @@ const id_t thread_id)
     return (found);
 };
 
-database_t *db_multiple_search_msg_by_channel_id(database_t *db,
-const id_t channel_id)
-{
-    database_t *found = db_creation();
-
-    if (!found)
-        return (0);
-    found->messages = llist_multiple_search(db->messages, &msg_channel_id_compare,
-    &channel_id);
-    return (found);
-};
-
 database_t *db_multiple_search_msg_by_discussion_id(database_t *db,
 const id_t discu_id)
 {

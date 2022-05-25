@@ -29,12 +29,12 @@ bool thread_uuid_compare(const void *elem, const void *search)
     return false;
 }
 
-bool thread_start_msg_id_compare(const void *elem, const void *search)
+bool thread_channel_id_compare(const void *elem, const void *search)
 {
     const thread_t *thread = (const thread_t *)elem;
     const id_t *id = (const id_t *)search;
 
-    if (thread->start_msg_id == *id)
+    if (thread->channel_id == *id)
         return true;
     return false;
 }

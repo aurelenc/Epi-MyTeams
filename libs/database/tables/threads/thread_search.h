@@ -30,11 +30,11 @@ bool thread_id_compare(const void *elem, const void *search);
 bool thread_uuid_compare(const void *elem, const void *search);
 
 ///
-/// @brief It compares the start_msg_id of a thread_t with an id_t
+/// @brief It compares the channel_id of a thread_t with an id_t
 ///
 /// @param elem The element to compare.
 /// @param search The value to search for.
 ///
 /// @return A boolean value.
 ///
-bool thread_start_msg_id_compare(const void *elem, const void *search);
+bool thread_channel_id_compare(const void *elem, const void *search);

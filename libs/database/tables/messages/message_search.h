@@ -50,17 +50,6 @@ bool msg_user_id_compare(const void *elem, const void *search);
 bool msg_thread_id_compare(const void *elem, const void *search);
 
 ///
-/// It compares the channel_id of a message with the channel_id passed in as a
-/// parameter
-///
-/// @param elem The element to compare.
-/// @param search The value to search for.
-///
-/// @return A boolean value.
-///
-bool msg_channel_id_compare(const void *elem, const void *search);
-
-///
 /// It compares the discussion_id of a message with the discussion_id passed in
 /// as a parameter
 ///
