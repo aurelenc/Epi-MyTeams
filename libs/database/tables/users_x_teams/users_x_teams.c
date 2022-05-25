@@ -6,8 +6,10 @@
 */
 
 #include "users_x_teams.h"
-#include "user.h"
-#include "team.h"
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <errno.h>
 
 id_pair_t *create_user_team_relation(user_t *user, team_t *team)
 {

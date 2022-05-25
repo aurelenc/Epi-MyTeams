@@ -7,8 +7,8 @@
 
 #pragma once
 
-#include "users/user.h"
-#include "teams/team.h"
+#include "tables/users/user.h"
+#include "tables/teams/team.h"
 
 typedef struct id_pair_s
 {

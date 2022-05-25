@@ -5,12 +5,12 @@
 ** database_users_x_teams_multiple_search
 */
 
-#include "users_x_teams.h"
 #include "database.h"
 #include "database_management.h"
+#include "users_x_teams.h"
 #include "user_team_search.h"
-#include "user_search.h"
-#include "team_search.h"
+#include "tables/users/user_search.h"
+#include "tables/teams/team_search.h"
 #include <stdlib.h>
 
 database_t *db_search_users_of_a_team_by_its_id(database_t *db,
