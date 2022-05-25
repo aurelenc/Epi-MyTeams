@@ -5,7 +5,7 @@
 ** check_params
 */
 
-#include "../../include/get_command.h"
+#include "get_command.h"
 
 int check_params(char *av)
 {

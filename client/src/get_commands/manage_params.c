@@ -5,7 +5,7 @@
 ** manage_params
 */
 
-#include "../../include/get_command.h"
+#include "get_command.h"
 
 static char *remove_quotes(char *av, int i)
 {

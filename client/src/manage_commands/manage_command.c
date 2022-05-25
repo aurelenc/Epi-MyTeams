@@ -5,7 +5,7 @@
 ** manage_command
 */
 
-#include "../../include/get_command.h"
+#include "get_command.h"
 
 tab_command_sending_t tab_command_sending[] = {
     {"/login", &log_client},
