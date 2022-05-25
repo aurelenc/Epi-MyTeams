@@ -21,6 +21,7 @@ typedef	struct tab_command_sending_s {
 
 extern tab_command_sending_t gptrtab[];
 
+char *manage_params(char *av);
 int check_params(char *av);
 
 int parse_command(char *input, int socket);

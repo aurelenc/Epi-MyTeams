@@ -23,6 +23,7 @@ int log_client(char *av, int socket)
     //if (buff == NULL)
     //    exit (84);
     if (check_params(params) == 1) {
+        printf("Argument are = [%s]\n", params);
         strcat(buff, "LOGI ");
         strcat(buff, av);
         strcat(buff, "\n");

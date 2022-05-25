@@ -15,13 +15,13 @@ int check_params(char *av)
     if (av == NULL)
         return 0;
     for (int i = 0; av[i] != '\0'; i++) {
-        if (av[i] == '"' && av[i - 1] != '\\') {
+        if (av[i] == '"' && av[i - 1] != '\\')
             count++;
-        }
         if (count % 2 == 0 && count != 0) {
             count = 0;
             nb_params++;
         }
     }
+    av = manage_params(av);
     return nb_params;
 }
