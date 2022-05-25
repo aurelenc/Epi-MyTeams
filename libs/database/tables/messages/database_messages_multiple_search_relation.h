@@ -7,10 +7,9 @@
 
 #pragma once
 
-#include "message.h"
 #include "database.h"
-#include "database_management.h"
-#include "message_search.h"
+
+typedef unsigned int id_t;
 
 ///
 /// @brief It searches the database for messages that have the same user id as the one
@@ -21,16 +20,8 @@
 ///
 /// @return A pointer to an allocated database_t structure
 ///
-static inline database_t *db_multiple_search_msg_by_user_id(database_t *db,
-const id_t user_id)
-{
-    database_t *found = db_creation();
-
-    if (!found)
-        return (0);
-    found->messages = llist_multiple_search(db->messages, &msg_user_id_compare, &user_id);
-    return found;
-};
+database_t *db_multiple_search_msg_by_user_id(database_t *db,
+const id_t user_id);
 
 ///
 /// @brief It searches for messages in a database  that have the same user id as the one passed as a parameter
@@ -40,17 +31,8 @@ const id_t user_id)
 ///
 /// @return A pointer to an allocated database_t structure
 ///
-static inline database_t *db_multiple_search_msg_by_thread_id(database_t *db,
-const id_t thread_id)
-{
-    database_t *found = db_creation();
-
-    if (!found)
-        return (0);
-    found->messages = llist_multiple_search(db->messages, &msg_thread_id_compare,
-    &thread_id);
-    return (found);
-};
+database_t *db_multiple_search_msg_by_thread_id(database_t *db,
+const id_t thread_id);
 
 ///
 /// @brief It searches for messages in the database that have the same channel id as the one passed as argument
@@ -60,17 +42,8 @@ const id_t thread_id)
 ///
 /// @return A pointer to an allocated database_t structure
 ///
-static inline database_t *db_multiple_search_msg_by_channel_id(database_t *db,
-const id_t channel_id)
-{
-    database_t *found = db_creation();
-
-    if (!found)
-        return (0);
-    found->messages = llist_multiple_search(db->messages, &msg_channel_id_compare,
-    &channel_id);
-    return (found);
-};
+database_t *db_multiple_search_msg_by_channel_id(database_t *db,
+const id_t channel_id);
 
 ///
 /// @brief It searches for messages in the database that have the same discussion id as the one passed as argument
@@ -80,14 +53,5 @@ const id_t channel_id)
 ///
 /// @return A pointer to an allocated database_t structure
 ///
-static inline database_t *db_multiple_search_msg_by_discussion_id(database_t *db,
-const id_t discu_id)
-{
-    database_t *found = db_creation();
-
-    if (!found)
-        return (0);
-    found->messages = llist_multiple_search(db->messages, &msg_discussion_id_compare,
-    &discu_id);
-    return (found);
-};
+database_t *db_multiple_search_msg_by_discussion_id(database_t *db,
+const id_t discu_id);
