@@ -38,3 +38,13 @@ bool user_uuid_compare(const void *elem, const void *search);
 /// @return A boolean value.
 ///
 bool user_pseudo_compare(const void *elem, const void *search);
+
+///
+/// @brief It returns true if the user's id is in the array of ids
+///
+/// @param elem The element to compare.
+/// @param search The search parameter is the value you're looking for.
+///
+/// @return A boolean value
+///
+bool user_id_array_compare(const void *elem, const void *search);

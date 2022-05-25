@@ -38,3 +38,14 @@ bool team_name_compare(const void *elem, const void *search)
         return true;
     return false;
 }
+
+bool team_id_array_compare(const void *elem, const void *search)
+{
+    const team_t *team = (const team_t *)elem;
+    const id_t *ids = (const id_t *)search;
+
+    for (int i = 0; ids[i] != 0; i++)
+        if (team->id == ids[i])
+            return true;
+    return false;
+}

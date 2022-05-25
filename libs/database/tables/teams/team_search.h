@@ -36,3 +36,13 @@ bool team_uuid_compare(const void *elem, const void *search);
 /// @return A pointer to the team_t struct.
 ///
 bool team_name_compare(const void *elem, const void *search);
+
+///
+/// @brief It returns true if the team's id is in the array of ids
+///
+/// @param elem The element to compare.
+/// @param search The search parameter is the value you're looking for.
+///
+/// @return A boolean value
+///
+bool team_id_array_compare(const void *elem, const void *search);

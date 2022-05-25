@@ -7,7 +7,8 @@
 
 #pragma once
 
-typedef unsigned int id_t;
+#include "users/user.h"
+#include "teams/team.h"
 
 typedef struct id_pair_s
 {
