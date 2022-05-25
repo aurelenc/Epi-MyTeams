@@ -26,7 +26,6 @@ int log_client(char *av, int socket)
         strcat(buff, "LOGI ");
         strcat(buff, av);
         strcat(buff, "\n");
-        printf("La command c'est = [%s]\n", buff);
         write(socket, buff, strlen(buff));
         memset(buff, 0, (len_av + 7));
         read(socket, buff, 4096); // 3 = lenth error code
