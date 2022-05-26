@@ -12,5 +12,5 @@
 int command_logout(command_param_t *param)
 {
     printf("logout\n");
-    return REPLY_NOT_IMPLEMENTED;
+    return NOT_IMPLEMENTED;
 }

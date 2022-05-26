@@ -63,8 +63,8 @@ void running_teams(client_t *client)
         bzero(buff, sizeof(buff));
         printf("Enter the command : ");
         for (int i = 0; (buff[i] = getchar()) != '\n'; i++);
-        write(client->socket, buff, sizeof(buff));
-        bzero(buff, sizeof(buff));
+        // write(client->socket, buff, sizeof(buff));
+        // bzero(buff, sizeof(buff));
         parse_command(buff, client->socket);
         printf("From Server : %s\n", buff);
         if ((strncmp(buff, "exit", 4)) == 0) {
