@@ -9,6 +9,7 @@
 #define GET_COMMAND_H_
 
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
 #include <stdio.h>
 
@@ -21,6 +22,7 @@ typedef	struct tab_command_sending_s {
 
 extern tab_command_sending_t gptrtab[];
 
+bool make_command_rfc_compatible(char *dest, char *command, char *av);
 char *manage_params(char *av);
 int check_params(char *av);
 

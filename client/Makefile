@@ -12,7 +12,8 @@ SRC	=	main.c\
 		src/manage_commands/manage_command.c	\
 		src/get_commands/get_cmd_login.c	\
 		src/get_commands/check_params.c	\
-		src/get_commands/manage_params.c
+		src/get_commands/manage_params.c	\
+		src/manage_commands/make_command_rfc_compatible.c
 
 LIB	=	../libs/circularbuffer/circular_buffer.c\
 

@@ -11,11 +11,8 @@
 bool arg_is_good(int ac, char **av)
 {
     printf("ac = [%i]\n", ac);
-    if (ac != 3) {
-        printf("test02\n");
-        
+    if (ac != 3)
         return false;
-    }
     printf("IP = [%s]\n", av[1]);
     if (atoi(av[2]) == 0)
         return false;
@@ -43,7 +40,8 @@ void create_client(client_t *client, char **av)
 
 void connect_client(client_t *client)
 {
-    if (connect(client->socket, (SA*)&client->servaddr, sizeof(client->servaddr)) != 0) {
+    if (connect(client->socket, (SA*)&client->servaddr,
+        sizeof(client->servaddr)) != 0) {
         printf("connection with the server failed...\n");
         exit(84);
     }
@@ -57,16 +55,14 @@ void running_teams(client_t *client)
 
     client->is_connected = true;
     read(client->socket, buff, MAX);
-    printf("Buff = [%s]\n", buff);
+    printf("Buff 1 = [%s]\n", buff);
     memset(buff, 0, MAX);
     while (client->is_connected) {
         bzero(buff, sizeof(buff));
         printf("Enter the command : ");
         for (int i = 0; (buff[i] = getchar()) != '\n'; i++);
-        //write(client->socket, buff, sizeof(buff));
-        //bzero(buff, sizeof(buff));
         parse_command(buff, client->socket);
-        printf("From Server : %s\n", buff);
+        printf("From Server : [%s]\n", buff);
         if ((strncmp(buff, "exit", 4)) == 0) {
             printf("Client Exit...\n");
             break;

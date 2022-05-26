@@ -27,7 +27,6 @@ int parse_command(char *input, int socket)
     char *command = NULL;
     char *arguments = NULL;
 
-    
     while (cmdClient) {
         command = strsep(&cmdClient, " \"");
         arguments = cmdClient;
