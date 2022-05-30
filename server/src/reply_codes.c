@@ -6,13 +6,22 @@
 */
 
 #include "reply_codes.h"
+#include "server.h"
 
 const reply_code_t reply_codes[] = {
-    {200, "200 Success\n"},
-    {220, "220 Service ready for new user.\n"},
-    {550, "550 Requested action not taken.\n"},
-    {10068, "10068 Too many users, server is full.\n"},
-    {0, "0 Invalid error code\n"}
+    {00, "00 %s\n"},
+    {01, "01 Service ready for new user.\n"},
+    {10, "10 Internal server error.\n"},
+    {11, "11 Server is full.\n"},
+    {12, "12 Too many requests.\n"},
+    {13, "13 Forbidden.\n"},
+    {14, "14 Not found.\n"},
+    {20, "20 Unknown client error.\n"},
+    {21, "21 Unrecognized command.\n"},
+    {22, "22 Missing parameter.\n"},
+    {23, "23 Invalid format.\n"},
+    {24, "24 Resource already exists.\n"},
+    {99, "99 Not implemented.\n"},
 };
 
 int get_reply(int code)
@@ -24,4 +33,10 @@ int get_reply(int code)
             return i;
     }
     return i;
+}
+
+int client_reply(client_sock_t *clients, int client_id, int reply_code)
+{
+    write_client_buff(clients, client_id, reply_codes[get_reply(reply_code)].message);
+    return reply_code;
 }

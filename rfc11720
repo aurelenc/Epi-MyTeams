@@ -96,7 +96,7 @@ The objectives of the myTeams project RFC is to allow communication between myTe
 
 - 20
     - Unknown client error
-- 11
+- 21
     - Unrecognized command
 - 22
     - Missing parameter
@@ -105,3 +105,5 @@ The objectives of the myTeams project RFC is to allow communication between myTe
 - 24
     - Resource already exists
 
+- 99
+    - Not implemented

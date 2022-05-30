@@ -8,6 +8,8 @@
 #ifndef REPLY_CODES_H_
 #define REPLY_CODES_H_
 
+#include "server.h"
+
 /// @brief Reply codes structure
 typedef struct reply_code_s {
     int code;
@@ -17,9 +19,21 @@ typedef struct reply_code_s {
 /// @brief Reply codes array
 extern const reply_code_t reply_codes[];
 int get_reply(int code);
+int client_reply(client_sock_t *clients, int client_id, int reply_code);
 
-#define REPLY_SUCCESS 200
-#define REPLY_SERVER_ERROR 500
-#define REPLY_NOT_IMPLEMENTED 501
+#define SUCCESS 00
+#define SERVICE_READY_FOR_NEW_USER 01
+#define INTERNAL_SERVER_ERROR 10
+#define SERVER_IS_FULL 11
+#define TOO_MANY_REQUESTS 12
+#define FORBIDDEN 13
+#define NOT_FOUND 14
+#define UNKNOWN_CLIENT_ERROR 20
+#define UNRECOGNIZED_COMMAND 21
+#define MISSING_PARAMETER 22
+#define INVALID_FORMAT 23
+#define RESOURCE_ALREADY_EXISTS 24
+
+#define NOT_IMPLEMENTED 99
 
 #endif /* !REPLY_CODES_H_ */

@@ -22,12 +22,14 @@ void write_client_buff(client_sock_t *clients, int i, char *message)
 int get_command_params(char **dest, char *src)
 {
     int i = 0;
+    char *tmp = strdup(src);
 
     for (; i < MAX_PARAMS_NB; i++) {
-        dest[i] = strtok(i == 0 ? src : NULL, " \t\r\n");
+        dest[i] = strtok(i == 0 ? tmp : NULL, " \t\r\n");
         if (!dest[i])
             break;
     }
+    free(tmp);
     return i;
 }
 
@@ -41,10 +43,10 @@ void find_command(command_param_t *params)
     bool command_found = false;
     char buff[MAX_BUFF_SIZE];
 
+    printf("%s\n", params->clients[params->id].rbuf);
+    if (cbuff_pop(params->clients[params->id].rbuf, buff, MAX_BUFF_SIZE) != BUFFER_OK)
+        return;
     for (size_t i = 0; commands[i].func != NULL; i++) {
-        printf("%s\n", params->clients[params->id].rbuf);
-        if (cbuff_pop(params->clients[params->id].rbuf, buff, MAX_BUFF_SIZE) != BUFFER_OK)
-            break;
         printf("%s\t%s:%ld\n", buff, commands[i].cmd, strlen(commands[i].cmd));
         if (strncmp(buff, commands[i].cmd,
             strlen(commands[i].cmd)) == 0) {
