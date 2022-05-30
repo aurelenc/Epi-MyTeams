@@ -40,20 +40,20 @@ bool is_arg_good(char *response, int nb_params)
 
 char **parse_response(char *response, int nb_params)
 {
-    char *arg;
-    char *str1;
-    char *saveptr1;
-    int j = 0;
+    char *arg = NULL;
+    char *str1 = NULL;
+    char *saveptr1 = NULL;
+    char parser = '"';
     char **tab_response = malloc(sizeof(char *) * (count_users(response) * nb_params));
 
     if (!is_arg_good(response, nb_params))
         return NULL;
 
-    for (int i = 1, str1 = response[1]; ; i++, str1 = NULL) {
-        arg = strtok_r(str1, response[2], &saveptr1);
+    for (int i = 0; ; i++) {
+        arg = strtok_r(str1, &parser, &saveptr1);
         if (arg == NULL)
             break;
-        printf("%d: %s\n", j, arg);
+        printf("%d: %s\n", i, arg);
         if ((i % 2) == 0)
             memcpy(tab_response[i], arg, strlen(arg));
     }
@@ -64,7 +64,7 @@ int login_client(char *av, int socket)
 {
     char buff[4096];
     char response[2];
-    char **tab_response;
+    //char **tab_response;
 
     memset(buff, 0, 4096);
     if (av == NULL)
