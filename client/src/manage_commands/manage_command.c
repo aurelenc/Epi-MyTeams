@@ -5,18 +5,20 @@
 ** manage_command
 */
 
-#include "../../include/get_command.h"
+#include "get_command.h"
 
 tab_command_sending_t tab_command_sending[] = {
-    {"/login", &log_client},
+    {"/login", &login_client},
+    {"/logout", &logout_client},
+    {"/send", &send_message},
     {"a b", NULL}
 };
 
 void get_rfds_command(char *command, char *av, int socket)
 {
+    printf("Command = [%s], av = [%s]\n", command, av);
     for (int i = 0; tab_command_sending[i].cmd != NULL; i++)
         if (!strcmp(tab_command_sending[i].cmd, command)) {
-            printf("Argument are = [%s]\n", av);
             tab_command_sending[i].function(av, socket);
         }
 }
@@ -27,7 +29,6 @@ int parse_command(char *input, int socket)
     char *command = NULL;
     char *arguments = NULL;
 
-    
     while (cmdClient) {
         command = strsep(&cmdClient, " \"");
         arguments = cmdClient;

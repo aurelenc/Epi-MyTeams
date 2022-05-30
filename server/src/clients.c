@@ -45,11 +45,11 @@ void remove_client(client_sock_t *clients, int remove_index)
 
 void write_to_client(client_sock_t *client)
 {
-    char buff[MAX_BUFF_SIZE];
+    char buff[MAX_BUFF_SIZE] = {0};
 
     if (cbuff_pop(client->wbuf, buff, MAX_BUFF_SIZE) == BUFFER_NO_DATA)
         return;
-    dprintf(client->socket, client->wbuf);
+    write(client->socket, buff, strlen(buff));
 }
 
 void listen_clients(client_sock_t *clients, server_t *server)
@@ -57,7 +57,7 @@ void listen_clients(client_sock_t *clients, server_t *server)
     for (int i = 0; i < MAX_CLIENTS && clients[i].socket != 0; i++) {
         if (FD_ISSET(clients[i].socket, &server->rfd))
             handle_input(clients, i, server);
-        if (FD_ISSET(clients[i].socket, &server->wfd))
+        // if (FD_ISSET(clients[i].socket, &server->wfd))
             write_to_client(&clients[i]);
     }
 }
