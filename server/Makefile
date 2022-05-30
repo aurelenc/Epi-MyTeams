@@ -42,6 +42,7 @@ COMMANDS_SRC	=	\
 LIB	=	../libs/circularbuffer/circular_buffer.c	\
 
 DATABASE =	../libs/database/tables/channels/channel.c										\
+			../libs/database/tables/channels/database_channels_multiple_search.c			\
 			../libs/database/tables/channels/channel_search.c								\
 			../libs/database/tables/discussions/discussion.c								\
 			../libs/database/tables/discussions/discussion_search.c							\
@@ -52,6 +53,7 @@ DATABASE =	../libs/database/tables/channels/channel.c										\
 			../libs/database/tables/teams/team.c											\
 			../libs/database/tables/teams/team_search.c										\
 			../libs/database/tables/threads/thread.c										\
+			../libs/database/tables/threads/database_threads_multiple_search.c				\
 			../libs/database/tables/threads/thread_search.c									\
 			../libs/database/tables/users/user.c											\
 			../libs/database/tables/users/user_search.c										\
