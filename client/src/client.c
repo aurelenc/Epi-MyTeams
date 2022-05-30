@@ -55,6 +55,7 @@ void running_teams(client_t *client)
 
     client->is_connected = true;
     read(client->socket, buff, MAX);
+    printf("Client socket [%i]\n", client->socket);
     printf("Buff 1 = [%s]\n", buff);
     memset(buff, 0, MAX);
     while (client->is_connected) {
@@ -62,7 +63,6 @@ void running_teams(client_t *client)
         printf("Enter the command : ");
         for (int i = 0; (buff[i] = getchar()) != '\n'; i++);
         parse_command(buff, client->socket);
-        //manageresponse
         printf("From Server : [%s]\n", buff);
         if ((strncmp(buff, "exit", 4)) == 0) {
             printf("Client Exit...\n");
