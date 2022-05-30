@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include "database_management.h"
 
 client_sock_t *init_clients(void)
 {
@@ -31,6 +32,9 @@ client_sock_t *init_clients(void)
 
 int configure_server(server_t *server, char *port_param)
 {
+    server->db = db_creation();
+    if (!server->db)
+        return -1;
     server->socket = socket(AF_INET, SOCK_STREAM, 0);
     if (server->socket < 0)
         return -1;
