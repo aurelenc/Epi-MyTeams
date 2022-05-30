@@ -37,6 +37,13 @@ int get_reply(int code)
 
 int client_reply(client_sock_t *clients, int client_id, int reply_code)
 {
-    write_client_buff(clients, client_id, reply_codes[get_reply(reply_code)].message);
+    write_client_buff(clients, client_id,
+    reply_codes[get_reply(reply_code)].message);
     return reply_code;
+}
+
+int client_reply_success(client_sock_t *clients, int client_id, char *msg)
+{
+    write_client_buff(clients, client_id, msg);
+    return SUCCESS;
 }
