@@ -24,13 +24,12 @@ static void fill_msg_reply(user_t *user, char **buff)
 int command_user(command_param_t *param)
 {
     char success_buff[MAX_BUFF_SIZE] = {0};
-    char *reply = 0;
     user_t *found = 0;
 
-    printf("[SERVER] USERS\n");
-    if (param->arg.nb < 1) {
+    printf("[SERVER] USER\n");
+    if (param->arg.nb < 2) {
         return client_reply(param->clients, param->id, MISSING_PARAMETER);
-    if (param->arg.nb > 2) {
+    } else if (param->arg.nb > 2) {
         return client_reply(param->clients, param->id, INVALID_FORMAT);
     }
     found = db_search_user_by_uuid(param->srv->db, param->arg.array[1]);

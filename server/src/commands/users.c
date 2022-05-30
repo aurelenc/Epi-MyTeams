@@ -8,6 +8,8 @@
 #include "reply_codes.h"
 #include "server.h"
 #include "tables/users/user.h"
+#include <string.h>
+#include <stdio.h>
 
 static void fill_msg_reply(llist_t *users, char *buff[MAX_BUFF_SIZE])
 {
@@ -29,7 +31,6 @@ static void fill_msg_reply(llist_t *users, char *buff[MAX_BUFF_SIZE])
 int command_users(command_param_t *param)
 {
     char success_buff[MAX_BUFF_SIZE] = {0};
-    char *reply = 0;
 
     printf("[SERVER] USERS\n");
     if (param->arg.nb > 1) {
