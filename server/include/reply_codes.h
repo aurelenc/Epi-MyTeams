@@ -16,6 +16,7 @@ typedef struct reply_code_s {
 
 /// @brief Reply codes array
 extern const reply_code_t reply_codes[];
+int get_reply(int code);
 
 #define REPLY_SUCCESS 200
 #define REPLY_SERVER_ERROR 500

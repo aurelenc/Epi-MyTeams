@@ -21,14 +21,12 @@
 
 typedef struct client_sock_s {
     int socket;
-    bool is_logged;
-    bool is_passive;
-    int transfer_socket;
     char *rbuf;
     char *wbuf;
     char *user;
-    char *pass;
-    char *path;
+    int team_id;
+    int channel_id;
+    int thread_id;
 } client_sock_t;
 
 typedef struct client_id_s {
@@ -42,7 +40,6 @@ typedef struct server_s {
     fd_set wfd;
     struct sockaddr_in addr;
     socklen_t len;
-    char *default_path;
 } server_t;
 
 typedef struct params_s {
@@ -66,3 +63,14 @@ typedef struct command_s {
 } command_t;
 
 extern const command_t commands[];
+
+/// Launch
+bool has_param_error(int ac, char **av);
+int display_help(void);
+
+/// Clients
+void new_client(client_sock_t *clients, int client_socket);
+void remove_client(client_sock_t *clients, int remove_index);
+void listen_clients(client_sock_t *clients, server_t *server);
+void write_client_buff(client_sock_t *clients, int i, char *message);
+void handle_input(client_sock_t *clients, int id, server_t *server);

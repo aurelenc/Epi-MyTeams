@@ -7,8 +7,10 @@
 
 #include "reply_codes.h"
 #include "server.h"
+#include <stdio.h>
 
 int command_logout(command_param_t *param)
 {
+    printf("logout\n");
     return REPLY_NOT_IMPLEMENTED;
 }
