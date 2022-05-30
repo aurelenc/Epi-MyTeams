@@ -28,7 +28,9 @@ int command_user(command_param_t *param)
     user_t *found = 0;
 
     printf("[SERVER] USERS\n");
-    if (param->arg.nb > 1) {
+    if (param->arg.nb < 1) {
+        return client_reply(param->clients, param->id, MISSING_PARAMETER);
+    if (param->arg.nb > 2) {
         return client_reply(param->clients, param->id, INVALID_FORMAT);
     }
     found = db_search_user_by_uuid(param->srv->db, param->arg.array[1]);
