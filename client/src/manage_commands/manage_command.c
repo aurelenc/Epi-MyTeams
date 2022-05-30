@@ -8,7 +8,8 @@
 #include "get_command.h"
 
 tab_command_sending_t tab_command_sending[] = {
-    {"/login", &log_client},
+    {"/login", &login_client},
+    {"/logout", &logout_client},
     {"a b", NULL}
 };
 

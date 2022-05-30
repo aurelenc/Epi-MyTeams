@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include "get_command.h"
 
-int log_client(char *av, int socket)
+int login_client(char *av, int socket)
 {
     char buff[4096];
 

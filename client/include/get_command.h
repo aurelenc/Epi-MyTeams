@@ -13,7 +13,8 @@
 #include <string.h>
 #include <stdio.h>
 
-int log_client(char *command, int socket);
+int login_client(char *command, int socket);
+int logout_client(char *command, int socket);
 
 typedef	struct tab_command_sending_s {
   char *cmd;

@@ -10,7 +10,7 @@
 
 bool make_command_rfc_compatible(char *dest, char *command, char *av)
 {
-    strcat(dest, "LOGI ");
+    strcat(dest, command);
     if (dest == NULL) {
         return false;
     }
