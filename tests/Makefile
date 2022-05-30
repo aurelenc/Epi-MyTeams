@@ -37,6 +37,7 @@ TEST_SRC	=	tests_tools.c					\
 				tests_llist_get_size.c			\
 				tests_llist_dump.c				\
 				tests_llist_is_empty.c			\
+				tests_llist_multiple_search.c	\
 				tests_llist_back.c				\
 				tests_llist_front.c				\
 				tests_llist_get.c				\
@@ -45,7 +46,7 @@ TEST_SRC	=	tests_tools.c					\
 
 CFLAGS	=	-Wall -Werror
 
-LDFLAGS = -lcriterion --coverage -I ../libs/linked_list
+LDFLAGS = -lcriterion -luuid --coverage -I ../libs/linked_list
 
 CC	=	gcc
 
