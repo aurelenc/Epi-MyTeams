@@ -22,7 +22,7 @@ LIB	=	../libs/circularbuffer/circular_buffer.c\
 
 OBJ	=	$(SRC:.c=.o) $(LIB:.c=.o)
 
-CFLAGS	=	-Wall -Werror -I ../include -I ../../include -I include/ -I ../libs/myteams -I ../libs/circularbuffer -g
+CFLAGS	=	-Wall -Werror -I ../../../libs/myteams -I ../include -I ../../include -I include/ -I ../libs/myteams -I ../libs/circularbuffer -g
 
 CC	=	gcc
 
