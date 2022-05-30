@@ -13,7 +13,7 @@ bool compare(const void *elem, const void *data)
     const char *e = (const char *)elem;
     const char *d = (const char *)data;
 
-    if (strcmp(e, d) == 0)
+    if (strncmp(e, d, strlen(data)) == 0)
         return true;
     return false;
 }

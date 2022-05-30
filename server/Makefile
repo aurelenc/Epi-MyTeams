@@ -44,20 +44,27 @@ COMMANDS_SRC	=	\
 
 LIB	=	../libs/circularbuffer/circular_buffer.c	\
 
-DATABASE =	../libs/database/fields/channel.c			\
-			../libs/database/fields/discussion.c		\
-			../libs/database/fields/message.c			\
-			../libs/database/fields/team.c				\
-			../libs/database/fields/thread.c			\
-			../libs/database/fields/user.c				\
-			../libs/database/search/channel_search.c	\
-			../libs/database/search/discussion_search.c	\
-			../libs/database/search/message_search.c	\
-			../libs/database/search/team_search.c		\
-			../libs/database/search/thread_search.c		\
-			../libs/database/search/user_search.c		\
-			../libs/database/database_init.c			\
-			../libs/database/database_destruction.c		\
+DATABASE =	../libs/database/tables/channels/channel.c										\
+			../libs/database/tables/channels/database_channels_multiple_search.c			\
+			../libs/database/tables/channels/channel_search.c								\
+			../libs/database/tables/discussions/discussion.c								\
+			../libs/database/tables/discussions/discussion_search.c							\
+			../libs/database/tables/messages/message.c										\
+			../libs/database/tables/messages/message_search.c								\
+			../libs/database/tables/messages/message_search_relation.c						\
+			../libs/database/tables/messages/database_messages_multiple_search_relation.c	\
+			../libs/database/tables/teams/team.c											\
+			../libs/database/tables/teams/team_search.c										\
+			../libs/database/tables/threads/thread.c										\
+			../libs/database/tables/threads/database_threads_multiple_search.c				\
+			../libs/database/tables/threads/thread_search.c									\
+			../libs/database/tables/users/user.c											\
+			../libs/database/tables/users/user_search.c										\
+			../libs/database/tables/users_x_teams/database_users_x_teams_multiple_search.c	\
+			../libs/database/tables/users_x_teams/user_team_search.c						\
+			../libs/database/tables/users_x_teams/users_x_teams.c							\
+			../libs/database/tables/uuid_gen.c												\
+			../libs/database/database_management.c											\
 
 LIB_LINKED_LIST =	../libs/linked_list/llist_creation.c		\
 					../libs/linked_list/llist_destruction.c		\
@@ -69,12 +76,14 @@ LIB_LINKED_LIST =	../libs/linked_list/llist_creation.c		\
 
 OBJ	=	$(SRC:.c=.o) $(COMMANDS_SRC:.c=.o) $(LIB:.c=.o) $(LIB_LINKED_LIST:.c=.o) $(DATABASE:.c=.o)
 
-CFLAGS	=	-Wall -Werror -I include/ -I ../libs/myteams -I ../libs/circularbuffer -I ../libs/linked_list/ -I ../libs/database -g
+CFLAGS	=	-Wall -Werror -I include/ -I ../libs/myteams -I ../libs/circularbuffer -I ../libs/linked_list/ -I ../libs/database
+
+LDFLAGS = -luuid --coverage -I ../libs/linked_list -L../libs/myteams -lmyteams
 
 CC	=	gcc
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME) -g
+	$(CC) $(OBJ) -o $(NAME) $(LDFLAGS)
 
 clean:
 	rm -f $(OBJ)
