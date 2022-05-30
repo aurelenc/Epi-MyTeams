@@ -10,5 +10,5 @@
 
 int command_info_team(command_param_t *param)
 {
-    return REPLY_NOT_IMPLEMENTED;
+    return NOT_IMPLEMENTED;
 }
