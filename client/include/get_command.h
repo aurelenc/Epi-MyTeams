@@ -15,6 +15,7 @@
 
 int login_client(char *command, int socket);
 int logout_client(char *command, int socket);
+int send_message(char *av, int socket);
 
 typedef	struct tab_command_sending_s {
   char *cmd;

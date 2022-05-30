@@ -14,7 +14,9 @@ SRC	=	main.c\
 		src/get_commands/get_cmd_logout.c	\
 		src/get_commands/check_params.c	\
 		src/get_commands/manage_params.c	\
-		src/manage_commands/make_command_rfc_compatible.c
+		src/get_commands/get_cmd_send_message.c	\
+		src/manage_commands/make_command_rfc_compatible.c	\
+		src/manage_commands/reply_codes.c
 
 LIB	=	../libs/circularbuffer/circular_buffer.c\
 

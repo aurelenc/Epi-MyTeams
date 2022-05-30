@@ -10,6 +10,7 @@
 tab_command_sending_t tab_command_sending[] = {
     {"/login", &login_client},
     {"/logout", &logout_client},
+    {"/send", &send_message},
     {"a b", NULL}
 };
 
