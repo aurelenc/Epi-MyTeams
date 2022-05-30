@@ -6,7 +6,6 @@
 */
 
 #include "reply_codes.h"
-#include "server.h"
 
 const reply_code_t reply_codes[] = {
     {00, "00 %s\n"},
@@ -35,15 +34,8 @@ int get_reply(int code)
     return i;
 }
 
-int client_reply(client_sock_t *clients, int client_id, int reply_code)
+int client_reply(int reply_code)
 {
-    write_client_buff(clients, client_id,
-    reply_codes[get_reply(reply_code)].message);
+    printf("%s\n", reply_codes[get_reply(reply_code)].message);
     return reply_code;
-}
-
-int client_reply_success(client_sock_t *clients, int client_id, char *msg)
-{
-    write_client_buff(clients, client_id, msg);
-    return SUCCESS;
 }

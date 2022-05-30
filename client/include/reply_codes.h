@@ -8,7 +8,7 @@
 #ifndef REPLY_CODES_H_
 #define REPLY_CODES_H_
 
-#include "server.h"
+#include "client.h"
 
 /// @brief Reply codes structure
 typedef struct reply_code_s {
@@ -18,9 +18,8 @@ typedef struct reply_code_s {
 
 /// @brief Reply codes array
 extern const reply_code_t reply_codes[];
-int get_reply(int code);
-int client_reply(client_sock_t *clients, int client_id, int reply_code);
-int client_reply_success(client_sock_t *clients, int client_id, char *msg);
+
+int client_reply(int reply_code);
 
 #define SUCCESS 00
 #define SERVICE_READY_FOR_NEW_USER 01
