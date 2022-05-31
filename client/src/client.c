@@ -81,7 +81,6 @@ int my_teams_client(int ac, char **av)
     create_client(client, av);
     connect_client(client);
     client->is_connected = true;
-    read(client->socket, buff, MAX);
     memset(buff, 0, MAX);
     while (client->is_connected)
         running_teams(client, buff);

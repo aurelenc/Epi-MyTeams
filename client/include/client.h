@@ -21,9 +21,9 @@
 #include <stdbool.h>
 #include <ctype.h>
 
-    #define MAX 4096
-    #define PORT 8080
-    #define SA struct sockaddr
+#define MAX 4096
+#define PORT 8080
+#define SA struct sockaddr
 
 int my_teams_client(int ac, char **av);
 
@@ -35,6 +35,5 @@ typedef struct client_s {
     fd_set rfd;
     fd_set wfd;
     int socket;
-    int socket_client;
     struct sockaddr_in servaddr;
 } client_t;

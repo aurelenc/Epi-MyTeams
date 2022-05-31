@@ -40,9 +40,10 @@ char **parse_response(char *response, int nb_params)
     char *str1 = response;
     char *saveptr1 = NULL;
     char parser = '"';
-    char **tab_response = malloc
-                        (sizeof(char *) * (count_users(response) * nb_params));
+    char **tab_response = malloc(sizeof(char *) * (count_users(response) * nb_params));
 
+    if (tab_response == NULL)
+        exit(0);
     if (!is_arg_good(response, nb_params))
         return NULL;
     for (int i = 1; ; i++, str1 = NULL) {
