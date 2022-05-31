@@ -10,10 +10,8 @@
 
 bool arg_is_good(int ac, char **av)
 {
-    printf("ac = [%i]\n", ac);
     if (ac != 3)
         return false;
-    printf("IP = [%s]\n", av[1]);
     if (atoi(av[2]) == 0)
         return false;
     return true;
@@ -56,7 +54,6 @@ void running_teams(client_t *client)
     client->is_connected = true;
     read(client->socket, buff, MAX);
     printf("Client socket [%i]\n", client->socket);
-    printf("Buff 1 = [%s]\n", buff);
     memset(buff, 0, MAX);
     while (client->is_connected) {
         bzero(buff, sizeof(buff));

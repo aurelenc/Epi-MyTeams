@@ -23,9 +23,12 @@ int get_command_params(char **dest, char *src)
 {
     int i = 0;
     char *tmp = strdup(src);
+    char *tok;
 
     for (; i < MAX_PARAMS_NB; i++) {
-        dest[i] = strtok(i == 0 ? tmp : NULL, " \t\r\n");
+        tok = strtok(i == 0 ? tmp : NULL, " \t\r\n");
+        printf("%s\n", tok);
+        dest[i] = strdup(tok);
         if (!dest[i])
             break;
     }
@@ -80,4 +83,5 @@ void handle_input(client_sock_t *clients, int id, server_t *server)
     command_params.srv = server;
     command_params.arg = params;
     find_command(&command_params);
+    free(params.array);
 }

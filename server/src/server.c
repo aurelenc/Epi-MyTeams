@@ -22,7 +22,7 @@ client_sock_t *init_clients(void)
         clients[i].socket = 0;
         clients[i].rbuf = calloc(sizeof(char), MAX_BUFF_SIZE);
         clients[i].wbuf = calloc(sizeof(char), MAX_BUFF_SIZE);
-        clients[i].user = calloc(sizeof(char), MAX_USER_SIZE);
+        clients[i].user = calloc(sizeof(char), UUID_SIZE + 1);
         if (!clients[i].rbuf || !clients[i].wbuf ||
             !clients[i].user)
             return NULL;
@@ -55,8 +55,10 @@ void server_loop(client_sock_t *clients, server_t *server)
     FD_ZERO(&server->rfd);
     FD_ZERO(&server->wfd);
     FD_SET(server->socket, &server->rfd);
-    for (int i = 0; clients[i].socket != 0; i++)
+    for (int i = 0; clients[i].socket != 0; i++) {
         FD_SET(clients[i].socket, &server->rfd);
+        FD_SET(clients[i].socket, &server->wfd);
+    }
     select(FD_SETSIZE, &server->rfd, &server->wfd, NULL, NULL);
     if (FD_ISSET(server->socket, &server->rfd)) {
         new_client(clients, accept(server->socket,

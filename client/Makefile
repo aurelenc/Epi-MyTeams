@@ -16,18 +16,21 @@ SRC	=	main.c\
 		src/get_commands/manage_params.c	\
 		src/get_commands/get_cmd_send_message.c	\
 		src/manage_commands/make_command_rfc_compatible.c	\
+		src/manage_commands/parse_server_response.c \
 		src/manage_commands/reply_codes.c
 
 LIB	=	../libs/circularbuffer/circular_buffer.c\
 
 OBJ	=	$(SRC:.c=.o) $(LIB:.c=.o)
 
-CFLAGS	=	-Wall -Werror -I ../include -I ../../include -I include/ -I ../libs/myteams -I ../libs/circularbuffer -g
+CFLAGS	=	-Wall -Werror -I ../../../libs/myteams -I ../include -I ../../include -I include/ -I ../libs/myteams -I ../libs/circularbuffer -g
+
+LDFLAGS	=	 -L../libs/myteams -lmyteams
 
 CC	=	gcc
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME) -g
+	$(CC) $(OBJ) -o $(NAME) $(LDFLAGS)
 
 clean:
 	rm -f $(OBJ)

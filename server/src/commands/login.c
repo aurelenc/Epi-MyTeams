@@ -26,6 +26,12 @@ static char *get_reply_msg(char *user_uuid, char *user_name)
     return (reply);
 }
 
+static void set_client_uuid(client_sock_t *client, user_t *user)
+{
+    memset(client->user, 0, UUID_SIZE);
+    memcpy(client->user, user->uuid, UUID_SIZE);
+}
+
 int command_login(command_param_t *param)
 {
     char success_buff[MAX_BUFF_SIZE] = {0};
@@ -38,14 +44,13 @@ int command_login(command_param_t *param)
     } else if (param->arg.nb > 2) {
         return client_reply(param->clients, param->id, INVALID_FORMAT);
     }
-    user = db_search_user_by_pseudo(param->srv->db, param->arg.array[2]);
-    if (user) {
-        // add user data this to client
-    } else {
+    user = db_search_user_by_pseudo(param->srv->db, param->arg.array[1]);
+    printf("%s\n%s\n\n", param->arg.array[0], param->arg.array[1]);
+    if (!user) {
         user = user_init(llist_get_size(param->srv->db->users), param->arg.array[1], "");
         db_add_user(param->srv->db, user);
-        // add user data this to client
     }
+    set_client_uuid(&(param->clients[param->id]), user);
     reply = get_reply_msg(user->uuid, user->pseudo);
     sprintf(success_buff, reply_codes[get_reply(SUCCESS)].message, reply);
     free(reply);
