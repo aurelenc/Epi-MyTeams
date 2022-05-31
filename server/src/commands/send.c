@@ -16,10 +16,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static void add_msg_to_db(command_param_t *param, user_t *user_one, user_t *user_two,
-id_t *ids)
+static void add_msg_to_db(command_param_t *param, user_t *user_one,
+user_t *user_two, id_t *ids)
 {
-    int  *relation = calloc(sizeof(int), 2);
+    int *relation = calloc(sizeof(int), 2);
     discussion_t *disc = db_search_discussion_by_users_id(param->srv->db, ids);
 
     if (disc) {

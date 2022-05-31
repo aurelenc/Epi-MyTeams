@@ -47,7 +47,8 @@ void find_command(command_param_t *params)
     char buff[MAX_BUFF_SIZE];
 
     printf("%s\n", params->clients[params->id].rbuf);
-    if (cbuff_pop(params->clients[params->id].rbuf, buff, MAX_BUFF_SIZE) != BUFFER_OK)
+    if (cbuff_pop(params->clients[params->id].rbuf, buff, MAX_BUFF_SIZE)
+        != BUFFER_OK)
         return;
     for (size_t i = 0; commands[i].func != NULL; i++) {
         printf("%s\t%s:%ld\n", buff, commands[i].cmd, strlen(commands[i].cmd));

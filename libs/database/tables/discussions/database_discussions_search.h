@@ -73,7 +73,6 @@ const id_t user_two_id)
     &discussion_user_two_id_compare, &user_two_id);
 };
 
-
 ///
 /// @brief It searches the database's
 /// discussion list for a discussion with the given users IDs

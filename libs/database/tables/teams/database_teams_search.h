@@ -19,7 +19,6 @@
 ///
 /// @return A pointer to a team_t struct.
 ///
-
 static inline team_t *db_search_team_by_id(database_t *db, const id_t id)
 {
     return (team_t *)llist_search(db->teams, &team_id_compare, &id);
