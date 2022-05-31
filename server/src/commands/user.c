@@ -17,7 +17,7 @@ static char *get_msg_reply(user_t *user)
     char *buff = calloc(sizeof(char),
     strlen(user->uuid) + strlen(user->pseudo) + 13);
 
-    strcat(buff, "00 ");
+    strcat(buff, "00:");
     strcat(buff, "[ \"");
     strcat(buff,   user->uuid);
     strcat(buff, "\" \"");
