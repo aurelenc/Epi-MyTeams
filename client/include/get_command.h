@@ -28,6 +28,8 @@ bool make_command_rfc_compatible(char *dest, char *command, char *av);
 char *manage_params(char *av);
 int check_params(char *av);
 
+char **parse_response(char *response, int nb_params);
+
 int parse_command(char *input, int socket);
 
 #endif /* !GET_COMMAND_H_ */
