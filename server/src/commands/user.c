@@ -8,22 +8,29 @@
 #include "reply_codes.h"
 #include "server.h"
 #include "tables/users/database_users_search.h"
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 
-static void fill_msg_reply(user_t *user, char **buff)
+static char *get_msg_reply(user_t *user)
 {
-    strcat(*buff, "00 ");
-    strcat(*buff, "[ \"");
-    strcat(*buff,   user->uuid);
-    strcat(*buff, "\" \"");
-    strcat(*buff, user->pseudo);
-    strcat(*buff, "\" \"");
-    strcat(*buff, "0" );
-    strcat(*buff, "\"]");
+    char *buff = calloc(sizeof(char),
+    strlen(user->uuid) + strlen(user->pseudo) + 13);
+
+    strcat(buff, "00 ");
+    strcat(buff, "[ \"");
+    strcat(buff,   user->uuid);
+    strcat(buff, "\" \"");
+    strcat(buff, user->pseudo);
+    strcat(buff, "\" \"");
+    strcat(buff, "0" ); // add connection status here
+    strcat(buff, "\"]");
+    return (buff);
 }
 
 int command_user(command_param_t *param)
 {
-    char success_buff[MAX_BUFF_SIZE] = {0};
+    char *success_buff = 0;
     user_t *found = 0;
 
     printf("[SERVER] USER\n");
@@ -36,6 +43,6 @@ int command_user(command_param_t *param)
     if (!found) {
         return client_reply(param->clients, param->id, NOT_FOUND);
     }
-    fill_msg_reply(found, &success_buff);
+    success_buff = get_msg_reply(found);
     return client_reply_success(param->clients, param->id, success_buff);
 }
