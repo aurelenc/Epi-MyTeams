@@ -25,7 +25,6 @@ void new_client(client_sock_t *clients, int client_socket)
 
     for (; i < MAX_CLIENTS - 1 && clients[i].socket != 0; i++);
     if (clients[i].socket) {
-        dprintf(client_socket, reply_codes[get_reply(10068)].message);
         return;
     }
     clients[i].socket = client_socket;
@@ -33,7 +32,6 @@ void new_client(client_sock_t *clients, int client_socket)
     clients[i].channel_id = 0;
     clients[i].thread_id = 0;
     set_client_strings(clients, i);
-    dprintf(client_socket, reply_codes[get_reply(220)].message);
 }
 
 void remove_client(client_sock_t *clients, int remove_index)
