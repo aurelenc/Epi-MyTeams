@@ -8,19 +8,19 @@
 #include "reply_codes.h"
 
 const reply_code_t reply_codes[] = {
-    {00, "00 %s\n"},
-    {01, "01 Service ready for new user.\n"},
-    {10, "10 Internal server error.\n"},
-    {11, "11 Server is full.\n"},
-    {12, "12 Too many requests.\n"},
-    {13, "13 Forbidden.\n"},
-    {14, "14 Not found.\n"},
-    {20, "20 Unknown client error.\n"},
-    {21, "21 Unrecognized command.\n"},
-    {22, "22 Missing parameter.\n"},
-    {23, "23 Invalid format.\n"},
-    {24, "24 Resource already exists.\n"},
-    {99, "99 Not implemented.\n"},
+    {00, "00:Success\n"},
+    {01, "01:Service ready for new user.\n"},
+    {10, "10:Internal server error.\n"},
+    {11, "11:Server is full.\n"},
+    {12, "12:Too many requests.\n"},
+    {13, "13:Forbidden.\n"},
+    {14, "14:Not found.\n"},
+    {20, "20:Unknown client error.\n"},
+    {21, "21:Unrecognized command.\n"},
+    {22, "22:Missing parameter.\n"},
+    {23, "23:Invalid format.\n"},
+    {24, "24:Resource already exists.\n"},
+    {99, "99:Not implemented.\n"},
 };
 
 int get_reply(int code)

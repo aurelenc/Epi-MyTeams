@@ -28,7 +28,6 @@ int logout_client(char *av, int socket)
         printf("Response 2 du server = [%s]\n", buff);
         read(socket, buff, 4096); // 3 = lenth error code
         client_reply(atoi(buff));
-        printf("Response finale du server = [%s]\n", buff);
         // atoi -> compare error code
     } else  {
         printf("Command are not good use /help for more information !\n");
