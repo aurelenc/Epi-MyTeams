@@ -12,12 +12,14 @@
 #include <netinet/ip.h>
 #include <arpa/inet.h>
 #include <stdbool.h>
+#include "database.h"
 
-#define MAX_BUFF_SIZE 2048
+#define MAX_BUFF_SIZE 4096
 #define MAX_USER_SIZE 256
 #define MAX_CLIENTS 20
 #define MAX_ARGS_NB 1
 #define MAX_PARAMS_NB MAX_ARGS_NB + 1
+#define UUID_SIZE 37
 
 typedef struct client_sock_s {
     int socket;
@@ -40,6 +42,7 @@ typedef struct server_s {
     fd_set wfd;
     struct sockaddr_in addr;
     socklen_t len;
+    database_t *db;
 } server_t;
 
 typedef struct params_s {

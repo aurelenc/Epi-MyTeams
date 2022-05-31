@@ -10,10 +10,8 @@
 
 bool arg_is_good(int ac, char **av)
 {
-    printf("ac = [%i]\n", ac);
     if (ac != 3)
         return false;
-    printf("IP = [%s]\n", av[1]);
     if (atoi(av[2]) == 0)
         return false;
     return true;
@@ -44,49 +42,48 @@ void connect_client(client_t *client)
         sizeof(client->servaddr)) != 0) {
         printf("connection with the server failed...\n");
         exit(84);
-    }
-    else
+    } else
         printf("connected to the server..\n");
 }
 
-void running_teams(client_t *client)
+void running_teams(client_t *client, char *buff)
 {
-    char buff[MAX];
-
-    client->is_connected = true;
-    read(client->socket, buff, MAX);
-    printf("Client socket [%i]\n", client->socket);
-    printf("Buff 1 = [%s]\n", buff);
-    memset(buff, 0, MAX);
-    while (client->is_connected) {
-        bzero(buff, sizeof(buff));
+    FD_ZERO(&client->rfd);
+    FD_ZERO(&client->wfd);
+    FD_SET(client->socket, &client->rfd);
+    FD_SET(client->socket, &client->wfd);
+    if (select(FD_SETSIZE, &client->rfd, &client->wfd, NULL, NULL) < 0)
+        exit(84);
+    if (FD_ISSET(client->socket, &client->wfd)) {
+        bzero(buff, sizeof(char));
         printf("Enter the command : ");
-        for (int i = 0; (buff[i] = getchar()) != '\n'; i++);
+        for (int i = 0; (buff[i] = getchar()) != '\n'; i++)
+            if (buff[i] == EOF)
+                exit(42);
         parse_command(buff, client->socket);
-        printf("From Server : [%s]\n", buff);
-        if ((strncmp(buff, "exit", 4)) == 0) {
-            printf("Client Exit...\n");
-            break;
-        }
+        if ((strncmp(buff, "exit", 4)) == 0)
+            exit(-16 + ((int) printf("Client Exit ...\n")));
     }
+    if (FD_ISSET(client->socket, &client->rfd))
+        printf("Le server ecrit...\n");
 }
 
 int my_teams_client(int ac, char **av)
 {
     client_t *client;
+    char buff[MAX];
 
     client = malloc(sizeof(client_t));
-    if (client == NULL) {
-        printf("test01\\n");
+    if (client == NULL)
         return (84);
-    }
-    if (!arg_is_good(ac, av)) {
-        printf("tedst01\\n");
+    if (!arg_is_good(ac, av))
         return (84);
-    }
     create_client(client, av);
     connect_client(client);
-    running_teams(client);
+    client->is_connected = true;
+    memset(buff, 0, MAX);
+    while (client->is_connected)
+        running_teams(client, buff);
     //close_client();
     return 0;
 }

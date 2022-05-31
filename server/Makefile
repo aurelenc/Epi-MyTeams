@@ -78,7 +78,7 @@ OBJ	=	$(SRC:.c=.o) $(COMMANDS_SRC:.c=.o) $(LIB:.c=.o) $(LIB_LINKED_LIST:.c=.o) $
 
 CFLAGS	=	-Wall -Werror -I include/ -I ../libs/myteams -I ../libs/circularbuffer -I ../libs/linked_list/ -I ../libs/database
 
-LDFLAGS = -luuid --coverage -I ../libs/linked_list
+LDFLAGS = -luuid --coverage -I ../libs/linked_list -L../libs/myteams -lmyteams
 
 CC	=	gcc
 

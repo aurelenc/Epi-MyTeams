@@ -4,6 +4,3 @@
 ** File description:
 ** get_cmd_infos_channel
 */
-
-
-

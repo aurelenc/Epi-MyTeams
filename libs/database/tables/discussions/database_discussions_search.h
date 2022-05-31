@@ -42,21 +42,6 @@ const char *uuid)
 };
 
 ///
-/// @brief It searches the database for a discussion with the given name
-///
-/// @param db The database to search in.
-/// @param name The name of the discussion to search for.
-///
-/// @return A pointer to a discussion_t struct.
-///
-static inline discussion_t *db_search_discussion_by_name(database_t *db,
-const char *name)
-{
-    return (discussion_t *)llist_search(db->discussions,
-    &discussion_name_compare, name);
-};
-
-///
 /// @brief It searches the database's
 ///discussion list for a discussion with the given user one ID
 ///
@@ -86,4 +71,21 @@ const id_t user_two_id)
 {
     return (discussion_t *)llist_search(db->discussions,
     &discussion_user_two_id_compare, &user_two_id);
+};
+
+
+///
+/// @brief It searches the database's
+/// discussion list for a discussion with the given users IDs
+///
+/// @param db The database to search in.
+/// @param user_two_id The user two ID to search for.
+///
+/// @return A pointer to a discussion_t struct.
+///
+static inline discussion_t *db_search_discussion_by_users_id(database_t *db,
+const id_t *ids)
+{
+    return (discussion_t *)llist_search(db->discussions,
+    &discussion_users_ids_compare, ids);
 };
