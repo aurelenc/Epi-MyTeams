@@ -19,6 +19,7 @@
 #define MAX_CLIENTS 20
 #define MAX_ARGS_NB 1
 #define MAX_PARAMS_NB MAX_ARGS_NB + 1
+#define UUID_SIZE 37
 
 typedef struct client_sock_s {
     int socket;

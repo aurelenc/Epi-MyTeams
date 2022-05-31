@@ -16,7 +16,7 @@ static void set_client_strings(client_sock_t *clients, int id)
 {
     memset(clients[id].rbuf, 0, MAX_BUFF_SIZE);
     memset(clients[id].wbuf, 0, MAX_BUFF_SIZE);
-    memset(clients[id].user, 0, MAX_USER_SIZE);
+    memset(clients[id].user, 0, UUID_SIZE);
 }
 
 void new_client(client_sock_t *clients, int client_socket)
@@ -57,7 +57,7 @@ void listen_clients(client_sock_t *clients, server_t *server)
     for (int i = 0; i < MAX_CLIENTS && clients[i].socket != 0; i++) {
         if (FD_ISSET(clients[i].socket, &server->rfd))
             handle_input(clients, i, server);
-        // if (FD_ISSET(clients[i].socket, &server->wfd))
+        if (FD_ISSET(clients[i].socket, &server->wfd))
             write_to_client(&clients[i]);
     }
 }
