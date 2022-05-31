@@ -20,12 +20,9 @@ int login_client(char *av, int socket)
     if (av == NULL)
         return -1;
     if (check_params(av) == 1) {
-
         make_command_rfc_compatible(buff, "LOGIN ", av);
-
         write(socket, buff, strlen(buff));
         memset(buff, 0, 4096);
-
         if (read(socket, buff, 4096) == 0) {
             printf("Client is deconnected !\n");
             exit (0);
@@ -33,7 +30,6 @@ int login_client(char *av, int socket)
         client_reply(atoi(strncpy(response, buff, 2)));
         if (strlen(buff) > 4) {
             tab_response = parse_response(buff, 2);
-            printf("Tab[0] = [%s]\n", tab_response[0]);
             client_event_logged_in(tab_response[1], tab_response[3]);
         }
     } else {
