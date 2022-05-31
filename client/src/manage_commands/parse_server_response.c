@@ -42,19 +42,17 @@ char **parse_response(char *response, int nb_params)
     char parser = '"';
     char **tab_response = malloc(sizeof(char *) * (count_users(response) * nb_params));
 
+    if (tab_response == NULL)
+        exit(0);
     if (!is_arg_good(response, nb_params))
         return NULL;
     for (int i = 1; ; i++, str1 = NULL) {
         arg = strtok_r(str1, &parser, &saveptr1);
         if (arg == NULL)
             break;
-        printf("%d: [%s]\n", i, arg);
-        
+        //printf("%d: [%s]\n", i, arg);
         tab_response[i - 1] = malloc(sizeof(char) * strlen(arg));
         memcpy(tab_response[i - 1], arg, strlen(arg));
-
-        printf("tab[%i] = [%s]\n-----------------------\n", i - 1, tab_response[i - 1]);
-    } 
-
+    }
     return tab_response;
 }

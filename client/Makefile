@@ -23,20 +23,22 @@ LIB	=	../libs/circularbuffer/circular_buffer.c\
 
 OBJ	=	$(SRC:.c=.o) $(LIB:.c=.o)
 
-CFLAGS	=	-Wall -Werror -I ../../../libs/myteams -I ../include -I ../../include -I include/ -I ../libs/myteams -I ../libs/circularbuffer -g
+CFLAGS	=	-Wall -Werror -I ../../../libs/myteams -I ../include -I ../../include -I include/ -I ../libs/myteams -I ../libs/circularbuffer
 
-LDFLAGS	=	 -L../libs/myteams -lmyteams
+LDFLAGS	=	 -L ../libs/myteams -lmyteams
 
 CC	=	gcc
 
 $(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME) $(LDFLAGS)
+	cp ../libs/myteams/libmyteams.so ..
 
 clean:
 	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f ../libmyteams.so
 
 re: fclean
 	make

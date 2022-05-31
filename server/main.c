@@ -37,10 +37,10 @@ void receive_client_input(int connfd)
         //empty buff/str
         bzero(str, MAX);
         i = 0;
-        
+
         // copy server message in the buffer
         while ((str[i++] = getchar()) != '\n');
-        
+
         // and send that buffer to client
         write(connfd, str, sizeof(str));
 
