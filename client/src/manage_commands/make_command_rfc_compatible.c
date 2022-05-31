@@ -11,16 +11,13 @@
 bool make_command_rfc_compatible(char *dest, char *command, char *av)
 {
     strcat(dest, command);
-    if (dest == NULL) {
+    if (dest == NULL)
         return false;
-    }
     strcat(dest, av);
-    if (dest == NULL) {
+    if (dest == NULL)
         return false;
-    }
     strcat(dest, "\n");
-     if (dest == NULL) {
+     if (dest == NULL)
         return false;
-    }
     return true;
 }

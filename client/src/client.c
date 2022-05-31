@@ -62,7 +62,7 @@ void running_teams(client_t *client, char *buff)
                 exit(42);
         parse_command(buff, client->socket);
         if ((strncmp(buff, "exit", 4)) == 0)
-            exit (-16 + ((int) printf("Client Exit ...\n")));
+            exit(-16 + ((int) printf("Client Exit ...\n")));
     }
     if (FD_ISSET(client->socket, &client->rfd))
         printf("Le server ecrit...\n");
@@ -80,7 +80,6 @@ int my_teams_client(int ac, char **av)
         return (84);
     create_client(client, av);
     connect_client(client);
-
     client->is_connected = true;
     read(client->socket, buff, MAX);
     memset(buff, 0, MAX);

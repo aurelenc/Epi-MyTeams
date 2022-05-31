@@ -40,8 +40,8 @@ char **parse_response(char *response, int nb_params)
     char *str1 = response;
     char *saveptr1 = NULL;
     char parser = '"';
-    char **tab_response = malloc(sizeof(char *) *
-                            (count_users(response) * nb_params));
+    char **tab_response = malloc
+                        (sizeof(char *) * (count_users(response) * nb_params));
 
     if (!is_arg_good(response, nb_params))
         return NULL;
@@ -52,6 +52,6 @@ char **parse_response(char *response, int nb_params)
         //printf("%d: [%s]\n", i, arg);
         tab_response[i - 1] = malloc(sizeof(char) * strlen(arg));
         memcpy(tab_response[i - 1], arg, strlen(arg));
-    } 
+    }
     return tab_response;
 }

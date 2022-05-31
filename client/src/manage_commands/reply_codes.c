@@ -27,10 +27,9 @@ int get_reply(int code)
 {
     int i = 0;
 
-    for (; reply_codes[i].code != 0; i++) {
+    for (; reply_codes[i].code != 0; i++)
         if (reply_codes[i].code == code)
             return i;
-    }
     return i;
 }
 
