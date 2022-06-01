@@ -71,7 +71,7 @@ void running_teams(client_t *client, char *buff)
 int my_teams_client(int ac, char **av)
 {
     client_t *client;
-    char buff[MAX];
+    char buff[MAX] = {0};
 
     client = malloc(sizeof(client_t));
     if (client == NULL)
