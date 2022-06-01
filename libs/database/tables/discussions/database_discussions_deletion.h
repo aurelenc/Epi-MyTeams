@@ -39,20 +39,6 @@ const char *uuid)
 };
 
 ///
-/// @brief It deletes a discussion from the database by name
-///
-/// @param db The database to delete the discussion from.
-/// @param name The name of the discussion to delete.
-///
-/// @return A boolean value.
-///
-static inline bool db_delete_discussion_by_name(database_t *db,
-const char *name)
-{
-    return llist_delif(db->discussions, &discussion_name_compare, name);
-};
-
-///
 /// @brief It deletes a discussion from the database if it has the same user one
 /// id as the one passed in
 ///
