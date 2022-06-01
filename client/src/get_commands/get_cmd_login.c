@@ -20,7 +20,7 @@ int login_client(char *av, int socket)
     if (av == NULL)
         return -1;
     if (check_params(av) == 1) {
-        make_command_rfc_compatible(buff, "LOGIN ", av);
+        make_command_rfc_compatible(buff, "LOGI ", av);
         write(socket, buff, strlen(buff));
         memset(buff, 0, 4096);
         if (read(socket, buff, 4096) == 0) {

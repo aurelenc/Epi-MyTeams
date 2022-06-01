@@ -2,17 +2,15 @@
 ** EPITECH PROJECT, 2022
 ** My_Teams
 ** File description:
-** get_cmd_create_thread
+** get_cmd_list_teams
 */
-
-
 
 #include <unistd.h>
 #include "get_command.h"
 #include "reply_codes.h"
 #include "logging_client.h"
 
-int create_thread(char *av, int socket)
+int list_teams(char *av, int socket)
 {
     char buff[4096];
     char response[2];
@@ -22,7 +20,7 @@ int create_thread(char *av, int socket)
     if (av == NULL)
         return -1;
     if (check_params(av) == 1) { //check_parameters
-        make_command_rfc_compatible(buff, "CRTH ", av);
+        make_command_rfc_compatible(buff, "LSTE ", av);
         write(socket, buff, strlen(buff));
         memset(buff, 0, 4096);
         if (read(socket, buff, 4096) == 0) {

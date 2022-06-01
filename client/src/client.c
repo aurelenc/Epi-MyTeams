@@ -59,7 +59,7 @@ void running_teams(client_t *client, char *buff)
         printf("Enter the command : ");
         for (int i = 0; (buff[i] = getchar()) != '\n'; i++)
             if (buff[i] == EOF)
-                exit(42);
+                exit(0);
         parse_command(buff, client->socket);
         if ((strncmp(buff, "exit", 4)) == 0)
             exit(-16 + ((int) printf("Client Exit ...\n")));

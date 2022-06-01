@@ -13,9 +13,39 @@
 #include <string.h>
 #include <stdio.h>
 
-int login_client(char *command, int socket);
-int logout_client(char *command, int socket);
+/// Manage commands for client
+///
+/// /get_commands
+int unsubscribe_teams(char *av, int socket);
+int subscribe_teams(char *av, int socket);
 int send_message(char *av, int socket);
+int logout_client(char *av, int socket);
+int login_client(char *av, int socket);
+
+/// /get_commands/get_use_commands
+int use_threads(char *av, int socket);
+int use_teams(char *av, int socket);
+int use_channel(char *av, int socket);
+
+/// /get_commands/get_info_command
+int infos_thread(char *av, int socket);
+int infos_team(char *av, int socket);
+int infos_channel(char *av, int socket);
+int infos_user(char *av, int socket);
+
+/// /get_commands/get_info_command/get_lists_commands
+int list_users(char *av, int socket);
+int list_users_messages(char *av, int socket);
+int list_user_subscribed(char *av, int socket);
+int list_threads(char *av, int socket);
+int list_teams(char *av, int socket);
+int list_teams_subscribed(char *av, int socket);
+int list_channels(char *av, int socket);
+
+/// /get_commands/get_create_commands
+int create_thread(char *av, int socket);
+int create_teams(char *av, int socket);
+int create_channel(char *av, int socket);
 
 typedef	struct tab_command_sending_s {
   char *cmd;
