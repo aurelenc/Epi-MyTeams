@@ -11,6 +11,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "database_management.h"
+#include "circular_buffer.h"
 
 client_sock_t *init_clients(void)
 {
@@ -20,8 +21,8 @@ client_sock_t *init_clients(void)
         return NULL;
     for (int i = 0; i < MAX_CLIENTS; i++) {
         clients[i].socket = 0;
-        clients[i].rbuf = calloc(sizeof(char), MAX_BUFF_SIZE);
-        clients[i].wbuf = calloc(sizeof(char), MAX_BUFF_SIZE);
+        clients[i].rbuf = CIRCULAR_BUFFER;
+        clients[i].wbuf = CIRCULAR_BUFFER;
         clients[i].user = calloc(sizeof(char), UUID_SIZE + 1);
         if (!clients[i].rbuf || !clients[i].wbuf ||
             !clients[i].user)
