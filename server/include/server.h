@@ -15,6 +15,7 @@
 #include "database.h"
 
 #define MAX_BUFF_SIZE 4096
+#define CBUFF_SIZE (int)4e+6
 #define MAX_USER_SIZE 256
 #define MAX_CLIENTS 20
 #define MAX_ARGS_NB 1

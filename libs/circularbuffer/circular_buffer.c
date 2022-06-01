@@ -13,7 +13,7 @@ cbuff_ret_t cbuff_push(char *cbuff, char *src)
 {
     size_t len = strlen(cbuff);
 
-    if (len + strlen(src) > BUFFER_SIZE)
+    if (len + strlen(src) > CIRCULAR_BUFFER_SIZE)
         return BUFFER_FULL;
     strcat(cbuff, src);
     return BUFFER_OK;

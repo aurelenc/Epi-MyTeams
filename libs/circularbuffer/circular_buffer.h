@@ -9,18 +9,20 @@
 
 #include <stdbool.h>
 
-#define BUFFER_SIZE 2048
+#define CIRCULAR_BUFFER_SIZE 4e+6
 
-/**
-** @struct cbuff_s
-** @brief The circular buffer structure
-** @var input contains the input buffer of size BUFFER_SIZE
-** @var output contains the output buffer of size BUFFER_SIZE
-**/
-typedef struct cbuff_s {
-    char input[BUFFER_SIZE];
-    char output[BUFFER_SIZE];
-} cbuff_t;
+#define CIRCULAR_BUFFER calloc(sizeof(char), CIRCULAR_BUFFER_SIZE)
+
+// /**
+// ** @struct cbuff_s
+// ** @brief The circular buffer structure
+// ** @var input contains the input buffer of size BUFFER_SIZE
+// ** @var output contains the output buffer of size BUFFER_SIZE
+// **/
+// typedef struct cbuff_s {
+//     char input[CIRCULAR_BUFFER_SIZE];
+//     char output[CIRCULAR_BUFFER_SIZE];
+// } cbuff_t;
 
 typedef enum cbuff_ret_e {
     BUFFER_OK,
