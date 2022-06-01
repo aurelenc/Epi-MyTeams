@@ -15,6 +15,8 @@ SRC	=	src/main.c\
 		src/client_input.c\
 		src/cli_launch.c\
 
+SAVE_SRC	=	src/save/read_functions.c	\
+
 COMMANDS_SRC	=	\
 					src/commands/login.c\
 					src/commands/logout.c\
@@ -46,6 +48,7 @@ LIB	=	../libs/circularbuffer/circular_buffer.c	\
 
 DATABASE =	../libs/database/tables/channels/channel.c										\
 			../libs/database/tables/channels/database_channels_multiple_search.c			\
+			../libs/database/tables/channels/database_channels_save.c						\
 			../libs/database/tables/channels/channel_search.c								\
 			../libs/database/tables/discussions/discussion.c								\
 			../libs/database/tables/discussions/discussion_search.c							\
