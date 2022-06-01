@@ -18,8 +18,8 @@ static void write_all_channels_in_file(llist_t *channels, FILE *fptr)
 
     while (nptr) {
         channel = (channel_t *)nptr->data;
-        fprintf(fptr,"\"%i\";\"%s\";\"%s\";\"%i\";\n",
-        channel->id, channel->uuid, channel->name, channel->team_id);
+        fprintf(fptr,"\"%i\";\"%s\";\"%s\";\"%s\";\"%i\";\n", channel->id,
+        channel->uuid, channel->name, channel->desc, channel->team_id);
         nptr = nptr->next;
     }
 }

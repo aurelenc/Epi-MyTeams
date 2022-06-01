@@ -10,9 +10,9 @@
 
 Test (get_the_content_of_a_file, get_file_content)
 {
-    char *buffer = get_file_content("tests/test_files/test_save.txt");
+    char *buffer = get_file_content("tests/test_files/test_save.csv");
 
-    cr_assert_str_eq(buffer, "[\"6a36151e-7e68-4264-a5da-b7d3fe646288\" \"name\" \"1\"]\n");
+    cr_assert_str_eq(buffer, "\"1\";\"UUID1\";\"name\";\"10\";\n");
 }
 
 Test (file_does_not_exist, get_file_content)
