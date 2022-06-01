@@ -78,3 +78,7 @@ void remove_client(client_sock_t *clients, int remove_index);
 void listen_clients(client_sock_t *clients, server_t *server);
 void write_client_buff(client_sock_t *clients, int i, char *message);
 void handle_input(client_sock_t *clients, int id, server_t *server);
+
+/// Signals
+void set_sigint_handler(void);
+bool get_sigint_received(void);

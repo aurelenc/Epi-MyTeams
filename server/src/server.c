@@ -51,8 +51,22 @@ int configure_server(server_t *server, char *port_param)
     return 0;
 }
 
+static void disconnect_everyone(client_sock_t *clients)
+{
+    for (int i = 0; i < MAX_CLIENTS; i++) {
+        if (clients[i].socket != 0)
+            remove_client(clients, i);
+        free(clients[i].rbuf);
+        free(clients[i].wbuf);
+    }
+}
+
 void server_loop(client_sock_t *clients, server_t *server)
 {
+    if (get_sigint_received()) {
+        disconnect_everyone(clients);
+        exit(0);
+    }
     FD_ZERO(&server->rfd);
     FD_ZERO(&server->wfd);
     FD_SET(server->socket, &server->rfd);
@@ -85,6 +99,7 @@ int my_teams_server(int ac, char **av)
         return 84;
     }
     setbuf(stdout, NULL);
+    set_sigint_handler();
     while (1)
         server_loop(clients, &server);
     close(server.socket);
