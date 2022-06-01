@@ -38,7 +38,6 @@ SRC	=	main.c\
 		src/manage_commands/manage_command.c	\
 		src/get_commands/check_params.c	\
 		src/get_commands/manage_params.c	\
-		src/get_commands/get_cmd_send_message.c	\
 		src/manage_commands/make_command_rfc_compatible.c	\
 		src/manage_commands/parse_server_response.c \
 		src/manage_commands/reply_codes.c
