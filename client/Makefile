@@ -15,7 +15,8 @@ SRC_COMMANDS	=	src/get_commands/get_cmd_unsubscribe_teams.c	\
 					src/get_commands/get_use_commands/get_cmd_use_channel.c	\
 					src/get_commands/get_use_commands/get_cmd_use_teams.c	\
 					src/get_commands/get_use_commands/get_cmd_use_threads.c	\
-					src/get_commands/get_info_commands/get_cmd_infos_thread.c	\
+
+		src/get_commands/get_cmd_send_message.c	\	src/get_commands/get_info_commands/get_cmd_infos_thread.c	\
 					src/get_commands/get_info_commands/get_cmd_infos_team.c	\
 					src/get_commands/get_info_commands/get_cmd_infos_channel.c	\
 					src/get_commands/get_info_commands/get_cmd_get_user_infos.c	\
