@@ -73,7 +73,7 @@ int my_teams_client(int ac, char **av)
     client_t *client;
     char buff[MAX];
 
-    client = malloc(sizeof(client_t));
+    client = calloc(sizeof(client_t), 1);
     if (client == NULL)
         return (84);
     if (!arg_is_good(ac, av))
