@@ -51,7 +51,7 @@ int configure_server(server_t *server, char *port_param)
     return 0;
 }
 
-static void disconnect_everyone(client_sock_t *clients)
+static void destroy_server(client_sock_t *clients)
 {
     for (int i = 0; i < MAX_CLIENTS; i++) {
         if (clients[i].socket != 0)
@@ -59,13 +59,14 @@ static void disconnect_everyone(client_sock_t *clients)
         free(clients[i].rbuf);
         free(clients[i].wbuf);
     }
+    free(clients);
+    exit(0);
 }
 
 void server_loop(client_sock_t *clients, server_t *server)
 {
     if (get_sigint_received()) {
-        disconnect_everyone(clients);
-        exit(0);
+        destroy_server(clients);
     }
     FD_ZERO(&server->rfd);
     FD_ZERO(&server->wfd);
