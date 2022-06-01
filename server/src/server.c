@@ -51,7 +51,7 @@ int configure_server(server_t *server, char *port_param)
     return 0;
 }
 
-static void destroy_server(client_sock_t *clients)
+static void destroy_server(client_sock_t *clients, server_t *server)
 {
     for (int i = 0; i < MAX_CLIENTS; i++) {
         if (clients[i].socket != 0)
@@ -60,13 +60,14 @@ static void destroy_server(client_sock_t *clients)
         free(clients[i].wbuf);
     }
     free(clients);
+    db_destruction(server->db);
     exit(0);
 }
 
 void server_loop(client_sock_t *clients, server_t *server)
 {
     if (get_sigint_received()) {
-        destroy_server(clients);
+        destroy_server(clients, server);
     }
     FD_ZERO(&server->rfd);
     FD_ZERO(&server->wfd);
@@ -75,7 +76,8 @@ void server_loop(client_sock_t *clients, server_t *server)
         FD_SET(clients[i].socket, &server->rfd);
         FD_SET(clients[i].socket, &server->wfd);
     }
-    select(FD_SETSIZE, &server->rfd, &server->wfd, NULL, NULL);
+    if (select(FD_SETSIZE, &server->rfd, &server->wfd, NULL, NULL) < 0)
+        destroy_server(clients, server);
     if (FD_ISSET(server->socket, &server->rfd)) {
         new_client(clients, accept(server->socket,
         (struct sockaddr *)&server->addr, &server->len));
