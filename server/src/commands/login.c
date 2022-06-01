@@ -17,7 +17,8 @@
 
 static char *get_reply_msg(char *user_uuid, char *user_name)
 {
-    char *reply = calloc(sizeof(char), strlen(user_uuid) + 9);
+    char *reply =
+    calloc(sizeof(char), strlen(user_uuid) + strlen(user_name) + 12);
 
     strcat(reply, "[ \"");
     strcat(reply, user_uuid);
