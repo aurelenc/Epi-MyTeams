@@ -52,7 +52,7 @@ TEST_LIB_SRC	=	llib/tests_tools.c					\
 					llib/tests_llist_take_at_position.c	\
 					llib/tests_llist_delif.c			\
 
-TEST_SERV_SAVE_SRC	=	server_save/tests_get_entity.c				\
+TEST_SERV_SAVE_SRC	=	server_save/tests_get_entities.c			\
 						server_save/tests_get_arg.c					\
 						server_save/tests_get_file_content.c		\
 						server_save/tests_save_channels.c			\

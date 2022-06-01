@@ -29,57 +29,57 @@ char *get_file_content(char *filepath)
     return (buffer);
 }
 
-static bool is_entity_start(char *buffer, size_t cursor)
-{
-    if (!buffer[cursor] || !buffer[cursor + 1])
-        return (true);
-    return (buffer[cursor] == '[' && buffer[cursor + 1] == '"');
-}
-
-static bool is_entity_end(char *buffer, size_t cursor)
-{
-    if (!buffer[cursor] || !buffer[cursor + 1])
-        return (true);
-    return (buffer[cursor] == '"' && buffer[cursor + 1] == ']' );
-}
-
-char *get_entity(char *buffer)
-{
-    char *entity = 0;
-    size_t len = 0;
-    size_t cursor = 0;
-
-    if (!buffer)
-        return NULL;
-    for (cursor = 0; !is_entity_start(buffer, cursor); cursor++);
-    if (!buffer[cursor] || !buffer[cursor + 1])
-        return NULL;
-    for (cursor += 1; !is_entity_end(buffer, cursor + len); len++);
-    if (!buffer[cursor + len] || !buffer[cursor + len + 1])
-        return NULL;
-    len++;
-    entity = calloc(sizeof(char), len + 1);
-    if (!entity)
-        return NULL;
-    strncpy(entity, buffer + cursor, len);
-    return entity;
-}
-
-char *get_arg(char *entity)
+char *get_arg(char *entity, size_t *cur)
 {
     char *arg = 0;
     size_t len = 0;
-    size_t cur = 0;
 
-    for (cur = 0; entity[cur] && entity[cur] != '"'; cur++);
-    if (!entity[cur])
+    for (*cur; entity[*cur] && entity[*cur] != '"'; (*cur) += 1);
+    if (!entity[*cur])
         return NULL;
-    for (cur += 1; entity[cur + len] && entity[cur + len] != '"'; len++);
-    if (!entity[cur + len])
+    for (*cur += 1; entity[*cur + len] && entity[*cur + len] != '"'; len++);
+    if (!entity[*cur + len])
         return NULL;
     arg = calloc(sizeof(char), len + 1);
     if (!arg)
         return NULL;
-    strncpy(arg, entity + cur, len);
+    strncpy(arg, entity + *cur, len);
+    *cur += len + 1;
     return arg;
+}
+
+static char**get_an_entity(char *buffer, size_t nb_args, size_t *cursor)
+{
+    char **entity = calloc(sizeof(char *), nb_args + 1);
+
+    if (!entity)
+        exit(84);
+    for (size_t arg = 0; buffer[*cursor] && arg < nb_args; arg++) {
+        entity[arg] = get_arg(buffer, cursor);
+        if (!entity[arg])
+            exit(84);
+    }
+    return entity;
+}
+
+char ***get_entities(char *buffer, size_t nb_args)
+{
+    char ***entities = 0;
+    size_t count = 0;
+    size_t cursor = 0;
+
+    for (int i = 0; buffer[i]; i++)
+        if (buffer[i] == '"')
+            count++;
+    if (count % 2 != 0 || count % nb_args != 0) {
+        printf("Corrupted datas\n");
+        return NULL;
+    }
+    entities = calloc(sizeof(char **), count / nb_args + 1);
+    if (!entities)
+        exit(84);
+    for (size_t i = 0; i < count / nb_args / 2 ; i++) {
+        entities[i] = get_an_entity(buffer, nb_args, &cursor);
+    }
+    return entities;
 }

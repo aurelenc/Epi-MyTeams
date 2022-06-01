@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include <stdlib.h>
+
 ///
 /// @brief It reads the contents of a file into a string
 ///
@@ -17,21 +19,22 @@
 char *get_file_content(char *filepath);
 
 ///
-/// @brief It takes a string and returns a pointer to a new string containing
-/// the first entity in the original string
+/// It takes a string and a pointer to a size_t, and returns a string
 ///
-/// @param buffer The buffer to parse.
+/// @param entity The string to parse.
+/// @param cur the current position in the entity string
 ///
 /// @return A pointer to a string.
 ///
-char *get_entity(char *buffer);
+char *get_arg(char *entity, size_t *cur);
 
 ///
-/// @brief It takes a string and returns a pointer to the first argument of the
-/// string
+/// @brief It takes a string and a number of arguments, and returns an array of
+/// strings containing the arguments
 ///
-/// @param entity The string to parse.
+/// @param buffer the string to parse
+/// @param nb_args the number of arguments that an entity has.
 ///
-/// @return The argument of the entity.
+/// @return An array of arrays of strings.
 ///
-char *get_arg(char *entity);
+char ***get_entities(char *buffer, size_t nb_args);
