@@ -14,8 +14,8 @@
 
 static void set_client_strings(client_sock_t *clients, int id)
 {
-    memset(clients[id].rbuf, 0, MAX_BUFF_SIZE);
-    memset(clients[id].wbuf, 0, MAX_BUFF_SIZE);
+    memset(clients[id].rbuf, 0, CIRCULAR_BUFFER_SIZE);
+    memset(clients[id].wbuf, 0, CIRCULAR_BUFFER_SIZE);
     memset(clients[id].user, 0, UUID_SIZE);
 }
 

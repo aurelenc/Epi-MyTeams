@@ -15,6 +15,7 @@
 #include "database.h"
 
 #define MAX_BUFF_SIZE 4096
+#define CBUFF_SIZE (int)4e+6
 #define MAX_USER_SIZE 256
 #define MAX_CLIENTS 20
 #define MAX_ARGS_NB 1
@@ -77,3 +78,7 @@ void remove_client(client_sock_t *clients, int remove_index);
 void listen_clients(client_sock_t *clients, server_t *server);
 void write_client_buff(client_sock_t *clients, int i, char *message);
 void handle_input(client_sock_t *clients, int id, server_t *server);
+
+/// Signals
+void set_sigint_handler(void);
+bool get_sigint_received(void);
