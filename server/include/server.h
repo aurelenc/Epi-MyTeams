@@ -27,9 +27,9 @@ typedef struct client_sock_s {
     char *rbuf;
     char *wbuf;
     char *user;
-    int team_id;
-    int channel_id;
-    int thread_id;
+    unsigned int team_id;
+    unsigned int channel_id;
+    unsigned int thread_id;
 } client_sock_t;
 
 typedef struct client_id_s {
@@ -65,6 +65,8 @@ typedef struct command_s {
     int (*func)(command_param_t *);
     bool auth_required;
 } command_t;
+
+#define THIS_CLIENT param->clients[param->id]
 
 extern const command_t commands[];
 
