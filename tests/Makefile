@@ -35,8 +35,10 @@ SAVE_SRC	=	../libs/database/tables/load_functions.c								\
 				../libs/database/tables/users/user.c									\
 				../libs/database/tables/users_x_teams/database_users_x_teams_save.c		\
 				../libs/database/tables/users_x_teams/users_x_teams.c					\
-				../libs/database/tables/threads/database_threads_save.c						\
-				../libs/database/tables/threads/thread.c									\
+				../libs/database/tables/threads/database_threads_save.c					\
+				../libs/database/tables/threads/thread.c								\
+				../libs/database/tables/messages/database_messages_save.c				\
+				../libs/database/tables/messages/message.c								\
 				../libs/database/database_management.c									\
 				../libs/database/tables/uuid_gen.c										\
 
@@ -77,6 +79,8 @@ TEST_SERV_SAVE_SRC	=	database_save/tests_get_entities.c			\
 						database_save/tests_load_users_x_teams.c	\
 						database_save/tests_save_threads.c			\
 						database_save/tests_load_threads.c			\
+						database_save/tests_save_messages.c			\
+						database_save/tests_load_messages.c			\
 
 CFLAGS	=	-Wall -Werror
 

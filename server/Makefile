@@ -55,6 +55,7 @@ DATABASE =	../libs/database/tables/channels/channel.c										\
 			../libs/database/tables/messages/message_search.c								\
 			../libs/database/tables/messages/message_search_relation.c						\
 			../libs/database/tables/messages/database_messages_multiple_search_relation.c	\
+			../libs/database/tables/messages/database_messages_save.c						\
 			../libs/database/tables/teams/team.c											\
 			../libs/database/tables/teams/team_search.c										\
 			../libs/database/tables/teams/database_teams_save.c								\
