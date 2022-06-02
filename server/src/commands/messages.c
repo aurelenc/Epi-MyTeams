@@ -15,10 +15,26 @@
 #include <time.h>
 #include <stdio.h>
 
+static void fill_message(command_param_t *param, node_t *it)
+{
+    char message[MAX_BUFF_SIZE] = {0};
+
+    while (it) {
+        memset(message, 0, MAX_BUFF_SIZE);
+        snprintf(message, MAX_BUFF_SIZE, "[\"%ld\" \"%s\"",
+        ((msg_t *)(it->data))->timestamp,
+        ((msg_t *)(it->data))->content);
+        printf("%s\n", message);
+        if (it->next)
+            strcpy(message, " ");
+        write_client_buff(param->clients, param->id, message);
+        it = it->next;
+    }
+}
+
 static int generate_messages(user_t *user_one, user_t *user_two,
 command_param_t *param)
 {
-    char messages[MAX_BUFF_SIZE] = {0};
     id_t user_pair[3] = {user_one->id, user_two->id, 0};
     discussion_t *disc =
     db_search_discussion_by_users_id(param->srv->db, user_pair);
@@ -28,16 +44,10 @@ command_param_t *param)
 
     if (!iterator)
         return client_reply_success(param->clients, param->id, "\n");
-    while (iterator) {
-        snprintf(messages, MAX_BUFF_SIZE, "[\"%ld\" \"%s\"",
-        ((msg_t *)(iterator->data))->timestamp,
-        ((msg_t *)(iterator->data))->content);
-        printf("%s\n", messages);
-        if (iterator->next)
-            strcpy(messages, " ");
-        iterator = iterator->next;
-    }
-    return client_reply_success(param->clients, param->id, messages);
+    write_client_buff(param->clients, param->id, "00:");
+    fill_message(param, iterator);
+    write_client_buff(param->clients, param->id, "\n");
+    return SUCCESS;
 }
 
 int command_messages(command_param_t *param)
