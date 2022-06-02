@@ -16,7 +16,7 @@
 ///
 /// @return A pointer to the first character of the file.
 ///
-char *get_file_content(char *filepath);
+char *get_file_content(const char *filepath);
 
 ///
 /// It takes a string and a pointer to a size_t, and returns a string
@@ -38,3 +38,10 @@ char *get_arg(char *entity, size_t *cur);
 /// @return An array of arrays of strings.
 ///
 char ***get_entities(char *buffer, size_t nb_args);
+
+///
+/// @brief It frees the memory allocated by the function `get_entities`
+///
+/// @param entities The array of entities to free.
+///
+void free_entities(char ***entities);

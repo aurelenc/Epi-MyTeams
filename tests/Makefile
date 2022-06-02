@@ -24,7 +24,7 @@ LIB_LINKED_LIST_SRC =	../libs/linked_list/llist_creation.c		\
 						../libs/linked_list/llist_insertion.c		\
 						../libs/linked_list/llist_tools.c			\
 
-SERVER_SRC	=	../server/src/save/read_functions.c							\
+SAVE_SRC	=	../libs/database/tables/load_functions.c					\
 				../libs/database/tables/channels/database_channels_save.c	\
 				../libs/database/tables/channels/channel.c					\
 				../libs/database/database_management.c						\
@@ -52,10 +52,11 @@ TEST_LIB_SRC	=	llib/tests_tools.c					\
 					llib/tests_llist_take_at_position.c	\
 					llib/tests_llist_delif.c			\
 
-TEST_SERV_SAVE_SRC	=	server_save/tests_get_entities.c			\
-						server_save/tests_get_arg.c					\
-						server_save/tests_get_file_content.c		\
-						server_save/tests_save_channels.c			\
+TEST_SERV_SAVE_SRC	=	database_save/tests_get_entities.c			\
+						database_save/tests_get_arg.c				\
+						database_save/tests_get_file_content.c		\
+						database_save/tests_save_channels.c			\
+						database_save/tests_load_channels.c			\
 
 CFLAGS	=	-Wall -Werror
 
@@ -64,7 +65,7 @@ LDFLAGS = -lcriterion -luuid --coverage -I ../libs/linked_list -I ../server/incl
 CC	=	gcc
 
 $(NAME):
-	$(CC) $(LIB_LINKED_LIST_SRC) $(SERVER_SRC) $(TEST_LIB_SRC) $(TEST_SERV_SAVE_SRC) -o $(NAME) ${LDFLAGS}
+	$(CC) $(LIB_LINKED_LIST_SRC) $(SAVE_SRC) $(TEST_LIB_SRC) $(TEST_SERV_SAVE_SRC) -o $(NAME) ${LDFLAGS}
 
 clean:
 	rm -f *.gc*

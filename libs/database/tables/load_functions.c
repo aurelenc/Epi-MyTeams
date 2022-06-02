@@ -10,7 +10,7 @@
 #include <string.h>
 #include <stdbool.h>
 
-char *get_file_content(char *filepath)
+char *get_file_content(const char *filepath)
 {
     char *buffer = 0;
     long length;
@@ -34,7 +34,7 @@ char *get_arg(char *entity, size_t *cur)
     char *arg = 0;
     size_t len = 0;
 
-    for (*cur; entity[*cur] && entity[*cur] != '"'; (*cur) += 1);
+    for (; entity[*cur] && entity[*cur] != '"'; (*cur) += 1);
     if (!entity[*cur])
         return NULL;
     for (*cur += 1; entity[*cur + len] && entity[*cur + len] != '"'; len++);
@@ -42,7 +42,7 @@ char *get_arg(char *entity, size_t *cur)
         return NULL;
     arg = calloc(sizeof(char), len + 1);
     if (!arg)
-        return NULL;
+        exit(84);
     strncpy(arg, entity + *cur, len);
     *cur += len + 1;
     return arg;
@@ -56,8 +56,10 @@ static char**get_an_entity(char *buffer, size_t nb_args, size_t *cursor)
         exit(84);
     for (size_t arg = 0; buffer[*cursor] && arg < nb_args; arg++) {
         entity[arg] = get_arg(buffer, cursor);
-        if (!entity[arg])
-            exit(84);
+        if (!entity[arg]) {
+            free(entity);
+            return NULL;
+        }
     }
     return entity;
 }
@@ -80,6 +82,18 @@ char ***get_entities(char *buffer, size_t nb_args)
         exit(84);
     for (size_t i = 0; i < count / nb_args / 2 ; i++) {
         entities[i] = get_an_entity(buffer, nb_args, &cursor);
+        if (!entities[i])
+            return entities;
     }
     return entities;
+}
+
+void free_entities(char ***entities)
+{
+    for (int i = 0; entities[i]; i++) {
+        for (int j = 0; entities[i][j]; j++)
+            free(entities[i][j]);
+        free(entities[i]);
+    }
+    free(entities);
 }

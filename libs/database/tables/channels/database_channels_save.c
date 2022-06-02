@@ -6,7 +6,9 @@
 */
 
 #include "database.h"
+#include "database_channels_add.h"
 #include "channel.h"
+#include "tables/load_functions.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
@@ -24,7 +26,7 @@ static void write_all_channels_in_file(llist_t *channels, FILE *fptr)
     }
 }
 
-bool save_channels(database_t *db, const char *filepath)
+bool db_save_channels(database_t *db, const char *filepath)
 {
     FILE *fptr;
 
@@ -36,5 +38,27 @@ bool save_channels(database_t *db, const char *filepath)
     write_all_channels_in_file(db->channels, fptr);
     fclose(fptr);
     printf("Channels saved successfully.\n");
+    return true;
+}
+
+bool db_load_channels(database_t *db, const char *filepath)
+{
+    char *content = get_file_content(filepath);
+    char ***entities = 0;
+    channel_t *channel = 0;
+
+    if (!content)
+        return false;
+    entities = get_entities(content, 5);
+    if (!entities)
+        return false;
+    for (size_t i = 0; entities[i]; i++) {
+        printf("entiti %ld\n", i);
+        channel = channel_init(atoi(entities[i][0]), entities[i][2],
+        entities[i][3], atoi(entities[i][4]));
+        free(channel->uuid);
+        channel->uuid = entities[i][1];
+        db_add_channel(db, channel);
+    }
     return true;
 }

@@ -6,7 +6,7 @@
 */
 
 #include <criterion/criterion.h>
-#include "save.h"
+#include "tables/load_functions.h"
 
 Test (get_the_content_of_a_file, get_file_content)
 {

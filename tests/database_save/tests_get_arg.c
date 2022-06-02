@@ -6,7 +6,7 @@
 */
 
 #include <criterion/criterion.h>
-#include "save.h"
+#include "tables/load_functions.h"
 #include <stdio.h>
 
 Test (no_arg, get_arg)
