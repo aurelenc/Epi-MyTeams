@@ -12,7 +12,7 @@
 #include <errno.h>
 #include <string.h>
 
-msg_t *msg_init(id_t id, const char *content, id_t user_id, int relation[2])
+msg_t *msg_init(id_t id, const char *content, id_t user_id, int *relation)
 {
     msg_t *msg = calloc(sizeof(msg_t), 1);
 
