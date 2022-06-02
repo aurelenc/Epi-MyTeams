@@ -12,28 +12,39 @@
 
 int subscribe_teams(char *av, int socket)
 {
-    char buff[4096];
-    char response[2];
-    char **tab_response;
+    char code_response[3];
+    char **tab_response = NULL;
 
-    memset(buff, 0, 4096);
     if (av == NULL)
         return -1;
-    if (check_params(av) == 1) { //check_parameters
-        make_command_rfc_compatible(buff, "SUB ", av);
-        write(socket, buff, strlen(buff));
-        memset(buff, 0, 4096);
-        if (read(socket, buff, 4096) == 0) {
-            printf("Client is deconnected !\n");
-            exit (0);
-        }
-        client_reply(atoi(strncpy(response, buff, 2)));
-        if (strlen(buff) > 4) {
-            tab_response = parse_response(buff, 2);
-            client_event_logged_in(tab_response[1], tab_response[3]);
-        }
-    } else {
+    if (check_params(av) == 1)
+        tab_response = send_command(av, tab_response, "SUB ", socket);
+    else
         printf("Command are not good use /help for more information !\n");
-    }
+    strncpy(code_response, tab_response[0], 2);
+    code_response[2] = '\0';
+    if (!strcmp(code_response, "14"))
+        client_error_unauthorized();
+
+    if (!strcmp(code_response, "40")) //print_list_of_user
+        client_print_users(tab_response[1], tab_response[3], atoi(tab_response[5]));
+    // char const *team_uuid,
+    // char const *team_name,
+    // char const *team_description);
+    if (!strcmp(code_response, "41")) //print_list_of_user
+        client_print_teams(tab_response[1], tab_response[3], tab_response[5]);
+    // char const *team_uuid,
+    // char const *team_name,
+    // char const *team_description);
+    if (!strcmp(code_response, "30"))
+        client_error_unknown_team(tab_response[1]);
+    // char const *team_uuid
+    if (!strcmp(code_response, "02"))
+        client_print_subscribed(tab_response[1], tab_response[3]);
+    // char const *user_uuid
+    // char const *team_uuid);
+
+
+    free(tab_response);
     return 0;
 }

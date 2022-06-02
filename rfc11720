@@ -81,6 +81,10 @@ The objectives of the myTeams project RFC is to allow communication between myTe
     - Success
 - 01
     - Client connected
+- 02
+    - Client subscribe at a teams OK
+- 03
+    - Client unsubscribe at a teams OK
 
 - 10
     - Internal server error
@@ -92,6 +96,8 @@ The objectives of the myTeams project RFC is to allow communication between myTe
     - Forbidden
 - 14
     - Not found
+- 15
+    - Logout or Lost Connexion
 
 
 - 20
@@ -104,6 +110,25 @@ The objectives of the myTeams project RFC is to allow communication between myTe
     - Invalid format
 - 24
     - Resource already exists
+- 25
+    - Client does not log/exist in database
+
+
+- 30
+    - Unknown team
+- 31
+    - Unknown channel
+
+
+
+- 40
+    - Print all users ok
+- 41
+    - Print all teams ok
+- 42
+    - Print all channels ok
+- 43
+    - Print all threads ok
 
 - 99
     - Not implemented
