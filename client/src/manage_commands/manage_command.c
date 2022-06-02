@@ -18,6 +18,8 @@ tab_command_sending_t tab_command_sending[] = {
     {"/list", &list},
     {"/messages", &messages},
     {"/create", &create},
+    {"/user", &user},
+    {"/users", &users},
     {"a b", NULL}
 };
 

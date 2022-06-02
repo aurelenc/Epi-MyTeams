@@ -26,6 +26,8 @@ int info(char *av, int socket);
 int list(char *av, int socket);
 int create(char *av, int socket);
 int messages(char *av, int socket);
+int user(char *av, int socket);
+int users(char *av, int socket);
 
 typedef	struct tab_command_sending_s {
   char *cmd;
