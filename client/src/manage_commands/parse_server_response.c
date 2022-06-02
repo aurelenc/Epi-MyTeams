@@ -40,7 +40,7 @@ char **parse_response(char *response, int nb_params)
     char *str1 = response;
     char *saveptr1 = NULL;
     char parser = '"';
-    char **tab_response = calloc(sizeof(char *), (count_users(response) * nb_params) + 1);
+    char **tab_response = calloc(sizeof(char *), (count_users(response) * nb_params) * 2 + 1);
 
     if (tab_response == NULL)
         exit(0);

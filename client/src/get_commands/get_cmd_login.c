@@ -13,14 +13,18 @@
 int login_client(char *av, int socket)
 {
     char **tab_response = NULL;
+    char code_response[3];
 
     if (av == NULL)
         return -1;
-    if (check_params(av) == 1) {
+    if (check_params(av) == 1)
         tab_response = send_command(av, tab_response, "LOGI ", socket);
-    } else {
+    else
         printf("Command are not good use /help for more information !\n");
-    }
-    client_event_logged_in(tab_response[1], tab_response[3]);
+    strncpy(code_response, tab_response[0], 2);
+    code_response[2] = '\0';
+    if (!strcmp(code_response, "00"))
+        client_event_logged_in(tab_response[1], tab_response[3]);
+    free(tab_response);
     return 0;
 }
