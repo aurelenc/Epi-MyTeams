@@ -75,35 +75,35 @@ The objectives of the myTeams project RFC is to allow communication between myTe
     -   This protocol is used to use specify a context thread
         -   thread_uuid: UUID of the selected thread
 
-- CRTE <SP> ["team_name"] <SP> ["team_description"] <EOL>
+- CREA <SP> ["team_name"] <SP> ["team_description"] <EOL>
     -   This protocol is used to create a new team
         -   team_name: The name of the new team
         -   team_description: The description of the new team
 
-- CRCH <SP> ["channel_name"] <SP> ["channel_description"] <EOL>
+- CREA <SP> ["channel_name"] <SP> ["channel_description"] <EOL>
     -   This protocol is used to create a new channel
         -   channel_name: The name of the new channel
         -   channel_description: The description of the new channel
 
-- CRTH <SP> ["thread_name"] <SP> ["thread_description"] <EOL>
+- CREA <SP> ["thread_name"] <SP> ["thread_description"] <EOL>
     -   This protocol is used to create a new thread
         -   thread_name: The name of the new thread
         -   thread_description: The description of the new thread
 
-- CRRE <SP> ["comment_body"] <EOL>
+- CREA <SP> ["comment_body"] <EOL>
     -   This protocol is used to create a new reply
         -   comment_body: The comment to send
 
 - LSTE <EOL>
     -   This protocol is used to list all existing teams
 
-- LSCH <EOL>
+- LSTE <EOL>
     -   This protocol is used to list all existing channels
 
-- LSTH <EOL>
+- LSTE <EOL>
     -   This protocol is used to list all existing threads
 
-- LSRE <EOL>
+- LSTE <EOL>
     -   This protocol is used to list all existing replies
 
 - IFTE <EOL>
@@ -161,6 +161,8 @@ The objectives of the myTeams project RFC is to allow communication between myTe
     - Unknown team
 - 31
     - Unknown channel
+- 32
+    - Unknown thread
 
 
 
@@ -172,6 +174,15 @@ The objectives of the myTeams project RFC is to allow communication between myTe
     - Print all channels ok
 - 43
     - Print all threads ok
+
+- 50
+    - Create team ok
+- 51
+    - Create channel ok
+- 52
+    - Create thread ok
+- 53
+    - Create reply ok
 
 - 99
     - Not implemented
