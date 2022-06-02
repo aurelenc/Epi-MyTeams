@@ -16,6 +16,7 @@ tab_command_sending_t tab_command_sending[] = {
     {"/use", &use},
     {"/info", &info},
     {"/list", &list},
+    {"/messages", &messages},
     {"/create", &create},
     {"a b", NULL}
 };
