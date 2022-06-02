@@ -12,16 +12,15 @@
 
 int login_client(char *av, int socket)
 {
-    char buff[4096] = {0};
-    char response[2] = {0};
-    char **tab_response;
+    char code_response[3];
+    char **tab_response = NULL;
 
     if (av == NULL)
         return -1;
     if (check_params(av) == 1)
         tab_response = send_command(av, tab_response, "LOGI ", socket);
     else
-        printf("Command are not good use /help for more information !\n");
+    printf("Command are not good use /help for more information !\n");
     strncpy(code_response, tab_response[0], 2);
     code_response[2] = '\0';
     if (!strcmp(code_response, "00"))

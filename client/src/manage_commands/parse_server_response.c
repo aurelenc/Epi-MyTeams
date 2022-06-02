@@ -46,13 +46,13 @@ char **parse_response(char *response, int nb_params)
         exit(0);
     if (!is_arg_good(response, nb_params))
         return NULL;
-    for (int i = 1; ; i++, str1 = NULL) {
+    for (int i = 0; ; i++, str1 = NULL) {
         arg = strtok_r(str1, &parser, &saveptr1);
         if (arg == NULL)
             break;
         //printf("%d: [%s]\n", i, arg);
-        tab_response[i - 1] = calloc(sizeof(char), strlen(arg) + 1);
-        memcpy(tab_response[i - 1], arg, strlen(arg));
+        tab_response[i] = calloc(sizeof(char), strlen(arg) + 1);
+        memcpy(tab_response[i], arg, strlen(arg));
     }
     return tab_response;
 }
