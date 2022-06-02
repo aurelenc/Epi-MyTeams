@@ -47,15 +47,18 @@ LIB	=	../libs/circularbuffer/circular_buffer.c	\
 
 DATABASE =	../libs/database/tables/channels/channel.c										\
 			../libs/database/tables/channels/database_channels_multiple_search.c			\
+			../libs/database/tables/channels/database_channels_save.c						\
 			../libs/database/tables/channels/channel_search.c								\
 			../libs/database/tables/discussions/discussion.c								\
 			../libs/database/tables/discussions/discussion_search.c							\
+			../libs/database/tables/discussions/database_discussions_save.c					\
 			../libs/database/tables/messages/message.c										\
 			../libs/database/tables/messages/message_search.c								\
 			../libs/database/tables/messages/message_search_relation.c						\
 			../libs/database/tables/messages/database_messages_multiple_search_relation.c	\
 			../libs/database/tables/teams/team.c											\
 			../libs/database/tables/teams/team_search.c										\
+			../libs/database/tables/teams/database_teams_save.c					\
 			../libs/database/tables/threads/thread.c										\
 			../libs/database/tables/threads/database_threads_multiple_search.c				\
 			../libs/database/tables/threads/thread_search.c									\
@@ -65,6 +68,7 @@ DATABASE =	../libs/database/tables/channels/channel.c										\
 			../libs/database/tables/users_x_teams/user_team_search.c						\
 			../libs/database/tables/users_x_teams/users_x_teams.c							\
 			../libs/database/tables/uuid_gen.c												\
+			../libs/database/tables/load_functions.c										\
 			../libs/database/database_management.c											\
 
 LIB_LINKED_LIST =	../libs/linked_list/llist_creation.c		\

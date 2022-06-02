@@ -13,6 +13,7 @@ typedef struct team_s {
     id_t id;
     char *uuid;
     char *name;
+    char *desc;
 } team_t;
 
 ///
@@ -20,10 +21,11 @@ typedef struct team_s {
 ///
 /// @param id the id of the team
 /// @param name The name of the team.
+/// @param name The description of the team.
 ///
 /// @return A pointer to a team_t structure.
 ///
-team_t *team_init(id_t id, const char *name);
+team_t *team_init(id_t id, const char *name, const char *desc);
 
 ///
 /// @brief It frees the memory allocated for the team's name

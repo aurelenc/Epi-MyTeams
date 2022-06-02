@@ -24,34 +24,56 @@ LIB_LINKED_LIST_SRC =	../libs/linked_list/llist_creation.c		\
 						../libs/linked_list/llist_insertion.c		\
 						../libs/linked_list/llist_tools.c			\
 
-TEST_SRC	=	tests_tools.c					\
-				tests_llist_init.c				\
-				tests_llist_destruction.c		\
-				tests_llist_append.c			\
-				tests_llist_push_front.c		\
-				tests_llist_insert.c			\
-				tests_llist_clear.c				\
-				tests_llist_pop_back.c			\
-				tests_llist_pop_front.c			\
-				tests_llist_delete_at.c			\
-				tests_llist_get_size.c			\
-				tests_llist_dump.c				\
-				tests_llist_is_empty.c			\
-				tests_llist_multiple_search.c	\
-				tests_llist_back.c				\
-				tests_llist_front.c				\
-				tests_llist_get.c				\
-				tests_llist_search.c			\
-				tests_llist_delif.c				\
+SAVE_SRC	=	../libs/database/tables/load_functions.c						\
+				../libs/database/tables/channels/database_channels_save.c		\
+				../libs/database/tables/channels/channel.c						\
+				../libs/database/tables/discussions/database_discussions_save.c	\
+				../libs/database/tables/discussions/discussion.c				\
+				../libs/database/tables/teams/database_teams_save.c				\
+				../libs/database/tables/teams/team.c							\
+				../libs/database/database_management.c							\
+				../libs/database/tables/uuid_gen.c								\
+
+
+TEST_LIB_SRC	=	llib/tests_tools.c					\
+					llib/tests_llist_init.c				\
+					llib/tests_llist_destruction.c		\
+					llib/tests_llist_append.c			\
+					llib/tests_llist_push_front.c		\
+					llib/tests_llist_insert.c			\
+					llib/tests_llist_clear.c			\
+					llib/tests_llist_pop_back.c			\
+					llib/tests_llist_pop_front.c		\
+					llib/tests_llist_delete_at.c		\
+					llib/tests_llist_get_size.c			\
+					llib/tests_llist_dump.c				\
+					llib/tests_llist_is_empty.c			\
+					llib/tests_llist_multiple_search.c	\
+					llib/tests_llist_back.c				\
+					llib/tests_llist_front.c			\
+					llib/tests_llist_get.c				\
+					llib/tests_llist_search.c			\
+					llib/tests_llist_take_at_position.c	\
+					llib/tests_llist_delif.c			\
+
+TEST_SERV_SAVE_SRC	=	database_save/tests_get_entities.c			\
+						database_save/tests_get_arg.c				\
+						database_save/tests_get_file_content.c		\
+						database_save/tests_save_channels.c			\
+						database_save/tests_load_channels.c			\
+						database_save/tests_save_discussions.c		\
+						database_save/tests_load_discussions.c		\
+						database_save/tests_save_teams.c			\
+						database_save/tests_load_teams.c			\
 
 CFLAGS	=	-Wall -Werror
 
-LDFLAGS = -lcriterion -luuid --coverage -I ../libs/linked_list
+LDFLAGS = -lcriterion -luuid --coverage -I ../libs/linked_list -I ../server/include -I ../libs/database
 
 CC	=	gcc
 
 $(NAME):
-	$(CC) $(LIB_LINKED_LIST_SRC) $(TEST_SRC) -o $(NAME) ${LDFLAGS}
+	$(CC) $(LIB_LINKED_LIST_SRC) $(SAVE_SRC) $(TEST_LIB_SRC) $(TEST_SERV_SAVE_SRC) -o $(NAME) ${LDFLAGS}
 
 clean:
 	rm -f *.gc*

@@ -15,6 +15,7 @@ typedef struct channel_s {
     id_t id;
     char *uuid;
     char *name;
+    char *desc;
     id_t team_id;
 } channel_t;
 
@@ -23,11 +24,13 @@ typedef struct channel_s {
 ///
 /// @param id the id of the channel
 /// @param name The name of the channel.
+/// @param desc The description of the channel.
 /// @param team_id The id of the team the channel belongs to.
 ///
 /// @return A pointer to a channel_t struct.
 ///
-channel_t *channel_init(id_t id, const char *name, id_t team_id);
+channel_t *channel_init(id_t id, const char *name, const char *desc,
+id_t team_id);
 
 ///
 /// @brief It frees the memory allocated for the name of the channel
