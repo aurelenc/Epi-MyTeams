@@ -57,12 +57,13 @@ DATABASE =	../libs/database/tables/channels/channel.c										\
 			../libs/database/tables/messages/database_messages_multiple_search_relation.c	\
 			../libs/database/tables/teams/team.c											\
 			../libs/database/tables/teams/team_search.c										\
-			../libs/database/tables/teams/database_teams_save.c					\
+			../libs/database/tables/teams/database_teams_save.c								\
 			../libs/database/tables/threads/thread.c										\
 			../libs/database/tables/threads/database_threads_multiple_search.c				\
 			../libs/database/tables/threads/thread_search.c									\
 			../libs/database/tables/users/user.c											\
 			../libs/database/tables/users/user_search.c										\
+			../libs/database/tables/users/database_users_save.c								\
 			../libs/database/tables/users_x_teams/database_users_x_teams_multiple_search.c	\
 			../libs/database/tables/users_x_teams/user_team_search.c						\
 			../libs/database/tables/users_x_teams/users_x_teams.c							\
