@@ -30,7 +30,6 @@ bool db_save_users(database_t *db, const char *filepath)
 {
     FILE *fptr;
 
-    printf("SAVE user\n");
     fptr = fopen(filepath, "w");
     if (fptr == NULL) {
         printf("Unable to open file.\n");
@@ -38,7 +37,7 @@ bool db_save_users(database_t *db, const char *filepath)
     }
     write_all_users_in_file(db->users, fptr);
     fclose(fptr);
-    printf("users saved successfully.\n");
+    printf("Users saved successfully.\n");
     return true;
 }
 

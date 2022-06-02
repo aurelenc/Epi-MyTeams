@@ -67,6 +67,7 @@ DATABASE =	../libs/database/tables/channels/channel.c										\
 			../libs/database/tables/users_x_teams/database_users_x_teams_multiple_search.c	\
 			../libs/database/tables/users_x_teams/user_team_search.c						\
 			../libs/database/tables/users_x_teams/users_x_teams.c							\
+			../libs/database/tables/users_x_teams/database_users_x_teams_save.c				\
 			../libs/database/tables/uuid_gen.c												\
 			../libs/database/tables/load_functions.c										\
 			../libs/database/database_management.c											\
