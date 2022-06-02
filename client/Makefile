@@ -11,10 +11,9 @@ SRC_COMMANDS	=	src/get_commands/get_cmd_unsubscribe_teams.c	\
 					src/get_commands/get_cmd_subscribe_teams.c	\
 					src/get_commands/get_cmd_logout.c	\
 					src/get_commands/get_cmd_login.c	\
-					src/get_commands/get_use_commands/get_cmd_use_channel.c	\
-					src/get_commands/get_use_commands/get_cmd_use_teams.c	\
-					src/get_commands/get_use_commands/get_cmd_use_threads.c	\
 					src/get_commands/get_cmd_send_message.c	\
+					src/get_commands/get_cmd_use.c	\
+					src/get_commands/get_cmd_create.c	\
 					src/get_commands/get_info_commands/get_cmd_infos_thread.c	\
 					src/get_commands/get_info_commands/get_cmd_infos_team.c	\
 					src/get_commands/get_info_commands/get_cmd_infos_channel.c	\
@@ -25,10 +24,7 @@ SRC_COMMANDS	=	src/get_commands/get_cmd_unsubscribe_teams.c	\
 					src/get_commands/get_list_commands/get_cmd_list_threads.c	\
 					src/get_commands/get_list_commands/get_cmd_list_user_subscribed.c	\
 					src/get_commands/get_list_commands/get_cmd_list_users_messages.c	\
-					src/get_commands/get_list_commands/get_cmd_list_users.c	\
-					src/get_commands/get_create_commands/get_cmd_create_channel.c	\
-					src/get_commands/get_create_commands/get_cmd_create_teams.c	\
-					src/get_commands/get_create_commands/get_cmd_create_thread.c
+					src/get_commands/get_list_commands/get_cmd_list_users.c
 
 
 

@@ -13,9 +13,7 @@ tab_command_sending_t tab_command_sending[] = {
     {"/send", &send_message},
     {"/logout", &logout_client},
     {"/login", &login_client},
-    {"/use_thread", &use_threads},
-    {"/use_team", &use_teams},
-    {"/use_channel", &use_channel},
+    {"/use", &use},
     {"/info_thread", &infos_thread},
     {"/info_team", &infos_team},
     {"/info_channel", &infos_channel},
@@ -27,9 +25,7 @@ tab_command_sending_t tab_command_sending[] = {
     {"/list_teams", &list_teams},
     {"/list_teams_subscribed", &list_teams_subscribed},
     {"/list_channels", &list_channels},
-    {"/create_thread", &create_thread},
-    {"/create_teams", &create_teams},
-    {"/create_channel", &create_channel},
+    {"/create", &create},
     {"a b", NULL}
 };
 
