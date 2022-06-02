@@ -12,8 +12,9 @@
 
 int login_client(char *av, int socket)
 {
-    char **tab_response = NULL;
-    char code_response[3];
+    char buff[4096] = {0};
+    char response[2] = {0};
+    char **tab_response;
 
     if (av == NULL)
         return -1;

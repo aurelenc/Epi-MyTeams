@@ -27,7 +27,8 @@ int get_command_params(char **dest, char *src)
 
     for (; i < MAX_PARAMS_NB; i++) {
         tok = strtok(i == 0 ? tmp : NULL, " \t\r\n");
-        printf("%s\n", tok);
+        if (!tok)
+            break;
         dest[i] = strdup(tok);
         if (!dest[i])
             break;
@@ -44,7 +45,7 @@ void exec_cmd(command_param_t *params, int cmd_id)
 void find_command(command_param_t *params)
 {
     bool command_found = false;
-    char buff[MAX_BUFF_SIZE];
+    char buff[MAX_BUFF_SIZE] = {0};
 
     printf("%s\n", params->clients[params->id].rbuf);
     if (cbuff_pop(params->clients[params->id].rbuf, buff, MAX_BUFF_SIZE) != BUFFER_OK)
@@ -67,7 +68,7 @@ void handle_input(client_sock_t *clients, int id, server_t *server)
 {
     params_t params;
     command_param_t command_params;
-    char buff[MAX_BUFF_SIZE];
+    char buff[MAX_BUFF_SIZE] = {0};
 
     params.nb = 0;
     params.array = calloc(sizeof(char *), MAX_PARAMS_NB + 1);
