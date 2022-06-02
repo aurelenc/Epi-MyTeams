@@ -21,7 +21,7 @@ team_t *team_init(id_t id, const char *name, const char *desc)
     team->id = id;
     team->uuid = uuid_gen();
     team->name = strdup(name);
-    team->name = strdup(desc);
+    team->desc = strdup(desc);
     if (!team->uuid || !team->name || !team->desc)
         exit (84);
     return (team);
@@ -32,5 +32,6 @@ void team_destruction(team_t *team)
     if (!team)
         return;
     free(team->name);
+    free(team->desc);
     free(team);
 }

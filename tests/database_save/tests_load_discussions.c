@@ -28,4 +28,5 @@ Test (load_a_basic_db, db_load_discussions)
     disc = (discussion_t *)db->discussions->first->next->next->data;
     cr_assert_eq(disc->id, 3);
     cr_assert_eq(disc->user_two_id, 300);
+    db_destruction(db);
 }

@@ -28,4 +28,5 @@ Test (load_a_basic_db, db_load_channels)
     chan = (channel_t *)db->channels->first->next->next->data;
     cr_assert_eq(chan->id, 3);
     cr_assert_str_eq(chan->desc, "ds30SC");
+    db_destruction(db);
 }

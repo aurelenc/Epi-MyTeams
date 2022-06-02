@@ -27,4 +27,5 @@ Test (save_a_basic_db, db_save_channels)
 
     cr_assert_eq(db_save_channels(db, "tests/test_files/channels.csv"), true);
     cr_assert_str_eq(get_file_content("tests/test_files/channels.csv"), "\"1\";\"UUID1\";\"name\";\"desc1\";\"10\";\n\"2\";\"2uuid\";\"forname\";\"2DESC\";\"20\";\n");
+    db_destruction(db);
 }

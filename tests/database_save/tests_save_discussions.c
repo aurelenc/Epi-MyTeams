@@ -27,4 +27,5 @@ Test (save_a_basic_db, db_save_discussions)
 
     cr_assert_eq(db_save_discussions(db, "tests/test_files/discussions.csv"), true);
     cr_assert_str_eq(get_file_content("tests/test_files/discussions.csv"), "\"1\";\"UUID1\";\"10\";\"100\";\n\"2\";\"2uuid\";\"20\";\"200\";\n");
+    db_destruction(db);
 }
