@@ -61,6 +61,7 @@ DATABASE =	../libs/database/tables/channels/channel.c										\
 			../libs/database/tables/threads/thread.c										\
 			../libs/database/tables/threads/database_threads_multiple_search.c				\
 			../libs/database/tables/threads/thread_search.c									\
+			../libs/database/tables/threads/database_threads_save.c								\
 			../libs/database/tables/users/user.c											\
 			../libs/database/tables/users/user_search.c										\
 			../libs/database/tables/users/database_users_save.c								\
