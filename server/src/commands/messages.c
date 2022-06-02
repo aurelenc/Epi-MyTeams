@@ -15,13 +15,6 @@
 #include <time.h>
 #include <stdio.h>
 
-// static char *generate_message(char *buff, time_t time, char *content)
-// {
-//     sprintf(buff, "[\"%ld\" \"%s\"", time, content);
-//     printf("%s\n", buff);
-//     return buff;
-// }
-
 static int generate_messages(user_t *user_one, user_t *user_two,
 command_param_t *param)
 {
@@ -36,12 +29,10 @@ command_param_t *param)
     if (!iterator)
         return client_reply_success(param->clients, param->id, "\n");
     while (iterator) {
-        sprintf(messages, "[\"%ld\" \"%s\"",
+        snprintf(messages, MAX_BUFF_SIZE, "[\"%ld\" \"%s\"",
         ((msg_t *)(iterator->data))->timestamp,
         ((msg_t *)(iterator->data))->content);
         printf("%s\n", messages);
-        // generate_message(messages, ((msg_t *)(iterator->data))->timestamp,
-        // ((msg_t *)(iterator->data))->content);
         if (iterator->next)
             strcpy(messages, " ");
         iterator = iterator->next;
