@@ -14,8 +14,7 @@ int infos_channel(char *av, int socket)
     char code_response[3];
     char **tab_response = NULL;
 
-    if (av == NULL)
-        return -1;
+
     if (check_params(av) == 1)
         tab_response = send_command(av, tab_response, "LOGI ", socket);
     else

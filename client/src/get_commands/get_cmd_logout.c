@@ -15,12 +15,12 @@ int logout_client(char *av, int socket)
     char code_response[3];
     char **tab_response = NULL;
 
-    if (av == NULL)
-        return -1;
-    if (check_params(av) == 1)
+    if (check_params(av) == 0)
         tab_response = send_command(av, tab_response, "LOGO ", socket);
-    else
+    else {
         printf("Command are not good use /help for more information !\n");
+        return -1;
+    }
     strncpy(code_response, tab_response[0], 2);
     code_response[2] = '\0';
     if (!strcmp(code_response, "15"))
