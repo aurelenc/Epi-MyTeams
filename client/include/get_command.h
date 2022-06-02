@@ -23,9 +23,7 @@ int logout_client(char *av, int socket);
 int login_client(char *av, int socket);
 
 /// /get_commands/get_use_commands
-int use_threads(char *av, int socket);
-int use_teams(char *av, int socket);
-int use_channel(char *av, int socket);
+int use(char *av, int socket);
 
 /// /get_commands/get_info_command
 int infos_thread(char *av, int socket);
@@ -43,9 +41,7 @@ int list_teams_subscribed(char *av, int socket);
 int list_channels(char *av, int socket);
 
 /// /get_commands/get_create_commands
-int create_thread(char *av, int socket);
-int create_teams(char *av, int socket);
-int create_channel(char *av, int socket);
+int create(char *av, int socket);
 
 typedef	struct tab_command_sending_s {
   char *cmd;
