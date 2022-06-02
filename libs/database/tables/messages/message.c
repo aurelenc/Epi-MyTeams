@@ -20,6 +20,7 @@ msg_t *msg_init(id_t id, const char *content, id_t user_id, int *relation)
         exit (84);
     msg->id = id;
     msg->timestamp = time(NULL);
+    msg->user_id = user_id;
     msg->thread_id = relation[0];
     msg->discussion_id = relation[1];
     msg->uuid = uuid_gen();
