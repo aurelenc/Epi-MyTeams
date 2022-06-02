@@ -7,8 +7,21 @@
 
 #include "reply_codes.h"
 #include "server.h"
+#include "tables/channels/database_channels_search.h"
+#include "tables/users/user_search.h"
+#include <string.h>
 
 int command_use_channel(command_param_t *param)
 {
-    return NOT_IMPLEMENTED;
+    // channel_t *channel = 0;
+    // database_t *new = 0;
+
+    // if (param->arg.nb < 2)
+    //     return client_reply(param->clients, param->id, MISSING_PARAMETER);
+    // channel = db_search_channel_by_uuid(param->srv->db, param->arg.array[1]);
+    // if (!channel)
+    //     return client_reply(PARAM_CID, NOT_FOUND);
+    // if (channel->team_id)
+    //     ;
+    return client_reply(PARAM_CID, FORBIDDEN);
 }

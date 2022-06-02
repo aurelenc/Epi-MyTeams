@@ -27,8 +27,7 @@ int command_use_team(command_param_t *param)
     iterator = new->users->first;
     while (iterator) {
         if (user_uuid_compare(iterator->data, param->clients[param->id].user)) {
-            memset(THIS_CLIENT.team, 0, UUID_SIZE);
-            strcpy(THIS_CLIENT.team, team->uuid);
+            THIS_CLIENT.team_id = team->id;
             return client_reply_success(PARAM_CID, "");
         }
         iterator = iterator->next;

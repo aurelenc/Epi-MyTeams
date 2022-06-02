@@ -21,14 +21,14 @@ client_sock_t *init_clients(void)
         return NULL;
     for (int i = 0; i < MAX_CLIENTS; i++) {
         clients[i].socket = 0;
+        clients[i].team_id = 0;
+        clients[i].channel_id = 0;
+        clients[i].thread_id = 0;
         clients[i].rbuf = CIRCULAR_BUFFER;
         clients[i].wbuf = CIRCULAR_BUFFER;
         clients[i].user = calloc(sizeof(char), UUID_SIZE + 1);
-        clients[i].team = calloc(sizeof(char), UUID_SIZE + 1);
-        clients[i].channel = calloc(sizeof(char), UUID_SIZE + 1);
-        clients[i].thread = calloc(sizeof(char), UUID_SIZE + 1);
         if (!clients[i].rbuf || !clients[i].wbuf ||
-            !clients[i].user || !clients[i].channel || !clients[i].thread)
+            !clients[i].user)
             return NULL;
     }
     return clients;

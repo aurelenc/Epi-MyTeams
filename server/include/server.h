@@ -27,9 +27,9 @@ typedef struct client_sock_s {
     char *rbuf;
     char *wbuf;
     char *user;
-    char *team;
-    char *channel;
-    char *thread;
+    unsigned int team_id;
+    unsigned int channel_id;
+    unsigned int thread_id;
 } client_sock_t;
 
 typedef struct client_id_s {
