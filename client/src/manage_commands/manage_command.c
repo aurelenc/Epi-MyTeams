@@ -15,13 +15,7 @@ tab_command_sending_t tab_command_sending[] = {
     {"/login", &login_client},
     {"/use", &use},
     {"/info", &info},
-   {"/list_users", &list_users},
-    {"/list_users_messages", &list_users_messages},
-    {"/list_user_subscribed", &list_user_subscribed},
-    {"/list_threads", &list_threads},
-    {"/list_teams", &list_teams},
-    {"/list_teams_subscribed", &list_teams_subscribed},
-    {"/list_channels", &list_channels},
+    {"/list", &list},
     {"/create", &create},
     {"a b", NULL}
 };
