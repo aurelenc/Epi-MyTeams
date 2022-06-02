@@ -24,8 +24,11 @@ client_sock_t *init_clients(void)
         clients[i].rbuf = CIRCULAR_BUFFER;
         clients[i].wbuf = CIRCULAR_BUFFER;
         clients[i].user = calloc(sizeof(char), UUID_SIZE + 1);
+        clients[i].team = calloc(sizeof(char), UUID_SIZE + 1);
+        clients[i].channel = calloc(sizeof(char), UUID_SIZE + 1);
+        clients[i].thread = calloc(sizeof(char), UUID_SIZE + 1);
         if (!clients[i].rbuf || !clients[i].wbuf ||
-            !clients[i].user)
+            !clients[i].user || !clients[i].channel || !clients[i].thread)
             return NULL;
     }
     return clients;
