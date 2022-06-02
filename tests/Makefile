@@ -24,11 +24,13 @@ LIB_LINKED_LIST_SRC =	../libs/linked_list/llist_creation.c		\
 						../libs/linked_list/llist_insertion.c		\
 						../libs/linked_list/llist_tools.c			\
 
-SAVE_SRC	=	../libs/database/tables/load_functions.c					\
-				../libs/database/tables/channels/database_channels_save.c	\
-				../libs/database/tables/channels/channel.c					\
-				../libs/database/database_management.c						\
-				../libs/database/tables/uuid_gen.c							\
+SAVE_SRC	=	../libs/database/tables/load_functions.c						\
+				../libs/database/tables/channels/database_channels_save.c		\
+				../libs/database/tables/channels/channel.c						\
+				../libs/database/tables/discussions/database_discussions_save.c	\
+				../libs/database/tables/discussions/discussion.c				\
+				../libs/database/database_management.c							\
+				../libs/database/tables/uuid_gen.c								\
 
 
 TEST_LIB_SRC	=	llib/tests_tools.c					\
@@ -57,6 +59,8 @@ TEST_SERV_SAVE_SRC	=	database_save/tests_get_entities.c			\
 						database_save/tests_get_file_content.c		\
 						database_save/tests_save_channels.c			\
 						database_save/tests_load_channels.c			\
+						database_save/tests_save_discussions.c		\
+						database_save/tests_load_discussions.c		\
 
 CFLAGS	=	-Wall -Werror
 

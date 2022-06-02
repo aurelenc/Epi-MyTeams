@@ -32,7 +32,7 @@ bool db_save_channels(database_t *db, const char *filepath)
 
     fptr = fopen(filepath, "w");
     if (fptr == NULL) {
-        printf("Unable to create file.\n");
+        printf("Unable to open file.\n");
         return false;
     }
     write_all_channels_in_file(db->channels, fptr);
@@ -53,7 +53,6 @@ bool db_load_channels(database_t *db, const char *filepath)
     if (!entities)
         return false;
     for (size_t i = 0; entities[i]; i++) {
-        printf("entiti %ld\n", i);
         channel = channel_init(atoi(entities[i][0]), entities[i][2],
         entities[i][3], atoi(entities[i][4]));
         free(channel->uuid);
