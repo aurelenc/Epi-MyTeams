@@ -26,10 +26,8 @@ int login_client(char *av, int socket);
 int use(char *av, int socket);
 
 /// /get_commands/get_info_command
-int infos_thread(char *av, int socket);
-int infos_team(char *av, int socket);
-int infos_channel(char *av, int socket);
-int infos_user(char *av, int socket);
+int info(char *av, int socket);
+
 
 /// /get_commands/get_info_command/get_lists_commands
 int list_users(char *av, int socket);
