@@ -50,7 +50,7 @@ char **parse_response(char *response, int nb_params)
         arg = strtok_r(str1, &parser, &saveptr1);
         if (arg == NULL)
             break;
-        //printf("%d: [%s]\n", i, arg);
+        printf("%d: [%s]\n", i, arg);
         tab_response[i] = calloc(sizeof(char), strlen(arg) + 1);
         memcpy(tab_response[i], arg, strlen(arg));
     }
