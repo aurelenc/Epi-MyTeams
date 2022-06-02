@@ -106,16 +106,16 @@ The objectives of the myTeams project RFC is to allow communication between myTe
 - LSTE <EOL>
     -   This protocol is used to list all existing replies
 
-- IFTE <EOL>
+- INFO <EOL>
     -   This protocol is used to display currently selected team infos
 
-- IFCH <EOL>
+- INFO <EOL>
     -   This protocol is used to display currently selected channel infos
 
-- IFTH <EOL>
+- INFO <EOL>
     -   This protocol is used to display currently selected thread infos
 
-- IFUS <EOL>
+- INFO <EOL>
     -   This protocol is used to display currently logged user infos
 
 ### 3. REPLY CODES
