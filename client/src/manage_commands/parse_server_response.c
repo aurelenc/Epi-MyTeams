@@ -42,10 +42,6 @@ char **parse_response(char *response, int nb_params)
     char parser = '"';
     char **tab_response = malloc(sizeof(char *) * (count_users(response) * nb_params));
 
-    printf("response = [%s]\n", response);
-    printf("count user = [%i]\n", count_users(response));
-    printf("nb_params = [%i]\n", nb_params);
-    printf("(count_users(response) * nb_params) = [%i]\n", (count_users(response) * nb_params));
     if (tab_response == NULL)
         exit(0);
     if (!is_arg_good(response, nb_params))
@@ -54,7 +50,7 @@ char **parse_response(char *response, int nb_params)
         arg = strtok_r(str1, &parser, &saveptr1);
         if (arg == NULL)
             break;
-        printf("%d: [%s]\n", i, arg);
+        //printf("%d: [%s]\n", i, arg);
         tab_response[i - 1] = malloc(sizeof(char) * strlen(arg));
         memcpy(tab_response[i - 1], arg, strlen(arg));
     }

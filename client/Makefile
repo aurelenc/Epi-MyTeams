@@ -40,7 +40,8 @@ SRC	=	main.c\
 		src/get_commands/manage_params.c	\
 		src/manage_commands/make_command_rfc_compatible.c	\
 		src/manage_commands/parse_server_response.c \
-		src/manage_commands/reply_codes.c
+		src/manage_commands/reply_codes.c	\
+		src/manage_commands/send_command.c
 
 LIB	=	../libs/circularbuffer/circular_buffer.c\
 
