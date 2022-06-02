@@ -29,7 +29,7 @@ tab_command_sending_t tab_command_sending[] = {
     {"/list_channels", &list_channels},
     {"/create_thread", &create_thread},
     {"/create_teams", &create_teams},
-    {"/create_channe", &create_channel},
+    {"/create_channel", &create_channel},
     {"a b", NULL}
 };
 

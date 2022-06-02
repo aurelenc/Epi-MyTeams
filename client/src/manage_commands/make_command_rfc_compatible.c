@@ -8,7 +8,7 @@
 #include <stdbool.h>
 #include <string.h>
 
-bool make_command_rfc_compatible(char *dest, char *command, char *av)
+bool make_command_rfc_compatible(char *dest, const char *command, char *av)
 {
     strcat(dest, command);
     if (dest == NULL)
