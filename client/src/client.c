@@ -52,20 +52,26 @@ void running_teams(client_t *client, char *buff)
     FD_ZERO(&client->wfd);
     FD_SET(client->socket, &client->rfd);
     FD_SET(client->socket, &client->wfd);
+    FD_SET(0, &client->rfd);
+
     if (select(FD_SETSIZE, &client->rfd, &client->wfd, NULL, NULL) < 0)
         exit(84);
     if (FD_ISSET(client->socket, &client->wfd)) {
         bzero(buff, sizeof(char));
-        printf("Enter the command : ");
-        for (int i = 0; (buff[i] = getchar()) != '\n'; i++)
-            if (buff[i] == EOF || buff[i] == 0)
-                exit(0);
+        if (FD_ISSET(0, &client->rfd)) {
+        // printf("Enter the command : ");
+            for (int i = 0; (buff[i] = getchar()) != '\n'; i++)
+                if (buff[i] == EOF || buff[i] == 0)
+                    exit(0);
+        }
         parse_command(buff, client->socket);
         if ((strncmp(buff, "exit", 4)) == 0)
             exit(-16 + ((int) printf("Client Exit ...\n")));
     }
     if (FD_ISSET(client->socket, &client->rfd))
         printf("Le server ecrit...\n");
+    // if (FD_ISSET(0, &client->rfd))
+    //     printf("l'utilisateur a ecrit...\n");
 }
 
 int my_teams_client(int ac, char **av)
