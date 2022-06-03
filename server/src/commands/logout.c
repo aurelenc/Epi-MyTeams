@@ -28,18 +28,17 @@ static char *get_reply_msg(char *user_uuid, char *user_name)
 
 int command_logout(TEAMS_A)
 {
-    char success_buff[MAX_BUFF_SIZE] = {0};
     char *reply = 0;
 
     if (!THIS_CLIENT.user)
-        return client_reply(PARAM_CID, FORBIDDEN);
+        return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
     reply = get_reply_msg(THIS_CLIENT.user->uuid, THIS_CLIENT.user->pseudo);
-    sprintf(success_buff, reply_codes[get_reply(SUCCESS)].message, reply);
-    free(reply);
     server_event_user_logged_out(THIS_CLIENT.user->uuid);
     THIS_CLIENT.user = 0;
     THIS_CLIENT.team = 0;
     THIS_CLIENT.channel = 0;
     THIS_CLIENT.thread = 0;
-    return client_reply_success(PARAM_CID, success_buff);
+    client_reply(PARAM_CID, SUCCESS, reply);
+    free(reply);
+    return SUCCESS;
 }

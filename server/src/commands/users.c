@@ -49,8 +49,9 @@ int command_users(TEAMS_A)
 
     printf("[SERVER] USERS\n");
     if (param->arg.nb > 1) {
-        return client_reply(PARAM_CID, INVALID_FORMAT);
+        return client_reply(PARAM_CID, INVALID_FORMAT, EMPTY_REPLY);
     }
     success_buff = get_msg_reply(THIS_DB->users, TEAMS_CLIENTS);
-    return client_reply_success(PARAM_CID, success_buff);
+    client_reply(PARAM_CID, SUCCESS, success_buff);
+    return SUCCESS;
 }
