@@ -28,12 +28,13 @@ static char *get_msg_reply(user_t *user, client_sock_t *clients)
 
     strcat(buff, "00:");
     strcat(buff, "[ \"");
-    strcat(buff,   user->uuid);
+    strcat(buff, user->uuid);
     strcat(buff, "\" \"");
     strcat(buff, user->pseudo);
     strcat(buff, "\" \"");
     strcat(buff, is_user_connected(clients, user->id));
-    strcat(buff, "\"]");
+    strcat(buff, "\"]\n");
+    printf("%s\n", buff);
     return (buff);
 }
 
@@ -48,6 +49,8 @@ int command_user(command_param_t *param)
     } else if (param->arg.nb > 2) {
         return client_reply(param->clients, param->id, INVALID_FORMAT);
     }
+    if (!THIS_CLIENT.user)
+        return client_reply(PARAM_CID, FORBIDDEN);
     found = db_search_user_by_uuid(param->srv->db, param->arg.array[1]);
     if (!found) {
         return client_reply(param->clients, param->id, NOT_FOUND);
