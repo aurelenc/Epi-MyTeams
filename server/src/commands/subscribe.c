@@ -21,7 +21,7 @@ int command_subscribe(command_param_t *param)
     team = db_search_team_by_uuid(param->srv->db, param->arg.array[1]);
     if (!team)
         return client_reply(PARAM_CID, NOT_FOUND);
-    pair.user_id = team->id;
+    pair.user_id = THIS_CLIENT.user;
     pair.team_id = team->id;
     if (db_add_user_team_relation(param->srv->db, &pair) == true) {
         server_event_user_subscribed(team->uuid, THIS_CLIENT.user);
