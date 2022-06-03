@@ -67,6 +67,7 @@ typedef struct command_s {
 } command_t;
 
 #define THIS_CLIENT param->clients[param->id]
+#define SRV_DB param->srv->db
 
 extern const command_t commands[];
 

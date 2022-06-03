@@ -10,5 +10,6 @@
 
 int command_create_channel(command_param_t *param)
 {
+    
     return NOT_IMPLEMENTED;
 }

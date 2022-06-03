@@ -75,6 +75,18 @@ int command_use_channel(command_param_t *param);
 /// @return The reply code
 int command_use_thread(command_param_t *param);
 
+///
+/// @brief If the client is not logged in, it returns an error; if the client is
+/// already in a thread, it creates a reply; if the client is already in a
+/// channel, it creates a thread; if the client is already in a team, it creates
+/// a channel; otherwise, it creates a team
+///
+/// @param param The parameter object that was passed to the command.
+///
+/// @return The return value of the function.
+////
+int command_create(command_param_t *param);
+
 /// @brief Create a new team
 /// @param param The command param structure
 /// @return The reply code
