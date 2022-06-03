@@ -48,6 +48,8 @@ int command_user(command_param_t *param)
     } else if (param->arg.nb > 2) {
         return client_reply(param->clients, param->id, INVALID_FORMAT);
     }
+    if (!THIS_CLIENT.user)
+        return client_reply(PARAM_CID, FORBIDDEN);
     found = db_search_user_by_uuid(param->srv->db, param->arg.array[1]);
     if (!found) {
         return client_reply(param->clients, param->id, NOT_FOUND);
