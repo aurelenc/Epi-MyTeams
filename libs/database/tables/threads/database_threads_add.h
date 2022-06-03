@@ -20,5 +20,7 @@
 ///
 static inline bool db_add_thread(database_t *db, thread_t *thread)
 {
+    if (!thread->id)
+        thread->id = llist_get_size(db->threads) + 1;
     return llist_append(db->threads, thread);
 };

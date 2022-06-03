@@ -43,14 +43,14 @@ static char *get_msg_reply(llist_t *users, client_sock_t *clients)
     return (buff);
 }
 
-int command_users(command_param_t *param)
+int command_users(TEAMS_A)
 {
     char *success_buff = 0;
 
     printf("[SERVER] USERS\n");
     if (param->arg.nb > 1) {
-        return client_reply(param->clients, param->id, INVALID_FORMAT);
+        return client_reply(PARAM_CID, INVALID_FORMAT);
     }
-    success_buff = get_msg_reply(param->srv->db->users, param->clients);
-    return client_reply_success(param->clients, param->id, success_buff);
+    success_buff = get_msg_reply(THIS_DB->users, TEAMS_CLIENTS);
+    return client_reply_success(PARAM_CID, success_buff);
 }

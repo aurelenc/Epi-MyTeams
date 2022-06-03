@@ -8,7 +8,7 @@
 #include "reply_codes.h"
 #include "server.h"
 
-int command_list_threads(command_param_t *param)
+int command_list_threads(TEAMS_A)
 {
     return NOT_IMPLEMENTED;
 }

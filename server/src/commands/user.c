@@ -11,7 +11,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-
 static char *is_user_connected(client_sock_t *clients, unsigned int user_id)
 {
     for (int i = 0; i < MAX_CLIENTS; i++) {
@@ -38,23 +37,23 @@ static char *get_msg_reply(user_t *user, client_sock_t *clients)
     return (buff);
 }
 
-int command_user(command_param_t *param)
+int command_user(TEAMS_A)
 {
     char *success_buff = 0;
     user_t *found = 0;
 
     printf("[SERVER] USER\n");
     if (param->arg.nb < 2) {
-        return client_reply(param->clients, param->id, MISSING_PARAMETER);
+        return client_reply(PARAM_CID, MISSING_PARAMETER);
     } else if (param->arg.nb > 2) {
-        return client_reply(param->clients, param->id, INVALID_FORMAT);
+        return client_reply(PARAM_CID, INVALID_FORMAT);
     }
     if (!THIS_CLIENT.user)
         return client_reply(PARAM_CID, FORBIDDEN);
-    found = db_search_user_by_uuid(param->srv->db, param->arg.array[1]);
+    found = db_search_user_by_uuid(THIS_DB, THIS_ARG[1]);
     if (!found) {
-        return client_reply(param->clients, param->id, NOT_FOUND);
+        return client_reply(PARAM_CID, NOT_FOUND);
     }
-    success_buff = get_msg_reply(found, param->clients);
-    return client_reply_success(param->clients, param->id, success_buff);
+    success_buff = get_msg_reply(found, TEAMS_CLIENTS);
+    return client_reply_success(PARAM_CID, success_buff);
 }
