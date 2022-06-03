@@ -25,7 +25,7 @@ int logout_client(char *av, int socket)
     code_response[2] = '\0';
     if (!strcmp(code_response, "15"))
         client_event_logged_out(tab_response[1], tab_response[3]);
-    if (!strcmp(code_response, "14"))
+    if (!strcmp(code_response, "13"))
         client_error_unauthorized();
     free(tab_response);
     return 0;

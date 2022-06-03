@@ -22,7 +22,7 @@ int send_message(char *av, int socket)
         printf("Command are not good use /help for more information !\n");
     strncpy(code_response, tab_response[0], 2);
     code_response[2] = '\0';
-    if (!strcmp(code_response, "14"))
+    if (!strcmp(code_response, "13"))
         client_error_unauthorized();
     if (!strcmp(code_response, "25"))
         client_error_unknown_user(tab_response[1]);

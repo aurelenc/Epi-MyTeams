@@ -25,7 +25,7 @@ int use(char *av, int socket)
     strncpy(code_response, tab_response[0], 2);
     code_response[2] = '\0';
 
-    if (!strcmp(code_response, "14"))
+    if (!strcmp(code_response, "13"))
         client_error_unauthorized();
     free(tab_response);
     return 0;
