@@ -9,8 +9,10 @@
 
 tab_command_sending_t tab_command_sending[] = {
     {"/unsubscribe", &unsubscribe_teams},
-    {"/subscribed", &subscribe_teams},
+    {"/subscribe", &subscribe_teams},
+    {"/subscribed", &subscribed},
     {"/send", &send_message},
+    {"/help", &help},
     {"/logout", &logout_client},
     {"/login", &login_client},
     {"/use", &use},
