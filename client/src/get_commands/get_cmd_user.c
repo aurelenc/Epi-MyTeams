@@ -21,6 +21,11 @@ int user(char *av, int socket)
         printf("Command are not good use /help for more information !\n");
         return -1;
     }
+    if (tab_res == NULL) {
+        printf("Tab_res == NULL\n");
+        free(tab_res);
+        return -1;
+    }
     strncpy(code_response, tab_res[0], 2);
     code_response[2] = '\0';
     if (!strcmp(code_response, "13"))
