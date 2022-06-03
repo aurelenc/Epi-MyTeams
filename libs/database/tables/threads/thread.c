@@ -12,7 +12,7 @@
 #include <errno.h>
 
 
-thread_t *thread_init(id_t id, char *title, char *body, id_t channel_id)
+thread_t *thread_init(char *title, char *body, id_t channel_id)
 {
     thread_t *thread = calloc(sizeof(thread_t), 1);
 
@@ -21,7 +21,7 @@ thread_t *thread_init(id_t id, char *title, char *body, id_t channel_id)
         exit (84);
     }
     thread->timestamp = time(NULL);
-    thread->id = id;
+    thread->id = 0;
     thread->title = title;
     thread->body = body;
     thread->uuid = uuid_gen();
