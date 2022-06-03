@@ -45,7 +45,7 @@ bool db_load_discussions(database_t *db, const char *filepath)
 {
     char *content = get_file_content(filepath);
     char ***entities = 0;
-    discussion_t *discussion = 0;
+    discussion_t *disc = 0;
 
     if (!content)
         return false;
@@ -53,11 +53,11 @@ bool db_load_discussions(database_t *db, const char *filepath)
     if (!entities)
         return false;
     for (size_t i = 0; entities[i]; i++) {
-        discussion = discussion_init(atoi(entities[i][0]), atoi(entities[i][2]),
-        atoi(entities[i][3]));
-        free(discussion->uuid);
-        discussion->uuid = entities[i][1];
-        db_add_discussion(db, discussion);
+        disc = discussion_init(atoi(entities[i][2]), atoi(entities[i][3]));
+        free(disc->uuid);
+        disc->uuid = entities[i][1];
+        disc->id = atoi(entities[i][0]);
+        db_add_discussion(db, disc);
     }
     printf("Discussions: Successfully loaded.\n");
     return true;

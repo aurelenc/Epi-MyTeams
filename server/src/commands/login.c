@@ -34,8 +34,7 @@ static user_t *get_user(command_param_t *param)
     param->arg.array[1]);
 
     if (!user) {
-        user = user_init(llist_get_size(param->srv->db->users),
-        param->arg.array[1], "");
+        user = user_init(param->arg.array[1], "");
         db_add_user(param->srv->db, user);
         server_event_user_created(user->uuid, user->pseudo);
     } else

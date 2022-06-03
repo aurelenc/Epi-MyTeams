@@ -20,5 +20,7 @@
 ///
 static inline bool db_add_user(database_t *db, user_t *user)
 {
+    if (!user->id)
+        user->id = llist_get_size(db->users) + 1;
     return llist_append(db->users, user);
 };
