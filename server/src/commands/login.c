@@ -56,7 +56,7 @@ int command_login(command_param_t *param)
         return client_reply(param->clients, param->id, INVALID_FORMAT);
     }
     user = get_user(param);
-    THIS_CLIENT.user = user->id;
+    THIS_CLIENT.user = user;
     reply = get_reply_msg(user->uuid, user->pseudo);
     sprintf(success_buff, reply_codes[get_reply(SUCCESS)].message, reply);
     free(reply);

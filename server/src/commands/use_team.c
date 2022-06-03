@@ -20,15 +20,18 @@ int command_use_team(command_param_t *param)
     id_pair_t pair;
     id_pair_t *search = 0;
 
+    if (!THIS_CLIENT.user)
+        return client_reply(PARAM_CID, FORBIDDEN);
     if (param->arg.nb < 2)
         return client_reply(param->clients, param->id, MISSING_PARAMETER);
     team = db_search_team_by_uuid(param->srv->db, param->arg.array[1]);
     if (!team)
         return client_reply(PARAM_CID, NOT_FOUND);
     pair.team_id = team->id;
-    pair.user_id = db_search_user_by_id(param->srv->db, THIS_CLIENT.user)->id;
+    pair.user_id = THIS_CLIENT.user->id;
     search = db_search_user_team_by_pair(param->srv->db, &pair);
     if (!search)
         return client_reply(PARAM_CID, FORBIDDEN);
+    THIS_CLIENT.team = team;
     return client_reply_success(PARAM_CID, "");
 }

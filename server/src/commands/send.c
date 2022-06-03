@@ -42,11 +42,11 @@ id_t *ids)
 int command_send(command_param_t *param)
 {
     user_t *user_one = 0;
-    user_t *user_two = 0;
     id_t *ids = calloc(sizeof(id_t), 2);
 
     printf("[SERVER] SEND\n");
-    //CHECK IF HE'S CONNECTED
+    if (!THIS_CLIENT.user)
+        return client_reply(PARAM_CID, FORBIDDEN);
     if (param->arg.nb < 3)
         return client_reply(param->clients, param->id, MISSING_PARAMETER);
     else if (param->arg.nb > 3)
@@ -54,10 +54,8 @@ int command_send(command_param_t *param)
     user_one = db_search_user_by_uuid(param->srv->db, param->arg.array[1]);
     if (!user_one)
         return client_reply(param->clients, param->id, NOT_FOUND);
-    user_two = db_search_user_by_id(param->srv->db,
-    param->clients[param->id].user);
     ids[0] = user_one->id;
-    ids[1] = user_two->id;
-    add_msg_to_db(param, user_one, user_two, ids);
+    ids[1] = THIS_CLIENT.user->id;
+    add_msg_to_db(param, user_one, THIS_CLIENT.user, ids);
     return client_reply(param->clients, param->id, SUCCESS);
 }

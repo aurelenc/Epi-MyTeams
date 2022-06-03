@@ -13,10 +13,8 @@
 
 int command_logout(command_param_t *param)
 {
-    user_t *user = db_search_user_by_id(param->srv->db, THIS_CLIENT.user);
-
-    if (user)
-        server_event_user_logged_out(user->uuid);
+    if (THIS_CLIENT.user)
+        server_event_user_logged_out(THIS_CLIENT.user->uuid);
     remove_client(param->clients, param->id);
     return SUCCESS;
 }
