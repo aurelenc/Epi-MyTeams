@@ -37,7 +37,7 @@ bool db_save_users(database_t *db, const char *filepath)
     }
     write_all_users_in_file(db->users, fptr);
     fclose(fptr);
-    printf("Users saved successfully.\n");
+    printf("Users: Successfully saved.\n");
     return true;
 }
 
@@ -58,5 +58,6 @@ bool db_load_users(database_t *db, const char *filepath)
         user->uuid = entities[i][1];
         db_add_user(db, user);
     }
+    printf("Users: Successfully loaded.\n");
     return true;
 }
