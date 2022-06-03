@@ -13,9 +13,23 @@
 #include <string.h>
 #include <stdio.h>
 
-int login_client(char *command, int socket);
-int logout_client(char *command, int socket);
+/// Manage commands for client
+///
+/// /get_commands
+int unsubscribe_teams(char *av, int socket);
+int subscribe_teams(char *av, int socket);
 int send_message(char *av, int socket);
+int logout_client(char *av, int socket);
+int login_client(char *av, int socket);
+int use(char *av, int socket);
+int info(char *av, int socket);
+int list(char *av, int socket);
+int create(char *av, int socket);
+int messages(char *av, int socket);
+int user(char *av, int socket);
+int users(char *av, int socket);
+int subscribed(char *av, int socket);
+int help(char *av, int socket);
 
 typedef	struct tab_command_sending_s {
   char *cmd;
@@ -29,6 +43,8 @@ char *manage_params(char *av);
 int check_params(char *av);
 
 char **parse_response(char *response, int nb_params);
+
+char **send_command(char *av, char **tab_response, char *command, int socket);
 
 int parse_command(char *input, int socket);
 

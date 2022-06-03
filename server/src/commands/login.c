@@ -33,7 +33,7 @@ static user_t *get_user(TEAMS_A)
     user_t *user = db_search_user_by_pseudo(THIS_DB, THIS_ARG[1]);
 
     if (!user) {
-        user = user_init(llist_get_size(THIS_DB->users), THIS_ARG[1], "");
+        user = user_init(THIS_ARG[1], "");
         db_add_user(THIS_DB, user);
         server_event_user_created(user->uuid, user->pseudo);
     } else

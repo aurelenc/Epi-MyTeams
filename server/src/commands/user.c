@@ -27,12 +27,13 @@ static char *get_msg_reply(user_t *user, client_sock_t *clients)
 
     strcat(buff, "00:");
     strcat(buff, "[ \"");
-    strcat(buff,   user->uuid);
+    strcat(buff, user->uuid);
     strcat(buff, "\" \"");
     strcat(buff, user->pseudo);
     strcat(buff, "\" \"");
     strcat(buff, is_user_connected(clients, user->id));
-    strcat(buff, "\"]");
+    strcat(buff, "\"]\n");
+    printf("%s\n", buff);
     return (buff);
 }
 
