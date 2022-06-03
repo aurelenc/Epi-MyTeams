@@ -24,17 +24,18 @@ static char *is_user_connected(client_sock_t *clients, unsigned int user_id)
 static char *get_msg_reply(llist_t *users, client_sock_t *clients)
 {
     node_t *ptr = users->first;
-    char *buff = calloc(sizeof(char), MAX_BUFF_SIZE);
+    char *buff = calloc(sizeof(char), MAX_BUFF_SIZE + 1);
 
     strcat(buff, "00:");
-    while (ptr && strlen(buff) < MAX_BUFF_SIZE + strlen(((user_t *)ptr)->uuid)
-    + strlen(((user_t *)ptr)->pseudo) + 12) {
+    while (ptr && strlen(buff) < MAX_BUFF_SIZE +
+    strlen(((user_t *)ptr->data)->uuid) +
+    strlen(((user_t *)ptr->data)->pseudo) + 12) {
         strcat(buff, "[ \"");
-        strcat(buff,   ((user_t *)ptr)->uuid);
+        strcat(buff,   ((user_t *)ptr->data)->uuid);
         strcat(buff, "\" \"");
-        strcat(buff, ((user_t *)ptr)->pseudo);
+        strcat(buff, ((user_t *)ptr->data)->pseudo);
         strcat(buff, "\" \"");
-        strcat(buff, is_user_connected(clients, ((user_t *)ptr)->id));
+        strcat(buff, is_user_connected(clients, ((user_t *)ptr->data)->id));
         strcat(buff, "\"]");
         ptr = ptr->next;
     }
