@@ -11,10 +11,10 @@
 #include "logging_server.h"
 #include "tables/users/database_users_search.h"
 
-int command_logout(command_param_t *param)
+int command_logout(TEAMS_A)
 {
     if (THIS_CLIENT.user)
         server_event_user_logged_out(THIS_CLIENT.user->uuid);
-    remove_client(param->clients, param->id);
+    remove_client(PARAM_CID);
     return SUCCESS;
 }

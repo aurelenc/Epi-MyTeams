@@ -20,13 +20,12 @@ typedef struct user_s {
 /// @brief It creates a user_t structure and initializes it with the given
 /// parameters
 ///
-/// @param id the id of the user
 /// @param pseudo The pseudo of the user.
 /// @param password the password of the user
 ///
 /// @return A pointer to a user_t structure.
 ///
-user_t *user_init(id_t id, const char *name, const char *password);
+user_t *user_init(const char *name, const char *password);
 
 ///
 /// @brief It frees the memory allocated for the password and pseudo of a user

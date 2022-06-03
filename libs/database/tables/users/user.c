@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <errno.h>
 
-user_t *user_init(id_t id, const char *pseudo, const char *password)
+user_t *user_init(const char *pseudo, const char *password)
 {
     user_t *user = calloc(sizeof(user_t), 1);
 
@@ -20,7 +20,7 @@ user_t *user_init(id_t id, const char *pseudo, const char *password)
         perror("User creation");
         exit (84);
     }
-    user->id = id;
+    user->id = 0;
     user->uuid = uuid_gen();
     user->pseudo = strdup(pseudo);
     user->password = strdup(password);

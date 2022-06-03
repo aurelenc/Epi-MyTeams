@@ -58,8 +58,8 @@ void running_teams(client_t *client, char *buff)
         bzero(buff, sizeof(char));
         printf("Enter the command : ");
         for (int i = 0; (buff[i] = getchar()) != '\n'; i++)
-            if (buff[i] == EOF)
-                exit(42);
+            if (buff[i] == EOF || buff[i] == 0)
+                exit(0);
         parse_command(buff, client->socket);
         if ((strncmp(buff, "exit", 4)) == 0)
             exit(-16 + ((int) printf("Client Exit ...\n")));
@@ -71,9 +71,9 @@ void running_teams(client_t *client, char *buff)
 int my_teams_client(int ac, char **av)
 {
     client_t *client;
-    char buff[MAX] = {0};
+    char buff[MAX + 1] = {0};
 
-    client = malloc(sizeof(client_t));
+    client = calloc(sizeof(client_t), 1);
     if (client == NULL)
         return (84);
     if (!arg_is_good(ac, av))
@@ -82,8 +82,11 @@ int my_teams_client(int ac, char **av)
     connect_client(client);
     client->is_connected = true;
     memset(buff, 0, MAX);
-    while (client->is_connected)
+    setbuf(stdout, NULL);
+    set_sigint_handler();
+    while (client->is_connected) {
         running_teams(client, buff);
+    }
     //close_client();
     return 0;
 }

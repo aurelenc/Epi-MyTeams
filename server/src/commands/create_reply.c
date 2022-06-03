@@ -8,7 +8,7 @@
 #include "reply_codes.h"
 #include "server.h"
 
-int command_create_reply(command_param_t *param)
+int command_create_reply(TEAMS_A)
 {
     return NOT_IMPLEMENTED;
 }

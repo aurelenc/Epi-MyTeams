@@ -8,9 +8,20 @@
 #include "get_command.h"
 
 tab_command_sending_t tab_command_sending[] = {
-    {"/login", &login_client},
-    {"/logout", &logout_client},
+    {"/unsubscribe", &unsubscribe_teams},
+    {"/subscribe", &subscribe_teams},
+    {"/subscribed", &subscribed},
     {"/send", &send_message},
+    {"/help", &help},
+    {"/logout", &logout_client},
+    {"/login", &login_client},
+    {"/use", &use},
+    {"/info", &info},
+    {"/list", &list},
+    {"/messages", &messages},
+    {"/create", &create},
+    {"/user", &user},
+    {"/users", &users},
     {"a b", NULL}
 };
 

@@ -35,6 +35,6 @@ int get_reply(int code)
 
 int client_reply(int reply_code)
 {
-    printf("%s\n", reply_codes[get_reply(reply_code)].message);
+    //printf("%s\n", reply_codes[get_reply(reply_code)].message);
     return reply_code;
 }

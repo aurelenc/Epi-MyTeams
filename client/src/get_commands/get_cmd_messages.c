@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2022
-** My_Teams
+** Epi-MyTeams
 ** File description:
-** get_cmd_send_message
+** get_cmd_message
 */
 
 #include <unistd.h>
@@ -10,23 +10,27 @@
 #include "reply_codes.h"
 #include "logging_client.h"
 
-int send_responses(char **tab, char *code_response)
+int message_responses(char **tab, char *code_response)
 {
     if (!strcmp(code_response, "13"))
         client_error_unauthorized();
-    if (!strcmp(code_response, "25"))
-        client_error_unknown_user(tab[1]);
+
+    if (!strcmp(code_response, "??"))
+        for (int i = 0; tab[i + 6]; i = i + 6)
+            client_private_message_print_messages(tab[i + 1], atol(tab[i + 3]), tab[i + 5]);
+    if (!strcmp(code_response, "??"))
+        client_error_unknown_user(tab[0]);
     free(tab);
     return 0;
 }
 
-int send_message(char *av, int socket)
+int messages(char *av, int socket)
 {
     char code_response[3] = {0};
     char **tab_res = NULL;
 
-    if (check_params(av) == 2)
-        tab_res = send_command(av, tab_res, "SEND ", socket);
+    if (check_params(av) == 1)
+        tab_res = send_command(av, tab_res, "MSG ", socket);
     else {
         printf("Command is not good, use /help for more information !\n");
         return -1;
@@ -37,5 +41,5 @@ int send_message(char *av, int socket)
         return -1;
     }
     strncpy(code_response, tab_res[0], 2);
-    return send_responses(tab_res, code_response);
+    return message_responses(tab_res, code_response);
 }

@@ -15,7 +15,7 @@
 #include <time.h>
 #include <stdio.h>
 
-static void fill_message(command_param_t *param, node_t *it)
+static void fill_message(TEAMS_A, node_t *it)
 {
     char message[MAX_BUFF_SIZE] = {0};
 
@@ -27,43 +27,42 @@ static void fill_message(command_param_t *param, node_t *it)
         printf("%s\n", message);
         if (it->next)
             strcpy(message, " ");
-        write_client_buff(param->clients, param->id, message);
+        write_client_buff(PARAM_CID, message);
         it = it->next;
     }
 }
 
-static int generate_messages(user_t *user_one, user_t *user_two,
-command_param_t *param)
+static int generate_messages(user_t *user_one, user_t *user_two, TEAMS_A)
 {
     id_t user_pair[3] = {user_one->id, user_two->id, 0};
     discussion_t *disc =
-    db_search_discussion_by_users_id(param->srv->db, user_pair);
+    db_search_discussion_by_users_id(THIS_DB, user_pair);
     database_t *new = 0;
     node_t *iterator = 0;
 
     if (!disc)
         return client_reply_success(PARAM_CID, "");
-    new = db_multiple_search_msg_by_discussion_id(param->srv->db, disc->id);
+    new = db_multiple_search_msg_by_discussion_id(THIS_DB, disc->id);
     if (!new)
         return client_reply_success(PARAM_CID, "");
     iterator = new->messages->first;
     if (!iterator)
-        return client_reply_success(param->clients, param->id, "");
-    write_client_buff(param->clients, param->id, "00:");
+        return client_reply_success(PARAM_CID, "");
+    write_client_buff(PARAM_CID, "00:");
     fill_message(param, iterator);
-    write_client_buff(param->clients, param->id, "\n");
+    write_client_buff(PARAM_CID, "\n");
     return SUCCESS;
 }
 
-int command_messages(command_param_t *param)
+int command_messages(TEAMS_A)
 {
     user_t *user_two = 0;
 
     if (!THIS_CLIENT.user)
         return client_reply(PARAM_CID, FORBIDDEN);
     if (param->arg.nb != 2)
-        return client_reply(param->clients, param->id, MISSING_PARAMETER);
-    user_two = db_search_user_by_uuid(param->srv->db, param->arg.array[1]);
+        return client_reply(PARAM_CID, MISSING_PARAMETER);
+    user_two = db_search_user_by_uuid(THIS_DB, THIS_ARG[1]);
     if (!user_two)
         return client_reply(param->clients, param->id, NOT_FOUND);
     return generate_messages(THIS_CLIENT.user, user_two, param);
