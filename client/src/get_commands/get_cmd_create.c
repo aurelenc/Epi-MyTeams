@@ -34,27 +34,27 @@
     // time_t thread_timestamp,
     // char const *thread_title,
     // char const *thread_body);
-int create_responses(char **tab, char *code_response)
+int create_responses(char **t, char *code_response)
 {
     if (!strcmp(code_response, "13"))
         client_error_unauthorized();
     if (!strcmp(code_response, "30"))
-        client_error_unknown_team(tab[1]);
+        client_error_unknown_team(t[1]);
     if (!strcmp(code_response, "31"))
-        client_error_unknown_channel(tab[1]);
+        client_error_unknown_channel(t[1]);
     if (!strcmp(code_response, "32"))
-        client_error_unknown_thread(tab[1]);
+        client_error_unknown_thread(t[1]);
     if (!strcmp(code_response, "24"))
         client_error_already_exist();
     if (!strcmp(code_response, "50"))
-        client_print_team_created(tab[1], tab[3], tab[5]);
+        client_print_team_created(t[1], t[3], t[5]);
     if (!strcmp(code_response, "51"))
-        client_print_channel_created(tab[1], tab[3], tab[5]);
+        client_print_channel_created(t[1], t[3], t[5]);
     if (!strcmp(code_response, "52"))
-        client_print_thread_created(tab[1], tab[3], atol(tab[5]), tab[7], tab[8]);
+        client_print_thread_created(t[1], t[3], atol(t[5]), t[7], t[8]);
     if (!strcmp(code_response, "53"))
-        client_print_reply_created(tab[1], tab[3], atol(tab[5]), tab[7]);
-    free(tab);
+        client_print_reply_created(t[1], t[3], atol(t[5]), t[7]);
+    free(t);
     return 0;
 }
 

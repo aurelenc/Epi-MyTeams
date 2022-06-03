@@ -10,6 +10,18 @@
 #include "reply_codes.h"
 #include "logging_client.h"
 
+int list_responses_list(char **tab, char *code_response)
+{
+    if (!strcmp(code_response, "30"))
+        client_error_unknown_team(tab[1]);
+    if (!strcmp(code_response, "31"))
+        client_error_unknown_channel(tab[1]);
+    if (!strcmp(code_response, "32"))
+        client_error_unknown_thread(tab[1]);
+    free(tab);
+    return 0;
+}
+
 int list_responses(char **tab, char *code_response)
 {
     if (!strcmp(code_response, "41"))
@@ -20,18 +32,14 @@ int list_responses(char **tab, char *code_response)
             client_team_print_channels(tab[i + 1], tab[i + 3], tab[i + 5]);
     if (!strcmp(code_response, "43"))
         for (int i = 0; tab[i + 10]; i = i + 10)
-            client_channel_print_threads(tab[i + 1], tab[i + 3], atol(tab[i + 5]), tab[i + 7], tab[i + 9]);
+            client_channel_print_threads(
+            tab[i + 1], tab[i + 3],
+            atol(tab[i + 5]), tab[i + 7], tab[i + 9]);
     if (!strcmp(code_response, "43"))
         for (int i = 0; tab[i + 8]; i = i + 8)
-            client_thread_print_replies(tab[i + 1], tab[i + 3], atol(tab[i + 5]), tab[i + 7]);
-    if (!strcmp(code_response, "30"))
-        client_error_unknown_team(tab[1]);
-    if (!strcmp(code_response, "31"))
-        client_error_unknown_channel(tab[1]);
-    if (!strcmp(code_response, "32"))
-        client_error_unknown_thread(tab[1]);
-    free(tab);
-    return 0;
+            client_thread_print_replies(
+            tab[i + 1], tab[i + 3], atol(tab[i + 5]), tab[i + 7]);
+    return list_responses_list(tab, code_response);
 }
 
 int list(char *av, int socket)
