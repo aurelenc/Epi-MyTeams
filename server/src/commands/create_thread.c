@@ -8,11 +8,8 @@
 #include "logging_server.h"
 #include "reply_codes.h"
 #include "server.h"
-#include "tables/teams/database_teams_search.h"
 #include "tables/users_x_teams/database_users_x_teams_search.h"
 #include "tables/threads/database_threads_add.h"
-#include "tables/channels/database_channels_search.h"
-#include "tables/users/database_users_search.h"
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
