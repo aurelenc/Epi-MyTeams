@@ -38,7 +38,7 @@ bool db_save_msg(database_t *db, const char *filepath)
     }
     write_all_messages_in_file(db->messages, fptr);
     fclose(fptr);
-    printf("Messages saved successfully.\n");
+    printf("Messages: Successfully saved.\n");
     return true;
 }
 
@@ -72,5 +72,6 @@ bool db_load_msg(database_t *db, const char *filepath)
         msg->timestamp = atol(entities[i][3]);
         db_add_msg(db, msg);
     }
+    printf("Messages: Successfully loaded.\n");
     return true;
 }

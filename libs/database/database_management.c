@@ -6,6 +6,13 @@
 */
 
 #include "database.h"
+#include "tables/channels/database_channels_save.h"
+#include "tables/discussions/database_discussions_save.h"
+#include "tables/messages/database_messages_save.h"
+#include "tables/teams/database_teams_save.h"
+#include "tables/threads/database_threads_save.h"
+#include "tables/users/database_users_save.h"
+#include "tables/users_x_teams/database_users_x_teams_save.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
@@ -31,6 +38,28 @@ database_t *db_creation(void)
         exit (84);
     }
     return (db);
+}
+
+void db_save(database_t *db)
+{
+    db_save_channels(db, "server/database_save/channels.csv");
+    db_save_discussions(db, "server/database_save/discussions.csv");
+    db_save_msg(db, "server/database_save/message.csv");
+    db_save_teams(db, "server/database_save/teams.csv");
+    db_save_threads(db, "server/database_save/threads.csv");
+    db_save_users_x_teams(db, "server/database_save/users_x_teams.csv");
+    db_save_users(db, "server/database_save/users.csv");
+}
+
+void db_load(database_t *db)
+{
+    db_load_channels(db, "server/database_save/channels.csv");
+    db_load_discussions(db, "server/database_save/discussions.csv");
+    db_load_msg(db, "server/database_save/message.csv");
+    db_load_teams(db, "server/database_save/teams.csv");
+    db_load_threads(db, "server/database_save/threads.csv");
+    db_load_users_x_teams(db, "server/database_save/users_x_teams.csv");
+    db_load_users(db, "server/database_save/users.csv");
 }
 
 database_t *db_destruction(database_t *db)

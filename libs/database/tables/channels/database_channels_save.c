@@ -37,7 +37,7 @@ bool db_save_channels(database_t *db, const char *filepath)
     }
     write_all_channels_in_file(db->channels, fptr);
     fclose(fptr);
-    printf("Channels saved successfully.\n");
+    printf("Channels: Successfully saved.\n");
     return true;
 }
 
@@ -59,5 +59,6 @@ bool db_load_channels(database_t *db, const char *filepath)
         channel->uuid = entities[i][1];
         db_add_channel(db, channel);
     }
+    printf("Channels: Successfully loaded.\n");
     return true;
 }
