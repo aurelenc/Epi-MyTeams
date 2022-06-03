@@ -31,14 +31,12 @@ CC	=	gcc
 
 $(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME) $(LDFLAGS)
-	cp ../libs/myteams/libmyteams.so ..
 
 clean:
 	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
-	rm -f ../libmyteams.so
 
 re: fclean
 	make

@@ -12,7 +12,7 @@
 
 int logout_client(char *av, int socket)
 {
-    char buff[4096];
+    char buff[4096] = {0};
 
     memset(buff, 0, 4096);
     if (av == NULL)

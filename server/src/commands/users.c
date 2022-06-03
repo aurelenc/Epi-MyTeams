@@ -12,7 +12,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static char *get_msg_reply(llist_t *users)
+static char *is_user_connected(client_sock_t *clients, unsigned int user_id)
+{
+    for (int i = 0; i < MAX_CLIENTS; i++) {
+        if (clients[i].user == user_id)
+            return "1";
+    }
+    return "0";
+}
+
+static char *get_msg_reply(llist_t *users, client_sock_t *clients)
 {
     node_t *ptr = users->first;
     char *buff = calloc(sizeof(char), MAX_BUFF_SIZE);
@@ -25,7 +34,7 @@ static char *get_msg_reply(llist_t *users)
         strcat(buff, "\" \"");
         strcat(buff, ((user_t *)ptr)->pseudo);
         strcat(buff, "\" \"");
-        strcat(buff, "0" ); // add here connection status
+        strcat(buff, is_user_connected(clients, ((user_t *)ptr)->id));
         strcat(buff, "\"]");
         ptr = ptr->next;
     }
@@ -40,6 +49,6 @@ int command_users(command_param_t *param)
     if (param->arg.nb > 1) {
         return client_reply(param->clients, param->id, INVALID_FORMAT);
     }
-    success_buff = get_msg_reply(param->srv->db->users);
+    success_buff = get_msg_reply(param->srv->db->users, param->clients);
     return client_reply_success(param->clients, param->id, success_buff);
 }

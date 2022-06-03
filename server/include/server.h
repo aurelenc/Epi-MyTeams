@@ -15,6 +15,7 @@
 #include "database.h"
 
 #define MAX_BUFF_SIZE 4096
+#define CBUFF_SIZE (int)4e+6
 #define MAX_USER_SIZE 256
 #define MAX_CLIENTS 20
 #define MAX_ARGS_NB 1
@@ -25,10 +26,10 @@ typedef struct client_sock_s {
     int socket;
     char *rbuf;
     char *wbuf;
-    char *user;
-    int team_id;
-    int channel_id;
-    int thread_id;
+    unsigned int user;
+    unsigned int team_id;
+    unsigned int channel_id;
+    unsigned int thread_id;
 } client_sock_t;
 
 typedef struct client_id_s {
@@ -65,6 +66,8 @@ typedef struct command_s {
     bool auth_required;
 } command_t;
 
+#define THIS_CLIENT param->clients[param->id]
+
 extern const command_t commands[];
 
 /// Launch
@@ -77,3 +80,7 @@ void remove_client(client_sock_t *clients, int remove_index);
 void listen_clients(client_sock_t *clients, server_t *server);
 void write_client_buff(client_sock_t *clients, int i, char *message);
 void handle_input(client_sock_t *clients, int id, server_t *server);
+
+/// Signals
+void set_sigint_handler(void);
+bool get_sigint_received(void);

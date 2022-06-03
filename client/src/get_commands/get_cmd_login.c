@@ -12,8 +12,8 @@
 
 int login_client(char *av, int socket)
 {
-    char buff[4096];
-    char response[2];
+    char buff[4096] = {0};
+    char response[2] = {0};
     char **tab_response;
 
     memset(buff, 0, 4096);

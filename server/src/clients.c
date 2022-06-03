@@ -14,9 +14,8 @@
 
 static void set_client_strings(client_sock_t *clients, int id)
 {
-    memset(clients[id].rbuf, 0, MAX_BUFF_SIZE);
-    memset(clients[id].wbuf, 0, MAX_BUFF_SIZE);
-    memset(clients[id].user, 0, UUID_SIZE);
+    memset(clients[id].rbuf, 0, CIRCULAR_BUFFER_SIZE);
+    memset(clients[id].wbuf, 0, CIRCULAR_BUFFER_SIZE);
 }
 
 void new_client(client_sock_t *clients, int client_socket)
@@ -28,9 +27,6 @@ void new_client(client_sock_t *clients, int client_socket)
         return;
     }
     clients[i].socket = client_socket;
-    clients[i].team_id = 0;
-    clients[i].channel_id = 0;
-    clients[i].thread_id = 0;
     set_client_strings(clients, i);
 }
 
