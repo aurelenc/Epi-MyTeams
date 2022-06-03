@@ -43,6 +43,7 @@ void write_to_client(client_sock_t *client)
 
     if (cbuff_pop(client->wbuf, buff, MAX_BUFF_SIZE) == BUFFER_NO_DATA)
         return;
+    printf("[WRITE] %s\n", buff);
     write(client->socket, buff, strlen(buff));
 }
 

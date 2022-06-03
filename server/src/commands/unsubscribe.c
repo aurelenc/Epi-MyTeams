@@ -12,6 +12,13 @@
 #include "tables/users/database_users_search.h"
 #include "logging_server.h"
 
+static void reset_user_location(TEAMS_A)
+{
+    THIS_CLIENT.team_id = 0;
+    THIS_CLIENT.channel_id = 0;
+    THIS_CLIENT.thread_id = 0;
+}
+
 int command_unsubscribe(command_param_t *param)
 {
     id_pair_t pair = {0};
@@ -30,6 +37,7 @@ int command_unsubscribe(command_param_t *param)
         if (!user)
             return client_reply(PARAM_CID, INTERNAL_SERVER_ERROR);
         server_event_user_unsubscribed(team->uuid, user->uuid);
+        reset_user_location(param);
         return client_reply_success(PARAM_CID, "");
     }
     return client_reply(PARAM_CID, FORBIDDEN);
