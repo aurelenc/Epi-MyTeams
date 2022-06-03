@@ -16,8 +16,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static void add_msg_to_db(command_param_t *param, user_t *user_one, user_t *user_two,
-id_t *ids)
+static void add_msg_to_db(command_param_t *param, user_t *user_one,
+user_t *user_two, id_t *ids)
 {
     int  *relation = calloc(sizeof(int), 2);
     discussion_t *disc = db_search_discussion_by_users_id(param->srv->db, ids);
@@ -28,8 +28,7 @@ id_t *ids)
         db_add_msg(param->srv->db, msg_init(llist_get_size(
             param->srv->db->messages), param->arg.array[2], ids[1], relation));
     } else {
-        disc = discussion_init(llist_get_size(param->srv->db->discussions),
-        ids[0], ids[1]);
+        disc = discussion_init(ids[0], ids[1]);
         db_add_discussion(param->srv->db, disc);
         relation[0] = 0;
         relation[1] = disc->id;

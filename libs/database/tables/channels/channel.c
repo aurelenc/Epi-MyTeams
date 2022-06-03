@@ -20,6 +20,7 @@ channel_t *channel_init(const char *name, const char *desc, id_t team_id)
         perror("Channel creation");
         exit (84);
     }
+    channel->id = 0;
     channel->name = strdup(name);
     channel->desc = strdup(desc);
     channel->uuid = uuid_gen();
