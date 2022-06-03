@@ -32,8 +32,7 @@ static void fill_message(TEAMS_A, node_t *it)
     }
 }
 
-static int generate_messages(user_t *user_one, user_t *user_two,
-TEAMS_A)
+static int generate_messages(user_t *user_one, user_t *user_two, TEAMS_A)
 {
     id_t user_pair[3] = {user_one->id, user_two->id, 0};
     discussion_t *disc =
@@ -65,7 +64,6 @@ int command_messages(TEAMS_A)
     user_two = db_search_user_by_uuid(THIS_DB, THIS_ARG[1]);
     if (!user_two)
         return client_reply(PARAM_CID, NOT_FOUND);
-    user_one = db_search_user_by_id(THIS_DB,
-    THIS_CLIENT.user);
+    user_one = db_search_user_by_id(THIS_DB, THIS_CLIENT.user);
     return generate_messages(user_one, user_two, param);
 }

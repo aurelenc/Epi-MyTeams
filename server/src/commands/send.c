@@ -54,8 +54,7 @@ int command_send(TEAMS_A)
     user_one = db_search_user_by_uuid(THIS_DB, THIS_ARG[1]);
     if (!user_one)
         return client_reply(PARAM_CID, NOT_FOUND);
-    user_two = db_search_user_by_id(THIS_DB,
-    THIS_CLIENT.user);
+    user_two = db_search_user_by_id(THIS_DB, THIS_CLIENT.user);
     ids[0] = user_one->id;
     ids[1] = user_two->id;
     add_msg_to_db(param, user_one, user_two, ids);
