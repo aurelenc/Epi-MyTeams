@@ -12,10 +12,10 @@
 #include <string.h>
 #include <stdio.h>
 
-static char *is_user_connected(client_sock_t *clients, char *user_uuid)
+static char *is_user_connected(client_sock_t *clients, unsigned int user_id)
 {
     for (int i = 0; i < MAX_CLIENTS; i++) {
-        if (clients[i].user && strcmp(clients[i].user, user_uuid) == 0)
+        if (clients[i].user == user_id)
             return "1";
     }
     return "0";
@@ -32,7 +32,7 @@ static char *get_msg_reply(user_t *user, client_sock_t *clients)
     strcat(buff, "\" \"");
     strcat(buff, user->pseudo);
     strcat(buff, "\" \"");
-    strcat(buff, is_user_connected(clients, user->uuid));
+    strcat(buff, is_user_connected(clients, user->id));
     strcat(buff, "\"]\n");
     printf("%s\n", buff);
     return (buff);
@@ -49,6 +49,8 @@ int command_user(command_param_t *param)
     } else if (param->arg.nb > 2) {
         return client_reply(param->clients, param->id, INVALID_FORMAT);
     }
+    if (!THIS_CLIENT.user)
+        return client_reply(PARAM_CID, FORBIDDEN);
     found = db_search_user_by_uuid(param->srv->db, param->arg.array[1]);
     if (!found) {
         return client_reply(param->clients, param->id, NOT_FOUND);

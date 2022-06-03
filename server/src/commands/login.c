@@ -28,12 +28,6 @@ static char *get_reply_msg(char *user_uuid, char *user_name)
     return (reply);
 }
 
-static void set_client_uuid(client_sock_t *client, user_t *user)
-{
-    memset(client->user, 0, UUID_SIZE);
-    memcpy(client->user, user->uuid, UUID_SIZE);
-}
-
 static user_t *get_user(command_param_t *param)
 {
     user_t *user = db_search_user_by_pseudo(param->srv->db,
@@ -62,7 +56,7 @@ int command_login(command_param_t *param)
         return client_reply(param->clients, param->id, INVALID_FORMAT);
     }
     user = get_user(param);
-    set_client_uuid(&(param->clients[param->id]), user);
+    THIS_CLIENT.user = user->id;
     reply = get_reply_msg(user->uuid, user->pseudo);
     sprintf(success_buff, reply_codes[get_reply(SUCCESS)].message, reply);
     free(reply);
