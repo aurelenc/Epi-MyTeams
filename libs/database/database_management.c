@@ -6,6 +6,13 @@
 */
 
 #include "database.h"
+#include "tables/channels/database_channels_save.h"
+#include "tables/discussions/database_discussions_save.h"
+#include "tables/messages/database_messages_save.h"
+#include "tables/teams/database_teams_save.h"
+#include "tables/threads/database_threads_save.h"
+#include "tables/users/database_users_save.h"
+#include "tables/users_x_teams/database_users_x_teams_save.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
@@ -31,6 +38,34 @@ database_t *db_creation(void)
         exit (84);
     }
     return (db);
+}
+
+bool db_save(database_t *db)
+{
+    bool retval = true;
+
+    retval *= db_save_channels(db, "server/database_save/channels.csv");
+    retval *= db_save_discussions(db, "server/database_save/discussions.csv");
+    retval *= db_save_msg(db, "server/database_save/message.csv");
+    retval *= db_save_teams(db, "server/database_save/teams.csv");
+    retval *= db_save_threads(db, "server/database_save/threads.csv");
+    retval *= db_save_users_x_teams(db, "server/database_save/users_x_teams.csv");
+    retval *= db_save_users(db, "server/database_save/users.csv");
+    return retval;
+}
+
+bool db_load(database_t *db)
+{
+    bool retval = true;
+
+    retval *= db_load_channels(db, "server/database_save/channels.csv");
+    retval *= db_load_discussions(db, "server/database_save/discussions.csv");
+    retval *= db_load_msg(db, "server/database_save/message.csv");
+    retval *= db_load_teams(db, "server/database_save/teams.csv");
+    retval *= db_load_threads(db, "server/database_save/threads.csv");
+    retval *= db_load_users_x_teams(db, "server/database_save/users_x_teams.csv");
+    retval *= db_load_users(db, "server/database_save/users.csv");
+    return retval;
 }
 
 database_t *db_destruction(database_t *db)
