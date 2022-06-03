@@ -37,30 +37,30 @@ int get_command_params(char **dest, char *src)
     return i;
 }
 
-void exec_cmd(command_param_t *params, int cmd_id)
+void exec_cmd(TEAMS_A, int cmd_id)
 {
-    commands[cmd_id].func(params);
+    commands[cmd_id].func(TEAMS_PARAM);
 }
 
-void find_command(command_param_t *params)
+void find_command(TEAMS_A)
 {
     bool command_found = false;
     char buff[MAX_BUFF_SIZE] = {0};
 
-    printf("%s\n", params->clients[params->id].rbuf);
-    if (cbuff_pop(params->clients[params->id].rbuf, buff, MAX_BUFF_SIZE) != BUFFER_OK)
+    printf("%s\n", THIS_CLIENT.rbuf);
+    if (cbuff_pop(THIS_CLIENT.rbuf, buff, MAX_BUFF_SIZE) != BUFFER_OK)
         return;
     for (size_t i = 0; commands[i].func != NULL; i++) {
         printf("%s\t%s:%ld\n", buff, commands[i].cmd, strlen(commands[i].cmd));
         if (strncmp(buff, commands[i].cmd,
             strlen(commands[i].cmd)) == 0) {
-            exec_cmd(params, i);
+            exec_cmd(TEAMS_PARAM, i);
             command_found = true;
             break;
         }
     }
     if (!command_found)
-        write_client_buff(params->clients, params->id,
+        write_client_buff(PARAM_CID,
         reply_codes[get_reply(550)].message);
 }
 

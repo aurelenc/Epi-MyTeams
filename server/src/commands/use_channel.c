@@ -11,13 +11,13 @@
 #include "tables/users/user_search.h"
 #include <string.h>
 
-int command_use_channel(command_param_t *param)
+int command_use_channel(TEAMS_A)
 {
     channel_t *channel = 0;
 
     if (param->arg.nb < 2)
-        return client_reply(param->clients, param->id, MISSING_PARAMETER);
-    channel = db_search_channel_by_uuid(param->srv->db, param->arg.array[1]);
+        return client_reply(TEAMS_CLIENTS, param->id, MISSING_PARAMETER);
+    channel = db_search_channel_by_uuid(THIS_DB, THIS_ARG[1]);
     if (!channel)
         return client_reply(PARAM_CID, NOT_FOUND);
     if (channel->team_id == THIS_CLIENT.team_id) {
