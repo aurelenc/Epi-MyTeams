@@ -66,8 +66,12 @@ typedef struct command_s {
     bool auth_required;
 } command_t;
 
-#define THIS_CLIENT param->clients[param->id]
 #define TEAMS_A command_param_t *param
+#define TEAMS_PARAM param
+#define TEAMS_CLIENTS param->clients
+#define THIS_CLIENT TEAMS_CLIENTS[param->id]
+#define THIS_DB param->srv->db
+#define THIS_ARG param->arg.array
 
 extern const command_t commands[];
 

@@ -19,7 +19,7 @@ static void reset_user_location(TEAMS_A)
     THIS_CLIENT.thread_id = 0;
 }
 
-int command_unsubscribe(command_param_t *param)
+int command_unsubscribe(TEAMS_A)
 {
     id_pair_t pair = {0};
     team_t *team = 0;
@@ -27,13 +27,13 @@ int command_unsubscribe(command_param_t *param)
 
     if (param->arg.nb < 2)
         return client_reply(PARAM_CID, MISSING_PARAMETER);
-    team = db_search_team_by_uuid(param->srv->db, param->arg.array[1]);
+    team = db_search_team_by_uuid(THIS_DB, THIS_ARG[1]);
     if (!team)
         return client_reply(PARAM_CID, NOT_FOUND);
     pair.user_id = THIS_CLIENT.user;
     pair.team_id = team->id;
-    if (db_delete_user_team_by_pair(param->srv->db, &pair) == true) {
-        user = db_search_user_by_id(param->srv->db, THIS_CLIENT.user);
+    if (db_delete_user_team_by_pair(THIS_DB, &pair) == true) {
+        user = db_search_user_by_id(THIS_DB, THIS_CLIENT.user);
         if (!user)
             return client_reply(PARAM_CID, INTERNAL_SERVER_ERROR);
         server_event_user_unsubscribed(team->uuid, user->uuid);
