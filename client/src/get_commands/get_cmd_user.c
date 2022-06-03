@@ -12,7 +12,7 @@
 
 int user(char *av, int socket)
 {
-    char code_response[3];
+    char code_response[3] = {0};
     char **tab_res = NULL;
 
     if (check_params(av) == 1)
@@ -27,7 +27,6 @@ int user(char *av, int socket)
         return -1;
     }
     strncpy(code_response, tab_res[0], 2);
-    code_response[2] = '\0';
     if (!strcmp(code_response, "13"))
         client_error_unauthorized();
     if (!strcmp(code_response, "00"))
