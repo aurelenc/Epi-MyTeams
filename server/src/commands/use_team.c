@@ -33,5 +33,7 @@ int command_use_team(TEAMS_A)
     if (!search)
         return client_reply(PARAM_CID, FORBIDDEN);
     THIS_CLIENT.team = team;
+    THIS_CLIENT.channel = 0;
+    THIS_CLIENT.thread = 0;
     return client_reply_success(PARAM_CID, "");
 }
