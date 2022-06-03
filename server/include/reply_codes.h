@@ -8,7 +8,7 @@
 #ifndef REPLY_CODES_H_
 #define REPLY_CODES_H_
 
-#define PARAM_CID param->clients, param->id
+#define PARAM_CID TEAMS_CLIENTS, param->id
 
 #include "server.h"
 

@@ -8,7 +8,7 @@
 #include "reply_codes.h"
 #include "server.h"
 
-int command_info_channel(command_param_t *param)
+int command_info_channel(TEAMS_A)
 {
     return NOT_IMPLEMENTED;
 }
