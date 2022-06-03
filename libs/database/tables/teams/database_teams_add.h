@@ -20,6 +20,7 @@
 ///
 static inline bool db_add_team(database_t *db, team_t *team)
 {
-    team->id = llist_get_size(db->teams) + 1;
+    if (!team->id)
+        team->id = llist_get_size(db->teams) + 1;
     return llist_append(db->teams, team);
 };
