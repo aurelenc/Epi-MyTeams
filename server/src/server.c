@@ -24,11 +24,10 @@ client_sock_t *init_clients(void)
         clients[i].team_id = 0;
         clients[i].channel_id = 0;
         clients[i].thread_id = 0;
+        clients[i].user = 0;
         clients[i].rbuf = CIRCULAR_BUFFER;
         clients[i].wbuf = CIRCULAR_BUFFER;
-        clients[i].user = calloc(sizeof(char), UUID_SIZE + 1);
-        if (!clients[i].rbuf || !clients[i].wbuf ||
-            !clients[i].user)
+        if (!clients[i].rbuf || !clients[i].wbuf)
             return NULL;
     }
     return clients;

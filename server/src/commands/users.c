@@ -12,10 +12,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static char *is_user_connected(client_sock_t *clients, char *user_uuid)
+static char *is_user_connected(client_sock_t *clients, unsigned int user_id)
 {
     for (int i = 0; i < MAX_CLIENTS; i++) {
-        if (clients[i].user && strcmp(clients[i].user, user_uuid) == 0)
+        if (clients[i].user == user_id)
             return "1";
     }
     return "0";
@@ -34,7 +34,7 @@ static char *get_msg_reply(llist_t *users, client_sock_t *clients)
         strcat(buff, "\" \"");
         strcat(buff, ((user_t *)ptr)->pseudo);
         strcat(buff, "\" \"");
-        strcat(buff, is_user_connected(clients, ((user_t *)ptr)->uuid));
+        strcat(buff, is_user_connected(clients, ((user_t *)ptr)->id));
         strcat(buff, "\"]");
         ptr = ptr->next;
     }

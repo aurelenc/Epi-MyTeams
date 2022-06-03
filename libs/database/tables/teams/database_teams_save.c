@@ -30,7 +30,6 @@ bool db_save_teams(database_t *db, const char *filepath)
 {
     FILE *fptr;
 
-    printf("SAVE TEAM\n");
     fptr = fopen(filepath, "w");
     if (fptr == NULL) {
         printf("Unable to open file.\n");
@@ -38,7 +37,7 @@ bool db_save_teams(database_t *db, const char *filepath)
     }
     write_all_teams_in_file(db->teams, fptr);
     fclose(fptr);
-    printf("teams saved successfully.\n");
+    printf("Teams saved successfully.\n");
     return true;
 }
 
