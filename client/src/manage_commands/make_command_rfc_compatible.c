@@ -4,6 +4,7 @@
 ** File description:
 ** make_command_rfc_compatible
 */
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>

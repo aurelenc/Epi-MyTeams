@@ -87,6 +87,5 @@ int my_teams_client(int ac, char **av)
     while (client->is_connected) {
         running_teams(client, buff);
     }
-    //close_client();
     return 0;
 }

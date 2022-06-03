@@ -10,8 +10,8 @@
 #include "database.h"
 
 ///
-/// @brief It opens a file, writes all the users_x_teams in the database to the file,
-/// closes the file
+/// @brief It opens a file, writes all the users_x_teams in the
+/// database to the file, closes the file
 ///
 /// @param db The database object.
 /// @param filepath The path to the file to save the users_x_teams to.

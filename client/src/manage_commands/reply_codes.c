@@ -33,8 +33,8 @@ int get_reply(int code)
     return i;
 }
 
+//printf("%s\n", reply_codes[get_reply(reply_code)].message);
 int client_reply(int reply_code)
 {
-    //printf("%s\n", reply_codes[get_reply(reply_code)].message);
     return reply_code;
 }
