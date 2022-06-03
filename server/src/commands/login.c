@@ -36,8 +36,8 @@ static user_t *get_user(TEAMS_A)
         user = user_init(THIS_ARG[1], "");
         db_add_user(THIS_DB, user);
         server_event_user_created(user->uuid, user->pseudo);
-    } else
-        server_event_user_logged_in(user->uuid);
+    }
+    server_event_user_logged_in(user->uuid);
     return user;
 }
 
