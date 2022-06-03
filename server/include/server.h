@@ -13,6 +13,10 @@
 #include <arpa/inet.h>
 #include <stdbool.h>
 #include "database.h"
+#include "tables/users/user.h"
+#include "tables/teams/team.h"
+#include "tables/channels/channel.h"
+#include "tables/threads/thread.h"
 
 #define MAX_BUFF_SIZE 4096
 #define CBUFF_SIZE (int)4e+6
@@ -26,10 +30,10 @@ typedef struct client_sock_s {
     int socket;
     char *rbuf;
     char *wbuf;
-    unsigned int user;
-    unsigned int team_id;
-    unsigned int channel_id;
-    unsigned int thread_id;
+    user_t *user;
+    team_t *team;
+    channel_t *channel;
+    thread_t *thread;
 } client_sock_t;
 
 typedef struct client_id_s {
@@ -66,8 +70,12 @@ typedef struct command_s {
     bool auth_required;
 } command_t;
 
-#define THIS_CLIENT param->clients[param->id]
-#define SRV_DB param->srv->db
+#define TEAMS_A command_param_t *param
+#define TEAMS_PARAM param
+#define TEAMS_CLIENTS param->clients
+#define THIS_CLIENT TEAMS_CLIENTS[param->id]
+#define THIS_DB param->srv->db
+#define THIS_ARG param->arg.array
 
 extern const command_t commands[];
 

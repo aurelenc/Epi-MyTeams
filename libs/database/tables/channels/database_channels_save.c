@@ -37,7 +37,7 @@ bool db_save_channels(database_t *db, const char *filepath)
     }
     write_all_channels_in_file(db->channels, fptr);
     fclose(fptr);
-    printf("Channels saved successfully.\n");
+    printf("Channels: Successfully saved.\n");
     return true;
 }
 
@@ -53,11 +53,13 @@ bool db_load_channels(database_t *db, const char *filepath)
     if (!entities)
         return false;
     for (size_t i = 0; entities[i]; i++) {
-        channel = channel_init(atoi(entities[i][0]), entities[i][2],
+        channel = channel_init(entities[i][2],
         entities[i][3], atoi(entities[i][4]));
         free(channel->uuid);
         channel->uuid = entities[i][1];
+        channel->id = atoi(entities[i][0]);
         db_add_channel(db, channel);
     }
+    printf("Channels: Successfully loaded.\n");
     return true;
 }

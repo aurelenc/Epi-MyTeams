@@ -27,6 +27,9 @@
 
 int my_teams_client(int ac, char **av);
 
+/// Signals
+void set_sigint_handler(void);
+
 typedef struct client_s {
     bool is_in_teams;
     bool is_in_channel;

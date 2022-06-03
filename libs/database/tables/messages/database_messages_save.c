@@ -38,7 +38,7 @@ bool db_save_msg(database_t *db, const char *filepath)
     }
     write_all_messages_in_file(db->messages, fptr);
     fclose(fptr);
-    printf("Messages saved successfully.\n");
+    printf("Messages: Successfully saved.\n");
     return true;
 }
 
@@ -65,12 +65,14 @@ bool db_load_msg(database_t *db, const char *filepath)
     if (!entities)
         return false;
     for (size_t i = 0; entities[i]; i++) {
-        msg = msg_init(atoi(entities[i][0]), entities[i][2],
-        atoi(entities[i][4]), get_relation(entities[i]));
+        msg = msg_init(entities[i][2], atoi(entities[i][4]),
+        get_relation(entities[i]));
         free(msg->uuid);
         msg->uuid = entities[i][1];
+        msg->id = atoi(entities[i][0]);
         msg->timestamp = atol(entities[i][3]);
         db_add_msg(db, msg);
     }
+    printf("Messages: Successfully loaded.\n");
     return true;
 }

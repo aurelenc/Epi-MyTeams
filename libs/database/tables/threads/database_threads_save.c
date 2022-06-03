@@ -38,7 +38,7 @@ bool db_save_threads(database_t *db, const char *filepath)
     }
     write_all_threads_in_file(db->threads, fptr);
     fclose(fptr);
-    printf("Threads saved successfully.\n");
+    printf("Threads: Successfully saved.\n");
     return true;
 }
 
@@ -54,12 +54,14 @@ bool db_load_threads(database_t *db, const char *filepath)
     if (!entities)
         return false;
     for (size_t i = 0; entities[i]; i++) {
-        thread = thread_init(atoi(entities[i][0]), entities[i][2],
-        entities[i][3], atoi(entities[i][4]));
+        thread = thread_init(entities[i][2], entities[i][3],
+        atoi(entities[i][4]));
         free(thread->uuid);
         thread->uuid = entities[i][1];
+        thread->id = atoi(entities[i][0]);
         thread->timestamp = atol(entities[i][5]);
         db_add_thread(db, thread);
     }
+    printf("Threads: Successfully loaded.\n");
     return true;
 }

@@ -20,5 +20,7 @@
 ///
 static inline bool db_add_channel(database_t *db, channel_t *channel)
 {
+    if (!channel->id)
+        channel->id = llist_get_size(db->channels) + 1;
     return llist_append(db->channels, channel);
 };

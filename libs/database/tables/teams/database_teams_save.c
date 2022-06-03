@@ -37,7 +37,7 @@ bool db_save_teams(database_t *db, const char *filepath)
     }
     write_all_teams_in_file(db->teams, fptr);
     fclose(fptr);
-    printf("Teams saved successfully.\n");
+    printf("Teams: Successfully saved.\n");
     return true;
 }
 
@@ -53,10 +53,12 @@ bool db_load_teams(database_t *db, const char *filepath)
     if (!entities)
         return false;
     for (size_t i = 0; entities[i]; i++) {
-        team = team_init(atoi(entities[i][0]), entities[i][2], entities[i][3]);
+        team = team_init(entities[i][2], entities[i][3]);
         free(team->uuid);
         team->uuid = entities[i][1];
+        team->id = atoi(entities[i][0]);
         db_add_team(db, team);
     }
+    printf("Teams: Successfully loaded.\n");
     return true;
 }

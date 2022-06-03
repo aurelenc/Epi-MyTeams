@@ -36,7 +36,7 @@ bool db_save_users_x_teams(database_t *db, const char *filepath)
     }
     write_all_users_x_teams_in_file(db->users_teams, fptr);
     fclose(fptr);
-    printf("Users - Teams relations saved successfully.\n");
+    printf("Users - Teams relations: Successfully saved.\n");
     return true;
 }
 
@@ -57,5 +57,6 @@ bool db_load_users_x_teams(database_t *db, const char *filepath)
         relation->team_id = atoi(entities[i][1]);
         db_add_user_team_relation(db, relation);
     }
+    printf("Users - Teams relations: Successfully loaded.\n");
     return true;
 }

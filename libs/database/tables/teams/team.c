@@ -12,13 +12,13 @@
 #include <string.h>
 #include <stdio.h>
 
-team_t *team_init(id_t id, const char *name, const char *desc)
+team_t *team_init(const char *name, const char *desc)
 {
     team_t *team = calloc(sizeof(team_t), 1);
 
     if (!team)
         exit (84);
-    team->id = id;
+    team->id = 0;
     team->uuid = uuid_gen();
     team->name = strdup(name);
     team->desc = strdup(desc);

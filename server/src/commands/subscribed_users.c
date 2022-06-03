@@ -8,7 +8,8 @@
 #include "reply_codes.h"
 #include "server.h"
 
-int command_subscribed_users(command_param_t *param)
+int command_subscribed_users(TEAMS_A)
 {
+    // if (param.)
     return NOT_IMPLEMENTED;
 }

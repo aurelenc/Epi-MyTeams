@@ -13,27 +13,42 @@
 #include "tables/threads/database_threads_add.h"
 #include "tables/channels/database_channels_search.h"
 #include "tables/users/database_users_search.h"
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 static bool is_in_team(command_param_t *param)
 {
-    team_t *team = 0;
     id_pair_t pair;
     id_pair_t *search = 0;
 
-    team = db_search_team_by_id(param->srv->db, THIS_CLIENT.team_id);
-    if (!team)
+    if (!THIS_CLIENT.team)
         return false;
-    pair.team_id = team->id;
-    pair.user_id = THIS_CLIENT.user;
+    pair.team_id = THIS_CLIENT.team->id;
+    pair.user_id = THIS_CLIENT.user->id;
     search = db_search_user_team_by_pair(param->srv->db, &pair);
     if (!search)
         return false;
     return true;
 }
 
-int command_create_thread(command_param_t *param)
+static char *get_success(TEAMS_A, thread_t *thread)
+{
+    int len = strlen(thread->uuid) + strlen(THIS_CLIENT.user->uuid) + 45 +
+    strlen(thread->title) + strlen(thread->body) + 32;
+    char *buff = calloc(sizeof(char), len);
+
+    snprintf(buff, len , "52:[ \"%s\" \"%s\" \"%ld\" \"%s\" \"%s\"]\n", thread->uuid,
+    THIS_CLIENT.user->uuid, thread->timestamp, thread->title, thread->body);
+    printf("%s\n", buff);
+    return (buff);
+}
+
+int command_create_thread(TEAMS_A)
 {
     thread_t *thread = 0;
+    char *success_buff = 0;
+    int retval = 0;
 
     if (param->arg.nb < 3) {
         return client_reply(param->clients, param->id, MISSING_PARAMETER);
@@ -42,11 +57,13 @@ int command_create_thread(command_param_t *param)
     }
     if (!is_in_team(param))
         return client_reply(PARAM_CID, FORBIDDEN);
-    thread = thread_init(llist_get_size(SRV_DB->threads) + 1,
-    param->arg.array[1], param->arg.array[2], THIS_CLIENT.channel_id);
-    db_add_thread(SRV_DB, thread);
-    server_event_thread_created(db_search_channel_by_id(SRV_DB,
-    THIS_CLIENT.channel_id)->uuid, thread->uuid, db_search_user_by_id(SRV_DB,
-    THIS_CLIENT.user)->uuid, thread->title, thread->body);
-    return client_reply_success(param->clients, param->id, success_buff);//
+    thread = thread_init(param->arg.array[1], param->arg.array[2],
+    THIS_CLIENT.channel->id);
+    db_add_thread(THIS_DB, thread);
+    server_event_thread_created(THIS_CLIENT.channel->uuid, thread->uuid,
+    THIS_CLIENT.user->uuid, thread->title, thread->body);
+    success_buff = get_success(param, thread);
+    retval = client_reply_success(param->clients, param->id, success_buff);
+    free(success_buff);
+    return retval;
 }
