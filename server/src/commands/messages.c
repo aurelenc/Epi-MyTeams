@@ -56,14 +56,14 @@ static int generate_messages(user_t *user_one, user_t *user_two, TEAMS_A)
 
 int command_messages(TEAMS_A)
 {
-    user_t *user_one = 0;
     user_t *user_two = 0;
 
+    if (!THIS_CLIENT.user)
+        return client_reply(PARAM_CID, FORBIDDEN);
     if (param->arg.nb != 2)
         return client_reply(PARAM_CID, MISSING_PARAMETER);
     user_two = db_search_user_by_uuid(THIS_DB, THIS_ARG[1]);
     if (!user_two)
-        return client_reply(PARAM_CID, NOT_FOUND);
-    user_one = db_search_user_by_id(THIS_DB, THIS_CLIENT.user);
-    return generate_messages(user_one, user_two, param);
+        return client_reply(param->clients, param->id, NOT_FOUND);
+    return generate_messages(THIS_CLIENT.user, user_two, param);
 }

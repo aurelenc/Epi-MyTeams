@@ -36,8 +36,8 @@ static user_t *get_user(TEAMS_A)
         user = user_init(THIS_ARG[1], "");
         db_add_user(THIS_DB, user);
         server_event_user_created(user->uuid, user->pseudo);
-    } else
-        server_event_user_logged_in(user->uuid);
+    }
+    server_event_user_logged_in(user->uuid);
     return user;
 }
 
@@ -54,7 +54,7 @@ int command_login(TEAMS_A)
         return client_reply(PARAM_CID, INVALID_FORMAT);
     }
     user = get_user(param);
-    THIS_CLIENT.user = user->id;
+    THIS_CLIENT.user = user;
     reply = get_reply_msg(user->uuid, user->pseudo);
     sprintf(success_buff, reply_codes[get_reply(SUCCESS)].message, reply);
     free(reply);

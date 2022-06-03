@@ -13,10 +13,8 @@
 
 int command_logout(TEAMS_A)
 {
-    user_t *user = db_search_user_by_id(THIS_DB, THIS_CLIENT.user);
-
-    if (user)
-        server_event_user_logged_out(user->uuid);
+    if (THIS_CLIENT.user)
+        server_event_user_logged_out(THIS_CLIENT.user->uuid);
     remove_client(PARAM_CID);
     return SUCCESS;
 }

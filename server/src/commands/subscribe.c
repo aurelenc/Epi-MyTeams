@@ -16,20 +16,18 @@ int command_subscribe(TEAMS_A)
 {
     id_pair_t pair = {0};
     team_t *team = 0;
-    user_t *user = 0;
 
+    if (!THIS_CLIENT.user)
+        return client_reply(PARAM_CID, FORBIDDEN);
     if (param->arg.nb < 2)
         return client_reply(PARAM_CID, MISSING_PARAMETER);
     team = db_search_team_by_uuid(THIS_DB, THIS_ARG[1]);
     if (!team)
         return client_reply(PARAM_CID, NOT_FOUND);
-    pair.user_id = THIS_CLIENT.user;
+    pair.user_id = THIS_CLIENT.user->id;
     pair.team_id = team->id;
     if (db_add_user_team_relation(THIS_DB, &pair) == true) {
-        user = db_search_user_by_id(THIS_DB, THIS_CLIENT.user);
-        if (!user)
-            return client_reply(PARAM_CID, INTERNAL_SERVER_ERROR);
-        server_event_user_subscribed(team->uuid, user->uuid);
+        server_event_user_subscribed(team->uuid, THIS_CLIENT.user->uuid);
         return client_reply_success(PARAM_CID, "");
     }
     return client_reply(PARAM_CID, FORBIDDEN);
