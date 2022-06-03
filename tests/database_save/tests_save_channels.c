@@ -18,10 +18,12 @@ Test (save_a_basic_db, db_save_channels)
     database_t *db = db_creation();
     channel_t *channel = 0;
 
-    channel = channel_init(1, "name", "desc1", 10);
+    channel = channel_init("name", "desc1", 10);
+    channel->id = 1;
     channel->uuid = strdup("UUID1");
     llist_append(db->channels, channel);
-    channel = channel_init(2, "forname", "2DESC", 20);
+    channel = channel_init("forname", "2DESC", 20);
+    channel->id = 2;
     channel->uuid = strdup("2uuid");
     llist_append(db->channels, channel);
 
