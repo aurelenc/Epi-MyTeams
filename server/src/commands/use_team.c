@@ -26,7 +26,7 @@ int command_use_team(command_param_t *param)
     if (!team)
         return client_reply(PARAM_CID, NOT_FOUND);
     pair.team_id = team->id;
-    pair.user_id = db_search_user_by_uuid(param->srv->db, THIS_CLIENT.user)->id;
+    pair.user_id = db_search_user_by_id(param->srv->db, THIS_CLIENT.user)->id;
     search = db_search_user_team_by_pair(param->srv->db, &pair);
     if (!search)
         return client_reply(PARAM_CID, FORBIDDEN);
