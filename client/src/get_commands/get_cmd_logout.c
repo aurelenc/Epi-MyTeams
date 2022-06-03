@@ -28,7 +28,7 @@ int logout_client(char *av, int socket)
     if (check_params(av) == 0)
         tab_res = send_command(av, tab_res, "LOGO ", socket);
     else {
-        printf("Command are not good use /help for more information !\n");
+        printf("Command is not good, use /help for more information !\n");
         return -1;
     }
     if (tab_res == NULL) {

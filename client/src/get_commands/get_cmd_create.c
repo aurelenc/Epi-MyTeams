@@ -36,6 +36,8 @@
     // char const *thread_body);
 int create_responses(char **tab, char *code_response)
 {
+    if (!strcmp(code_response, "13"))
+        client_error_unauthorized();
     if (!strcmp(code_response, "30"))
         client_error_unknown_team(tab[1]);
     if (!strcmp(code_response, "31"))
@@ -48,10 +50,10 @@ int create_responses(char **tab, char *code_response)
         client_print_team_created(tab[1], tab[3], tab[5]);
     if (!strcmp(code_response, "51"))
         client_print_channel_created(tab[1], tab[3], tab[5]);
-    //if (!strcmp(code_response, "52")) @timestamp
-    //    client_print_thread_created(tab[1], tab[3], tab[5], tab[7], tab[8]);
-    //if (!strcmp(code_response, "53"))
-    //    client_print_reply_created(tab[1], tab[3], tab[5], tab[7]);
+    if (!strcmp(code_response, "52"))
+        client_print_thread_created(tab[1], tab[3], atol(tab[5]), tab[7], tab[8]);
+    if (!strcmp(code_response, "53"))
+        client_print_reply_created(tab[1], tab[3], atol(tab[5]), tab[7]);
     free(tab);
     return 0;
 }
@@ -64,7 +66,7 @@ int create(char *av, int socket)
     if (check_params(av) == 2)
         tab_res = send_command(av, tab_res, "CREA ", socket);
     else {
-        printf("Command are not good use /help for more information !\n");
+        printf("Command is not good, use /help for more information !\n");
         return -1;
     }
     if (tab_res == NULL) {
@@ -73,7 +75,5 @@ int create(char *av, int socket)
         return -1;
     }
     strncpy(code_response, tab_res[0], 2);
-    if (!strcmp(code_response, "13"))
-        client_error_unauthorized();
     return create_responses(tab_res, code_response);
 }

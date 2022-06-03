@@ -14,10 +14,12 @@ int subscribe_responses(char **tab, char *code_response)
 {
     if (!strcmp(code_response, "13"))
         client_error_unauthorized();
-    if (!strcmp(code_response, "40")) //print_list_of_user
-        client_print_users(tab[1], tab[3], atoi(tab[5]));
-    if (!strcmp(code_response, "41")) //print_list_of_user
-        client_print_teams(tab[1], tab[3], tab[5]);
+    if (!strcmp(code_response, "40"))
+        for (int i = 0; tab[i + 6]; i = i + 6)
+            client_print_users(tab[i + 1], tab[i + 3], atoi(tab[i + 5]));
+    if (!strcmp(code_response, "41"))
+        for (int i = 0; tab[i + 6]; i = i + 6)
+            client_print_teams(tab[1], tab[3], tab[5]);
     if (!strcmp(code_response, "30"))
         client_error_unknown_team(tab[1]);
     if (!strcmp(code_response, "02"))
@@ -34,7 +36,7 @@ int subscribe_teams(char *av, int socket)
     if (check_params(av) == 1)
         tab_res = send_command(av, tab_res, "SUB ", socket);
     else {
-        printf("Command are not good use /help for more information !\n");
+        printf("Command is not good, use /help for more information !\n");
         return (-1);
     }
     if (tab_res == NULL) {

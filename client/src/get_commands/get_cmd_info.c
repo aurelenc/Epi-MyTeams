@@ -26,13 +26,8 @@ int info_responses(char **tab, char *code_response)
         client_print_team(tab[1], tab[2], tab[5]);
     if (!strcmp(code_response, "42"))
         client_print_channel(tab[1], tab[2], tab[5]);
-    //if (!strcmp(code_response, "43")) @timestamp
-    //    client_print_thread(tab[1], tab[2], tab[5], tab[7], tab[9]);
-    // char const *thread_uuid,
-    // char const *user_uuid,
-    // time_t thread_timestamp,
-    // char const *thread_title,
-    // char const *thread_body);
+    if (!strcmp(code_response, "43"))
+        client_print_thread(tab[1], tab[2], atol(tab[5]), tab[7], tab[9]);
     free(tab);
     return 0;
 }
@@ -45,7 +40,7 @@ int info(char *av, int socket)
     if (check_params(av) == 0)
         tab_res = send_command(av, tab_res, "INFO ", socket);
     else {
-        printf("Command are not good use /help for more information !\n");
+        printf("Command is not good, use /help for more information !\n");
         return -1;
     }
     if (tab_res == NULL) {

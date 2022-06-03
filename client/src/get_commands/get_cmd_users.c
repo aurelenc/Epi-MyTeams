@@ -14,8 +14,8 @@ int users_responses(char **tab, char *code_response)
 {
     if (!strcmp(code_response, "13"))
         client_error_unauthorized();
-    if (!strcmp(code_response, "00")) //print_list_of_user
-        for (int i = 0; tab[i + 6]; i = i + 7)
+    if (!strcmp(code_response, "00"))
+        for (int i = 0; tab[i + 6]; i = i + 6)
             client_print_users(tab[i + 1], tab[i + 3], atoi(tab[i + 5]));
     free(tab);
     return 0;
@@ -29,7 +29,7 @@ int users(char *av, int socket)
     if (check_params(av) == 0)
         tab_res = send_command(av, tab_res, "USRS ", socket);
     else {
-        printf("Command are not good use /help for more information !\n");
+        printf("Command is not good, use /help for more information !\n");
         return -1;
     }
     if (tab_res == NULL) {
