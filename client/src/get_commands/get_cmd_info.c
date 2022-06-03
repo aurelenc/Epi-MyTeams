@@ -10,9 +10,36 @@
 #include "reply_codes.h"
 #include "logging_client.h"
 
+int info_responses(char **tab, char *code_response)
+{
+    if (!strcmp(code_response, "13"))
+        client_error_unauthorized();
+    if (!strcmp(code_response, "30"))
+        client_error_unknown_team(tab[1]);
+    if (!strcmp(code_response, "31"))
+        client_error_unknown_channel(tab[1]);
+    if (!strcmp(code_response, "32"))
+        client_error_unknown_thread(tab[1]);
+    if (!strcmp(code_response, "40"))
+        client_print_user(tab[1], tab[2], atoi(tab[5]));
+    if (!strcmp(code_response, "41"))
+        client_print_team(tab[1], tab[2], tab[5]);
+    if (!strcmp(code_response, "42"))
+        client_print_channel(tab[1], tab[2], tab[5]);
+    //if (!strcmp(code_response, "43")) @timestamp
+    //    client_print_thread(tab[1], tab[2], tab[5], tab[7], tab[9]);
+    // char const *thread_uuid,
+    // char const *user_uuid,
+    // time_t thread_timestamp,
+    // char const *thread_title,
+    // char const *thread_body);
+    free(tab);
+    return 0;
+}
+
 int info(char *av, int socket)
 {
-    char code_response[3];
+    char code_response[3] = {0};
     char **tab_res = NULL;
 
     if (check_params(av) == 0)
@@ -27,49 +54,5 @@ int info(char *av, int socket)
         return -1;
     }
     strncpy(code_response, tab_res[0], 2);
-    code_response[2] = '\0';
-    if (!strcmp(code_response, "13"))
-        client_error_unauthorized();
-
-    if (!strcmp(code_response, "30"))
-        client_error_unknown_team(tab_res[1]);
-    // char const *team_uuid);
-
-    if (!strcmp(code_response, "31"))
-        client_error_unknown_channel(tab_res[1]);
-    // char const *channel_uuid);
-
-    if (!strcmp(code_response, "32"))
-        client_error_unknown_thread(tab_res[1]);
-    // char const *thread_uuid);
-
-    if (!strcmp(code_response, "40"))
-        client_print_user(tab_res[1], tab_res[2], atoi(tab_res[5]));
-    // char const *user_uuid,
-    // char const *user_name,
-    // int user_status);
-
-    if (!strcmp(code_response, "41"))
-        client_print_team(tab_res[1], tab_res[2], tab_res[5]);
-    // char const *team_uuid,
-    // char const *team_name,
-    // char const *team_description);
-
-    if (!strcmp(code_response, "42"))
-        client_print_channel(tab_res[1], tab_res[2], tab_res[5]);
-    // char const *channel_uuid,
-    // char const *channel_name,
-    // char const *channel_description);
-
-    //if (!strcmp(code_response, "43")) @timestamp
-    //    client_print_thread(tab_res[1], tab_res[2], tab_res[5], tab_res[7], tab_res[9]);
-    // char const *thread_uuid,
-    // char const *user_uuid,
-    // time_t thread_timestamp,
-    // char const *thread_title,
-    // char const *thread_body);
-
-
-    free(tab_res);
-    return 0;
+    return info_responses(tab_res, code_response);
 }

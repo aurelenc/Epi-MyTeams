@@ -10,16 +10,26 @@
 #include "reply_codes.h"
 #include "logging_client.h"
 
+int send_responses(char **tab, char *code_response)
+{
+    if (!strcmp(code_response, "13"))
+        client_error_unauthorized();
+    if (!strcmp(code_response, "25"))
+        client_error_unknown_user(tab[1]);
+    free(tab);
+    return 0;
+}
+
 int send_message(char *av, int socket)
 {
-    char code_response[3];
+    char code_response[3] = {0};
     char **tab_res = NULL;
-
 
     if (check_params(av) == 2)
         tab_res = send_command(av, tab_res, "SEND ", socket);
     else {
         printf("Command are not good use /help for more information !\n");
+        return -1;
     }
     if (tab_res == NULL) {
         printf("Tab_res == NULL\n");
@@ -27,11 +37,5 @@ int send_message(char *av, int socket)
         return -1;
     }
     strncpy(code_response, tab_res[0], 2);
-    code_response[2] = '\0';
-    if (!strcmp(code_response, "13"))
-        client_error_unauthorized();
-    if (!strcmp(code_response, "25"))
-        client_error_unknown_user(tab_res[1]);
-    free(tab_res);
-    return 0;
+    return send_responses(tab_res, code_response);
 }

@@ -10,6 +10,20 @@
 #include "reply_codes.h"
 #include "logging_client.h"
 
+int subscribed_responses(char **tab, char *code_response)
+{
+    if (!strcmp(code_response, "13"))
+        client_error_unauthorized();
+    if (!strcmp(code_response, "30"))
+        client_error_unknown_team(tab[1]);
+    if (!strcmp(code_response, "40")) //print_list_of_user
+        client_print_users(tab[1], tab[3], atoi(tab[5]));
+    if (!strcmp(code_response, "41")) //print_list_of_user
+        client_print_teams(tab[1], tab[3], tab[5]);
+    free(tab);
+    return 0;
+}
+
 int subscribed(char *av, int socket)
 {
     char code_response[3];
@@ -27,26 +41,5 @@ int subscribed(char *av, int socket)
         return -1;
     }
     strncpy(code_response, tab_res[0], 2);
-    code_response[2] = '\0';
-    if (!strcmp(code_response, "13"))
-        client_error_unauthorized();
-
-    if (!strcmp(code_response, "30"))
-        client_error_unknown_team(tab_res[1]);
-            // char const *team_uuid);
-
-    if (!strcmp(code_response, "40")) //print_list_of_user
-        client_print_users(tab_res[1], tab_res[3], atoi(tab_res[5]));
-    // char const *user_uuid,
-    // char const *user_name,
-    // int user_status);
-
-    if (!strcmp(code_response, "41")) //print_list_of_user
-        client_print_teams(tab_res[1], tab_res[3], tab_res[5]);
-    // char const *team_uuid,
-    // char const *team_name,
-    // char const *team_description);
-
-    free(tab_res);
-    return 0;
+    return subscribed_responses(tab_res, code_response);
 }
