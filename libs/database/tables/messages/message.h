@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include <time.h>
+
 typedef unsigned int id_t;
 
 typedef struct msg_s
@@ -14,6 +16,7 @@ typedef struct msg_s
     id_t id;
     char *uuid;
     char *content;
+    time_t timestamp;
     id_t user_id;
     id_t thread_id;
     id_t discussion_id;

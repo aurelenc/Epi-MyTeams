@@ -28,7 +28,7 @@ id_t *ids)
         db_add_msg(param->srv->db, msg_init(llist_get_size(
             param->srv->db->messages), param->arg.array[2], ids[1], relation));
     } else {
-        disc = discussion_init(llist_get_size(param->srv->db->discussions), "",
+        disc = discussion_init(llist_get_size(param->srv->db->discussions),
         ids[0], ids[1]);
         db_add_discussion(param->srv->db, disc);
         relation[0] = 0;

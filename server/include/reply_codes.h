@@ -8,6 +8,8 @@
 #ifndef REPLY_CODES_H_
 #define REPLY_CODES_H_
 
+#define PARAM_CID param->clients, param->id
+
 #include "server.h"
 
 /// @brief Reply codes structure

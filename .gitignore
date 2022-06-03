@@ -55,6 +55,7 @@ dkms.conf
 *unit_tests
 *.gcno
 *.gcda
+*.gcov
 
 #Personnal
 .vscode/

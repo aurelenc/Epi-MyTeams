@@ -12,21 +12,18 @@
 #include <string.h>
 #include <stdio.h>
 
-team_t *team_init(id_t id, const char *name)
+team_t *team_init(id_t id, const char *name, const char *desc)
 {
     team_t *team = calloc(sizeof(team_t), 1);
 
-    if (!team) {
-        perror("Team creation");
+    if (!team)
         exit (84);
-    }
     team->id = id;
     team->uuid = uuid_gen();
     team->name = strdup(name);
-    if (!team->uuid || !team->name) {
-        perror("Team creation");
+    team->desc = strdup(desc);
+    if (!team->uuid || !team->name || !team->desc)
         exit (84);
-    }
     return (team);
 }
 
@@ -35,5 +32,6 @@ void team_destruction(team_t *team)
     if (!team)
         return;
     free(team->name);
+    free(team->desc);
     free(team);
 }

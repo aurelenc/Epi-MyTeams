@@ -16,19 +16,17 @@ msg_t *msg_init(id_t id, const char *content, id_t user_id, int *relation)
 {
     msg_t *msg = calloc(sizeof(msg_t), 1);
 
-    if (!msg) {
-        perror("Message creation");
+    if (!msg)
         exit (84);
-    }
     msg->id = id;
+    msg->timestamp = time(NULL);
+    msg->user_id = user_id;
     msg->thread_id = relation[0];
     msg->discussion_id = relation[1];
     msg->uuid = uuid_gen();
     msg->content = strdup(content);
-    if (!msg->content || !msg->content) {
-        perror("Message creation");
+    if (!msg->content || !msg->uuid)
         exit (84);
-    }
     return (msg);
 }
 
