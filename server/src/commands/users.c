@@ -26,7 +26,7 @@ static char *get_msg_reply(llist_t *users, client_sock_t *clients)
     node_t *ptr = users->first;
     char *buff = calloc(sizeof(char), MAX_BUFF_SIZE);
 
-    strcat(buff, "00 ");
+    strcat(buff, "00:");
     while (ptr && strlen(buff) < MAX_BUFF_SIZE + strlen(((user_t *)ptr)->uuid)
     + strlen(((user_t *)ptr)->pseudo) + 12) {
         strcat(buff, "[ \"");
@@ -38,6 +38,7 @@ static char *get_msg_reply(llist_t *users, client_sock_t *clients)
         strcat(buff, "\"]");
         ptr = ptr->next;
     }
+    strcat(buff, "\n");
     return (buff);
 }
 
