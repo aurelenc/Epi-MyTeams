@@ -25,15 +25,15 @@ user_t *user_two, id_t *ids)
     if (disc) {
         relation[0] = 0;
         relation[1] = disc->id;
-        db_add_msg(param->srv->db, msg_init(llist_get_size(
-            param->srv->db->messages), param->arg.array[2], ids[1], relation));
+        db_add_msg(param->srv->db, msg_init(param->arg.array[2], ids[1],
+        relation));
     } else {
         disc = discussion_init(ids[0], ids[1]);
         db_add_discussion(param->srv->db, disc);
         relation[0] = 0;
         relation[1] = disc->id;
-        db_add_msg(param->srv->db, msg_init(llist_get_size(
-            param->srv->db->messages), param->arg.array[2], ids[1], relation));
+        db_add_msg(param->srv->db, msg_init(param->arg.array[2], ids[1],
+        relation));
     }
     //send message to the client here
 }

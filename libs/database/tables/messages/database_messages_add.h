@@ -20,5 +20,6 @@
 ///
 static inline bool db_add_msg(database_t *db, msg_t *message)
 {
+    message->id = llist_get_size(db->messages) + 1;
     return llist_append(db->messages, message);
 };
