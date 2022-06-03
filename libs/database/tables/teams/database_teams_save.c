@@ -53,9 +53,10 @@ bool db_load_teams(database_t *db, const char *filepath)
     if (!entities)
         return false;
     for (size_t i = 0; entities[i]; i++) {
-        team = team_init(atoi(entities[i][0]), entities[i][2], entities[i][3]);
+        team = team_init(entities[i][2], entities[i][3]);
         free(team->uuid);
         team->uuid = entities[i][1];
+        team->id = atoi(entities[i][0]);
         db_add_team(db, team);
     }
     printf("Teams: Successfully loaded.\n");
