@@ -67,6 +67,7 @@ typedef struct command_s {
 } command_t;
 
 #define THIS_CLIENT param->clients[param->id]
+#define TEAMS_A command_param_t *param
 
 extern const command_t commands[];
 
