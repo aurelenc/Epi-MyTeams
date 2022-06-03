@@ -15,7 +15,7 @@ int command_use_thread(TEAMS_A)
     thread_t *thread = 0;
 
     if (param->arg.nb < 2)
-        return client_reply(TEAMS_CLIENTS, param->id, MISSING_PARAMETER);
+        return client_reply(PARAM_CID, MISSING_PARAMETER);
     thread = db_search_thread_by_uuid(THIS_DB, THIS_ARG[1]);
     if (!thread)
         return client_reply(PARAM_CID, NOT_FOUND);

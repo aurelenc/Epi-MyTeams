@@ -17,6 +17,6 @@ int command_logout(TEAMS_A)
 
     if (user)
         server_event_user_logged_out(user->uuid);
-    remove_client(TEAMS_CLIENTS, param->id);
+    remove_client(PARAM_CID);
     return SUCCESS;
 }

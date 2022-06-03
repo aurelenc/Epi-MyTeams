@@ -21,7 +21,7 @@ int command_use_team(TEAMS_A)
     id_pair_t *search = 0;
 
     if (param->arg.nb < 2)
-        return client_reply(TEAMS_CLIENTS, param->id, MISSING_PARAMETER);
+        return client_reply(PARAM_CID, MISSING_PARAMETER);
     team = db_search_team_by_uuid(THIS_DB, THIS_ARG[1]);
     if (!team)
         return client_reply(PARAM_CID, NOT_FOUND);

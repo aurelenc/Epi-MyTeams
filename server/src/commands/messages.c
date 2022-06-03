@@ -27,7 +27,7 @@ static void fill_message(TEAMS_A, node_t *it)
         printf("%s\n", message);
         if (it->next)
             strcpy(message, " ");
-        write_client_buff(TEAMS_CLIENTS, param->id, message);
+        write_client_buff(PARAM_CID, message);
         it = it->next;
     }
 }
@@ -48,10 +48,10 @@ TEAMS_A)
         return client_reply_success(PARAM_CID, "");
     iterator = new->messages->first;
     if (!iterator)
-        return client_reply_success(TEAMS_CLIENTS, param->id, "");
-    write_client_buff(TEAMS_CLIENTS, param->id, "00:");
+        return client_reply_success(PARAM_CID, "");
+    write_client_buff(PARAM_CID, "00:");
     fill_message(param, iterator);
-    write_client_buff(TEAMS_CLIENTS, param->id, "\n");
+    write_client_buff(PARAM_CID, "\n");
     return SUCCESS;
 }
 
@@ -61,10 +61,10 @@ int command_messages(TEAMS_A)
     user_t *user_two = 0;
 
     if (param->arg.nb != 2)
-        return client_reply(TEAMS_CLIENTS, param->id, MISSING_PARAMETER);
+        return client_reply(PARAM_CID, MISSING_PARAMETER);
     user_two = db_search_user_by_uuid(THIS_DB, THIS_ARG[1]);
     if (!user_two)
-        return client_reply(TEAMS_CLIENTS, param->id, NOT_FOUND);
+        return client_reply(PARAM_CID, NOT_FOUND);
     user_one = db_search_user_by_id(THIS_DB,
     THIS_CLIENT.user);
     return generate_messages(user_one, user_two, param);

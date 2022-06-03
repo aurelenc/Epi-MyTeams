@@ -48,16 +48,16 @@ int command_send(TEAMS_A)
     printf("[SERVER] SEND\n");
     //CHECK IF HE'S CONNECTED
     if (param->arg.nb < 3)
-        return client_reply(TEAMS_CLIENTS, param->id, MISSING_PARAMETER);
+        return client_reply(PARAM_CID, MISSING_PARAMETER);
     else if (param->arg.nb > 3)
-        return client_reply(TEAMS_CLIENTS, param->id, INVALID_FORMAT);
+        return client_reply(PARAM_CID, INVALID_FORMAT);
     user_one = db_search_user_by_uuid(THIS_DB, THIS_ARG[1]);
     if (!user_one)
-        return client_reply(TEAMS_CLIENTS, param->id, NOT_FOUND);
+        return client_reply(PARAM_CID, NOT_FOUND);
     user_two = db_search_user_by_id(THIS_DB,
     THIS_CLIENT.user);
     ids[0] = user_one->id;
     ids[1] = user_two->id;
     add_msg_to_db(param, user_one, user_two, ids);
-    return client_reply(TEAMS_CLIENTS, param->id, SUCCESS);
+    return client_reply(PARAM_CID, SUCCESS);
 }

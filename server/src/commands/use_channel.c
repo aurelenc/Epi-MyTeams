@@ -16,7 +16,7 @@ int command_use_channel(TEAMS_A)
     channel_t *channel = 0;
 
     if (param->arg.nb < 2)
-        return client_reply(TEAMS_CLIENTS, param->id, MISSING_PARAMETER);
+        return client_reply(PARAM_CID, MISSING_PARAMETER);
     channel = db_search_channel_by_uuid(THIS_DB, THIS_ARG[1]);
     if (!channel)
         return client_reply(PARAM_CID, NOT_FOUND);
