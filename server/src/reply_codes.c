@@ -9,26 +9,26 @@
 #include "server.h"
 
 const reply_code_t reply_codes[] = {
-    {00, "00:%s\n"},
-    {01, "01:Service ready for new user.\n"},
-    {10, "10:Internal server error.\n"},
-    {11, "11:Server is full.\n"},
-    {12, "12:Too many requests.\n"},
-    {13, "13:Forbidden.\n"},
-    {14, "14:Not found.\n"},
-    {20, "20:Unknown client error.\n"},
-    {21, "21:Unrecognized command.\n"},
-    {22, "22:Missing parameter.\n"},
-    {23, "23:Invalid format.\n"},
-    {24, "24:Resource already exists.\n"},
-    {99, "99:Not implemented.\n"},
+    {SUCCESS, "00:%s\n"},
+    {SERVICE_READY_FOR_NEW_USER, "01:Service ready for new user.\n"},
+    {INTERNAL_SERVER_ERROR, "10:Internal server error.\n"},
+    {SERVER_IS_FULL, "11:Server is full.\n"},
+    {TOO_MANY_REQUESTS, "12:Too many requests.\n"},
+    {FORBIDDEN, "13:Forbidden.\n"},
+    {NOT_FOUND, "14:Not found.\n"},
+    {UNKNOWN_CLIENT_ERROR, "20:Unknown client error.\n"},
+    {UNRECOGNIZED_COMMAND, "21:Unrecognized command.\n"},
+    {MISSING_PARAMETER, "22:Missing parameter.\n"},
+    {INVALID_FORMAT, "23:Invalid format.\n"},
+    {RESOURCE_ALREADY_EXISTS, "24:Resource already exists.\n"},
+    {NOT_IMPLEMENTED, "99:Not implemented.\n"},
 };
 
 int get_reply(int code)
 {
     int i = 0;
 
-    for (; reply_codes[i].code != 99; i++) {
+    for (; reply_codes[i].code != NOT_IMPLEMENTED; i++) {
         if (reply_codes[i].code == code)
             return i;
     }

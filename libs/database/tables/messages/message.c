@@ -12,13 +12,13 @@
 #include <errno.h>
 #include <string.h>
 
-msg_t *msg_init(id_t id, const char *content, id_t user_id, int *relation)
+msg_t *msg_init(const char *content, id_t user_id, int *relation)
 {
     msg_t *msg = calloc(sizeof(msg_t), 1);
 
     if (!msg)
         exit (84);
-    msg->id = id;
+    msg->id = 0;
     msg->timestamp = time(NULL);
     msg->user_id = user_id;
     msg->thread_id = relation[0];

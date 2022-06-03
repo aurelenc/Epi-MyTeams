@@ -54,10 +54,11 @@ bool db_load_threads(database_t *db, const char *filepath)
     if (!entities)
         return false;
     for (size_t i = 0; entities[i]; i++) {
-        thread = thread_init(atoi(entities[i][0]), entities[i][2],
-        entities[i][3], atoi(entities[i][4]));
+        thread = thread_init(entities[i][2], entities[i][3],
+        atoi(entities[i][4]));
         free(thread->uuid);
         thread->uuid = entities[i][1];
+        thread->id = atoi(entities[i][0]);
         thread->timestamp = atol(entities[i][5]);
         db_add_thread(db, thread);
     }
