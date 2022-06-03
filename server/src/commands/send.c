@@ -54,7 +54,7 @@ int command_send(command_param_t *param)
     user_one = db_search_user_by_uuid(param->srv->db, param->arg.array[1]);
     if (!user_one)
         return client_reply(param->clients, param->id, NOT_FOUND);
-    user_two = db_search_user_by_uuid(param->srv->db,
+    user_two = db_search_user_by_id(param->srv->db,
     param->clients[param->id].user);
     ids[0] = user_one->id;
     ids[1] = user_two->id;

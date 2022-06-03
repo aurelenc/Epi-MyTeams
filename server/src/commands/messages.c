@@ -65,7 +65,7 @@ int command_messages(command_param_t *param)
     user_two = db_search_user_by_uuid(param->srv->db, param->arg.array[1]);
     if (!user_two)
         return client_reply(param->clients, param->id, NOT_FOUND);
-    user_one = db_search_user_by_uuid(param->srv->db,
+    user_one = db_search_user_by_id(param->srv->db,
     param->clients[param->id].user);
     return generate_messages(user_one, user_two, param);
 }
