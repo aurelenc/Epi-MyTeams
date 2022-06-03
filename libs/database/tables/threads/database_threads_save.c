@@ -38,7 +38,7 @@ bool db_save_threads(database_t *db, const char *filepath)
     }
     write_all_threads_in_file(db->threads, fptr);
     fclose(fptr);
-    printf("Threads saved successfully.\n");
+    printf("Threads: Successfully saved.\n");
     return true;
 }
 
@@ -61,5 +61,6 @@ bool db_load_threads(database_t *db, const char *filepath)
         thread->timestamp = atol(entities[i][5]);
         db_add_thread(db, thread);
     }
+    printf("Threads: Successfully loaded.\n");
     return true;
 }

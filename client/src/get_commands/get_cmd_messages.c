@@ -10,9 +10,24 @@
 #include "reply_codes.h"
 #include "logging_client.h"
 
+int message_responses(char **tab, char *code_response)
+{
+    if (!strcmp(code_response, "13"))
+        client_error_unauthorized();
+    //if (!strcmp(code_response, "??")) @timestamp  //print_list_of_user
+    //    client_private_message_print_messages(tab[1], tab[3], tab[5]);
+    // char const *sender_uuid,
+    // time_t message_timestamp,
+    // char const *message_body);
+    if (!strcmp(code_response, "??"))
+        client_error_unknown_user(tab[0]);
+    free(tab);
+    return 0;
+}
+
 int messages(char *av, int socket)
 {
-    char code_response[3];
+    char code_response[3] = {0};
     char **tab_res = NULL;
 
     if (check_params(av) == 1)
@@ -27,20 +42,5 @@ int messages(char *av, int socket)
         return -1;
     }
     strncpy(code_response, tab_res[0], 2);
-    code_response[2] = '\0';
-    if (!strcmp(code_response, "13"))
-        client_error_unauthorized();
-
-    //if (!strcmp(code_response, "??")) @timestamp  //print_list_of_user
-    //    client_private_message_print_messages(tab_res[1], tab_res[3], tab_res[5]);
-    // char const *sender_uuid,
-    // time_t message_timestamp,
-    // char const *message_body);
-
-    if (!strcmp(code_response, "??"))
-        client_error_unknown_user(tab_res[0]);
-    // char const *user_uuid);
-
-    free(tab_res);
-    return 0;
+    return message_responses(tab_res, code_response);
 }

@@ -10,9 +10,19 @@
 #include "reply_codes.h"
 #include "logging_client.h"
 
+int logout_responses(char **tab, char *code_response)
+{
+    if (!strcmp(code_response, "15"))
+        client_event_logged_out(tab[1], tab[3]);
+    if (!strcmp(code_response, "13"))
+        client_error_unauthorized();
+    free(tab);
+    return 0;
+}
+
 int logout_client(char *av, int socket)
 {
-    char code_response[3];
+    char code_response[3] = {0};
     char **tab_res = NULL;
 
     if (check_params(av) == 0)
@@ -27,11 +37,5 @@ int logout_client(char *av, int socket)
         return -1;
     }
     strncpy(code_response, tab_res[0], 2);
-    code_response[2] = '\0';
-    if (!strcmp(code_response, "15"))
-        client_event_logged_out(tab_res[1], tab_res[3]);
-    if (!strcmp(code_response, "13"))
-        client_error_unauthorized();
-    free(tab_res);
-    return 0;
+    return logout_responses(tab_res, code_response);
 }

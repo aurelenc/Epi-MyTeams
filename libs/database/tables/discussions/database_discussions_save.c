@@ -37,7 +37,7 @@ bool db_save_discussions(database_t *db, const char *filepath)
     }
     write_all_discussions_in_file(db->discussions, fptr);
     fclose(fptr);
-    printf("Discussions saved successfully.\n");
+    printf("Discussions: Successfully saved.\n");
     return true;
 }
 
@@ -59,5 +59,6 @@ bool db_load_discussions(database_t *db, const char *filepath)
         discussion->uuid = entities[i][1];
         db_add_discussion(db, discussion);
     }
+    printf("Discussions: Successfully loaded.\n");
     return true;
 }

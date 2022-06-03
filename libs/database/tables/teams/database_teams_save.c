@@ -37,7 +37,7 @@ bool db_save_teams(database_t *db, const char *filepath)
     }
     write_all_teams_in_file(db->teams, fptr);
     fclose(fptr);
-    printf("Teams saved successfully.\n");
+    printf("Teams: Successfully saved.\n");
     return true;
 }
 
@@ -58,5 +58,6 @@ bool db_load_teams(database_t *db, const char *filepath)
         team->uuid = entities[i][1];
         db_add_team(db, team);
     }
+    printf("Teams: Successfully loaded.\n");
     return true;
 }
