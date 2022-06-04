@@ -24,8 +24,8 @@ int command_unsubscribe(TEAMS_A)
 {
     id_pair_t pair = {0};
     team_t *team = 0;
-    char team_id_formatted[UUID_SIZE + 7] = {0};
-    char user_id_formatted[UUID_SIZE + 7] = {0};
+    char team_id_formatted[(UUID_SIZE * 2) + 10] = {0};
+    char user_id_formatted[(UUID_SIZE * 2) + 10] = {0};
 
     if (!THIS_CLIENT.user)
         return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);

@@ -8,6 +8,7 @@
 #include "reply_codes.h"
 #include "server.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 const reply_code_t reply_codes[] = {
     {SUCCESS, "00:%s\n"},
@@ -58,9 +59,10 @@ int get_reply(int code)
 
 int client_reply(client_sock_t *clients, int client_id, int code, char *msg)
 {
-    char buff[MAX_BUFF_SIZE] = {0};
+    char *buff = calloc(sizeof(char), MAX_BUFF_SIZE + 1);
 
     sprintf(buff, reply_codes[get_reply(code)].message, msg);
     write_client_buff(clients, client_id, buff);
+    free(buff);
     return code;
 }
