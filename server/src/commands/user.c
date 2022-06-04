@@ -23,7 +23,7 @@ static char *is_user_connected(client_sock_t *clients, unsigned int user_id)
 static char *get_msg_reply(user_t *user, client_sock_t *clients)
 {
     char *buff = calloc(sizeof(char),
-    strlen(user->uuid) + strlen(user->pseudo) + 13);
+    strlen(user->uuid) + strlen(user->pseudo) + 16);
 
     strcat(buff, "00:");
     strcat(buff, "[ \"");
