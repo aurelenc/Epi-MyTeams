@@ -20,7 +20,7 @@ static void write_all_teams_in_file(llist_t *teams, FILE *fptr)
 
     while (nptr) {
         team = (team_t *)nptr->data;
-        fprintf(fptr,"\"%i\";\"%s\";\"%s\";\"%s\";\n", team->id, team->uuid,
+        fprintf(fptr, "\"%i\";\"%s\";\"%s\";\"%s\";\n", team->id, team->uuid,
         team->name, team->desc);
         nptr = nptr->next;
     }

@@ -17,7 +17,7 @@
 
 static void fill_message(TEAMS_A, node_t *it)
 {
-    char message[MAX_BUFF_SIZE] = {0};
+    char message[MAX_BUFF_SIZE + 1] = {0};
 
     while (it) {
         memset(message, 0, MAX_BUFF_SIZE);

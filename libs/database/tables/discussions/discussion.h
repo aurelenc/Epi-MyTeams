@@ -16,7 +16,6 @@ typedef struct discussion_s {
     id_t user_two_id;
 } discussion_t;
 
-
 ///
 /// @brief It creates a discussion structure and returns a pointer to it
 ///

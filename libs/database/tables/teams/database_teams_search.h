@@ -19,11 +19,10 @@
 ///
 /// @return A pointer to a team_t struct.
 ///
-
 static inline team_t *db_search_team_by_id(database_t *db, const id_t id)
 {
     return (team_t *)llist_search(db->teams, &team_id_compare, &id);
-};
+}
 
 ///
 /// @brief It searches the database for a team with the given uuid
@@ -36,7 +35,7 @@ static inline team_t *db_search_team_by_id(database_t *db, const id_t id)
 static inline team_t *db_search_team_by_uuid(database_t *db, const char *uuid)
 {
     return (team_t *)llist_search(db->teams, &team_uuid_compare, uuid);
-};
+}
 
 ///
 /// @brief It searches the database for a team with the given name
@@ -49,4 +48,4 @@ static inline team_t *db_search_team_by_uuid(database_t *db, const char *uuid)
 static inline team_t *db_search_team_by_name(database_t *db, const char *name)
 {
     return (team_t *)llist_search(db->teams, &team_name_compare, name);
-};
+}

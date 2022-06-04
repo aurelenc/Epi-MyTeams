@@ -19,11 +19,11 @@
 ///
 /// @return A boolean value.
 ///
-static inline bool db_delete_user_team_by_user_id(
-database_t *db, const id_t id)
+static inline bool db_delete_user_team_by_user_id(database_t *db,
+const id_t id)
 {
     return llist_delif(db->users_teams, &user_team_user_id_compare, &id);
-};
+}
 
 ///
 /// @brief It deletes the first user-team associations that have the given team
@@ -34,11 +34,11 @@ database_t *db, const id_t id)
 ///
 /// @return A boolean value.
 ///
-static inline bool db_delete_user_team_by_team_id(
-database_t *db, const id_t id)
+static inline bool db_delete_user_team_by_team_id(database_t *db,
+const id_t id)
 {
     return llist_delif(db->users_teams, &user_team_team_id_compare, &id);
-};
+}
 
 ///
 /// @brief It deletes a user-team pair from the database
@@ -52,4 +52,4 @@ static inline bool db_delete_user_team_by_pair(database_t *db,
 const id_pair_t *pair)
 {
     return llist_delif(db->users_teams, &user_team_pair_compare, pair);
-};
+}

@@ -32,8 +32,8 @@ int subscribed(char *av, int socket);
 int help(char *av, int socket);
 
 typedef	struct tab_command_sending_s {
-  char *cmd;
-  int (*function)(char *, int);
+    char *cmd;
+    int (*function)(char *, int);
 } tab_command_sending_t;
 
 extern tab_command_sending_t gptrtab[];
@@ -43,6 +43,8 @@ char *manage_params(char *av);
 int check_params(char *av);
 
 char **parse_response(char *response, int nb_params);
+
+bool arg_is_good(int ac, char **av);
 
 char **send_command(char *av, char **tab_response, char *command, int socket);
 int print_message(char **tab_res, int reply_code);

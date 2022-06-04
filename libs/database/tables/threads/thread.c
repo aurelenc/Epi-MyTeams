@@ -18,7 +18,7 @@ thread_t *thread_init(char *title, char *body, id_t channel_id)
 
     if (!thread) {
         perror("Thread creation");
-        exit (84);
+        exit(84);
     }
     thread->timestamp = time(NULL);
     thread->id = 0;
@@ -27,7 +27,7 @@ thread_t *thread_init(char *title, char *body, id_t channel_id)
     thread->uuid = uuid_gen();
     if (!thread->uuid) {
         perror("Thread creation");
-        exit (84);
+        exit(84);
     }
     thread->channel_id = channel_id;
     return (thread);

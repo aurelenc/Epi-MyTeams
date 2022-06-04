@@ -40,3 +40,5 @@ typedef struct client_s {
     int socket;
     struct sockaddr_in servaddr;
 } client_t;
+
+void create_client(client_t *client, char **av);

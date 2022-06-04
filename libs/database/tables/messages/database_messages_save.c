@@ -20,7 +20,7 @@ static void write_all_messages_in_file(llist_t *messages, FILE *fptr)
 
     while (nptr) {
         msg = (msg_t *)nptr->data;
-        fprintf(fptr,"\"%i\";\"%s\";\"%s\";\"%ld\";\"%d\";\"%d\";\"%d\";\n",
+        fprintf(fptr, "\"%i\";\"%s\";\"%s\";\"%ld\";\"%d\";\"%d\";\"%d\";\n",
         msg->id, msg->uuid, msg->content, msg->timestamp, msg->user_id,
         msg->thread_id, msg->discussion_id);
         nptr = nptr->next;

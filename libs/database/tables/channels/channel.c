@@ -18,14 +18,14 @@ channel_t *channel_init(const char *name, const char *desc, id_t team_id)
 
     if (!channel) {
         perror("Channel creation");
-        exit (84);
+        exit(84);
     }
     channel->id = 0;
     channel->name = strdup(name);
     channel->desc = strdup(desc);
     channel->uuid = uuid_gen();
     if (!channel->name || !channel->desc || !channel->uuid)
-        exit (84);
+        exit(84);
     channel->team_id = team_id;
     return channel;
 }

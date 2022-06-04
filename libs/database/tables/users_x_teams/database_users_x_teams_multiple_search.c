@@ -35,7 +35,7 @@ const id_t id)
     found->users = llist_multiple_search(db->users, user_id_array_compare,
     users_id);
     return found;
-};
+}
 
 database_t *db_search_teams_of_an_user_by_his_id(database_t *db,
 const id_t id)
@@ -59,4 +59,4 @@ const id_t id)
     found->teams = llist_multiple_search(db->teams, team_id_array_compare,
     teams_id);
     return found;
-};
+}

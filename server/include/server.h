@@ -22,7 +22,7 @@
 #define CBUFF_SIZE (int)4e+6
 #define MAX_USER_SIZE 256
 #define MAX_CLIENTS 20
-#define MAX_ARGS_NB 1
+#define MAX_ARGS_NB 4
 #define MAX_PARAMS_NB MAX_ARGS_NB + 1
 #define UUID_SIZE 37
 
@@ -82,6 +82,9 @@ extern const command_t commands[];
 /// Launch
 bool has_param_error(int ac, char **av);
 int display_help(void);
+
+/// Server
+void load_server_db(server_t *server);
 
 /// Clients
 void new_client(client_sock_t *clients, int client_socket);

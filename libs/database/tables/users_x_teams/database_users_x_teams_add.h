@@ -21,4 +21,4 @@
 static inline bool db_add_user_team_relation(database_t *db, id_pair_t *pair)
 {
     return llist_append(db->users_teams, pair);
-};
+}

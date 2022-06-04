@@ -18,7 +18,7 @@ user_t *user_init(const char *pseudo, const char *password)
 
     if (!user) {
         perror("User creation");
-        exit (84);
+        exit(84);
     }
     user->id = 0;
     user->uuid = uuid_gen();
@@ -26,7 +26,7 @@ user_t *user_init(const char *pseudo, const char *password)
     user->password = strdup(password);
     if (!user->uuid || !user->pseudo || ! user->password) {
         perror("User creation");
-        exit (84);
+        exit(84);
     }
     return user;
 }

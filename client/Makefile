@@ -27,6 +27,7 @@ SRC_COMMANDS	=	src/get_commands/get_cmd_unsubscribe_teams.c	\
 SRC	=	main.c\
 		src/client.c\
 		src/signals.c\
+		src/create_client.c\
 		src/manage_commands/manage_command.c	\
 		src/get_commands/check_params.c	\
 		src/get_commands/print_message.c	\
@@ -34,20 +35,21 @@ SRC	=	main.c\
 		src/manage_commands/make_command_rfc_compatible.c	\
 		src/manage_commands/parse_server_response.c \
 		src/manage_commands/reply_codes.c	\
-		src/manage_commands/send_command.c
+		src/manage_commands/send_command.c	\
+		src/manage_commands/utils.c	\
 
 LIB	=	../libs/circularbuffer/circular_buffer.c\
 
 OBJ	=	$(SRC:.c=.o) $(SRC_COMMANDS:.c=.o) $(LIB:.c=.o)
 
-CFLAGS	=	-Wall -Werror -I ../../../libs/myteams -I ../include -I ../../include -I include/ -I ../libs/myteams -I ../libs/circularbuffer
+CFLAGS	=	-Wall -Werror -I ../../../libs/myteams -I ../include -I ../../include -I include/ -I ../libs/myteams -I ../libs/circularbuffer -g
 
 LDFLAGS	=	 -L ../libs/myteams -lmyteams
 
 CC	=	gcc
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME) $(LDFLAGS)
+	$(CC) $(OBJ) -o $(NAME) $(LDFLAGS) -g
 
 clean:
 	rm -f $(OBJ)

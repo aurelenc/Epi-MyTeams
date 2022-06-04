@@ -23,7 +23,7 @@ database_t *db_creation(void)
 
     if (!db) {
         perror("Database creation");
-        exit (84);
+        exit(84);
     }
     db->users = llist_init();
     db->teams = llist_init();
@@ -33,9 +33,9 @@ database_t *db_creation(void)
     db->discussions = llist_init();
     db->users_teams = llist_init();
     if (!db->users || !db->teams || !db->channels || !db->messages
-        || !db->threads || !db->discussions || !db->users_teams) {
+    || !db->threads || !db->discussions || !db->users_teams) {
         perror("Database creation");
-        exit (84);
+        exit(84);
     }
     return (db);
 }

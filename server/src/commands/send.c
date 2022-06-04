@@ -17,6 +17,23 @@
 #include <stdlib.h>
 #include <string.h>
 
+static void send_to_other_user(client_sock_t *clients, int id, char *uuid,
+char *msg)
+{
+    char *reply =
+    calloc(sizeof(char), strlen(uuid) + strlen(msg) + 12);
+
+    if (!reply)
+        exit(84);
+    strcat(reply, "[ \"");
+    strcat(reply, uuid);
+    strcat(reply, "\" \"");
+    strcat(reply, msg);
+    strcat(reply, "\"]");
+    client_reply(clients, id, GET_MESSAGE, reply);
+    free(reply);
+}
+
 static void get_reply_msg(TEAMS_A, char *user_uuid, char *message_body)
 {
     char *reply =
@@ -34,13 +51,14 @@ static void get_reply_msg(TEAMS_A, char *user_uuid, char *message_body)
         if (!TEAMS_CLIENTS[i].socket || !TEAMS_CLIENTS[i].user)
             continue;
         if (strcmp(TEAMS_CLIENTS[i].user->uuid, user_uuid) == 0)
-            client_reply(TEAMS_CLIENTS, i, GET_MESSAGE, message_body);
+            send_to_other_user(TEAMS_CLIENTS, i, THIS_CLIENT.user->uuid,
+            message_body);
     }
     free(reply);
 }
 
-static void add_msg_to_db(
-TEAMS_A, user_t *user_one, user_t *user_two, id_t *ids)
+static void add_msg_to_db(TEAMS_A,
+user_t *user_one, user_t *user_two, id_t *ids)
 {
     int *relation = calloc(sizeof(int), 2);
     discussion_t *disc = db_search_discussion_by_users_id(THIS_DB, ids);

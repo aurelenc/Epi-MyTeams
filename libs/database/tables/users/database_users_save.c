@@ -20,7 +20,7 @@ static void write_all_users_in_file(llist_t *users, FILE *fptr)
 
     while (nptr) {
         user = (user_t *)nptr->data;
-        fprintf(fptr,"\"%i\";\"%s\";\"%s\";\"%s\";\n", user->id, user->uuid,
+        fprintf(fptr, "\"%i\";\"%s\";\"%s\";\"%s\";\n", user->id, user->uuid,
         user->pseudo, user->password);
         nptr = nptr->next;
     }

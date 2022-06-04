@@ -22,7 +22,7 @@
 static inline bool db_delete_discussion_by_id(database_t *db, const id_t id)
 {
     return llist_delif(db->discussions, &discussion_id_compare, &id);
-};
+}
 
 ///
 /// @brief It deletes a discussion from the database by uuid
@@ -36,7 +36,7 @@ static inline bool db_delete_discussion_by_uuid(database_t *db,
 const char *uuid)
 {
     return llist_delif(db->discussions, &discussion_uuid_compare, uuid);
-};
+}
 
 ///
 /// @brief It deletes a discussion from the database if it has the same user
@@ -52,7 +52,7 @@ const id_t user_one_id)
 {
     return llist_delif(db->discussions, &discussion_user_one_id_compare,
     &user_one_id);
-};
+}
 
 ///
 /// @brief It deletes a discussion from the database if it has the same user
@@ -68,4 +68,4 @@ const id_t user_two_id)
 {
     return llist_delif(db->discussions, &discussion_user_two_id_compare,
     &user_two_id);
-};
+}

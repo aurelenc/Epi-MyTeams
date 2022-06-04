@@ -51,4 +51,4 @@ const id_t channel_id)
 {
     return llist_delif(db->threads, &thread_channel_id_compare,
     &channel_id);
-};
+}

@@ -7,14 +7,15 @@
 
 NAME	=	myteams_server
 
-SRC	=	src/main.c			\
-		src/server.c		\
-		src/reply_codes.c	\
-		src/commands.c		\
-		src/clients.c		\
-		src/client_input.c	\
-		src/cli_launch.c	\
-		src/signals.c		\
+SRC	=	src/main.c					\
+		src/server.c				\
+		src/server_db_loading.c		\
+		src/reply_codes.c			\
+		src/commands.c				\
+		src/clients.c				\
+		src/client_input.c			\
+		src/cli_launch.c			\
+		src/signals.c				\
 
 COMMANDS_SRC	=	\
 					src/commands/login.c				\
@@ -27,9 +28,11 @@ COMMANDS_SRC	=	\
 					src/commands/subscribed_teams.c		\
 					src/commands/subscribed_users.c		\
 					src/commands/unsubscribe.c			\
-					src/commands/use_team.c				\
-					src/commands/use_channel.c			\
-					src/commands/use_thread.c			\
+					src/commands/use.c					\
+					src/commands/use_nothing.c			\
+					src/commands/use_one_arg.c			\
+					src/commands/use_two_arg.c			\
+					src/commands/use_three_arg.c		\
 					src/commands/create.c				\
 					src/commands/create_team.c			\
 					src/commands/create_channel.c		\

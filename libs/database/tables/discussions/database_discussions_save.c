@@ -20,7 +20,7 @@ static void write_all_discussions_in_file(llist_t *discussions, FILE *fptr)
 
     while (nptr) {
         disc = (discussion_t *)nptr->data;
-        fprintf(fptr,"\"%i\";\"%s\";\"%i\";\"%i\";\n", disc->id, disc->uuid,
+        fprintf(fptr, "\"%i\";\"%s\";\"%i\";\"%i\";\n", disc->id, disc->uuid,
         disc->user_one_id, disc->user_two_id);
         nptr = nptr->next;
     }
