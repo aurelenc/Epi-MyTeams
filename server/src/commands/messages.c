@@ -21,12 +21,11 @@ static void fill_message(TEAMS_A, node_t *it)
 
     while (it) {
         memset(message, 0, MAX_BUFF_SIZE);
-        snprintf(message, MAX_BUFF_SIZE, "[\"%ld\" \"%s\"]",
+        snprintf(message, MAX_BUFF_SIZE, "[\"%s\" \"%ld\" \"%s\"]",
+        db_search_user_by_id(THIS_DB, ((msg_t *)(it->data))->id)->uuid,
         ((msg_t *)(it->data))->timestamp,
         ((msg_t *)(it->data))->content);
         printf("%s\n", message);
-        if (it->next)
-            strcat(message, " ");
         write_client_buff(PARAM_CID, message);
         it = it->next;
     }
@@ -57,13 +56,16 @@ static int generate_messages(user_t *user_one, user_t *user_two, TEAMS_A)
 int command_messages(TEAMS_A)
 {
     user_t *user_two = 0;
+    char user_id_formatted[UUID_SIZE + 7] = {0};
 
     if (!THIS_CLIENT.user)
         return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
     if (param->arg.nb != 2)
         return client_reply(PARAM_CID, MISSING_PARAMETER, EMPTY_REPLY);
     user_two = db_search_user_by_uuid(THIS_DB, THIS_ARG[1]);
-    if (!user_two)
-        return client_reply(PARAM_CID, NOT_FOUND, EMPTY_REPLY);
+    if (!user_two) {
+        sprintf(user_id_formatted, "[ \"%s\"]", THIS_ARG[1]);
+        return client_reply(PARAM_CID, NOT_FOUND, user_id_formatted);
+    }
     return generate_messages(THIS_CLIENT.user, user_two, param);
 }

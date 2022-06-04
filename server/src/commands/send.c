@@ -58,7 +58,6 @@ TEAMS_A, user_t *user_one, user_t *user_two, id_t *ids)
         relation[1] = disc->id;
         db_add_msg(THIS_DB, msg_init(THIS_ARG[2], ids[1], relation));
     }
-    //send message to the client here
 }
 
 int command_send(TEAMS_A)
