@@ -12,7 +12,7 @@
 
 char *add_space(char *av)
 {
-    char *temp = calloc(sizeof(char),(strlen(av) + 1));
+    char *temp = calloc(sizeof(char), (strlen(av) + 1));
     int count = 0;
     int i = 0;
 
@@ -36,7 +36,7 @@ bool make_command_rfc_compatible(char *dest, const char *command, char *av)
     strcat(dest, command);
     if (dest == NULL)
         return false;
-    if (av[0] != '\0') {
+    if (av != NULL) {
         av = strdup(add_space(av));
         strcat(dest, av);
     }

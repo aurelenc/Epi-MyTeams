@@ -24,6 +24,8 @@ int list_responses_list(char **tab, char *code_response)
 
 int list_responses(char **tab, char *code_response)
 {
+    if (!strcmp(code_response, "00"))
+        client_print_user(tab[1], tab[3], atoi(tab[5]));
     if (!strcmp(code_response, "41"))
         for (int i = 0; tab[i + 6]; i = i + 6)
             client_print_teams(tab[i + 1], tab[i + 3], tab[i + 5]);
