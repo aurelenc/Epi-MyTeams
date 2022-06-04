@@ -39,7 +39,6 @@ static char *get_msg_reply(llist_t *users, client_sock_t *clients)
         strcat(buff, "\"]");
         ptr = ptr->next;
     }
-    strcat(buff, "\n");
     return (buff);
 }
 
@@ -48,6 +47,8 @@ int command_users(TEAMS_A)
     char *success_buff = 0;
 
     printf("[SERVER] USERS\n");
+    if (!THIS_CLIENT.user)
+        return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
     if (param->arg.nb > 1) {
         return client_reply(PARAM_CID, INVALID_FORMAT, EMPTY_REPLY);
     }

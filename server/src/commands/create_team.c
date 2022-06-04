@@ -20,6 +20,7 @@ static char *get_success(team_t *team)
     char *buff = calloc(sizeof(char), len);
 
     snprintf(buff, len, "[ \"%s\" \"%s\" \"%s\"]\n", team->uuid, team->name,
+    snprintf(buff, len, "[ \"%s\" \"%s\" \"%s\"]", team->uuid, team->name,
     team->desc);
     printf("%s\n", buff);
     return (buff);
