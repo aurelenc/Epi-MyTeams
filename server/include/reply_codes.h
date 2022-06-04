@@ -30,7 +30,7 @@ int client_reply(client_sock_t *clients, int cliend_id, int code, char *msg);
 #define SUBSCRIBE_OK 02
 #define UNSUBSCRIBE_OK 03
 
-#define INTERNAL_SERVER_ERROR 10
+#define INTERNAL_SERVER_ERROR 10 
 #define SERVER_IS_FULL 11
 #define TOO_MANY_REQUESTS 12
 #define FORBIDDEN 13

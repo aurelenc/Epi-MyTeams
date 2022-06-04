@@ -25,7 +25,7 @@ COMMANDS_SRC	=	\
 					src/commands/send.c					\
 					src/commands/messages.c				\
 					src/commands/subscribe.c			\
-					src/commands/subscribed.c		\
+					src/commands/subscribed.c			\
 					src/commands/subscribed_teams.c		\
 					src/commands/subscribed_users.c		\
 					src/commands/unsubscribe.c			\
@@ -39,10 +39,12 @@ COMMANDS_SRC	=	\
 					src/commands/create_channel.c		\
 					src/commands/create_thread.c		\
 					src/commands/create_reply.c			\
+					src/commands/list.c					\
 					src/commands/list_teams.c			\
 					src/commands/list_channels.c		\
 					src/commands/list_threads.c			\
 					src/commands/list_replies.c			\
+					src/commands/info.c			\
 					src/commands/info_team.c			\
 					src/commands/info_channel.c			\
 					src/commands/info_thread.c			\

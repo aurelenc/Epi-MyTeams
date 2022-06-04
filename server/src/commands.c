@@ -20,13 +20,7 @@ const command_t commands[] = {
     {"\"USUB\"", 1, 0, &command_unsubscribe, true},
     {"\"USE\"", 0, 3, &command_use, true},
     {"\"CREA\"", 1, 0, &command_create, true},
-    {"\"LSTE\"", 1, 0, &command_list_teams, true},
-    {"\"LSCH\"", 1, 0, &command_list_channels, true},
-    {"\"LSTH\"", 1, 0, &command_list_threads, true},
-    {"\"LSTE\"", 1, 0, &command_list_replies, true},
-    {"\"IFTE\"", 1, 0, &command_info_team, true},
-    {"\"IFCH\"", 1, 0, &command_info_channel, true},
-    {"\"IFTH\"", 1, 0, &command_info_thread, true},
-    {"\"IFTH\"", 1, 0, &command_info_user, true},
+    {"\"LIST\"", 1, 0, &command_list, true},
+    {"\"INFO\"", 1, 0, &command_info, true},
     {"NULL", 0, 0, NULL, false}
 };
