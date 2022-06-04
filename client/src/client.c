@@ -56,7 +56,7 @@ void running_teams(client_t *client, char *buff)
     if (select(FD_SETSIZE, &client->rfd, &client->wfd, NULL, NULL) < 0)
         exit(84);
     if (FD_ISSET(client->socket, &client->rfd))
-        printf("Le server ecrit...\n");
+        printf(".");
     if (FD_ISSET(client->socket, &client->wfd)) {
         memset(buff, 0, strlen(buff));
         if (FD_ISSET(0, &client->rfd)) {

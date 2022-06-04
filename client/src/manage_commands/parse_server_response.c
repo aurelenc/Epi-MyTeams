@@ -52,6 +52,7 @@ char **parse_response(char *response, int nb_params)
         arg = strtok_r(str1, parser, &saveptr1);
         if (arg == NULL)
             break;
+        printf("%d: [%s]\n", i, arg);
         tab_response[i] = strdup(arg);
     }
     return tab_response;
