@@ -11,6 +11,10 @@
 
 int print_message(char **tab_res, int reply_code)
 {
+    if (reply_code == GET_LOGI)
+        client_event_logged_in(tab_res[1], tab_res[3]);
+    if (reply_code == GET_LOGO)
+        client_event_logged_out(tab_res[1], tab_res[3]);
     if (reply_code == GET_REPLY)
         client_event_thread_reply_received(tab_res[1], tab_res[3], tab_res[5],
         tab_res[7]);

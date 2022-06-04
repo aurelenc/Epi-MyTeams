@@ -41,6 +41,8 @@ const reply_code_t reply_codes[] = {
     {GET_CHANNEL, "62:%s\n"},
     {GET_THREAD, "63:%s\n"},
     {GET_REPLY, "64:%s\n"},
+    {GET_LOGO, "65:%s\n"},
+    {GET_LOGI, "66:%s\n"},
     {NOT_IMPLEMENTED, "99:%s\n"},
 };
 
@@ -57,7 +59,7 @@ int get_reply(int code)
 //printf("%s\n", reply_codes[get_reply(reply_code)].message);
 int client_reply(int reply_code, char **tab_response, char *buff)
 {
-    if (reply_code <= GET_REPLY && reply_code >= GET_MESSAGE) {
+    if (reply_code <= GET_LOGO && reply_code >= GET_MESSAGE) {
         if (strlen(buff) > 4)
             tab_response = parse_response(buff, 2);
         print_message(tab_response, reply_code);

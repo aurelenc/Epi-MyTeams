@@ -43,6 +43,8 @@ const reply_code_t reply_codes[] = {
     {GET_CHANNEL, "62:%s\n"},
     {GET_THREAD, "63:%s\n"},
     {GET_REPLY, "64:%s\n"},
+    {GET_LOGO, "65:%s\n"},
+    {GET_LOGI, "66:%s\n"},
     {NOT_IMPLEMENTED, "99:%s\n"},
 };
 
