@@ -47,7 +47,7 @@ int list(char *av, int socket)
     char **tab_res = NULL;
 
     if (check_params(av) == 0)
-        tab_res = send_command(av, tab_res, "LSTE ", socket);
+        tab_res = send_command(av, tab_res, "\"LSTE\" ", socket);
     else {
         printf("Command is not good, use /help for more information !\n");
         return -1;
