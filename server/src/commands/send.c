@@ -34,7 +34,7 @@ static void get_reply_msg(TEAMS_A, char *user_uuid, char *message_body)
         if (!TEAMS_CLIENTS[i].socket || !TEAMS_CLIENTS[i].user)
             continue;
         if (strcmp(TEAMS_CLIENTS[i].user->uuid, user_uuid) == 0)
-            write_client_buff(TEAMS_CLIENTS, i, message_body);
+            client_reply(TEAMS_CLIENTS, i, GET_MESSAGE, message_body);
     }
     free(reply);
 }
