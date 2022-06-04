@@ -83,6 +83,9 @@ extern const command_t commands[];
 bool has_param_error(int ac, char **av);
 int display_help(void);
 
+/// Server
+void load_server_db(server_t *server);
+
 /// Clients
 void new_client(client_sock_t *clients, int client_socket);
 void remove_client(client_sock_t *clients, int remove_index);
