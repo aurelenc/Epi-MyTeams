@@ -89,7 +89,7 @@ int command_create_reply(TEAMS_A)
             continue;
         if (!is_cli_in_team(THIS_DB, &TEAMS_CLIENTS[i], TEAMS_CLIENTS->team))
             continue;
-        client_reply_success(param->clients, i, CREATE_REPLY, buff);
+        client_reply(param->clients, i, CREATE_REPLY, buff);
     }
     free(buff);
     return CREATE_REPLY;
