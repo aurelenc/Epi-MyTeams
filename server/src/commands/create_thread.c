@@ -35,8 +35,8 @@ static char *get_success(TEAMS_A, thread_t *thread)
     strlen(thread->title) + strlen(thread->body) + 32;
     char *buff = calloc(sizeof(char), len);
 
-    snprintf(buff, len , "%i:[ \"%s\" \"%s\" \"%ld\" \"%s\" \"%s\"]\n",
-    CREATE_THREAD, thread->uuid, THIS_CLIENT.user->uuid, thread->timestamp,
+    snprintf(buff, len , "[\"%s\" \"%s\" \"%ld\" \"%s\" \"%s\"]\n",
+    thread->uuid, THIS_CLIENT.user->uuid, thread->timestamp,
     thread->title, thread->body);
     printf("%s\n", buff);
     return (buff);

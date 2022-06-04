@@ -51,7 +51,7 @@ static char *get_success(TEAMS_A, msg_t *msg)
     + strlen(THIS_CLIENT.user->uuid) + strlen(msg->content) + 20;
     char *buff = calloc(sizeof(char), len);
 
-    snprintf(buff, len, "%i:[ \"%s\" \"%s\" \"%s\" \"%s\"]\n", CREATE_REPLY,
+    snprintf(buff, len, "[ \"%s\" \"%s\" \"%s\" \"%s\"]\n",
     THIS_CLIENT.team->uuid, THIS_CLIENT.thread->uuid, THIS_CLIENT.user->uuid,
     msg->content);
     printf("%s\n", buff);

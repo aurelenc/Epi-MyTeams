@@ -19,8 +19,8 @@ static char *get_success(team_t *team)
     strlen(team->desc) + 16;
     char *buff = calloc(sizeof(char), len);
 
-    snprintf(buff, len, "%i:[ \"%s\" \"%s\" \"%s\"]\n", CREATE_TEAM,
-    team->uuid, team->name, team->desc);
+    snprintf(buff, len, "[ \"%s\" \"%s\" \"%s\"]\n", team->uuid, team->name,
+    team->desc);
     printf("%s\n", buff);
     return (buff);
 }
