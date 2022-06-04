@@ -10,6 +10,7 @@
 #include "tables/threads/database_threads_search.h"
 #include <stdio.h>
 #include <string.h>
+#include "tables/users/database_users_search.h"
 
 static void fill_message(TEAMS_A, node_t *it)
 {
@@ -17,9 +18,10 @@ static void fill_message(TEAMS_A, node_t *it)
 
     while (it) {
         memset(message, 0, MAX_BUFF_SIZE);
-        snprintf(message, MAX_BUFF_SIZE, "[\"%s\" \"%s\" \"%ld\" \"%s\" \"%s\"]",
+        snprintf(message, MAX_BUFF_SIZE,
+        "[\"%s\" \"%s\" \"%ld\" \"%s\" \"%s\"]",
         ((thread_t *)(it->data))->uuid,
-        ((thread_t *)(it->data))->uuid, // To replace with thread creator
+        db_search_user_by_id(THIS_DB, ((thread_t *)(it->data))->user_id)->uuid,
         ((thread_t *)(it->data))->timestamp,
         ((thread_t *)(it->data))->title,
         ((thread_t *)(it->data))->body);
