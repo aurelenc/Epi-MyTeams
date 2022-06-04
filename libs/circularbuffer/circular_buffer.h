@@ -46,6 +46,7 @@ cbuff_ret_t cbuff_push(char *cbuff, char *src);
 ** @param dest the string to push the next data into
 ** @param dest_len the length of the 'dest' string
 ** @retval BUFFER_OK if the string was successfully pulled
-** @retval BUFFER_NO_DATA buffer does not contains any relevant data to pop into dest
+** @retval BUFFER_NO_DATA buffer does not contains any relevant data to pop
+** into dest
 **/
 cbuff_ret_t cbuff_pop(char *cbuff, char *dest, size_t dest_size);

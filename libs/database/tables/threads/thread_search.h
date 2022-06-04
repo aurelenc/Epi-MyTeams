@@ -19,8 +19,8 @@
 bool thread_id_compare(const void *elem, const void *search);
 
 ///
-/// @brief It compares the uuid of a thread with the uuid of a thread that is being
-/// searched for
+/// @brief It compares the uuid of a thread with the uuid of a thread
+/// that is being searched for
 ///
 /// @param elem The element to compare.
 /// @param search The value to search for.

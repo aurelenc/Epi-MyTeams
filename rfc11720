@@ -123,7 +123,7 @@ The objectives of the myTeams project RFC is to allow communication between myTe
 - 00
     - Success
 - 01
-    - Client connected
+    - Client connected or service ready for new user
 - 02
     - Client subscribe at a teams OK
 - 03
@@ -139,8 +139,6 @@ The objectives of the myTeams project RFC is to allow communication between myTe
     - Forbidden
 - 14
     - Not found
-- 15
-    - Logout or Lost Connexion
 
 
 - 20
@@ -153,8 +151,6 @@ The objectives of the myTeams project RFC is to allow communication between myTe
     - Invalid format
 - 24
     - Resource already exists
-- 25
-    - Client does not log/exist in database
 
 
 - 30
@@ -163,6 +159,8 @@ The objectives of the myTeams project RFC is to allow communication between myTe
     - Unknown channel
 - 32
     - Unknown thread
+- 33
+    - Unknown client
 
 
 

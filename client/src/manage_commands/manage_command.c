@@ -25,9 +25,9 @@ tab_command_sending_t tab_command_sending[] = {
     {"a b", NULL}
 };
 
+//printf("Command = [%s], av = [%s]\n", command, av);
 void get_rfds_command(char *command, char *av, int socket)
 {
-    //printf("Command = [%s], av = [%s]\n", command, av);
     for (int i = 0; tab_command_sending[i].cmd != NULL; i++)
         if (!strcmp(tab_command_sending[i].cmd, command))
             tab_command_sending[i].function(av, socket);

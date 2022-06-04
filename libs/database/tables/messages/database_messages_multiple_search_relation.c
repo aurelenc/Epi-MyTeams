@@ -18,7 +18,8 @@ const id_t user_id)
     if (!found)
         return (0);
     llist_destruction(found->messages);
-    found->messages = llist_multiple_search(db->messages, &msg_user_id_compare, &user_id);
+    found->messages =
+    llist_multiple_search(db->messages, &msg_user_id_compare, &user_id);
     return found;
 };
 
@@ -30,7 +31,8 @@ const id_t thread_id)
     if (!found)
         return (0);
     llist_destruction(found->messages);
-    found->messages = llist_multiple_search(db->messages, &msg_thread_id_compare,
+    found->messages =
+    llist_multiple_search(db->messages, &msg_thread_id_compare,
     &thread_id);
     return (found);
 };
@@ -43,7 +45,8 @@ const id_t discu_id)
     if (!found)
         return (0);
     llist_destruction(found->messages);
-    found->messages = llist_multiple_search(db->messages, &msg_discussion_id_compare,
+    found->messages =
+    llist_multiple_search(db->messages, &msg_discussion_id_compare,
     &discu_id);
     return (found);
 };
