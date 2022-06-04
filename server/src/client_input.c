@@ -28,6 +28,7 @@ int get_command_params(char **dest, char *src)
     printf("{%s}\n", src);
     for (; i < MAX_PARAMS_NB + 1; i++) {
         tok = strtok(i == 0 ? tmp : NULL, "\"");
+        printf("tok = [%s]\n", tok);
         if (!tok)
             break;
         if (i % 2 == 0)
