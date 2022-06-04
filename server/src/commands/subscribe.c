@@ -27,14 +27,15 @@ int command_subscribe(TEAMS_A)
         return client_reply(PARAM_CID, MISSING_PARAMETER, EMPTY_REPLY);
     team = db_search_team_by_uuid(THIS_DB, THIS_ARG[1]);
     if (!team) {
-        sprintf(team_id_formatted, "[ \"%s\"]", THIS_ARG[1]);
+        snprintf(team_id_formatted, (UUID_SIZE * 2) + 9, "[ \"%s\"]",
+        THIS_ARG[1]);
         return client_reply(PARAM_CID, UNKNOWN_TEAM, team_id_formatted);
     }
     pair->user_id = THIS_CLIENT.user->id;
     pair->team_id = team->id;
     if (db_add_user_team_relation(THIS_DB, pair) == true) {
-        sprintf(user_id_formatted, "[ \"%s\" \"%s\"]", THIS_CLIENT.user->uuid,
-        team->uuid);
+        snprintf(user_id_formatted, (UUID_SIZE * 2) + 9, "[ \"%s\" \"%s\"]",
+        THIS_CLIENT.user->uuid, team->uuid);
         server_event_user_subscribed(team->uuid, THIS_CLIENT.user->uuid);
         return client_reply(PARAM_CID, SUBSCRIBE_OK, user_id_formatted);
     }

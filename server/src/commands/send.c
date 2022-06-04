@@ -93,7 +93,7 @@ int command_send(TEAMS_A)
         return client_reply(PARAM_CID, INVALID_FORMAT, EMPTY_REPLY);
     user_one = db_search_user_by_uuid(THIS_DB, THIS_ARG[1]);
     if (!user_one) {
-        sprintf(user_id_formatted, "[ \"%s\"]", THIS_ARG[1]);
+        snprintf(user_id_formatted, UUID_SIZE + 6, "[ \"%s\"]", THIS_ARG[1]);
         return client_reply(PARAM_CID, NOT_FOUND, user_id_formatted);
     }
     ids[0] = user_one->id;

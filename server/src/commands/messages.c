@@ -64,7 +64,7 @@ int command_messages(TEAMS_A)
         return client_reply(PARAM_CID, MISSING_PARAMETER, EMPTY_REPLY);
     user_two = db_search_user_by_uuid(THIS_DB, THIS_ARG[1]);
     if (!user_two) {
-        sprintf(user_id_formatted, "[ \"%s\"]", THIS_ARG[1]);
+        snprintf(user_id_formatted, UUID_SIZE + 6, "[ \"%s\"]", THIS_ARG[1]);
         return client_reply(PARAM_CID, NOT_FOUND, user_id_formatted);
     }
     return generate_messages(THIS_CLIENT.user, user_two, param);
