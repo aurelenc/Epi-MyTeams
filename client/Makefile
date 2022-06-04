@@ -29,6 +29,7 @@ SRC	=	main.c\
 		src/signals.c\
 		src/manage_commands/manage_command.c	\
 		src/get_commands/check_params.c	\
+		src/get_commands/print_message.c	\
 		src/get_commands/manage_params.c	\
 		src/manage_commands/make_command_rfc_compatible.c	\
 		src/manage_commands/parse_server_response.c \

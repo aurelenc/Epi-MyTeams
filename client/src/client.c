@@ -55,8 +55,10 @@ void running_teams(client_t *client, char *buff)
     FD_SET(0, &client->rfd);
     if (select(FD_SETSIZE, &client->rfd, &client->wfd, NULL, NULL) < 0)
         exit(84);
+    if (FD_ISSET(client->socket, &client->rfd))
+        printf("Le server ecrit...\n");
     if (FD_ISSET(client->socket, &client->wfd)) {
-        bzero(buff, sizeof(char));
+        memset(buff, 0, strlen(buff));
         if (FD_ISSET(0, &client->rfd)) {
             for (int i = 0; (buff[i] = getchar()) != '\n'; i++)
                 if (buff[i] == EOF || buff[i] == 0)
@@ -66,8 +68,6 @@ void running_teams(client_t *client, char *buff)
         if ((strncmp(buff, "exit", 4)) == 0)
             exit(-16 + ((int) printf("Client Exit ...\n")));
     }
-    if (FD_ISSET(client->socket, &client->rfd))
-        printf("Le server ecrit...\n");
 }
 
 int my_teams_client(int ac, char **av)

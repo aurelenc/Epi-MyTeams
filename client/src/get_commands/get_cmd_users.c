@@ -14,6 +14,7 @@ int users_responses(char **tab, char *code_response)
 {
     if (!strcmp(code_response, "13"))
         client_error_unauthorized();
+    printf("merdfe\n");
     if (!strcmp(code_response, "00"))
         for (int i = 0; tab[i + 6]; i = i + 6)
             client_print_users(tab[i + 1], tab[i + 3], atoi(tab[i + 5]));

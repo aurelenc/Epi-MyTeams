@@ -6,13 +6,13 @@
 */
 
 #include "reply_codes.h"
+#include "get_command.h"
 
 const reply_code_t reply_codes[] = {
     {SUCCESS, "00:%s\n"},
     {SERVICE_READY_FOR_NEW_USER, "01:%s\n"},
     {SUBSCRIBE_OK, "02:%s\n"},
     {UNSUBSCRIBE_OK, "03:%s\n"},
-    {GET_MESSAGE, "09:%s\n"},
     {INTERNAL_SERVER_ERROR, "10:%s\n"},
     {SERVER_IS_FULL, "11:%s\n"},
     {TOO_MANY_REQUESTS, "12:%s\n"},
@@ -36,6 +36,11 @@ const reply_code_t reply_codes[] = {
     {CREATE_CHANNEL, "51:%s\n"},
     {CREATE_THREAD, "52:%s\n"},
     {CREATE_REPLY, "53:%s\n"},
+    {GET_MESSAGE, "60:%s\n"},
+    {GET_TEAM, "61:%s\n"},
+    {GET_CHANNEL, "62:%s\n"},
+    {GET_THREAD, "63:%s\n"},
+    {GET_REPLY, "64:%s\n"},
     {NOT_IMPLEMENTED, "99:%s\n"},
 };
 
@@ -50,9 +55,13 @@ int get_reply(int code)
 }
 
 //printf("%s\n", reply_codes[get_reply(reply_code)].message);
-int client_reply(int reply_code)
+int client_reply(int reply_code, char **tab_response, char *buff)
 {
-    if (reply_code == GET_MESSAGE)
-        return reply_code;
+    if (reply_code <= GET_REPLY || reply_code >= GET_MESSAGE) {
+        if (strlen(buff) > 4)
+            tab_response = parse_response(buff, 2);
+        print_message(tab_response, reply_code);
+        reply_code = -42;
+    }
     return reply_code;
 }
