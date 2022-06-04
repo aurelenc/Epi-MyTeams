@@ -40,7 +40,8 @@ int command_send(TEAMS_A);
 /// @return The reply code
 int command_messages(TEAMS_A);
 
-/// @brief Subscribe to the event of a team and its sub directories (enable reception of all events from a team)
+/// @brief Subscribe to the event of a team and its sub directories
+/// (enable reception of all events from a team)
 /// @param param The command param structure
 /// @return The reply code
 int command_subscribe(TEAMS_A);

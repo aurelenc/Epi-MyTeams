@@ -43,20 +43,19 @@ static user_t *get_user(TEAMS_A)
 
 int command_login(TEAMS_A)
 {
-    char success_buff[MAX_BUFF_SIZE] = {0};
     char *reply = 0;
     user_t *user = 0;
 
     printf("[SERVER] LOGIN\n");
     if (param->arg.nb < 2) {
-        return client_reply(PARAM_CID, MISSING_PARAMETER);
+        return client_reply(PARAM_CID, MISSING_PARAMETER, EMPTY_REPLY);
     } else if (param->arg.nb > 2) {
-        return client_reply(PARAM_CID, INVALID_FORMAT);
+        return client_reply(PARAM_CID, INVALID_FORMAT, EMPTY_REPLY);
     }
     user = get_user(param);
     THIS_CLIENT.user = user;
     reply = get_reply_msg(user->uuid, user->pseudo);
-    sprintf(success_buff, reply_codes[get_reply(SUCCESS)].message, reply);
+    client_reply(PARAM_CID, SUCCESS, reply);
     free(reply);
-    return client_reply_success(PARAM_CID, success_buff);
+    return SUCCESS;
 }

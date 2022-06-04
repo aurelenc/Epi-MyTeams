@@ -204,7 +204,8 @@ void *llist_get(llist_t *list, unsigned int position);
 ///
 /// @return The data of the node that matches the search criteria.
 ///
-void *llist_search(llist_t *list, data_search_t search_fun, const void *search);
+void *llist_search(
+llist_t *list, data_search_t search_fun, const void *search);
 
 ///
 /// @brief It searches for all the elements in the list that match the search

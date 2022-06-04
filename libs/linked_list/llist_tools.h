@@ -10,7 +10,8 @@
 #include "llist.h"
 
 ///
-/// @brief It takes a list and a position, and returns the node at that position
+/// @brief It takes a list and a position, and returns the node at that
+/// position
 ///
 /// @param list The list to take the node from.
 /// @param position The position of the node to take.

@@ -18,6 +18,7 @@ const id_t team_id)
     if (!found)
         return (0);
     llist_destruction(found->channels);
-    found->channels = llist_multiple_search(db->channels, &channel_team_id_compare, &team_id);
+    found->channels =
+    llist_multiple_search(db->channels, &channel_team_id_compare, &team_id);
     return found;
 }

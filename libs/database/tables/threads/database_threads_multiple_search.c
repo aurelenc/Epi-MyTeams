@@ -18,6 +18,7 @@ const id_t channel_id)
     if (!found)
         return (0);
     llist_destruction(found->threads);
-    found->threads = llist_multiple_search(db->threads, &thread_channel_id_compare, &channel_id);
+    found->threads =
+    llist_multiple_search(db->threads, &thread_channel_id_compare, &channel_id);
     return found;
 }

@@ -32,7 +32,8 @@ static inline thread_t *db_search_thread_by_id(database_t *db, const id_t id)
 ///
 /// @return A pointer to a thread_t struct.
 ///
-static inline thread_t *db_search_thread_by_uuid(database_t *db, const char *uuid)
+static inline thread_t *db_search_thread_by_uuid(database_t *db,
+const char *uuid)
 {
     return (thread_t *)llist_search(db->threads, &thread_uuid_compare, uuid);
 };

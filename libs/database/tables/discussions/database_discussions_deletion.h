@@ -39,8 +39,8 @@ const char *uuid)
 };
 
 ///
-/// @brief It deletes a discussion from the database if it has the same user one
-/// id as the one passed in
+/// @brief It deletes a discussion from the database if it has the same user
+/// one id as the one passed in
 ///
 /// @param db The database to delete the discussion from.
 /// @param user_one_id The id of the user one to delete the discussion of.
@@ -55,8 +55,8 @@ const id_t user_one_id)
 };
 
 ///
-/// @brief It deletes a discussion from the database if it has the same user two
-/// id as the two passed in
+/// @brief It deletes a discussion from the database if it has the same user
+/// two id as the two passed in
 ///
 /// @param db The database to delete the discussion from.
 /// @param user_two_id The id of the user two to delete the discussion of.

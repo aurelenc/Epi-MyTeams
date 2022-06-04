@@ -12,7 +12,8 @@
 typedef unsigned int id_t;
 
 ///
-/// It searches for channels in the database that have the same team_id as the one
+/// It searches for channels in the database that have the same team_id as
+/// the one
 /// passed as a parameter
 ///
 /// @param db the database to search in
