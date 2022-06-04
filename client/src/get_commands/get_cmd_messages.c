@@ -20,7 +20,7 @@ int message_responses(char **tab, char *code_response)
             client_private_message_print_messages(
             tab[i + 1], atol(tab[i + 3]), tab[i + 5]);
     if (!strcmp(code_response, "14"))
-        client_error_unknown_user(tab[0]);
+        client_error_unknown_user(tab[1]);
     free(tab);
     return 0;
 }

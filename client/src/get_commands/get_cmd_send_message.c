@@ -14,7 +14,7 @@ int send_responses(char **tab, char *code_response)
 {
     if (!strcmp(code_response, "13"))
         client_error_unauthorized();
-    if (!strcmp(code_response, "25"))
+    if (!strcmp(code_response, "14"))
         client_error_unknown_user(tab[1]);
     free(tab);
     return 0;

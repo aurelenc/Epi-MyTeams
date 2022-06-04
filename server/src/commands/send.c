@@ -64,6 +64,7 @@ int command_send(TEAMS_A)
 {
     user_t *user_one = 0;
     id_t *ids = calloc(sizeof(id_t), 2);
+    char user_id_formatted[UUID_SIZE + 7] = {0};
 
     printf("[SERVER] SEND\n");
     if (!THIS_CLIENT.user)
@@ -73,8 +74,10 @@ int command_send(TEAMS_A)
     else if (param->arg.nb > 3)
         return client_reply(PARAM_CID, INVALID_FORMAT, EMPTY_REPLY);
     user_one = db_search_user_by_uuid(THIS_DB, THIS_ARG[1]);
-    if (!user_one)
-        return client_reply(PARAM_CID, NOT_FOUND, EMPTY_REPLY);
+    if (!user_one) {
+        sprintf(user_id_formatted, "[ \"%s\"]", THIS_ARG[1]);
+        return client_reply(PARAM_CID, NOT_FOUND, user_id_formatted);
+    }
     ids[0] = user_one->id;
     ids[1] = THIS_CLIENT.user->id;
     add_msg_to_db(TEAMS_PARAM, user_one, THIS_CLIENT.user, ids);

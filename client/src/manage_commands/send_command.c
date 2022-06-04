@@ -20,9 +20,14 @@ char **send_command(char *av, char **tab_response, char *command, int socket)
     memset(buff, 0, 4096);
     if (read(socket, buff, 4096) == 0) {
         printf("Client is deconnected !\n");
-        exit (0);
+        exit(0);
     }
-    client_reply(atoi(strncpy(response, buff, 2)));
+    if (client_reply(atoi(strncpy(response, buff, 2)), tab_response, buff)
+    == -42)
+        if (read(socket, buff, 4096) == 0) {
+            printf("Client is deconnected !\n");
+            exit (0);
+        }
     if (strlen(buff) > 4)
         tab_response = parse_response(buff, 2);
     return tab_response;

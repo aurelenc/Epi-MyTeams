@@ -14,7 +14,6 @@ const reply_code_t reply_codes[] = {
     {SERVICE_READY_FOR_NEW_USER, "01:%s\n"},
     {SUBSCRIBE_OK, "02:%s\n"},
     {UNSUBSCRIBE_OK, "03:%s\n"},
-    {GET_MESSAGE, "09:%s\n"},
     {INTERNAL_SERVER_ERROR, "10:%s\n"},
     {SERVER_IS_FULL, "11:%s\n"},
     {TOO_MANY_REQUESTS, "12:%s\n"},
@@ -38,6 +37,11 @@ const reply_code_t reply_codes[] = {
     {CREATE_CHANNEL, "51:%s\n"},
     {CREATE_THREAD, "52:%s\n"},
     {CREATE_REPLY, "53:%s\n"},
+    {GET_MESSAGE, "60:%s\n"},
+    {GET_TEAM, "61:%s\n"},
+    {GET_CHANNEL, "62:%s\n"},
+    {GET_THREAD, "63:%s\n"},
+    {GET_REPLY, "64:%s\n"},
     {NOT_IMPLEMENTED, "99:%s\n"},
 };
 
