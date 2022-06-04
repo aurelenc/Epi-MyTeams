@@ -7,25 +7,7 @@
 
 #include "client.h"
 #include "get_command.h"
-
-void create_client(client_t *client, char **av)
-{
-    client->socket = socket(AF_INET, SOCK_STREAM, 0);
-    if (client->socket == -1) {
-        printf("socket creation failed...\n");
-        exit(0);
-    }
-    else
-        printf("Socket successfully created..\n");
-    bzero(&client->servaddr, sizeof(client->servaddr));
-    client->servaddr.sin_family = AF_INET;
-    client->servaddr.sin_addr.s_addr = inet_addr(av[1]);
-    if (client->servaddr.sin_addr.s_addr == -1) {
-        printf("IP is not good, try with a good IP address...\n");
-        exit(84);
-    }
-    client->servaddr.sin_port = htons(atoi(av[2]));
-}
+#include "reply_codes.h"
 
 void connect_client(client_t *client)
 {
@@ -45,6 +27,17 @@ char *get_input_client(char *buff)
     return (buff);
 }
 
+void read_message(client_t *client, char *buff)
+{
+    char **tab_message = NULL;
+    char response[2];
+
+    memset(buff, 0, strlen(buff));
+    read(client->socket, buff, (int)4e+6);
+    printf("message = [%s]\n", buff);
+    client_reply(atoi(strncpy(response, buff, 2)), tab_message, buff);
+}
+
 void running_teams(client_t *client, char *buff)
 {
     FD_ZERO(&client->rfd);
@@ -55,9 +48,7 @@ void running_teams(client_t *client, char *buff)
     if (select(FD_SETSIZE, &client->rfd, &client->wfd, NULL, NULL) < 0)
         exit(84);
     if (FD_ISSET(client->socket, &client->rfd)) {
-        memset(buff, 0, strlen(buff));
-        read(client->socket, buff, (int)4e+6);
-        printf("%s\n", buff);
+        read_message(client, buff);
     }
     if (FD_ISSET(client->socket, &client->wfd)) {
         memset(buff, 0, strlen(buff));

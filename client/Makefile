@@ -27,6 +27,7 @@ SRC_COMMANDS	=	src/get_commands/get_cmd_unsubscribe_teams.c	\
 SRC	=	main.c\
 		src/client.c\
 		src/signals.c\
+		src/create_client.c\
 		src/manage_commands/manage_command.c	\
 		src/get_commands/check_params.c	\
 		src/get_commands/print_message.c	\

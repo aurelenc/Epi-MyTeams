@@ -26,7 +26,7 @@ int send_message(char *av, int socket)
     char **tab_res = NULL;
 
     if (check_params(av) == 2)
-        tab_res = send_command(av, tab_res, "SEND ", socket);
+        tab_res = send_command(av, tab_res, "\"SEND\" ", socket);
     else {
         printf("Command is not good, use /help for more information !\n");
         return -1;

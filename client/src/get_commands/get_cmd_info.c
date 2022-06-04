@@ -21,13 +21,13 @@ int info_responses(char **tab, char *code_response)
     if (!strcmp(code_response, "32"))
         client_error_unknown_thread(tab[1]);
     if (!strcmp(code_response, "40"))
-        client_print_user(tab[1], tab[2], atoi(tab[5]));
+        client_print_user(tab[1], tab[3], atoi(tab[5]));
     if (!strcmp(code_response, "41"))
-        client_print_team(tab[1], tab[2], tab[5]);
+        client_print_team(tab[1], tab[3], tab[5]);
     if (!strcmp(code_response, "42"))
-        client_print_channel(tab[1], tab[2], tab[5]);
+        client_print_channel(tab[1], tab[3], tab[5]);
     if (!strcmp(code_response, "43"))
-        client_print_thread(tab[1], tab[2], atol(tab[5]), tab[7], tab[9]);
+        client_print_thread(tab[1], tab[3], atol(tab[5]), tab[7], tab[9]);
     free(tab);
     return 0;
 }
@@ -38,7 +38,7 @@ int info(char *av, int socket)
     char **tab_res = NULL;
 
     if (check_params(av) == 0)
-        tab_res = send_command(av, tab_res, "INFO ", socket);
+        tab_res = send_command(av, tab_res, "\"INFO\" ", socket);
     else {
         printf("Command is not good, use /help for more information !\n");
         return -1;
