@@ -29,6 +29,16 @@ bool channel_uuid_compare(const void *elem, const void *search)
     return false;
 }
 
+bool channel_name_compare(const void *elem, const void *search)
+{
+    const channel_t *channel = (const channel_t *)elem;
+    const char *name = (const char *)search;
+
+    if (strcmp(channel->name, name) == 0)
+        return true;
+    return false;
+}
+
 bool channel_team_id_compare(const void *elem, const void *search)
 {
     const channel_t *channel = (const channel_t *)elem;

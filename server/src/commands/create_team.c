@@ -9,6 +9,7 @@
 #include "reply_codes.h"
 #include "server.h"
 #include "tables/teams/database_teams_add.h"
+#include "tables/teams/database_teams_search.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -35,6 +36,19 @@ static team_t *create_team(TEAMS_A)
     return team;
 }
 
+static int team_already_exists(TEAMS_A)
+{
+    int len = strlen(THIS_ARG[1]) + strlen(THIS_ARG[2]) + 13;
+    char *buff = calloc(sizeof(char), len);
+    int retval = -1;
+
+    snprintf(buff, len, "[ \"%s\" \"%s\"]", THIS_ARG[1], THIS_ARG[2]);
+    printf("%s\n", buff);
+    retval = client_reply(PARAM_CID, RESOURCE_ALREADY_EXISTS, buff);
+    free(buff);
+    return retval;
+}
+
 int command_create_team(TEAMS_A)
 {
     char *buff = 0;
@@ -44,6 +58,8 @@ int command_create_team(TEAMS_A)
     } else if (param->arg.nb > 3) {
         return client_reply(param->clients, param->id, INVALID_FORMAT, "");
     }
+    if (db_search_team_by_name(THIS_DB, THIS_ARG[1]))
+        return team_already_exists(param);
     buff = get_success(create_team(param));
     for (int i = 0; i < MAX_CLIENTS; i++) {
         if (TEAMS_CLIENTS[i].socket != 0 && TEAMS_CLIENTS[i].user)

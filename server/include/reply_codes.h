@@ -30,7 +30,6 @@ int client_reply(client_sock_t *clients, int cliend_id, int code, char *msg);
 #define SUBSCRIBE_OK 02
 #define UNSUBSCRIBE_OK 03
 
-
 #define INTERNAL_SERVER_ERROR 10
 #define SERVER_IS_FULL 11
 #define TOO_MANY_REQUESTS 12
@@ -65,6 +64,8 @@ int client_reply(client_sock_t *clients, int cliend_id, int code, char *msg);
 #define GET_CHANNEL 62
 #define GET_THREAD 63
 #define GET_REPLY 64
+#define GET_LOGI 65
+#define GET_LOGO 66
 
 #define NOT_IMPLEMENTED 99
 
