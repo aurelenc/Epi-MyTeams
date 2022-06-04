@@ -41,7 +41,7 @@ static void fill_message(TEAMS_A, node_t *it)
 int command_subscribed_users(TEAMS_A)
 {
     char buff[MAX_BUFF_SIZE + 1];
-    team_t *team = db_search_team_by_uuid(THIS_DB, THIS_ARG[2]);
+    team_t *team = db_search_team_by_uuid(THIS_DB, THIS_ARG[1]);
     database_t *new = 0;
     node_t *iterator = 0;
 
