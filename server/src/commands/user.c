@@ -44,16 +44,17 @@ int command_user(TEAMS_A)
 
     printf("[SERVER] USER\n");
     if (param->arg.nb < 2) {
-        return client_reply(PARAM_CID, MISSING_PARAMETER);
+        return client_reply(PARAM_CID, MISSING_PARAMETER, EMPTY_REPLY);
     } else if (param->arg.nb > 2) {
-        return client_reply(PARAM_CID, INVALID_FORMAT);
+        return client_reply(PARAM_CID, INVALID_FORMAT, EMPTY_REPLY);
     }
     if (!THIS_CLIENT.user)
-        return client_reply(PARAM_CID, FORBIDDEN);
+        return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
     found = db_search_user_by_uuid(THIS_DB, THIS_ARG[1]);
     if (!found) {
-        return client_reply(PARAM_CID, NOT_FOUND);
+        return client_reply(PARAM_CID, NOT_FOUND, EMPTY_REPLY);
     }
     success_buff = get_msg_reply(found, TEAMS_CLIENTS);
-    return client_reply_success(PARAM_CID, success_buff);
+    client_reply(PARAM_CID, SUCCESS, success_buff);
+    return SUCCESS;
 }
