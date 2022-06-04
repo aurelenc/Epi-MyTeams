@@ -57,7 +57,7 @@ int get_reply(int code)
 //printf("%s\n", reply_codes[get_reply(reply_code)].message);
 int client_reply(int reply_code, char **tab_response, char *buff)
 {
-    if (reply_code <= GET_REPLY || reply_code >= GET_MESSAGE) {
+    if (reply_code <= GET_REPLY && reply_code >= GET_MESSAGE) {
         if (strlen(buff) > 4)
             tab_response = parse_response(buff, 2);
         print_message(tab_response, reply_code);
