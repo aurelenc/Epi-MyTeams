@@ -22,3 +22,16 @@ const id_t channel_id)
     llist_multiple_search(db->threads, &thread_channel_id_compare, &channel_id);
     return found;
 }
+
+database_t *db_multiple_search_threads_by_title(database_t *db,
+const char *title)
+{
+    database_t *found = db_creation();
+
+    if (!found)
+        return (0);
+    llist_destruction(found->threads);
+    found->threads =
+    llist_multiple_search(db->threads, &thread_title_compare, &title);
+    return found;
+}

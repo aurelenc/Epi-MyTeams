@@ -30,6 +30,17 @@ bool thread_id_compare(const void *elem, const void *search);
 bool thread_uuid_compare(const void *elem, const void *search);
 
 ///
+/// @brief It compares the title of a thread with the title of a thread
+/// that is being searched for
+///
+/// @param elem The element to compare.
+/// @param search The value to search for.
+///
+/// @return A boolean value.
+///
+bool thread_title_compare(const void *elem, const void *search);
+
+///
 /// @brief It compares the channel_id of a thread_t with an id_t
 ///
 /// @param elem The element to compare.

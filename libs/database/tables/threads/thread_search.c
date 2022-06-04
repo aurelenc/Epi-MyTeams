@@ -24,7 +24,17 @@ bool thread_uuid_compare(const void *elem, const void *search)
     const thread_t *thread = (const thread_t *)elem;
     const char *uuid = (const char *)search;
 
-    if (thread->uuid == uuid)
+    if (strcmp(thread->uuid, uuid) == 0)
+        return true;
+    return false;
+}
+
+bool thread_title_compare(const void *elem, const void *search)
+{
+    const thread_t *thread = (const thread_t *)elem;
+    const char *title = (const char *)search;
+
+    if (strcmp(thread->title, title) == 0)
         return true;
     return false;
 }

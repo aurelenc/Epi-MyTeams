@@ -29,6 +29,16 @@ bool team_uuid_compare(const void *elem, const void *search)
     return false;
 }
 
+bool team_name_compare(const void *elem, const void *search)
+{
+    const team_t *team = (const team_t *)elem;
+    const char *name = (const char *)search;
+
+    if (strcmp(team->name, name) == 0)
+        return true;
+    return false;
+}
+
 bool team_id_array_compare(const void *elem, const void *search)
 {
     const team_t *team = (const team_t *)elem;
