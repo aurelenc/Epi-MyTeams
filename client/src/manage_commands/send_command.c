@@ -14,6 +14,7 @@ char **send_command(char *av, char **tab_response, char *command, int socket)
     char buff[4096];
     char response[2];
 
+    printf("av = [%s]\n", av);
     memset(buff, 0, 4096);
     make_command_rfc_compatible(buff, command, av);
     write(socket, buff, strlen(buff));

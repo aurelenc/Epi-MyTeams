@@ -31,7 +31,7 @@ static bool is_in_team(command_param_t *param)
     return true;
 }
 
-static char *get_success(TEAMS_A, thread_t *thread)
+static int send_success(TEAMS_A, thread_t *thread)
 {
     int len = strlen(thread->uuid) + strlen(THIS_CLIENT.user->uuid) + 45 +
     strlen(thread->title) + strlen(thread->body) + 32;
@@ -41,7 +41,16 @@ static char *get_success(TEAMS_A, thread_t *thread)
     thread->uuid, THIS_CLIENT.user->uuid, thread->timestamp,
     thread->title, thread->body);
     printf("%s\n", buff);
-    return (buff);
+    for (int i = 0; i < MAX_CLIENTS; i++) {
+        if (TEAMS_CLIENTS[i].socket == 0 || !TEAMS_CLIENTS[i].user)
+            continue;
+        if (i == param->id)
+            client_reply(param->clients, i, CREATE_THREAD, buff);
+        else
+            client_reply(param->clients, i, GET_THREAD, buff);
+    }
+    free(buff);
+    return (CREATE_THREAD);
 }
 
 static bool thread_already_exists(TEAMS_A)
@@ -78,7 +87,6 @@ static int send_already_exists(TEAMS_A)
 int command_create_thread(TEAMS_A)
 {
     thread_t *thread = 0;
-    char *success_buff = 0;
 
     if (param->arg.nb < 3) {
         return client_reply(param->clients, param->id, MISSING_PARAMETER, "");
@@ -89,12 +97,9 @@ int command_create_thread(TEAMS_A)
     if (thread_already_exists(param))
         return send_already_exists(param);
     thread = thread_init(param->arg.array[1], param->arg.array[2],
-    THIS_CLIENT.channel->id);
+    THIS_CLIENT.user->id, THIS_CLIENT.channel->id);
     db_add_thread(THIS_DB, thread);
     server_event_thread_created(THIS_CLIENT.channel->uuid, thread->uuid,
     THIS_CLIENT.user->uuid, thread->title, thread->body);
-    success_buff = get_success(param, thread);
-    client_reply(param->clients, param->id, CREATE_THREAD, success_buff);
-    free(success_buff);
-    return CREATE_THREAD;
+    return send_success(param, thread);
 }

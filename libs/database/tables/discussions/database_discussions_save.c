@@ -37,7 +37,6 @@ bool db_save_discussions(database_t *db, const char *filepath)
     }
     write_all_discussions_in_file(db->discussions, fptr);
     fclose(fptr);
-    printf("Discussions: Successfully saved.\n");
     return true;
 }
 
