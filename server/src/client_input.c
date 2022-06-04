@@ -53,7 +53,7 @@ void find_command(TEAMS_A)
     for (size_t i = 0; commands[i].func != NULL; i++) {
         printf("%s\t%s:%ld\n", buff, commands[i].cmd, strlen(commands[i].cmd));
         if (strncmp(buff, commands[i].cmd,
-            strlen(commands[i].cmd)) == 0) {
+        strlen(commands[i].cmd)) == 0) {
             exec_cmd(TEAMS_PARAM, i);
             command_found = true;
             break;
@@ -73,7 +73,7 @@ void handle_input(client_sock_t *clients, int id, server_t *server)
     params.nb = 0;
     params.array = calloc(sizeof(char *), MAX_PARAMS_NB + 1);
     if (!params.array ||
-        read(clients[id].socket, buff, MAX_BUFF_SIZE) == 0) {
+    read(clients[id].socket, buff, MAX_BUFF_SIZE) == 0) {
         remove_client(clients, id);
         return;
     }
