@@ -36,7 +36,7 @@ int command_subscribed_teams(TEAMS_A)
 
     if (!new)
         return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
-    iterator = new->users_teams->first;
+    iterator = new->teams->first;
     if (!iterator)
         return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
     write_client_buff(PARAM_CID, "00:");
