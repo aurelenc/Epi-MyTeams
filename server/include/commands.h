@@ -61,20 +61,30 @@ int command_subscribed_users(TEAMS_A);
 /// @return The reply code
 int command_unsubscribe(TEAMS_A);
 
-/// @brief Use specify a context team
+/// @brief Use handle the `/use` command
 /// @param param The command param structure
 /// @return The reply code
-int command_use_team(TEAMS_A);
+int command_use(TEAMS_A);
 
-/// @brief Use specify a context channel
+/// @brief Use in none context
 /// @param param The command param structure
 /// @return The reply code
-int command_use_channel(TEAMS_A);
+int command_use_nothing(TEAMS_A);
 
-/// @brief Use specify a context thread
+/// @brief Use handle the `/use` command for one argument
 /// @param param The command param structure
 /// @return The reply code
-int command_use_thread(TEAMS_A);
+int command_use_one_arg(TEAMS_A);
+
+/// @brief Use handle the `/use` command for two arguments
+/// @param param The command param structure
+/// @return The reply code
+int command_use_two_arg(TEAMS_A);
+
+/// @brief Use handle the `/use` command for three arguments
+/// @param param The command param structure
+/// @return The reply code
+int command_use_three_arg(TEAMS_A);
 
 ///
 /// @brief If the client is not logged in, it returns an error; if the client is

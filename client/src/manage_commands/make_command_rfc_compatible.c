@@ -19,7 +19,7 @@ bool make_command_rfc_compatible(char *dest, const char *command, char *av)
     if (dest == NULL)
         return false;
     strcat(dest, "\n");
-     if (dest == NULL)
+    if (dest == NULL)
         return false;
     return true;
 }

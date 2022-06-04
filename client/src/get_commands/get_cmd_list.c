@@ -32,13 +32,12 @@ int list_responses(char **tab, char *code_response)
             client_team_print_channels(tab[i + 1], tab[i + 3], tab[i + 5]);
     if (!strcmp(code_response, "43"))
         for (int i = 0; tab[i + 10]; i = i + 10)
-            client_channel_print_threads(
-            tab[i + 1], tab[i + 3],
+            client_channel_print_threads(tab[i + 1], tab[i + 3],
             atol(tab[i + 5]), tab[i + 7], tab[i + 9]);
     if (!strcmp(code_response, "43"))
         for (int i = 0; tab[i + 8]; i = i + 8)
-            client_thread_print_replies(
-            tab[i + 1], tab[i + 3], atol(tab[i + 5]), tab[i + 7]);
+            client_thread_print_replies(tab[i + 1],
+            tab[i + 3], atol(tab[i + 5]), tab[i + 7]);
     return list_responses_list(tab, code_response);
 }
 

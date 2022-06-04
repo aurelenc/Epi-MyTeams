@@ -17,8 +17,8 @@ int command_subscribe(TEAMS_A)
 {
     id_pair_t pair = {0};
     team_t *team = 0;
-    char team_id_formatted[UUID_SIZE + 7] = {0};
-    char user_id_formatted[UUID_SIZE + 7] = {0};
+    char team_id_formatted[(UUID_SIZE * 2) + 10] = {0};
+    char user_id_formatted[(UUID_SIZE * 2) + 10] = {0};
 
     if (!THIS_CLIENT.user)
         return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
@@ -32,7 +32,8 @@ int command_subscribe(TEAMS_A)
     pair.user_id = THIS_CLIENT.user->id;
     pair.team_id = team->id;
     if (db_add_user_team_relation(THIS_DB, &pair) == true) {
-        sprintf(user_id_formatted, "[ \"%s\" \"%s\"]", THIS_CLIENT.user->uuid, team->uuid);
+        sprintf(user_id_formatted, "[ \"%s\" \"%s\"]", THIS_CLIENT.user->uuid,
+        team->uuid);
         server_event_user_subscribed(team->uuid, THIS_CLIENT.user->uuid);
         return client_reply(PARAM_CID, SUBSCRIBE_OK, user_id_formatted);
     }
