@@ -23,4 +23,4 @@ static inline bool db_add_discussion(database_t *db, discussion_t *discussion)
     if (!discussion->id)
         discussion->id = llist_get_size(db->discussions) + 1;
     return llist_append(db->discussions, discussion);
-};
+}

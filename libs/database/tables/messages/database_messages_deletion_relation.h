@@ -24,7 +24,7 @@ static inline bool db_delete_msg_by_user_id(database_t *db,
 const id_t user_id)
 {
     return llist_delif(db->messages, &msg_user_id_compare, &user_id);
-};
+}
 
 ///
 /// @brief It deletes a message from the database if it has the same thread id
@@ -39,7 +39,7 @@ static inline bool db_delete_msg_by_thread_id(database_t *db,
 const id_t thread_id)
 {
     return llist_delif(db->messages, &msg_thread_id_compare, &thread_id);
-};
+}
 
 ///
 /// @brief It deletes a message from the database if it has the same discussion
@@ -54,4 +54,4 @@ static inline bool db_delete_msg_by_discussion_id(database_t *db,
 const id_t discu_id)
 {
     return llist_delif(db->messages, &msg_discussion_id_compare, &discu_id);
-};
+}

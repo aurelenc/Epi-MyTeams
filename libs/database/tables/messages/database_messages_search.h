@@ -21,8 +21,8 @@
 ///
 static inline msg_t *db_search_msg_by_id(database_t *db, const id_t id)
 {
-    return (msg_t *)llist_search(db->messages, &msg_id_compare, &id);
-};
+    return ((msg_t *)llist_search(db->messages, &msg_id_compare, &id));
+}
 
 ///
 /// @brief It searches the database for a message with the given uuid
@@ -34,5 +34,5 @@ static inline msg_t *db_search_msg_by_id(database_t *db, const id_t id)
 ///
 static inline msg_t *db_search_msg_by_uuid(database_t *db, const char *uuid)
 {
-    return (msg_t *)llist_search(db->messages, &msg_uuid_compare, uuid);
-};
+    return ((msg_t *)llist_search(db->messages, &msg_uuid_compare, uuid));
+}
