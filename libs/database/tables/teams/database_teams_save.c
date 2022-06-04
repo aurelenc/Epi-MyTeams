@@ -37,7 +37,6 @@ bool db_save_teams(database_t *db, const char *filepath)
     }
     write_all_teams_in_file(db->teams, fptr);
     fclose(fptr);
-    printf("Teams: Successfully saved.\n");
     return true;
 }
 

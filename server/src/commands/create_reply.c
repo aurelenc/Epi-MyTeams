@@ -45,7 +45,7 @@ static int *get_relation(int thread_id, int discussion_id)
     return relation;
 }
 
-static char *get_success(TEAMS_A, msg_t *msg)
+static int send_success(TEAMS_A, msg_t *msg)
 {
     int len = strlen(THIS_CLIENT.team->uuid) + strlen(THIS_CLIENT.thread->uuid)
     + strlen(THIS_CLIENT.user->uuid) + strlen(msg->content) + 20;
@@ -55,7 +55,18 @@ static char *get_success(TEAMS_A, msg_t *msg)
     THIS_CLIENT.thread->uuid, THIS_CLIENT.user->uuid, msg->timestamp,
     msg->content);
     printf("%s\n", buff);
-    return (buff);
+    for (int i = 0; i < MAX_CLIENTS; i++) {
+        if (!TEAMS_CLIENTS[i].socket != 0 || !TEAMS_CLIENTS[i].user)
+            continue;
+        if (!is_cli_in_team(THIS_DB, &TEAMS_CLIENTS[i], TEAMS_CLIENTS->team))
+            continue;
+        if (i == param->id)
+            client_reply(param->clients, i, CREATE_REPLY, buff);
+        else
+            client_reply(param->clients, i, GET_REPLY, buff);
+    }
+    free(buff);
+    return (CREATE_REPLY);
 }
 
 static msg_t *create_msg(TEAMS_A)
@@ -74,8 +85,6 @@ static msg_t *create_msg(TEAMS_A)
 
 int command_create_reply(TEAMS_A)
 {
-    char *buff = 0;
-
     if (param->arg.nb < 2) {
         return client_reply(param->clients, param->id, MISSING_PARAMETER, "");
     } else if (param->arg.nb > 2) {
@@ -83,14 +92,5 @@ int command_create_reply(TEAMS_A)
     }
     if (!is_cli_in_team(THIS_DB, &THIS_CLIENT, THIS_CLIENT.team))
         return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
-    buff = get_success(param, create_msg(param));
-    for (int i = 0; i < MAX_CLIENTS; i++) {
-        if (!TEAMS_CLIENTS[i].socket != 0 || !TEAMS_CLIENTS[i].user)
-            continue;
-        if (!is_cli_in_team(THIS_DB, &TEAMS_CLIENTS[i], TEAMS_CLIENTS->team))
-            continue;
-        client_reply(param->clients, i, CREATE_REPLY, buff);
-    }
-    free(buff);
-    return CREATE_REPLY;
+    return send_success(param, create_msg(param));
 }

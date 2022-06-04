@@ -70,7 +70,7 @@ int command_use_one_arg(TEAMS_A)
     }
     channel = db_search_channel_by_uuid(THIS_DB, THIS_ARG[1]);
     if (channel) {
-        do_channel_actions(param, channel);
+        return do_channel_actions(param, channel);
     }
     thread = db_search_thread_by_uuid(THIS_DB, THIS_ARG[1]);
     if (thread) {

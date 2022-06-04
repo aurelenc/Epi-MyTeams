@@ -32,7 +32,7 @@ static bool is_in_team(command_param_t *param)
     return true;
 }
 
-static char *get_success(channel_t *channel)
+static int send_success(TEAMS_A, channel_t *channel)
 {
     int len = strlen(channel->uuid) + strlen(channel->name) +
     strlen(channel->desc) + 16;
@@ -41,7 +41,16 @@ static char *get_success(channel_t *channel)
     snprintf(buff, len, "[ \"%s\" \"%s\" \"%s\"]", channel->uuid,
     channel->name, channel->desc);
     printf("%s\n", buff);
-    return (buff);
+    for (int i = 0; i < MAX_CLIENTS; i++) {
+        if (TEAMS_CLIENTS[i].socket == 0 || !TEAMS_CLIENTS[i].user)
+            continue;
+        if (i == param->id)
+            client_reply(param->clients, i, CREATE_CHANNEL, buff);
+        else
+            client_reply(param->clients, i, GET_CHANNEL, buff);
+    }
+    free(buff);
+    return (CREATE_CHANNEL);
 }
 
 static bool channel_already_exists(TEAMS_A)
@@ -78,7 +87,6 @@ static int send_already_exists(TEAMS_A)
 int command_create_channel(TEAMS_A)
 {
     channel_t *channel = 0;
-    char *buff = 0;
 
     if (param->arg.nb < 3) {
         return client_reply(param->clients, param->id, MISSING_PARAMETER, "");
@@ -93,8 +101,5 @@ int command_create_channel(TEAMS_A)
     server_event_channel_created(THIS_CLIENT.team->uuid, channel->uuid,
     channel->name);
     db_add_channel(THIS_DB, channel);
-    buff = get_success(channel);
-    client_reply(param->clients, param->id, CREATE_CHANNEL, buff);
-    free(buff);
-    return CREATE_CHANNEL;
+    return send_success(param, channel);
 }

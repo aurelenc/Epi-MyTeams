@@ -44,7 +44,7 @@ void db_save(database_t *db)
 {
     db_save_channels(db, "server/database_save/channels.csv");
     db_save_discussions(db, "server/database_save/discussions.csv");
-    db_save_msg(db, "server/database_save/message.csv");
+    db_save_msg(db, "server/database_save/messages.csv");
     db_save_teams(db, "server/database_save/teams.csv");
     db_save_threads(db, "server/database_save/threads.csv");
     db_save_users_x_teams(db, "server/database_save/users_x_teams.csv");
@@ -55,7 +55,7 @@ void db_load(database_t *db)
 {
     db_load_channels(db, "server/database_save/channels.csv");
     db_load_discussions(db, "server/database_save/discussions.csv");
-    db_load_msg(db, "server/database_save/message.csv");
+    db_load_msg(db, "server/database_save/messages.csv");
     db_load_teams(db, "server/database_save/teams.csv");
     db_load_threads(db, "server/database_save/threads.csv");
     db_load_users_x_teams(db, "server/database_save/users_x_teams.csv");

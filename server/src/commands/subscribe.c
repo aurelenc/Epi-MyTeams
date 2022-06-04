@@ -12,10 +12,11 @@
 #include "tables/users/database_users_search.h"
 #include "logging_server.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 int command_subscribe(TEAMS_A)
 {
-    id_pair_t pair = {0};
+    id_pair_t *pair = calloc(sizeof(id_pair_t), 1);
     team_t *team = 0;
     char team_id_formatted[(UUID_SIZE * 2) + 10] = {0};
     char user_id_formatted[(UUID_SIZE * 2) + 10] = {0};
@@ -29,9 +30,9 @@ int command_subscribe(TEAMS_A)
         sprintf(team_id_formatted, "[ \"%s\"]", THIS_ARG[1]);
         return client_reply(PARAM_CID, UNKNOWN_TEAM, team_id_formatted);
     }
-    pair.user_id = THIS_CLIENT.user->id;
-    pair.team_id = team->id;
-    if (db_add_user_team_relation(THIS_DB, &pair) == true) {
+    pair->user_id = THIS_CLIENT.user->id;
+    pair->team_id = team->id;
+    if (db_add_user_team_relation(THIS_DB, pair) == true) {
         sprintf(user_id_formatted, "[ \"%s\" \"%s\"]", THIS_CLIENT.user->uuid,
         team->uuid);
         server_event_user_subscribed(team->uuid, THIS_CLIENT.user->uuid);

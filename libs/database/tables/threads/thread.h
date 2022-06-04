@@ -16,6 +16,7 @@ typedef struct thread_s {
     char *uuid;
     char *title;
     char *body;
+    id_t user_id;
     id_t channel_id;
     time_t timestamp;
 } thread_t;
@@ -28,7 +29,7 @@ typedef struct thread_s {
 ///
 /// @return A pointer to a thread_t struct.
 ///
-thread_t *thread_init(char *title, char *body, id_t channel);
+thread_t *thread_init(char *title, char *body, id_t user_id, id_t channel);
 
 ///
 /// @brief It frees the memory allocated for a team.
