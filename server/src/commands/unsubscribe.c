@@ -11,6 +11,7 @@
 #include "tables/teams/database_teams_search.h"
 #include "tables/users/database_users_search.h"
 #include "logging_server.h"
+#include <stdio.h>
 
 static void reset_user_location(TEAMS_A)
 {
@@ -23,17 +24,22 @@ int command_unsubscribe(TEAMS_A)
 {
     id_pair_t pair = {0};
     team_t *team = 0;
+    char team_id_formatted[UUID_SIZE + 7] = {0};
+    char user_id_formatted[UUID_SIZE + 7] = {0};
 
     if (!THIS_CLIENT.user)
         return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
     if (param->arg.nb < 2)
         return client_reply(PARAM_CID, MISSING_PARAMETER, EMPTY_REPLY);
     team = db_search_team_by_uuid(THIS_DB, THIS_ARG[1]);
-    if (!team)
-        return client_reply(PARAM_CID, NOT_FOUND, EMPTY_REPLY);
+    if (!team) {
+        sprintf(team_id_formatted, "[ \"%s\"]", THIS_ARG[1]);
+        return client_reply(PARAM_CID, UNKNOWN_TEAM, team_id_formatted);
+    }
     pair.user_id = THIS_CLIENT.user->id;
     pair.team_id = team->id;
     if (db_delete_user_team_by_pair(THIS_DB, &pair) == true) {
+        sprintf(user_id_formatted, "[ \"%s\" \"%s\"]", THIS_CLIENT.user->uuid, team->uuid);
         server_event_user_unsubscribed(team->uuid, THIS_CLIENT.user->uuid);
         reset_user_location(param);
         return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);

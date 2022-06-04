@@ -35,7 +35,7 @@ static char *get_success(channel_t *channel)
     strlen(channel->desc) + 16;
     char *buff = calloc(sizeof(char), len);
 
-    snprintf(buff, len, "[ \"%s\" \"%s\" \"%s\"]\n", channel->uuid,
+    snprintf(buff, len, "[ \"%s\" \"%s\" \"%s\"]", channel->uuid,
     channel->name, channel->desc);
     printf("%s\n", buff);
     return (buff);

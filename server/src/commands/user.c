@@ -41,18 +41,20 @@ int command_user(TEAMS_A)
 {
     char *success_buff = 0;
     user_t *found = 0;
+    char user_id_formatted[UUID_SIZE + 7] = {0};
 
     printf("[SERVER] USER\n");
+    if (!THIS_CLIENT.user)
+        return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
     if (param->arg.nb < 2) {
         return client_reply(PARAM_CID, MISSING_PARAMETER, EMPTY_REPLY);
     } else if (param->arg.nb > 2) {
         return client_reply(PARAM_CID, INVALID_FORMAT, EMPTY_REPLY);
     }
-    if (!THIS_CLIENT.user)
-        return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
     found = db_search_user_by_uuid(THIS_DB, THIS_ARG[1]);
     if (!found) {
-        return client_reply(PARAM_CID, NOT_FOUND, EMPTY_REPLY);
+        sprintf(user_id_formatted, "[ \"%s\"]", THIS_ARG[1]);
+        return client_reply(PARAM_CID, NOT_FOUND, user_id_formatted);
     }
     success_buff = get_msg_reply(found, TEAMS_CLIENTS);
     client_reply(PARAM_CID, SUCCESS, success_buff);
