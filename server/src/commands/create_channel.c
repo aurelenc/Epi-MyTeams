@@ -45,7 +45,6 @@ int command_create_channel(TEAMS_A)
 {
     channel_t *channel = 0;
     char *buff = 0;
-    int retval = 0;
 
     if (param->arg.nb < 3) {
         return client_reply(param->clients, param->id, MISSING_PARAMETER);
@@ -59,7 +58,7 @@ int command_create_channel(TEAMS_A)
     channel->name);
     db_add_channel(THIS_DB, channel);
     buff = get_success(channel);
-    retval = client_reply_success(param->clients, param->id, buff);
+    client_reply_success(param->clients, param->id, buff);
     free(buff);
-    return retval;
+    return 51;
 }

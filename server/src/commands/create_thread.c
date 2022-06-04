@@ -45,7 +45,6 @@ int command_create_thread(TEAMS_A)
 {
     thread_t *thread = 0;
     char *success_buff = 0;
-    int retval = 0;
 
     if (param->arg.nb < 3) {
         return client_reply(param->clients, param->id, MISSING_PARAMETER);
@@ -60,7 +59,7 @@ int command_create_thread(TEAMS_A)
     server_event_thread_created(THIS_CLIENT.channel->uuid, thread->uuid,
     THIS_CLIENT.user->uuid, thread->title, thread->body);
     success_buff = get_success(param, thread);
-    retval = client_reply_success(param->clients, param->id, success_buff);
+    client_reply_success(param->clients, param->id, success_buff);
     free(success_buff);
-    return retval;
+    return 52;
 }
