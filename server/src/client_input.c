@@ -25,16 +25,20 @@ int get_command_params(char **dest, char *src)
     char *tmp = strdup(src);
     char *tok;
 
+    printf("{%s}\n", src);
     for (; i < MAX_PARAMS_NB + 1; i++) {
-        tok = strtok(i == 0 ? tmp : NULL, " \t\r\n");
+        tok = strtok(i == 0 ? tmp : NULL, "\"");
         if (!tok)
             break;
-        dest[i] = strdup(tok);
-        if (!dest[i])
+        if (i % 2 == 0)
+            dest[i / 2] = strdup(tok);
+        if (i % 2 == 0 && !dest[i / 2])
             break;
     }
+    for (int j = 0; dest[j]; j++)
+        printf("*[%s]\n", dest[j]);
     free(tmp);
-    return i;
+    return i / 2;
 }
 
 void exec_cmd(TEAMS_A, int cmd_id)
