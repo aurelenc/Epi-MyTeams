@@ -35,12 +35,12 @@ int command_subscribed_teams(TEAMS_A)
     node_t *iterator = 0;
 
     if (!new)
-        return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
+        return client_reply(PARAM_CID, PRINT_ALL_TEAMS, EMPTY_REPLY);
     iterator = new->teams->first;
     if (!iterator)
-        return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
+        return client_reply(PARAM_CID, PRINT_ALL_TEAMS, EMPTY_REPLY);
     write_client_buff(PARAM_CID, "00:");
     fill_message(param, iterator);
     write_client_buff(PARAM_CID, "\n");
-    return SUCCESS;
+    return PRINT_ALL_TEAMS;
 }
