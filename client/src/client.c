@@ -7,6 +7,7 @@
 
 #include "client.h"
 #include "get_command.h"
+#include "reply_codes.h"
 
 void connect_client(client_t *client)
 {
@@ -26,15 +27,16 @@ char *get_input_client(char *buff)
     return (buff);
 }
 
-// void read_message(client_t *client, char *buff)
-// {
-//     char **message;
+void read_message(client_t *client, char *buff)
+{
+    char **tab_message = NULL;
+    char response[2];
 
-//     memset(buff, 0, strlen(buff));
-//     read(client->socket, buff, (int)4e+6);
-//     message = parse_response(buff, .)
-
-// }
+    memset(buff, 0, strlen(buff));
+    read(client->socket, buff, (int)4e+6);
+    printf("message = [%s]\n", buff);
+    client_reply(atoi(strncpy(response, buff, 2)), tab_message, buff);
+}
 
 void running_teams(client_t *client, char *buff)
 {
@@ -46,7 +48,7 @@ void running_teams(client_t *client, char *buff)
     if (select(FD_SETSIZE, &client->rfd, &client->wfd, NULL, NULL) < 0)
         exit(84);
     if (FD_ISSET(client->socket, &client->rfd)) {
-        //read_message(client, buff);
+        read_message(client, buff);
     }
     if (FD_ISSET(client->socket, &client->wfd)) {
         memset(buff, 0, strlen(buff));
