@@ -14,6 +14,8 @@ int use_responses(char **tab, char *code_response)
 {
     if (!strcmp(code_response, "13"))
         client_error_unauthorized();
+    if (!strcmp(code_response, "00"))
+        printf("It's good you move !\n");
     free(tab);
     return 0;
 }

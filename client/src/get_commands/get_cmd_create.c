@@ -18,8 +18,6 @@ int create_responses(char **t, char *code_response)
         client_error_unknown_team(t[1]);
     if (!strcmp(code_response, "31"))
         client_error_unknown_channel(t[1]);
-    if (!strcmp(code_response, "32"))
-        client_error_unknown_thread(t[1]);
     if (!strcmp(code_response, "24"))
         client_error_already_exist();
     if (!strcmp(code_response, "50"))
