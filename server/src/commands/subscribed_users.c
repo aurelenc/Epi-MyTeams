@@ -10,6 +10,5 @@
 
 int command_subscribed_users(TEAMS_A)
 {
-    // if (param.)
     return NOT_IMPLEMENTED;
 }

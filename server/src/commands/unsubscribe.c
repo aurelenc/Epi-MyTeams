@@ -39,7 +39,8 @@ int command_unsubscribe(TEAMS_A)
     pair.user_id = THIS_CLIENT.user->id;
     pair.team_id = team->id;
     if (db_delete_user_team_by_pair(THIS_DB, &pair) == true) {
-        sprintf(user_id_formatted, "[ \"%s\" \"%s\"]", THIS_CLIENT.user->uuid, team->uuid);
+        sprintf(user_id_formatted, "[ \"%s\" \"%s\"]", THIS_CLIENT.user->uuid,
+        team->uuid);
         server_event_user_unsubscribed(team->uuid, THIS_CLIENT.user->uuid);
         reset_user_location(param);
         return client_reply(PARAM_CID, SUCCESS, user_id_formatted);

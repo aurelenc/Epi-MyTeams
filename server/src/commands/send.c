@@ -39,8 +39,8 @@ static void get_reply_msg(TEAMS_A, char *user_uuid, char *message_body)
     free(reply);
 }
 
-static void add_msg_to_db(
-TEAMS_A, user_t *user_one, user_t *user_two, id_t *ids)
+static void add_msg_to_db(TEAMS_A,
+user_t *user_one, user_t *user_two, id_t *ids)
 {
     int *relation = calloc(sizeof(int), 2);
     discussion_t *disc = db_search_discussion_by_users_id(THIS_DB, ids);
