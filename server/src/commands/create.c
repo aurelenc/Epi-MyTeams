@@ -12,7 +12,7 @@
 int command_create(command_param_t *param)
 {
     if (!THIS_CLIENT.user)
-        return client_reply(PARAM_CID, FORBIDDEN);
+        return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
     if (THIS_CLIENT.thread)
         return command_create_reply(param);
     if (THIS_CLIENT.channel)

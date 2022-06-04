@@ -35,8 +35,9 @@ static char *get_success(TEAMS_A, thread_t *thread)
     strlen(thread->title) + strlen(thread->body) + 32;
     char *buff = calloc(sizeof(char), len);
 
-    snprintf(buff, len , "52:[ \"%s\" \"%s\" \"%ld\" \"%s\" \"%s\"]\n", thread->uuid,
-    THIS_CLIENT.user->uuid, thread->timestamp, thread->title, thread->body);
+    snprintf(buff, len , "%i:[ \"%s\" \"%s\" \"%ld\" \"%s\" \"%s\"]\n",
+    CREATE_THREAD, thread->uuid, THIS_CLIENT.user->uuid, thread->timestamp,
+    thread->title, thread->body);
     printf("%s\n", buff);
     return (buff);
 }
@@ -47,19 +48,19 @@ int command_create_thread(TEAMS_A)
     char *success_buff = 0;
 
     if (param->arg.nb < 3) {
-        return client_reply(param->clients, param->id, MISSING_PARAMETER);
+        return client_reply(param->clients, param->id, MISSING_PARAMETER, "");
     } else if (param->arg.nb > 3) {
-        return client_reply(param->clients, param->id, INVALID_FORMAT);
+        return client_reply(param->clients, param->id, INVALID_FORMAT, "");
     }
     if (!is_in_team(param))
-        return client_reply(PARAM_CID, FORBIDDEN);
+        return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
     thread = thread_init(param->arg.array[1], param->arg.array[2],
     THIS_CLIENT.channel->id);
     db_add_thread(THIS_DB, thread);
     server_event_thread_created(THIS_CLIENT.channel->uuid, thread->uuid,
     THIS_CLIENT.user->uuid, thread->title, thread->body);
     success_buff = get_success(param, thread);
-    client_reply_success(param->clients, param->id, success_buff);
+    client_reply(param->clients, param->id, CREATE_THREAD, success_buff);
     free(success_buff);
-    return 52;
+    return CREATE_THREAD;
 }

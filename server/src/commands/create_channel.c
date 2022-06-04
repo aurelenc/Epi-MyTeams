@@ -35,8 +35,8 @@ static char *get_success(channel_t *channel)
     strlen(channel->desc) + 16;
     char *buff = calloc(sizeof(char), len);
 
-    snprintf(buff, len, "51:[ \"%s\" \"%s\" \"%s\"]\n", channel->uuid,
-    channel->name, channel->desc);
+    snprintf(buff, len, "%i:[ \"%s\" \"%s\" \"%s\"]\n", CREATE_CHANNEL,
+    channel->uuid, channel->name, channel->desc);
     printf("%s\n", buff);
     return (buff);
 }
@@ -47,18 +47,18 @@ int command_create_channel(TEAMS_A)
     char *buff = 0;
 
     if (param->arg.nb < 3) {
-        return client_reply(param->clients, param->id, MISSING_PARAMETER);
+        return client_reply(param->clients, param->id, MISSING_PARAMETER, "");
     } else if (param->arg.nb > 3) {
-        return client_reply(param->clients, param->id, INVALID_FORMAT);
+        return client_reply(param->clients, param->id, INVALID_FORMAT, "");
     }
     if (!is_in_team(param))
-        return client_reply(PARAM_CID, FORBIDDEN);
+        return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
     channel = channel_init(THIS_ARG[1], THIS_ARG[2], THIS_CLIENT.team->id);
     server_event_channel_created(THIS_CLIENT.team->uuid, channel->uuid,
     channel->name);
     db_add_channel(THIS_DB, channel);
     buff = get_success(channel);
-    client_reply_success(param->clients, param->id, buff);
+    client_reply(param->clients, param->id, CREATE_CHANNEL, buff);
     free(buff);
-    return 51;
+    return CREATE_CHANNEL;
 }

@@ -5,9 +5,10 @@
 ** create_team
 */
 
+#include "logging_server.h"
 #include "reply_codes.h"
 #include "server.h"
-#include "tables/channels/database_channels_add.h"
+#include "tables/teams/database_teams_add.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -18,8 +19,8 @@ static char *get_success(team_t *team)
     strlen(team->desc) + 16;
     char *buff = calloc(sizeof(char), len);
 
-    snprintf(buff, len, "50:[ \"%s\" \"%s\" \"%s\"]\n", team->uuid, team->name,
-    team->desc);
+    snprintf(buff, len, "%i:[ \"%s\" \"%s\" \"%s\"]\n", CREATE_TEAM,
+    team->uuid, team->name, team->desc);
     printf("%s\n", buff);
     return (buff);
 }
@@ -37,18 +38,17 @@ static team_t *create_team(TEAMS_A)
 int command_create_team(TEAMS_A)
 {
     char *buff = 0;
-    int retval = 0;
 
     if (param->arg.nb < 3) {
-        return client_reply(param->clients, param->id, MISSING_PARAMETER);
+        return client_reply(param->clients, param->id, MISSING_PARAMETER, "");
     } else if (param->arg.nb > 3) {
-        return client_reply(param->clients, param->id, INVALID_FORMAT);
+        return client_reply(param->clients, param->id, INVALID_FORMAT, "");
     }
     buff = get_success(create_team(param));
     for (int i = 0; i < MAX_CLIENTS; i++) {
         if (TEAMS_CLIENTS[i].socket != 0 && TEAMS_CLIENTS[i].user)
-            client_reply_success(param->clients, i, buff);
+            client_reply(param->clients, i, CREATE_TEAM, buff);
     }
     free(buff);
-    return 50;
+    return CREATE_TEAM;
 }

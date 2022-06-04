@@ -51,7 +51,7 @@ static char *get_success(TEAMS_A, msg_t *msg)
     + strlen(THIS_CLIENT.user->uuid) + strlen(msg->content) + 20;
     char *buff = calloc(sizeof(char), len);
 
-    snprintf(buff, len, "53:[ \"%s\" \"%s\" \"%s\" \"%s\"]\n",
+    snprintf(buff, len, "%i:[ \"%s\" \"%s\" \"%s\" \"%s\"]\n", CREATE_REPLY,
     THIS_CLIENT.team->uuid, THIS_CLIENT.thread->uuid, THIS_CLIENT.user->uuid,
     msg->content);
     printf("%s\n", buff);
@@ -77,14 +77,14 @@ int command_create_reply(TEAMS_A)
     char *buff = 0;
 
     if (param->arg.nb < 2) {
-        return client_reply(param->clients, param->id, MISSING_PARAMETER);
+        return client_reply(param->clients, param->id, MISSING_PARAMETER, "");
     } else if (param->arg.nb > 2) {
-        return client_reply(param->clients, param->id, INVALID_FORMAT);
+        return client_reply(param->clients, param->id, INVALID_FORMAT, "");
     }
     if (!is_cli_in_team(THIS_DB, &THIS_CLIENT, THIS_CLIENT.team))
-        return client_reply(PARAM_CID, FORBIDDEN);
+        return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
     buff = get_success(param, create_msg(param));
-    client_reply_success(param->clients, param->id, buff);
+    client_reply(param->clients, param->id, CREATE_REPLY, buff);
     free(buff);
-    return 53;
+    return CREATE_REPLY;
 }
