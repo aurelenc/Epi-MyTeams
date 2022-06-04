@@ -41,9 +41,10 @@ char **parse_response(char *response, int nb_params)
     char *saveptr1 = NULL;
     char *parser = "\"";
     char **tab_response =
-    calloc(sizeof(char *), (count_users(response) *
-    (nb_params = is_arg_good(response, nb_params))) * 2 + 1);
+    calloc(sizeof(char *), ((count_users(response) *
+    (nb_params = is_arg_good(response, nb_params))) * 2 + 1) * 2);
 
+    printf("%s\n", response);
     if (count_users(response) == 0)
         return(NULL);
     if (nb_params == 0)
@@ -54,6 +55,8 @@ char **parse_response(char *response, int nb_params)
             break;
         printf("%d: [%s]\n", i, arg);
         tab_response[i] = strdup(arg);
+        printf("%d: [%s]\n", i, arg);
     }
+    printf("[%s]\n", tab_response[0]);
     return tab_response;
 }
