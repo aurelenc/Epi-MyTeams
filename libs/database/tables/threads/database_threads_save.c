@@ -20,7 +20,7 @@ static void write_all_threads_in_file(llist_t *threads, FILE *fptr)
 
     while (nptr) {
         thread = (thread_t *)nptr->data;
-        fprintf(fptr,"\"%i\";\"%s\";\"%s\";\"%s\";\"%d\";\"%ld\";\n",
+        fprintf(fptr, "\"%i\";\"%s\";\"%s\";\"%s\";\"%d\";\"%ld\";\n",
         thread->id, thread->uuid, thread->title, thread->body,
         thread->channel_id, thread->timestamp);
         nptr = nptr->next;

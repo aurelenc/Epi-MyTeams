@@ -31,4 +31,4 @@ const id_t id);
 /// @return A pointer to an allocated database_t structure
 ///
 database_t *db_search_teams_of_an_user_by_his_id(database_t *db,
-const id_t id) ;
+const id_t id);

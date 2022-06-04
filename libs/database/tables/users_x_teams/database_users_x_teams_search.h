@@ -22,9 +22,9 @@
 static inline id_pair_t *db_search_user_team_by_user_id(database_t *db,
 const id_t id)
 {
-    return (id_pair_t *)llist_search(db->users_teams,
-    &user_team_user_id_compare, &id);
-};
+    return ((id_pair_t *)llist_search(db->users_teams,
+    &user_team_user_id_compare, &id));
+}
 
 ///
 /// @brief It searches the user-team pair whose team ID matches the given ID
@@ -37,9 +37,9 @@ const id_t id)
 static inline id_pair_t *db_search_user_team_by_team_id(database_t *db,
 const id_t id)
 {
-    return (id_pair_t *)llist_search(db->users_teams,
-    &user_team_team_id_compare, &id);
-};
+    return ((id_pair_t *)llist_search(db->users_teams,
+    &user_team_team_id_compare, &id));
+}
 
 ///
 /// @brief It searches the database for a user-team pair that matches the given
@@ -53,6 +53,6 @@ const id_t id)
 static inline id_pair_t *db_search_user_team_by_pair(database_t *db,
 const id_pair_t *id)
 {
-    return (id_pair_t *)llist_search(db->users_teams,
-    &user_team_pair_compare, id);
-};
+    return ((id_pair_t *)llist_search(db->users_teams,
+    &user_team_pair_compare, id));
+}

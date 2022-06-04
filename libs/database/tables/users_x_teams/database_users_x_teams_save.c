@@ -20,7 +20,7 @@ static void write_all_users_x_teams_in_file(llist_t *users_x_teams, FILE *fptr)
 
     while (nptr) {
         pair = (id_pair_t *)nptr->data;
-        fprintf(fptr,"\"%d\";\"%d\";\n", pair->user_id, pair->team_id);
+        fprintf(fptr, "\"%d\";\"%d\";\n", pair->user_id, pair->team_id);
         nptr = nptr->next;
     }
 }

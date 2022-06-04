@@ -21,7 +21,7 @@ const id_t user_id)
     found->messages =
     llist_multiple_search(db->messages, &msg_user_id_compare, &user_id);
     return found;
-};
+}
 
 database_t *db_multiple_search_msg_by_thread_id(database_t *db,
 const id_t thread_id)
@@ -35,7 +35,7 @@ const id_t thread_id)
     llist_multiple_search(db->messages, &msg_thread_id_compare,
     &thread_id);
     return (found);
-};
+}
 
 database_t *db_multiple_search_msg_by_discussion_id(database_t *db,
 const id_t discu_id)
@@ -49,4 +49,4 @@ const id_t discu_id)
     llist_multiple_search(db->messages, &msg_discussion_id_compare,
     &discu_id);
     return (found);
-};
+}

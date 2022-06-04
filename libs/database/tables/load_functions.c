@@ -14,17 +14,17 @@ char *get_file_content(const char *filepath)
 {
     char *buffer = 0;
     long length;
-    FILE *f = fopen (filepath, "rb");
+    FILE *f = fopen(filepath, "rb");
 
     if (f) {
-        fseek (f, 0, SEEK_END);
+        fseek(f, 0, SEEK_END);
         length = ftell (f);
-        fseek (f, 0, SEEK_SET);
+        fseek(f, 0, SEEK_SET);
         buffer = calloc(sizeof(char), length + 1);
         if (buffer) {
-            fread (buffer, 1, length, f);
+            fread(buffer, 1, length, f);
         }
-        fclose (f);
+        fclose(f);
     }
     return (buffer);
 }
@@ -80,7 +80,7 @@ char ***get_entities(char *buffer, size_t nb_args)
     entities = calloc(sizeof(char **), count / nb_args + 1);
     if (!entities)
         exit(84);
-    for (size_t i = 0; i < count / nb_args / 2 ; i++) {
+    for (size_t i = 0; i < count / nb_args / 2; i++) {
         entities[i] = get_an_entity(buffer, nb_args, &cursor);
         if (!entities[i])
             return entities;

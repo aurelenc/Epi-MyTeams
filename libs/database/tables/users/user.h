@@ -14,7 +14,7 @@ typedef struct user_s {
     char *uuid;
     char *pseudo;
     char *password;
-} user_t ;
+} user_t;
 
 ///
 /// @brief It creates a user_t structure and initializes it with the given

@@ -23,7 +23,8 @@
 static inline msg_t *db_search_msg_by_user_id(database_t *db,
 const id_t user_id)
 {
-    return ((msg_t *)llist_search(db->messages, &msg_user_id_compare, &user_id));
+    return ((msg_t *)llist_search(db->messages,
+    &msg_user_id_compare, &user_id));
 }
 
 ///

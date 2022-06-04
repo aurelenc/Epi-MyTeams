@@ -17,7 +17,7 @@ msg_t *msg_init(const char *content, id_t user_id, int *relation)
     msg_t *msg = calloc(sizeof(msg_t), 1);
 
     if (!msg)
-        exit (84);
+        exit(84);
     msg->id = 0;
     msg->timestamp = time(NULL);
     msg->user_id = user_id;
@@ -26,10 +26,9 @@ msg_t *msg_init(const char *content, id_t user_id, int *relation)
     msg->uuid = uuid_gen();
     msg->content = strdup(content);
     if (!msg->content || !msg->uuid)
-        exit (84);
+        exit(84);
     return (msg);
 }
-
 
 void msg_destruction(msg_t *msg)
 {

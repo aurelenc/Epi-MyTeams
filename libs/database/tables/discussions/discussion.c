@@ -27,7 +27,6 @@ discussion_t *discussion_init(id_t user_one_id, id_t user_two_id)
     return (discussion);
 }
 
-
 void discussion_destruction(discussion_t *discussion)
 {
     if (!discussion)
