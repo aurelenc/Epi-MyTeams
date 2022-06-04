@@ -45,7 +45,7 @@ int check_params(char *av);
 char **parse_response(char *response, int nb_params);
 
 char **send_command(char *av, char **tab_response, char *command, int socket);
-
+int print_message(char **tab_res, int reply_code);
 int parse_command(char *input, int socket);
 
 #endif /* !GET_COMMAND_H_ */

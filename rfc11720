@@ -184,5 +184,16 @@ The objectives of the myTeams project RFC is to allow communication between myTe
 - 53
     - Create reply ok
 
+- 60
+    - Get a message
+- 61
+    - Get a message TEAM
+- 62
+    - Get a message CHANNEL
+- 63
+    - Get a message THREAD
+- 64
+    - Get a message REPLY
+
 - 99
     - Not implemented

@@ -19,13 +19,13 @@ typedef struct reply_code_s {
 /// @brief Reply codes array
 extern const reply_code_t reply_codes[];
 
-int client_reply(int reply_code);
+int client_reply(int reply_code, char **tab_response, char *input);
 
 #define SUCCESS 00
 #define SERVICE_READY_FOR_NEW_USER 01
 #define SUBSCRIBE_OK 02
 #define UNSUBSCRIBE_OK 03
-#define GET_MESSAGE 9
+
 #define INTERNAL_SERVER_ERROR 10
 #define SERVER_IS_FULL 11
 #define TOO_MANY_REQUESTS 12
@@ -54,6 +54,12 @@ int client_reply(int reply_code);
 #define CREATE_CHANNEL 51
 #define CREATE_THREAD 52
 #define CREATE_REPLY 53
+
+#define GET_MESSAGE 60
+#define GET_TEAM 61
+#define GET_CHANNEL 62
+#define GET_THREAD 63
+#define GET_REPLY 64
 
 #define NOT_IMPLEMENTED 99
 
