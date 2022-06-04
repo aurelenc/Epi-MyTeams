@@ -37,7 +37,7 @@ int create(char *av, int socket)
     char code_response[3] = {0};
     char **tab_res = NULL;
 
-    if (check_params(av) < 2 || check_params(av) > 3)
+    if (check_params(av) == 1 || check_params(av) == 2)
         tab_res = send_command(av, tab_res, "\"CREA\" ", socket);
     else {
         printf("Command is not good, use /help for more information !\n");
