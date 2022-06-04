@@ -42,13 +42,12 @@ char **parse_response(char *response, int nb_params)
     char *parser = "\"";
     char **tab_response =
     calloc(sizeof(char *), ((count_users(response) *
-    (nb_params = is_arg_good(response, nb_params))) * 2 + 1) * 2);
-
+    (nb_params = is_arg_good(response, nb_params))) * 2 + 1) * 5);
     if (count_users(response) == 0)
-        return(NULL);
+        return (NULL);
     if (nb_params == 0)
         return (NULL);
-    for (int i = 0; ; i++, str1 = NULL) {
+    for (int i = 0;; i++, str1 = NULL) {
         arg = strtok_r(str1, parser, &saveptr1);
         if (arg == NULL)
             break;
