@@ -44,7 +44,7 @@ static int team_already_exists(TEAMS_A)
 
     snprintf(buff, len, "[ \"%s\" \"%s\"]", THIS_ARG[1], THIS_ARG[2]);
     printf("%s\n", buff);
-    retval =client_reply(PARAM_CID, RESOURCE_ALREADY_EXISTS, buff);
+    retval = client_reply(PARAM_CID, RESOURCE_ALREADY_EXISTS, buff);
     free(buff);
     return retval;
 }
