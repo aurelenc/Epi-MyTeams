@@ -17,7 +17,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-static char *get_reply_msg(char *user_uuid, char *message_body)
+static void get_reply_msg(TEAMS_A, char *user_uuid, char *message_body)
 {
     char *reply =
     calloc(sizeof(char), strlen(user_uuid) + strlen(message_body) + 12);
@@ -29,7 +29,14 @@ static char *get_reply_msg(char *user_uuid, char *message_body)
     strcat(reply, "\" \"");
     strcat(reply, message_body);
     strcat(reply, "\"]");
-    return (reply);
+    client_reply(PARAM_CID, SUCCESS, reply);
+    for (int i = 0; i < MAX_CLIENTS; i++) {
+        if (!TEAMS_CLIENTS[i].socket || !TEAMS_CLIENTS[i].user)
+            continue;
+        if (strcmp(TEAMS_CLIENTS[i].user->uuid, user_uuid) == 0)
+            client_reply(TEAMS_CLIENTS, i, GET_MESSAGE, message_body);
+    }
+    free(reply);
 }
 
 static void add_msg_to_db(
@@ -58,7 +65,6 @@ int command_send(TEAMS_A)
 {
     user_t *user_one = 0;
     id_t *ids = calloc(sizeof(id_t), 2);
-    char *message;
 
     printf("[SERVER] SEND\n");
     if (!THIS_CLIENT.user)
@@ -73,8 +79,6 @@ int command_send(TEAMS_A)
     ids[0] = user_one->id;
     ids[1] = THIS_CLIENT.user->id;
     add_msg_to_db(TEAMS_PARAM, user_one, THIS_CLIENT.user, ids);
-    message = get_reply_msg(user_one->uuid, THIS_ARG[2]);
-    client_reply(PARAM_CID, SUCCESS, message);
-    free(message);
+    get_reply_msg(TEAMS_PARAM, user_one->uuid, THIS_ARG[2]);
     return SUCCESS;
 }
