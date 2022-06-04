@@ -56,7 +56,7 @@ int client_reply(client_sock_t *clients, int client_id, int code, char *msg)
 {
     char buff[MAX_BUFF_SIZE] = {0};
 
-    sprintf(buff, reply_codes[get_reply(SUCCESS)].message, msg);
+    sprintf(buff, reply_codes[get_reply(code)].message, msg);
     write_client_buff(clients, client_id, buff);
     return code;
 }
