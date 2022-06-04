@@ -22,6 +22,6 @@ int print_message(char **tab_res, int reply_code)
         client_event_thread_created(tab_res[1], tab_res[3], atol(tab_res[5]),
         tab_res[7], tab_res[9]);
     if (reply_code == GET_MESSAGE)
-        client_event_private_message_received(tab_res[1], tab_res[2]);
+        client_event_private_message_received(tab_res[1], tab_res[3]);
     return 0;
 }
