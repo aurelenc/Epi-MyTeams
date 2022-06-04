@@ -7,6 +7,7 @@
 
 #include "message.h"
 #include <stdbool.h>
+#include <string.h>
 
 bool msg_id_compare(const void *elem, const void *search)
 {
@@ -23,7 +24,7 @@ bool msg_uuid_compare(const void *elem, const void *search)
     const msg_t *msg = (const msg_t *)elem;
     const char *uuid = (const char *)search;
 
-    if (msg->uuid == uuid)
+    if (strcmp(msg->uuid, uuid) == 0)
         return true;
     return false;
 }
