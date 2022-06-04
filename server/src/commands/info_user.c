@@ -7,6 +7,18 @@
 
 #include "reply_codes.h"
 #include "server.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+static char *is_user_connected(client_sock_t *clients, unsigned int user_id)
+{
+    for (int i = 0; i < MAX_CLIENTS; i++) {
+        if (clients[i].user && clients[i].user->id == user_id)
+            return "1";
+    }
+    return "0";
+}
 
 static char *get_msg_reply(user_t *user, client_sock_t *clients)
 {
