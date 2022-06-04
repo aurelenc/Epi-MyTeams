@@ -29,6 +29,16 @@ bool thread_uuid_compare(const void *elem, const void *search)
     return false;
 }
 
+bool thread_title_compare(const void *elem, const void *search)
+{
+    const thread_t *thread = (const thread_t *)elem;
+    const char *title = (const char *)search;
+
+    if (thread->title == title)
+        return true;
+    return false;
+}
+
 bool thread_channel_id_compare(const void *elem, const void *search)
 {
     const thread_t *thread = (const thread_t *)elem;

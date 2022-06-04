@@ -10,6 +10,8 @@
 #include "server.h"
 #include "tables/users_x_teams/database_users_x_teams_search.h"
 #include "tables/threads/database_threads_add.h"
+#include "tables/threads/database_threads_multiple_search.h"
+#include "tables/threads/database_threads_search.h"
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -42,6 +44,37 @@ static char *get_success(TEAMS_A, thread_t *thread)
     return (buff);
 }
 
+static bool thread_already_exists(TEAMS_A)
+{
+    database_t *found = db_multiple_search_threads_by_title(THIS_DB,
+    THIS_ARG[1]);
+    bool retval = false;
+
+    if (db_search_thread_by_channel_id(found, THIS_CLIENT.team->id))
+        retval = true;
+    free(found->channels);
+    free(found->discussions);
+    free(found->users_teams);
+    free(found->users);
+    free(found->threads);
+    free(found->messages);
+    free(found->teams);
+    return retval;
+}
+
+static int send_already_exists(TEAMS_A)
+{
+    int len = strlen(THIS_ARG[1]) + strlen(THIS_ARG[2]) + 13;
+    char *buff = calloc(sizeof(char), len);
+    int retval = -1;
+
+    snprintf(buff, len, "[ \"%s\" \"%s\"]", THIS_ARG[1], THIS_ARG[2]);
+    printf("%s\n", buff);
+    retval = client_reply(PARAM_CID, RESOURCE_ALREADY_EXISTS, buff);
+    free(buff);
+    return retval;
+}
+
 int command_create_thread(TEAMS_A)
 {
     thread_t *thread = 0;
@@ -49,11 +82,12 @@ int command_create_thread(TEAMS_A)
 
     if (param->arg.nb < 3) {
         return client_reply(param->clients, param->id, MISSING_PARAMETER, "");
-    } else if (param->arg.nb > 3) {
+    } else if (param->arg.nb > 3)
         return client_reply(param->clients, param->id, INVALID_FORMAT, "");
-    }
     if (!is_in_team(param))
         return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
+    if (thread_already_exists(param))
+        return send_already_exists(param);
     thread = thread_init(param->arg.array[1], param->arg.array[2],
     THIS_CLIENT.channel->id);
     db_add_thread(THIS_DB, thread);
