@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** 1
+** Epi-MyTeams
 ** File description:
 ** manage_params
 */
