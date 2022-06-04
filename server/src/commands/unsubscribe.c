@@ -42,7 +42,7 @@ int command_unsubscribe(TEAMS_A)
         sprintf(user_id_formatted, "[ \"%s\" \"%s\"]", THIS_CLIENT.user->uuid, team->uuid);
         server_event_user_unsubscribed(team->uuid, THIS_CLIENT.user->uuid);
         reset_user_location(param);
-        return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
+        return client_reply(PARAM_CID, SUCCESS, user_id_formatted);
     }
     return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
 }
