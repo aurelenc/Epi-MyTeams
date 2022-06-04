@@ -21,12 +21,12 @@ static void fill_message(TEAMS_A, node_t *it)
 
     while (it) {
         memset(message, 0, MAX_BUFF_SIZE);
-        snprintf(message, MAX_BUFF_SIZE, "[\"%ld\" \"%s\"",
+        snprintf(message, MAX_BUFF_SIZE, "[\"%ld\" \"%s\"]",
         ((msg_t *)(it->data))->timestamp,
         ((msg_t *)(it->data))->content);
         printf("%s\n", message);
         if (it->next)
-            strcpy(message, " ");
+            strcat(message, " ");
         write_client_buff(PARAM_CID, message);
         it = it->next;
     }

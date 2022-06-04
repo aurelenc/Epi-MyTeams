@@ -9,10 +9,8 @@
 #include "server.h"
 #include "tables/teams/database_teams_search.h"
 #include "tables/users_x_teams/database_users_x_teams_multiple_search.h"
-#include "tables/users/user_search.h"
 #include "tables/users_x_teams/database_users_x_teams_search.h"
 #include "tables/users/database_users_search.h"
-#include <string.h>
 
 int command_use_team(TEAMS_A)
 {
