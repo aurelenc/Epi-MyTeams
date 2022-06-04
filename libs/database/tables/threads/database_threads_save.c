@@ -38,7 +38,6 @@ bool db_save_threads(database_t *db, const char *filepath)
     }
     write_all_threads_in_file(db->threads, fptr);
     fclose(fptr);
-    printf("Threads: Successfully saved.\n");
     return true;
 }
 
