@@ -29,6 +29,7 @@ int client_reply(client_sock_t *clients, int cliend_id, int code, char *msg);
 #define SERVICE_READY_FOR_NEW_USER 01
 #define SUBSCRIBE_OK 02
 #define UNSUBSCRIBE_OK 03
+#define GET_MESSAGE 9
 
 #define INTERNAL_SERVER_ERROR 10
 #define SERVER_IS_FULL 11
