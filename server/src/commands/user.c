@@ -32,7 +32,7 @@ static char *get_msg_reply(user_t *user, client_sock_t *clients)
     strcat(buff, user->pseudo);
     strcat(buff, "\" \"");
     strcat(buff, is_user_connected(clients, user->id));
-    strcat(buff, "\"]\n");
+    strcat(buff, "\"]");
     printf("%s\n", buff);
     return (buff);
 }
