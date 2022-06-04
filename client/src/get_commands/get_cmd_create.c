@@ -25,7 +25,7 @@ int create_responses(char **t, char *code_response)
     if (!strcmp(code_response, "51"))
         client_print_channel_created(t[1], t[3], t[5]);
     if (!strcmp(code_response, "52"))
-        client_print_thread_created(t[1], t[3], atol(t[5]), t[7], t[8]);
+        client_print_thread_created(t[1], t[3], atol(t[5]), t[7], t[9]);
     if (!strcmp(code_response, "53"))
         client_print_reply_created(t[1], t[3], atol(t[5]), t[7]);
     free(t);
