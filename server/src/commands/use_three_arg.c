@@ -36,8 +36,9 @@ static int do_channel_actions(TEAMS_A, team_t * team, channel_t *channel)
         THIS_CLIENT.team = team;
         THIS_CLIENT.channel = channel;
         THIS_CLIENT.thread = thread;
+        return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
     }
-    return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
+    return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
 }
 
 static int do_team_actions(TEAMS_A, team_t *team)
@@ -45,13 +46,13 @@ static int do_team_actions(TEAMS_A, team_t *team)
     channel_t *channel = 0;
 
     if (!is_cli_in_team(THIS_DB, &THIS_CLIENT, team)) {
-        return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
+        return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
     }
     channel = db_search_channel_by_uuid(THIS_DB, THIS_ARG[2]);
     if (channel && channel->team_id == team->id) {
         do_channel_actions(param, team, channel);
     }
-    return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
+    return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
 }
 
 int command_use_three_arg(TEAMS_A)
@@ -61,5 +62,5 @@ int command_use_three_arg(TEAMS_A)
     if (team) {
         return do_team_actions(param, team);
     }
-    return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
+    return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
 }

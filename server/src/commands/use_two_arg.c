@@ -34,12 +34,13 @@ static int do_channel_actions(TEAMS_A, channel_t *channel)
 
     if (channel->team_id != THIS_CLIENT.team->id
     || !is_cli_in_team(THIS_DB, &THIS_CLIENT, THIS_CLIENT.team))
-        return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
+        return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
     if (thread && thread->id == channel->id) {
         THIS_CLIENT.channel = channel;
         THIS_CLIENT.thread = thread;
+        return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
     }
-    return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
+    return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
 }
 
 static int do_team_actions(TEAMS_A, team_t *team)
@@ -47,14 +48,15 @@ static int do_team_actions(TEAMS_A, team_t *team)
     channel_t *channel = db_search_channel_by_uuid(THIS_DB, THIS_ARG[2]);
 
     if (!is_cli_in_team(THIS_DB, &THIS_CLIENT, team)) {
-        return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
+        return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
     }
     if (channel && channel->team_id == team->id) {
         THIS_CLIENT.team = team;
         THIS_CLIENT.channel = channel;
         THIS_CLIENT.thread = 0;
+        return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
     }
-    return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
+    return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
 }
 
 int command_use_two_arg(TEAMS_A)
@@ -69,5 +71,5 @@ int command_use_two_arg(TEAMS_A)
     if (channel) {
         do_channel_actions(param, channel);
     }
-    return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
+    return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
 }

@@ -33,8 +33,9 @@ static int do_thread_actions(TEAMS_A, thread_t *thread)
     if (THIS_CLIENT.team && THIS_CLIENT.channel
     && THIS_CLIENT.channel->id == thread->channel_id) {
         THIS_CLIENT.thread = thread;
+        return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
     }
-    return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
+    return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
 }
 
 static int do_channel_actions(TEAMS_A, channel_t *channel)
@@ -42,8 +43,9 @@ static int do_channel_actions(TEAMS_A, channel_t *channel)
     if (THIS_CLIENT.team && THIS_CLIENT.team->id == channel->team_id) {
         THIS_CLIENT.channel = channel;
         THIS_CLIENT.thread = 0;
+        return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
     }
-    return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
+    return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
 }
 
 static int do_team_actions(TEAMS_A, team_t *team)
@@ -52,8 +54,9 @@ static int do_team_actions(TEAMS_A, team_t *team)
         THIS_CLIENT.team = team;
         THIS_CLIENT.channel = 0;
         THIS_CLIENT.thread = 0;
+        return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
     }
-    return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
+    return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
 }
 
 int command_use_one_arg(TEAMS_A)
@@ -73,5 +76,5 @@ int command_use_one_arg(TEAMS_A)
     if (thread) {
         return do_thread_actions(param, thread);
     }
-    return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
+    return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
 }
