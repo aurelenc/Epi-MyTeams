@@ -24,6 +24,7 @@ COMMANDS_SRC	=	\
 					src/commands/send.c					\
 					src/commands/messages.c				\
 					src/commands/subscribe.c			\
+					src/commands/subscribed.c		\
 					src/commands/subscribed_teams.c		\
 					src/commands/subscribed_users.c		\
 					src/commands/unsubscribe.c			\

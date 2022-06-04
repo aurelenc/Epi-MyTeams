@@ -46,6 +46,11 @@ int command_messages(TEAMS_A);
 /// @return The reply code
 int command_subscribe(TEAMS_A);
 
+/// @brief List all subscribed teams or users in a team
+/// @param param The command param structure
+/// @return The reply code
+int command_subscribed(TEAMS_A);
+
 /// @brief List all subscribed teams
 /// @param param The command param structure
 /// @return The reply code

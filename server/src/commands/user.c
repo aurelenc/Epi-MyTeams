@@ -53,7 +53,7 @@ int command_user(TEAMS_A)
     }
     found = db_search_user_by_uuid(THIS_DB, THIS_ARG[1]);
     if (!found) {
-        sprintf(user_id_formatted, "[ \"%s\"]", THIS_ARG[1]);
+        snprintf(user_id_formatted, UUID_SIZE + 6, "[ \"%s\"]", THIS_ARG[1]);
         return client_reply(PARAM_CID, NOT_FOUND, user_id_formatted);
     }
     success_buff = get_msg_reply(found, TEAMS_CLIENTS);

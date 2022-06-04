@@ -61,7 +61,7 @@ int client_reply(client_sock_t *clients, int client_id, int code, char *msg)
 {
     char *buff = calloc(sizeof(char), MAX_BUFF_SIZE + 1);
 
-    sprintf(buff, reply_codes[get_reply(code)].message, msg);
+    snprintf(buff, MAX_BUFF_SIZE, reply_codes[get_reply(code)].message, msg);
     write_client_buff(clients, client_id, buff);
     free(buff);
     return code;
