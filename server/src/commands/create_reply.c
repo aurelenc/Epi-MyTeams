@@ -84,7 +84,13 @@ int command_create_reply(TEAMS_A)
     if (!is_cli_in_team(THIS_DB, &THIS_CLIENT, THIS_CLIENT.team))
         return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
     buff = get_success(param, create_msg(param));
-    client_reply(param->clients, param->id, CREATE_REPLY, buff);
+    for (int i = 0; i < MAX_CLIENTS; i++) {
+        if (!TEAMS_CLIENTS[i].socket != 0 || !TEAMS_CLIENTS[i].user)
+            continue;
+        if (!is_cli_in_team(THIS_DB, &TEAMS_CLIENTS[i], TEAMS_CLIENTS->team))
+            continue;
+        client_reply_success(param->clients, i, CREATE_REPLY, buff);
+    }
     free(buff);
     return CREATE_REPLY;
 }
