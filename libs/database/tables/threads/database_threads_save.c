@@ -20,9 +20,9 @@ static void write_all_threads_in_file(llist_t *threads, FILE *fptr)
 
     while (nptr) {
         thread = (thread_t *)nptr->data;
-        fprintf(fptr, "\"%i\";\"%s\";\"%s\";\"%s\";\"%d\";\"%ld\";\n",
+        fprintf(fptr, "\"%i\";\"%s\";\"%s\";\"%s\";\"%d\";\"%d\";\"%ld\";\n",
         thread->id, thread->uuid, thread->title, thread->body,
-        thread->channel_id, thread->timestamp);
+        thread->user_id, thread->channel_id, thread->timestamp);
         nptr = nptr->next;
     }
 }
@@ -49,16 +49,16 @@ bool db_load_threads(database_t *db, const char *filepath)
 
     if (!content)
         return false;
-    entities = get_entities(content, 6);
+    entities = get_entities(content, 7);
     if (!entities)
         return false;
     for (size_t i = 0; entities[i]; i++) {
         thread = thread_init(entities[i][2], entities[i][3],
-        atoi(entities[i][4]));
+        atoi(entities[i][4]), atoi(entities[i][5]));
         free(thread->uuid);
         thread->uuid = entities[i][1];
         thread->id = atoi(entities[i][0]);
-        thread->timestamp = atol(entities[i][5]);
+        thread->timestamp = atol(entities[i][6]);
         db_add_thread(db, thread);
     }
     printf("Threads: Successfully loaded.\n");

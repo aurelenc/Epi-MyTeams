@@ -97,7 +97,7 @@ int command_create_thread(TEAMS_A)
     if (thread_already_exists(param))
         return send_already_exists(param);
     thread = thread_init(param->arg.array[1], param->arg.array[2],
-    THIS_CLIENT.channel->id);
+    THIS_CLIENT.user->id, THIS_CLIENT.channel->id);
     db_add_thread(THIS_DB, thread);
     server_event_thread_created(THIS_CLIENT.channel->uuid, thread->uuid,
     THIS_CLIENT.user->uuid, thread->title, thread->body);
