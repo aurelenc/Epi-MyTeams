@@ -31,7 +31,7 @@ int messages(char *av, int socket)
     char **tab_res = NULL;
 
     if (check_params(av) == 1)
-        tab_res = send_command(av, tab_res, "MSG ", socket);
+        tab_res = send_command(av, tab_res, "\"MSG\" ", socket);
     else {
         printf("Command is not good, use /help for more information !\n");
         return -1;
