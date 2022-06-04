@@ -12,7 +12,7 @@
 
 char *add_space(char *av)
 {
-    char *temp = calloc(sizeof(char),(strlen(av) + 1));
+    char *temp = calloc(sizeof(char), (strlen(av) + 1));
     int count = 0;
     int i = 0;
 
