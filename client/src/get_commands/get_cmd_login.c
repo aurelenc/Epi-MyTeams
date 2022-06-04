@@ -12,32 +12,23 @@
 
 int login_client(char *av, int socket)
 {
-    char buff[4096];
-    char response[2];
-    char **tab_response;
+    char code_response[3] = {0};
+    char **tab_res = NULL;
 
-    memset(buff, 0, 4096);
-    if (av == NULL)
-        return -1;
-    if (check_params(av) == 1) {
-
-        make_command_rfc_compatible(buff, "LOGIN ", av);
-
-        write(socket, buff, strlen(buff));
-        memset(buff, 0, 4096);
-
-        if (read(socket, buff, 4096) == 0) {
-            printf("Client is deconnected !\n");
-            exit (0);
-        }
-        client_reply(atoi(strncpy(response, buff, 2)));
-        if (strlen(buff) > 4) {
-            tab_response = parse_response(buff, 2);
-            printf("Tab[0] = [%s]\n", tab_response[0]);
-            client_event_logged_in(tab_response[1], tab_response[3]);
-        }
-    } else {
-        printf("Command are not good use /help for more information !\n");
+    if (check_params(av) == 1)
+        tab_res = send_command(av, tab_res, "LOGI ", socket);
+    else {
+        printf("Command is not good, use /help for more information !\n");
+        return (-1);
     }
+    if (tab_res == NULL) {
+        printf("Tab_res == NULL\n");
+        free(tab_res);
+        return -1;
+    }
+    strncpy(code_response, tab_res[0], 2);
+    if (!strcmp(code_response, "00"))
+        client_event_logged_in(tab_res[1], tab_res[3]);
+    free(tab_res);
     return 0;
 }

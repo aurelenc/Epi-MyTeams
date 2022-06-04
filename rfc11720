@@ -9,70 +9,113 @@ The objectives of the myTeams project RFC is to allow communication between myTe
 - LOGI <SP> ["user_name"] <EOL>
     -   This protocol is used to set the user_name used by client
         -   user_name: The name of the user to connect to
+
 - LOGO
     -   This protocol is used to disconnect the client from the server
+
 - USRS
     -   This protocol is used to get the list of all users that exist on the domain
+
 - USR <SP> ["user_uuid"] <EOL>
     -   This protocol is used to get information about a user
         -   user_uuid: UUID of the selected user
+
 - SEND <SP> ["user_uuid"] <SP> ["message_body"] <EOL>
     -   This protocol is used to send a message to a user
         -   user_uuid: UUID of the selected user
         -   message_body: The message to send to the selected user
+
 - MSG <SP> ["user_uuid"] <EOL>
     -   This protocol is used to list all messages exchange with an user
         -   user_uuid: UUID of the selected user
+
 - SUB <SP> ["team_uuid"] <EOL>
     -   This protocol is used to subscribe to the event of a team and its sub directories (enable reception of all events from a team)
         -   team_uuid: UUID of the selected team
+
 - SUBT
     -   This protocol is used to list all subscribed teams
+
 - SUBU <SP> ["team_uuid"] <EOL>
     -   This protocol is used to list all users subscribed to a team
         -   team_uuid: UUID of the selected team
+
 - USUB <SP> ["team_uuid"] <EOL>
     -   This protocol is used to unsubscribe from a team
         -   team_uuid: UUID of the selected team
-- USTE <SP> ["team_uuid"] <EOL>
+
+- USE <EOL>
+-   This protocol is used to use specify a non-context
+
+- USE <SP> ["team_uuid"] <SP> ["channel_uuid"] <SP> ["thread_uuid"] <EOL>
+-   This protocol is used to use specify a context thread
+        -   team_uuid: UUID of the selected team
+        -   channel_uuid: UUID of the selected channel
+        -   thread_uuid: UUID of the selected thread
+
+- USE <SP> ["channel_uuid"] <SP> ["thread_uuid"] <EOL>
+-   This protocol is used to use specify a context thread
+        -   channel_uuid: UUID of the selected channel
+        -   thread_uuid: UUID of the selected thread
+
+- USE <SP> ["team_uuid"] <SP> ["channel_uuid"] <EOL>
+-   This protocol is used to use specify a context channel
+        -   team_uuid: UUID of the selected team
+        -   channel_uuid: UUID of the selected channel
+
+- USE <SP> ["team_uuid"] <EOL>
     -   This protocol is used to use specify a context team
         -   team_uuid: UUID of the selected team
-- USCH <SP> ["channel_uuid"] <EOL>
+
+- USE <SP> ["channel_uuid"] <EOL>
     -   This protocol is used to use specify a context channel
         -   channel_uuid: UUID of the selected channel
-- USTH <SP> ["thread_uuid"] <EOL>
+
+- USE <SP> ["thread_uuid"] <EOL>
     -   This protocol is used to use specify a context thread
         -   thread_uuid: UUID of the selected thread
-- CRTE <SP> ["team_name"] <SP> ["team_description"] <EOL>
+
+- CREA <SP> ["team_name"] <SP> ["team_description"] <EOL>
     -   This protocol is used to create a new team
         -   team_name: The name of the new team
         -   team_description: The description of the new team
-- CRCH <SP> ["channel_name"] <SP> ["channel_description"] <EOL>
+
+- CREA <SP> ["channel_name"] <SP> ["channel_description"] <EOL>
     -   This protocol is used to create a new channel
         -   channel_name: The name of the new channel
         -   channel_description: The description of the new channel
-- CRTH <SP> ["thread_name"] <SP> ["thread_description"] <EOL>
+
+- CREA <SP> ["thread_name"] <SP> ["thread_description"] <EOL>
     -   This protocol is used to create a new thread
         -   thread_name: The name of the new thread
         -   thread_description: The description of the new thread
-- CRRE <SP> ["comment_body"] <EOL>
+
+- CREA <SP> ["comment_body"] <EOL>
     -   This protocol is used to create a new reply
         -   comment_body: The comment to send
+
 - LSTE <EOL>
     -   This protocol is used to list all existing teams
-- LSCH <EOL>
+
+- LSTE <EOL>
     -   This protocol is used to list all existing channels
-- LSTH <EOL>
+
+- LSTE <EOL>
     -   This protocol is used to list all existing threads
-- LSRE <EOL>
+
+- LSTE <EOL>
     -   This protocol is used to list all existing replies
-- IFTE <EOL>
+
+- INFO <EOL>
     -   This protocol is used to display currently selected team infos
-- IFCH <EOL>
+
+- INFO <EOL>
     -   This protocol is used to display currently selected channel infos
-- IFTH <EOL>
+
+- INFO <EOL>
     -   This protocol is used to display currently selected thread infos
-- IFUS <EOL>
+
+- INFO <EOL>
     -   This protocol is used to display currently logged user infos
 
 ### 3. REPLY CODES
@@ -80,7 +123,11 @@ The objectives of the myTeams project RFC is to allow communication between myTe
 - 00
     - Success
 - 01
-    - Client connected
+    - Client connected or service ready for new user
+- 02
+    - Client subscribe at a teams OK
+- 03
+    - Client unsubscribe at a teams OK
 
 - 10
     - Internal server error
@@ -104,6 +151,49 @@ The objectives of the myTeams project RFC is to allow communication between myTe
     - Invalid format
 - 24
     - Resource already exists
+
+
+- 30
+    - Unknown team
+- 31
+    - Unknown channel
+- 32
+    - Unknown thread
+- 33
+    - Unknown client
+
+
+
+- 40
+    - Print all users ok
+- 41
+    - Print all teams ok
+- 42
+    - Print all channels ok
+- 43
+    - Print all threads ok
+- 44
+    - Print all replies ok
+
+- 50
+    - Create team ok
+- 51
+    - Create channel ok
+- 52
+    - Create thread ok
+- 53
+    - Create reply ok
+
+- 60
+    - Get a message
+- 61
+    - Get a message TEAM
+- 62
+    - Get a message CHANNEL
+- 63
+    - Get a message THREAD
+- 64
+    - Get a message REPLY
 
 - 99
     - Not implemented

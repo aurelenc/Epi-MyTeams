@@ -18,7 +18,8 @@ typedef struct id_pair_s
 
 ///
 /// @brief It creates a new id_pair_t structure, fills it with the ids of the
-/// given user and team, and returns a pointer to the newly @c created structure
+/// given user and team, and returns a pointer to the newly
+/// @c created structure
 ///
 /// @param user a pointer to a user_t structure
 /// @param team The team to add the user to.

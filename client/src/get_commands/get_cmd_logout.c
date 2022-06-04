@@ -6,31 +6,36 @@
 */
 
 #include <unistd.h>
-#include <stdlib.h>
 #include "get_command.h"
 #include "reply_codes.h"
+#include "logging_client.h"
+
+int logout_responses(char **tab, char *code_response)
+{
+    if (!strcmp(code_response, "00"))
+        client_event_logged_out(tab[1], tab[3]);
+    if (!strcmp(code_response, "13"))
+        client_error_unauthorized();
+    free(tab);
+    return 0;
+}
 
 int logout_client(char *av, int socket)
 {
-    char buff[4096];
+    char code_response[3] = {0};
+    char **tab_res = NULL;
 
-    memset(buff, 0, 4096);
-    if (av == NULL)
+    if (check_params(av) == 0)
+        tab_res = send_command(av, tab_res, "LOGO ", socket);
+    else {
+        printf("Command is not good, use /help for more information !\n");
         return -1;
-    if (check_params(av) == 0) {
-        printf("\nArgument av are = [%s]\n", av);
-        make_command_rfc_compatible(buff, "LOGO ", av);
-        printf("Response 0 du server = [%s]\n", buff);
-        write(socket, buff, strlen(buff));
-        printf("Response 1 du server = [%s]\n", buff);
-        memset(buff, 0, 4096);
-        printf("socket is [%i]\n", socket);
-        printf("Response 2 du server = [%s]\n", buff);
-        read(socket, buff, 4096); // 3 = lenth error code
-        client_reply(atoi(buff));
-        // atoi -> compare error code
-    } else  {
-        printf("Command are not good use /help for more information !\n");
     }
-    return 0;
+    if (tab_res == NULL) {
+        printf("Tab_res == NULL\n");
+        free(tab_res);
+        return -1;
+    }
+    strncpy(code_response, tab_res[0], 2);
+    return logout_responses(tab_res, code_response);
 }

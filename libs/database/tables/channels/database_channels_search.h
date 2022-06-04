@@ -35,21 +35,8 @@ static inline channel_t *db_search_channel_by_id(database_t *db, const id_t id)
 static inline channel_t *db_search_channel_by_uuid(database_t *db,
 const char *uuid)
 {
-    return (channel_t *)llist_search(db->channels, &channel_uuid_compare, uuid);
-};
-
-///
-/// @brief It searches the database for a channel with the given name
-///
-/// @param db The database to search in.
-/// @param name The name of the channel to search for.
-///
-/// @return A pointer to a channel_t struct.
-///
-static inline channel_t *db_search_channel_by_name(database_t *db,
-const char *name)
-{
-    return (channel_t *)llist_search(db->channels, &channel_name_compare, name);
+    return
+    (channel_t *)llist_search(db->channels, &channel_uuid_compare, uuid);
 };
 
 ///

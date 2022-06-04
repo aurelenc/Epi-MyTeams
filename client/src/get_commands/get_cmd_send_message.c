@@ -6,26 +6,36 @@
 */
 
 #include <unistd.h>
-#include <stdlib.h>
 #include "get_command.h"
 #include "reply_codes.h"
+#include "logging_client.h"
+
+int send_responses(char **tab, char *code_response)
+{
+    if (!strcmp(code_response, "13"))
+        client_error_unauthorized();
+    if (!strcmp(code_response, "14"))
+        client_error_unknown_user(tab[1]);
+    free(tab);
+    return 0;
+}
 
 int send_message(char *av, int socket)
 {
-    char buff[4096];
+    char code_response[3] = {0};
+    char **tab_res = NULL;
 
-    memset(buff, 0, 4096);
-    if (av == NULL)
+    if (check_params(av) == 2)
+        tab_res = send_command(av, tab_res, "SEND ", socket);
+    else {
+        printf("Command is not good, use /help for more information !\n");
         return -1;
-    if (check_params(av) == 0) {
-        make_command_rfc_compatible(buff, "SEND ", av);
-        write(socket, buff, strlen(buff));
-        memset(buff, 0, 4096);
-        read(socket, buff, 4096); // 3 = lenth error code
-        client_reply(atoi(buff));
-        // atoi -> compare error code
-    } else  {
-        printf("Command are not good use /help for more information !\n");
     }
-    return 0;
+    if (tab_res == NULL) {
+        printf("Tab_res == NULL\n");
+        free(tab_res);
+        return -1;
+    }
+    strncpy(code_response, tab_res[0], 2);
+    return send_responses(tab_res, code_response);
 }

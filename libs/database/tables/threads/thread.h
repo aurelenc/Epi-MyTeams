@@ -24,12 +24,11 @@ typedef struct thread_s {
 /// @brief It creates a thread_t structure and initializes it with the given id
 /// and channel
 ///
-/// @param id the id of the thread
 /// @param channel the id of the channel
 ///
 /// @return A pointer to a thread_t struct.
 ///
-thread_t *thread_init(id_t id, char *title, char *body, id_t channel);
+thread_t *thread_init(char *title, char *body, id_t channel);
 
 ///
 /// @brief It frees the memory allocated for a team.

@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include <time.h>
+
 typedef unsigned int id_t;
 
 typedef struct msg_s
@@ -14,6 +16,7 @@ typedef struct msg_s
     id_t id;
     char *uuid;
     char *content;
+    time_t timestamp;
     id_t user_id;
     id_t thread_id;
     id_t discussion_id;
@@ -22,7 +25,6 @@ typedef struct msg_s
 ///
 /// @brief It creates a message
 ///
-/// @param id the id of the message
 /// @param content the content of the message
 /// @param user_id the id of the user who posted the message
 /// @param relation an array of 2 integers, the first one is the thread id, the
@@ -30,7 +32,7 @@ typedef struct msg_s
 ///
 /// @return A pointer to a message structure.
 ///
-msg_t *msg_init(id_t id, const char *content, id_t user_id, int *relation);
+msg_t *msg_init(const char *content, id_t user_id, int *relation);
 
 ///
 /// @brief It frees the memory allocated for the content of the message

@@ -14,9 +14,8 @@
 
 static void set_client_strings(client_sock_t *clients, int id)
 {
-    memset(clients[id].rbuf, 0, MAX_BUFF_SIZE);
-    memset(clients[id].wbuf, 0, MAX_BUFF_SIZE);
-    memset(clients[id].user, 0, UUID_SIZE);
+    memset(clients[id].rbuf, 0, CIRCULAR_BUFFER_SIZE);
+    memset(clients[id].wbuf, 0, CIRCULAR_BUFFER_SIZE);
 }
 
 void new_client(client_sock_t *clients, int client_socket)
@@ -25,15 +24,10 @@ void new_client(client_sock_t *clients, int client_socket)
 
     for (; i < MAX_CLIENTS - 1 && clients[i].socket != 0; i++);
     if (clients[i].socket) {
-        dprintf(client_socket, reply_codes[get_reply(10068)].message);
         return;
     }
     clients[i].socket = client_socket;
-    clients[i].team_id = 0;
-    clients[i].channel_id = 0;
-    clients[i].thread_id = 0;
     set_client_strings(clients, i);
-    dprintf(client_socket, reply_codes[get_reply(220)].message);
 }
 
 void remove_client(client_sock_t *clients, int remove_index)
@@ -49,6 +43,7 @@ void write_to_client(client_sock_t *client)
 
     if (cbuff_pop(client->wbuf, buff, MAX_BUFF_SIZE) == BUFFER_NO_DATA)
         return;
+    printf("[WRITE] %s\n", buff);
     write(client->socket, buff, strlen(buff));
 }
 

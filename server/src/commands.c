@@ -22,7 +22,7 @@ const command_t commands[] = {
     {"USTE", 1, 0, &command_use_team, true},
     {"USCH", 1, 0, &command_use_channel, true},
     {"USTH", 1, 0, &command_use_thread, true},
-    {"CRTE", 1, 0, &command_create_team, true},
+    {"CREA", 1, 0, &command_create, true},
     {"CRCH", 2, 0, &command_create_channel, true},
     {"CRTH", 2, 0, &command_create_thread, true},
     {"CRTE", 2, 0, &command_create_reply, true},
