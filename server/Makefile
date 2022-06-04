@@ -7,14 +7,15 @@
 
 NAME	=	myteams_server
 
-SRC	=	src/main.c			\
-		src/server.c		\
-		src/reply_codes.c	\
-		src/commands.c		\
-		src/clients.c		\
-		src/client_input.c	\
-		src/cli_launch.c	\
-		src/signals.c		\
+SRC	=	src/main.c					\
+		src/server.c				\
+		src/server_db_loading.c		\
+		src/reply_codes.c			\
+		src/commands.c				\
+		src/clients.c				\
+		src/client_input.c			\
+		src/cli_launch.c			\
+		src/signals.c				\
 
 COMMANDS_SRC	=	\
 					src/commands/login.c				\
