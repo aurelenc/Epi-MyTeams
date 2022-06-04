@@ -22,3 +22,16 @@ const id_t team_id)
     llist_multiple_search(db->channels, &channel_team_id_compare, &team_id);
     return found;
 }
+
+database_t *db_multiple_search_channel_by_name(database_t *db,
+const char *name)
+{
+    database_t *found = db_creation();
+
+    if (!found)
+        return (0);
+    llist_destruction(found->channels);
+    found->channels =
+    llist_multiple_search(db->channels, &channel_name_compare, name);
+    return found;
+}

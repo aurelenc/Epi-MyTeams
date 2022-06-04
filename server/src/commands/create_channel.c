@@ -10,6 +10,9 @@
 #include "server.h"
 #include "tables/users_x_teams/database_users_x_teams_search.h"
 #include "tables/channels/database_channels_add.h"
+#include "tables/channels/database_channels_multiple_search.h"
+#include "tables/channels/database_channels_search.h"
+#include "database_management.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -41,6 +44,37 @@ static char *get_success(channel_t *channel)
     return (buff);
 }
 
+static bool channel_already_exists(TEAMS_A)
+{
+    database_t *found = db_multiple_search_channel_by_name(THIS_DB,
+    THIS_ARG[1]);
+    bool retval = false;
+
+    if (db_search_channel_by_team_id(found, THIS_CLIENT.team->id))
+        retval = true;
+    free(found->channels);
+    free(found->discussions);
+    free(found->users_teams);
+    free(found->users);
+    free(found->threads);
+    free(found->messages);
+    free(found->teams);
+    return retval;
+}
+
+static int send_already_exists(TEAMS_A)
+{
+    int len = strlen(THIS_ARG[1]) + strlen(THIS_ARG[2]) + 13;
+    char *buff = calloc(sizeof(char), len);
+    int retval = -1;
+
+    snprintf(buff, len, "[ \"%s\" \"%s\"]", THIS_ARG[1], THIS_ARG[2]);
+    printf("%s\n", buff);
+    retval = client_reply(PARAM_CID, RESOURCE_ALREADY_EXISTS, buff);
+    free(buff);
+    return retval;
+}
+
 int command_create_channel(TEAMS_A)
 {
     channel_t *channel = 0;
@@ -53,6 +87,8 @@ int command_create_channel(TEAMS_A)
     }
     if (!is_in_team(param))
         return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
+    if (channel_already_exists(param))
+        return send_already_exists(param);
     channel = channel_init(THIS_ARG[1], THIS_ARG[2], THIS_CLIENT.team->id);
     server_event_channel_created(THIS_CLIENT.team->uuid, channel->uuid,
     channel->name);
