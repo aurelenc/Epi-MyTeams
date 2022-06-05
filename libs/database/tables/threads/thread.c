@@ -12,7 +12,7 @@
 #include <errno.h>
 
 
-thread_t *thread_init(char *title, char *body, id_t user_id,  id_t channel_id)
+thread_t *thread_init(char *title, char *body, id_t user_id, id_t channel_id)
 {
     thread_t *thread = calloc(sizeof(thread_t), 1);
 

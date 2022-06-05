@@ -18,7 +18,7 @@ char *get_file_content(const char *filepath)
 
     if (f) {
         fseek(f, 0, SEEK_END);
-        length = ftell (f);
+        length = ftell(f);
         fseek(f, 0, SEEK_SET);
         buffer = calloc(sizeof(char), length + 1);
         if (buffer) {
