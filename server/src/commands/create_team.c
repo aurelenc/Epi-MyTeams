@@ -61,14 +61,6 @@ int command_create_team(TEAMS_A)
     if (db_search_team_by_name(THIS_DB, THIS_ARG[1]))
         return team_already_exists(param);
     buff = get_success(create_team(param));
-    for (int i = 0; i < MAX_CLIENTS; i++) {
-        if (TEAMS_CLIENTS[i].socket == 0 || !TEAMS_CLIENTS[i].user)
-            continue;
-        if (i == param->id)
-            client_reply(param->clients, i, CREATE_TEAM, buff);
-        else
-            client_reply(param->clients, i, GET_TEAM, buff);
-    }
     free(buff);
     return CREATE_TEAM;
 }
