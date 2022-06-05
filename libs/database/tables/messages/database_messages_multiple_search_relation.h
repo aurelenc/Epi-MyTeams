@@ -25,7 +25,7 @@ database_t *db_multiple_search_msg_by_user_id(database_t *db,
 const id_t user_id);
 
 ///
-/// @brief It searches for messages in a database  that have the same
+/// @brief It searches for messages in a database that have the same
 /// user id as the one passed as a parameter
 ///
 /// @param db the database to search in
