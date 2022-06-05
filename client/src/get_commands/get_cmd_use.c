@@ -12,6 +12,12 @@
 
 int use_responses(char **tab, char *code_response)
 {
+    if (!strcmp(code_response, "30"))
+        client_error_unknown_team(tab[1]);
+    if (!strcmp(code_response, "31"))
+        client_error_unknown_channel(tab[1]);
+    if (!strcmp(code_response, "32"))
+        client_error_unknown_thread(tab[1]);
     if (!strcmp(code_response, "13"))
         client_error_unauthorized();
     if (!strcmp(code_response, "00"))
