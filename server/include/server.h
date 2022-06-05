@@ -22,7 +22,7 @@
 #define CBUFF_SIZE (int)4e+6
 #define MAX_USER_SIZE 256
 #define MAX_CLIENTS 20
-#define MAX_ARGS_NB 4
+#define MAX_ARGS_NB 10
 #define MAX_PARAMS_NB MAX_ARGS_NB + 1
 #define UUID_SIZE 37
 
