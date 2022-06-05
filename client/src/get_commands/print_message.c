@@ -16,8 +16,8 @@ int print_message(char **tab_res, int reply_code)
     if (reply_code == GET_LOGO)
         client_event_logged_out(tab_res[1], tab_res[3]);
     if (reply_code == GET_REPLY)
-        client_event_thread_reply_received(tab_res[1], tab_res[3], tab_res[5],
-        tab_res[7]);
+        client_event_thread_reply_received(tab_res[9], tab_res[1],
+        tab_res[3], tab_res[7]);
     if (reply_code == GET_TEAM)
         client_event_team_created(tab_res[1], tab_res[3], tab_res[5]);
     if (reply_code == GET_CHANNEL)

@@ -10,6 +10,25 @@
 #include "reply_codes.h"
 #include "logging_client.h"
 
+
+int create_responses_create(char **t, char *code_response)
+{
+    if (!strcmp(code_response, "51")) {
+        client_print_channel_created(t[1], t[3], t[5]);
+        client_event_channel_created(t[1], t[3], t[5]);
+    }
+    if (!strcmp(code_response, "52")) {
+        client_print_thread_created(t[1], t[3], atol(t[5]), t[7], t[9]);
+        client_event_thread_created(t[1], t[3], atol(t[5]), t[7], t[9]);
+    }
+    if (!strcmp(code_response, "53")) {
+        client_print_reply_created(t[1], t[3], atol(t[5]), t[7]);
+        client_event_thread_reply_received(t[9], t[1], t[3], t[7]);
+    }
+    free(t);
+    return 0;
+}
+
 int create_responses(char **t, char *code_response)
 {
     if (!strcmp(code_response, "13"))
@@ -20,16 +39,11 @@ int create_responses(char **t, char *code_response)
         client_error_unknown_channel(t[1]);
     if (!strcmp(code_response, "24"))
         client_error_already_exist();
-    if (!strcmp(code_response, "50"))
+    if (!strcmp(code_response, "50")) {
         client_print_team_created(t[1], t[3], t[5]);
-    if (!strcmp(code_response, "51"))
-        client_print_channel_created(t[1], t[3], t[5]);
-    if (!strcmp(code_response, "52"))
-        client_print_thread_created(t[1], t[3], atol(t[5]), t[7], t[9]);
-    if (!strcmp(code_response, "53"))
-        client_print_reply_created(t[1], t[3], atol(t[5]), t[7]);
-    free(t);
-    return 0;
+        client_event_team_created(t[1], t[3], t[5]);
+    }
+    return create_responses_create(t, code_response);
 }
 
 int create(char *av, int socket)
