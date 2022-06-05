@@ -34,7 +34,7 @@ int command_list_teams(TEAMS_A)
     iterator = THIS_DB->teams->first;
     if (!iterator)
         return client_reply(PARAM_CID, PRINT_ALL_TEAMS, EMPTY_REPLY);
-    write_client_buff(PARAM_CID, "00:");
+    write_client_buff(PARAM_CID, "41:");
     fill_message(param, iterator);
     write_client_buff(PARAM_CID, "\n");
     return SUCCESS;
