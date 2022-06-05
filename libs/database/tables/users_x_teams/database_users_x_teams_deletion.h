@@ -26,8 +26,8 @@ const id_t id)
 }
 
 ///
-/// @brief It deletes the first user-team associations that have the given team
-/// id
+/// @brief It deletes the first user-team associations that have the given
+/// team id
 ///
 /// @param db The database object
 /// @param id The id of the team to delete.

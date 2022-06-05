@@ -50,8 +50,8 @@ const char *uuid)
 ///
 /// @return A pointer to a discussion_t struct.
 ///
-static inline discussion_t *db_search_discussion_by_user_one_id(database_t *db,
-const id_t user_one_id)
+static inline discussion_t *db_search_discussion_by_user_one_id(
+database_t *db, const id_t user_one_id)
 {
     return ((discussion_t *)llist_search(db->discussions,
     &discussion_user_one_id_compare, &user_one_id));
@@ -66,8 +66,8 @@ const id_t user_one_id)
 ///
 /// @return A pointer to a discussion_t struct.
 ///
-static inline discussion_t *db_search_discussion_by_user_two_id(database_t *db,
-const id_t user_two_id)
+static inline discussion_t *db_search_discussion_by_user_two_id(
+database_t *db, const id_t user_two_id)
 {
     return ((discussion_t *)llist_search(db->discussions,
     &discussion_user_two_id_compare, &user_two_id));

@@ -42,13 +42,14 @@ const id_t id)
 }
 
 ///
-/// @brief It searches the database for a user-team pair that matches the given
-/// user-team pair
+/// @brief It searches the database for a user-team pair that
+/// matches the given user-team pair
 ///
 /// @param db The database to search in.
 /// @param id The id of the team to search for.
 ///
-/// @return A pointer to the id_pair_t struct that is found in the linked list.
+/// @return A pointer to the id_pair_t struct that is
+/// found in the linked list.
 ///
 static inline id_pair_t *db_search_user_team_by_pair(database_t *db,
 const id_pair_t *id)

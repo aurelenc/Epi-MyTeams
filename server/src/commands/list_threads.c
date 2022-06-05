@@ -21,7 +21,8 @@ static void fill_message(TEAMS_A, node_t *it)
         snprintf(message, MAX_BUFF_SIZE,
         "[\"%s\" \"%s\" \"%ld\" \"%s\" \"%s\"]",
         ((thread_t *)(it->data))->uuid,
-        db_search_user_by_id(THIS_DB, ((thread_t *)(it->data))->user_id)->uuid,
+        db_search_user_by_id(THIS_DB,
+        ((thread_t *)(it->data))->user_id)->uuid,
         ((thread_t *)(it->data))->timestamp,
         ((thread_t *)(it->data))->title,
         ((thread_t *)(it->data))->body);

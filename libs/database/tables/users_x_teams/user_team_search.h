@@ -24,8 +24,8 @@ bool user_team_user_id_compare(const void *elem, const void *search);
 /// @param elem The element to compare.
 /// @param search The search key.
 ///
-/// @return A pointer to the first element in the array that matches the search
-/// criteria.
+/// @return A pointer to the first element in the
+/// array that matches the search criteria.
 ///
 bool user_team_team_id_compare(const void *elem, const void *search);
 

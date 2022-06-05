@@ -19,8 +19,8 @@ typedef unsigned int id_t;
 /// @param db the database to search in
 /// @param team_id The id of the team you want to search for.
 ///
-/// @return A pointer to an allocated database_t structure with a channel field
-/// filled
+/// @return A pointer to an allocated database_t structure with a channel
+/// field filled
 ///
 database_t *db_multiple_search_channel_by_team_id(database_t *db,
 const id_t team_id);
@@ -33,8 +33,8 @@ const id_t team_id);
 /// @param db the database to search in
 /// @param name The id of the team you want to search for.
 ///
-/// @return A pointer to an allocated database_t structure with a channel field
-/// filled
+/// @return A pointer to an allocated database_t structure with a
+/// channel field filled
 ///
 database_t *db_multiple_search_channel_by_name(database_t *db,
 const char *name);

@@ -29,8 +29,8 @@ char *get_file_content(const char *filepath);
 char *get_arg(char *entity, size_t *cur);
 
 ///
-/// @brief It takes a string and a number of arguments, and returns an array of
-/// strings containing the arguments
+/// @brief It takes a string and a number of
+/// arguments, and returns an array of strings containing the arguments
 ///
 /// @param buffer the string to parse
 /// @param nb_args the number of arguments that an entity has.
