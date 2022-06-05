@@ -17,6 +17,10 @@ static void fill_message(TEAMS_A, node_t *it)
     char message[MAX_BUFF_SIZE + 1] = {0};
 
     while (it) {
+        if (((thread_t *)(it->data))->channel_id != THIS_CLIENT.channel->id) {
+            it = it->next;
+            continue;
+        }
         memset(message, 0, MAX_BUFF_SIZE);
         snprintf(message, MAX_BUFF_SIZE,
         "[\"%s\" \"%s\" \"%ld\" \"%s\" \"%s\"]",
