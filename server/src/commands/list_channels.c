@@ -16,6 +16,10 @@ static void fill_message(TEAMS_A, node_t *it)
     char message[MAX_BUFF_SIZE + 1] = {0};
 
     while (it) {
+        if (((channel_t *)(it->data))->team_id != THIS_CLIENT.team->id) {
+            it = it->next;
+            continue;
+        }
         memset(message, 0, MAX_BUFF_SIZE);
         snprintf(message, MAX_BUFF_SIZE, "[\"%s\" \"%s\" \"%s\"]",
         ((channel_t *)(it->data))->uuid,
