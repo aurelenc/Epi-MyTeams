@@ -17,14 +17,10 @@
 
 static char *get_reply_msg(char *user_uuid, char *user_name)
 {
-    char *reply =
-    calloc(sizeof(char), strlen(user_uuid) + strlen(user_name) + 12);
+    int len = strlen(user_uuid) + strlen(user_name) + 12;
+    char *reply = calloc(sizeof(char), len);
 
-    strcat(reply, "[ \"");
-    strcat(reply, user_uuid);
-    strcat(reply, "\" \"");
-    strcat(reply, user_name);
-    strcat(reply, "\"]");
+    snprintf(reply, len, "[ \"%s\" \"%s\"]", user_uuid, user_name);
     return (reply);
 }
 
@@ -55,7 +51,14 @@ int command_login(TEAMS_A)
     user = get_user(param);
     THIS_CLIENT.user = user;
     reply = get_reply_msg(user->uuid, user->pseudo);
-    client_reply(PARAM_CID, SUCCESS, reply);
+    for (int i = 0; i < MAX_CLIENTS; i++) {
+        if (TEAMS_CLIENTS[i].socket == 0 || !TEAMS_CLIENTS[i].user)
+            continue;
+        if (i == param->id)
+            client_reply(param->clients, i, SUCCESS, reply);
+        else
+            client_reply(param->clients, i, GET_LOGI, reply);
+    }
     free(reply);
     return SUCCESS;
 }
