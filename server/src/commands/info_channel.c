@@ -16,9 +16,7 @@ static char *get_msg_reply(channel_t *channel, client_sock_t *clients)
     char *buff = calloc(sizeof(char), MAX_BUFF_SIZE + 1);
 
     snprintf(buff, MAX_BUFF_SIZE, "[\"%s\" \"%s\" \"%s\"]",
-        channel->uuid,
-        channel->name,
-        channel->desc);
+    channel->uuid, channel->name, channel->desc);
     printf("%s\n", buff);
     return (buff);
 }

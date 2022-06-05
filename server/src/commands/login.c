@@ -15,13 +15,21 @@
 #include "tables/users/database_users_search.h"
 #include "logging_server.h"
 
-static char *get_reply_msg(char *user_uuid, char *user_name)
+static int send_reply_msg(TEAMS_A, char *user_uuid, char *user_name)
 {
     int len = strlen(user_uuid) + strlen(user_name) + 12;
     char *reply = calloc(sizeof(char), len);
 
     snprintf(reply, len, "[ \"%s\" \"%s\"]", user_uuid, user_name);
-    return (reply);
+    for (int i = 0; i < MAX_CLIENTS; i++) {
+        if (TEAMS_CLIENTS[i].socket == 0 || !TEAMS_CLIENTS[i].user)
+            continue;
+        if (i == param->id)
+            client_reply(param->clients, i, SUCCESS, reply);
+        else
+            client_reply(param->clients, i, GET_LOGI, reply);
+    }
+    return (SUCCESS);
 }
 
 static user_t *get_user(TEAMS_A)
@@ -39,7 +47,6 @@ static user_t *get_user(TEAMS_A)
 
 int command_login(TEAMS_A)
 {
-    char *reply = 0;
     user_t *user = 0;
 
     printf("[SERVER] LOGIN\n");
@@ -50,15 +57,5 @@ int command_login(TEAMS_A)
     }
     user = get_user(param);
     THIS_CLIENT.user = user;
-    reply = get_reply_msg(user->uuid, user->pseudo);
-    for (int i = 0; i < MAX_CLIENTS; i++) {
-        if (TEAMS_CLIENTS[i].socket == 0 || !TEAMS_CLIENTS[i].user)
-            continue;
-        if (i == param->id)
-            client_reply(param->clients, i, SUCCESS, reply);
-        else
-            client_reply(param->clients, i, GET_LOGI, reply);
-    }
-    free(reply);
-    return SUCCESS;
+    return send_reply_msg(param, user->uuid, user->pseudo);
 }

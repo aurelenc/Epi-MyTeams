@@ -17,11 +17,8 @@ static char *get_msg_reply(thread_t *thread, client_sock_t *clients, TEAMS_A)
     char *buff = calloc(sizeof(char), MAX_BUFF_SIZE + 1);
 
     snprintf(buff, MAX_BUFF_SIZE, "[\"%s\" \"%s\" \"%ld\" \"%s\" \"%s\"]",
-        thread->uuid,
-        db_search_user_by_id(THIS_DB, thread->user_id)->uuid,
-        thread->timestamp,
-        thread->title,
-        thread->body);
+    thread->uuid, db_search_user_by_id(THIS_DB, thread->user_id)->uuid,
+    thread->timestamp, thread->title, thread->body);
     printf("%s\n", buff);
     return (buff);
 }

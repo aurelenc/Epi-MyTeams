@@ -13,6 +13,15 @@
 #include "logging_server.h"
 #include <stdio.h>
 
+static int send_reply_unknow(TEAMS_A)
+{
+    char team_id_formatted[(UUID_SIZE * 2) + 10] = {0};
+
+    snprintf(team_id_formatted, (UUID_SIZE * 2) + 9, "[ \"%s\"]",
+    THIS_ARG[1]);
+    return client_reply(PARAM_CID, UNKNOWN_TEAM, team_id_formatted);
+}
+
 static void reset_user_location(TEAMS_A)
 {
     THIS_CLIENT.team = 0;
@@ -20,12 +29,21 @@ static void reset_user_location(TEAMS_A)
     THIS_CLIENT.thread = 0;
 }
 
+static int send_reply_team(TEAMS_A, team_t *team)
+{
+    char user_id_formatted[(UUID_SIZE * 2) + 10] = {0};
+
+    snprintf(user_id_formatted, (UUID_SIZE * 2) + 9, "[ \"%s\" \"%s\"]",
+    THIS_CLIENT.user->uuid, team->uuid);
+    server_event_user_unsubscribed(team->uuid, THIS_CLIENT.user->uuid);
+    reset_user_location(param);
+    return client_reply(PARAM_CID, SUCCESS, user_id_formatted);
+}
+
 int command_unsubscribe(TEAMS_A)
 {
     id_pair_t pair = {0};
     team_t *team = 0;
-    char team_id_formatted[(UUID_SIZE * 2) + 10] = {0};
-    char user_id_formatted[(UUID_SIZE * 2) + 10] = {0};
 
     if (!THIS_CLIENT.user)
         return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
@@ -33,18 +51,12 @@ int command_unsubscribe(TEAMS_A)
         return client_reply(PARAM_CID, MISSING_PARAMETER, EMPTY_REPLY);
     team = db_search_team_by_uuid(THIS_DB, THIS_ARG[1]);
     if (!team) {
-        snprintf(team_id_formatted, (UUID_SIZE * 2) + 9, "[ \"%s\"]",
-        THIS_ARG[1]);
-        return client_reply(PARAM_CID, UNKNOWN_TEAM, team_id_formatted);
+        return send_reply_unknow(param);
     }
     pair.user_id = THIS_CLIENT.user->id;
     pair.team_id = team->id;
     if (db_delete_user_team_by_pair(THIS_DB, &pair) == true) {
-        snprintf(user_id_formatted, (UUID_SIZE * 2) + 9, "[ \"%s\" \"%s\"]",
-        THIS_CLIENT.user->uuid, team->uuid);
-        server_event_user_unsubscribed(team->uuid, THIS_CLIENT.user->uuid);
-        reset_user_location(param);
-        return client_reply(PARAM_CID, SUCCESS, user_id_formatted);
+        return send_reply_team(param, team);
     }
     return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
 }

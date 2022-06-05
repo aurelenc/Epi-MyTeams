@@ -11,12 +11,14 @@
 
 int command_subscribed(TEAMS_A)
 {
-    if (!THIS_CLIENT.user)
+    if (!THIS_CLIENT.user) {
         return client_reply(PARAM_CID, FORBIDDEN, "");
-    if (TEAMS_PARAM->arg.nb == 1)
+    }
+    if (TEAMS_PARAM->arg.nb == 1) {
         return command_subscribed_teams(TEAMS_PARAM);
-    else if (TEAMS_PARAM->arg.nb == 2)
+    } else if (TEAMS_PARAM->arg.nb == 2) {
         return command_subscribed_users(TEAMS_PARAM);
-    else
+    } else {
         return client_reply(PARAM_CID, INVALID_FORMAT, "");
+    }
 }
