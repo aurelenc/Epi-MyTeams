@@ -84,7 +84,6 @@ int command_send(TEAMS_A)
     id_t *ids = calloc(sizeof(id_t), 2);
     char user_id_formatted[UUID_SIZE + 7] = {0};
 
-    printf("[SERVER] SEND\n");
     if (!THIS_CLIENT.user)
         return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
     if (param->arg.nb < 3)

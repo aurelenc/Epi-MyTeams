@@ -33,8 +33,9 @@ static int do_channel_actions(TEAMS_A, channel_t *channel)
     thread_t *thread = db_search_thread_by_uuid(THIS_DB, THIS_ARG[2]);
 
     if (channel->team_id != THIS_CLIENT.team->id
-    || !is_cli_in_team(THIS_DB, &THIS_CLIENT, THIS_CLIENT.team))
+    || !is_cli_in_team(THIS_DB, &THIS_CLIENT, THIS_CLIENT.team)) {
         return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
+    }
     if (thread && thread->id == channel->id) {
         THIS_CLIENT.channel = channel;
         THIS_CLIENT.thread = thread;

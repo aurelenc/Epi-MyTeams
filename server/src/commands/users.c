@@ -31,7 +31,7 @@ static char *get_msg_reply(llist_t *users, client_sock_t *clients)
     strlen(((user_t *)ptr->data)->uuid) +
     strlen(((user_t *)ptr->data)->pseudo) + 12) {
         strcat(buff, "[ \"");
-        strcat(buff,   ((user_t *)ptr->data)->uuid);
+        strcat(buff, ((user_t *)ptr->data)->uuid);
         strcat(buff, "\" \"");
         strcat(buff, ((user_t *)ptr->data)->pseudo);
         strcat(buff, "\" \"");
