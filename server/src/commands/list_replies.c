@@ -18,8 +18,10 @@ static void fill_message(TEAMS_A, node_t *it)
     char message[MAX_BUFF_SIZE + 1] = {0};
 
     while (it) {
-        if (((msg_t *)it->data)->thread_id != THIS_CLIENT.thread->id)
+        if (((msg_t *)it->data)->thread_id != THIS_CLIENT.thread->id) {
+            it = it->next;
             continue;
+        }
         memset(message, 0, MAX_BUFF_SIZE);
         snprintf(message, MAX_BUFF_SIZE, "[\"%s\" \"%s\" \"%ld\" \"%s\"]",
         db_search_msg_by_id(THIS_DB, ((msg_t *)(it->data))->thread_id)->uuid,
