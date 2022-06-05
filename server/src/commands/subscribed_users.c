@@ -49,7 +49,7 @@ int command_subscribed_users(TEAMS_A)
         snprintf(buff, MAX_BUFF_SIZE, "[ \"%s\"]", THIS_ARG[1]);
         return client_reply(PARAM_CID, UNKNOWN_TEAM, buff);
     }
-    new = db_search_users_of_a_team_by_its_id(THIS_DB, THIS_CLIENT.user->id);
+    new = db_search_users_of_a_team_by_its_id(THIS_DB, team->id);
     if (!new)
         return client_reply(PARAM_CID, PRINT_ALL_USERS, EMPTY_REPLY);
     iterator = new->users->first;
