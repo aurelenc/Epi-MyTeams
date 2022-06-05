@@ -42,14 +42,16 @@ LIB	=	../libs/circularbuffer/circular_buffer.c\
 
 OBJ	=	$(SRC:.c=.o) $(SRC_COMMANDS:.c=.o) $(LIB:.c=.o)
 
-CFLAGS	=	-Wall -Werror -I ../../../libs/myteams -I ../include -I ../../include -I include/ -I ../libs/myteams -I ../libs/circularbuffer -g
+CFLAGS	=	-Wall -Werror -I ../../../libs/myteams -I ../include \
+			-I ../../include -I include/ -I ../libs/myteams \
+			-I ../libs/circularbuffer
 
 LDFLAGS	=	 -L ../libs/myteams -lmyteams
 
 CC	=	gcc
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME) $(LDFLAGS) -g
+	$(CC) $(OBJ) -o $(NAME) $(LDFLAGS)
 
 clean:
 	rm -f $(OBJ)
