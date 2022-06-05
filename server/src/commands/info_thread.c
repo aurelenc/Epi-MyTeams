@@ -29,5 +29,5 @@ int command_info_thread(TEAMS_A)
 
     client_reply(PARAM_CID, PRINT_ALL_THREADS, message);
     free(message);
-    return SUCCESS;
+    return PRINT_ALL_THREADS;
 }

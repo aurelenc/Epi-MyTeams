@@ -16,7 +16,6 @@ static char *get_msg_reply(team_t *team, client_sock_t *clients)
     char *buff = calloc(sizeof(char),
     strlen(team->uuid) + strlen(team->name) + 16);
 
-    strcat(buff, "00:");
     strcat(buff, "[ \"");
     strcat(buff, team->uuid);
     strcat(buff, "\" \"");
@@ -34,5 +33,5 @@ int command_info_team(TEAMS_A)
 
     client_reply(PARAM_CID, PRINT_ALL_TEAMS, message);
     free(message);
-    return SUCCESS;
+    return PRINT_ALL_TEAMS;
 }

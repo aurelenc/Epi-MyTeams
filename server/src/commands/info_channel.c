@@ -27,5 +27,5 @@ int command_info_channel(TEAMS_A)
 
     client_reply(PARAM_CID, PRINT_ALL_CHANNELS, message);
     free(message);
-    return SUCCESS;
+    return PRINT_ALL_CHANNELS;
 }
