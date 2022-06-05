@@ -16,7 +16,7 @@
 static int send_reply_msg(TEAMS_A, char *user_uuid, char *user_name)
 {
     int len = strlen(user_uuid) + strlen(user_name) + 12;
-    char *reply = calloc(sizeof(char), len);
+    char *reply = calloc(sizeof(char), len + 1);
 
     snprintf(reply, len, "[ \"%s\" \"%s\"]", user_uuid, user_name);
     for (int i = 0; i < MAX_CLIENTS; i++) {
