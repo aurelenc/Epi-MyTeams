@@ -46,6 +46,11 @@ int command_messages(TEAMS_A);
 /// @return The reply code
 int command_subscribe(TEAMS_A);
 
+/// @brief List all subscribed teams or users in a team
+/// @param param The command param structure
+/// @return The reply code
+int command_subscribed(TEAMS_A);
+
 /// @brief List all subscribed teams
 /// @param param The command param structure
 /// @return The reply code
@@ -118,6 +123,11 @@ int command_create_thread(TEAMS_A);
 /// @return The reply code
 int command_create_reply(TEAMS_A);
 
+/// @brief Read the pdf
+/// @param param The command param structure
+/// @return The reply code
+int command_list(TEAMS_A);
+
 /// @brief List all existing teams
 /// @param param The command param structure
 /// @return The reply code
@@ -137,6 +147,11 @@ int command_list_threads(TEAMS_A);
 /// @param param The command param structure
 /// @return The reply code
 int command_list_replies(TEAMS_A);
+
+/// @brief Display infos
+/// @param param The command param structure
+/// @return The reply code
+int command_info(TEAMS_A);
 
 /// @brief Display currently selected team infos
 /// @param param The command param structure

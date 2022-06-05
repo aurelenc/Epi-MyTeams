@@ -63,3 +63,4 @@ dkms.conf
 myteams_cli
 myteams_server
 vgcore*
+server/database_save/*.csv

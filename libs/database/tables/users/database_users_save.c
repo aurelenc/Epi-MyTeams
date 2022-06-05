@@ -37,7 +37,6 @@ bool db_save_users(database_t *db, const char *filepath)
     }
     write_all_users_in_file(db->users, fptr);
     fclose(fptr);
-    printf("Users: Successfully saved.\n");
     return true;
 }
 

@@ -37,7 +37,6 @@ bool db_save_channels(database_t *db, const char *filepath)
     }
     write_all_channels_in_file(db->channels, fptr);
     fclose(fptr);
-    printf("Channels: Successfully saved.\n");
     return true;
 }
 

@@ -94,16 +94,16 @@ The objectives of the myTeams project RFC is to allow communication between myTe
     -   This protocol is used to create a new reply
         -   comment_body: The comment to send
 
-- LSTE <EOL>
+- LIST <EOL>
     -   This protocol is used to list all existing teams
 
-- LSTE <EOL>
+- LIST <EOL>
     -   This protocol is used to list all existing channels
 
-- LSTE <EOL>
+- LIST <EOL>
     -   This protocol is used to list all existing threads
 
-- LSTE <EOL>
+- LIST <EOL>
     -   This protocol is used to list all existing replies
 
 - INFO <EOL>

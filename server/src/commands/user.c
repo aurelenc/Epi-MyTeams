@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+
 static char *is_user_connected(client_sock_t *clients, unsigned int user_id)
 {
     for (int i = 0; i < MAX_CLIENTS; i++) {
@@ -23,7 +24,7 @@ static char *is_user_connected(client_sock_t *clients, unsigned int user_id)
 static char *get_msg_reply(user_t *user, client_sock_t *clients)
 {
     char *buff = calloc(sizeof(char),
-    strlen(user->uuid) + strlen(user->pseudo) + 13);
+    strlen(user->uuid) + strlen(user->pseudo) + 16);
 
     strcat(buff, "00:");
     strcat(buff, "[ \"");
@@ -53,7 +54,7 @@ int command_user(TEAMS_A)
     }
     found = db_search_user_by_uuid(THIS_DB, THIS_ARG[1]);
     if (!found) {
-        sprintf(user_id_formatted, "[ \"%s\"]", THIS_ARG[1]);
+        snprintf(user_id_formatted, UUID_SIZE + 6, "[ \"%s\"]", THIS_ARG[1]);
         return client_reply(PARAM_CID, NOT_FOUND, user_id_formatted);
     }
     success_buff = get_msg_reply(found, TEAMS_CLIENTS);

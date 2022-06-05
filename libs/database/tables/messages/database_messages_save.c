@@ -38,7 +38,6 @@ bool db_save_msg(database_t *db, const char *filepath)
     }
     write_all_messages_in_file(db->messages, fptr);
     fclose(fptr);
-    printf("Messages: Successfully saved.\n");
     return true;
 }
 

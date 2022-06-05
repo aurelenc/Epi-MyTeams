@@ -36,7 +36,6 @@ bool db_save_users_x_teams(database_t *db, const char *filepath)
     }
     write_all_users_x_teams_in_file(db->users_teams, fptr);
     fclose(fptr);
-    printf("Users - Teams relations: Successfully saved.\n");
     return true;
 }
 
