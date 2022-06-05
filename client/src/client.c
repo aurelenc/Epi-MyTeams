@@ -35,7 +35,6 @@ void read_message(client_t *client, char *buff)
     memset(buff, 0, strlen(buff));
     if (read(client->socket, buff, (int)4e+6) <= 0)
         exit(0);
-    printf("message = [%s]\n", buff);
     client_reply(atoi(strncpy(response, buff, 2)), tab_message, buff);
 }
 
