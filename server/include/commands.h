@@ -92,10 +92,10 @@ int command_use_two_arg(TEAMS_A);
 int command_use_three_arg(TEAMS_A);
 
 ///
-/// @brief If the client is not logged in, it returns an error; if the client is
-/// already in a thread, it creates a reply; if the client is already in a
-/// channel, it creates a thread; if the client is already in a team, it creates
-/// a channel; otherwise, it creates a team
+/// @brief If the client is not logged in, it returns an error; if the client
+/// is already in a thread, it creates a reply; if the client is already in a
+/// channel, it creates a thread; if the client is already in a team, it
+/// creates a channel; otherwise, it creates a team
 ///
 /// @param param The parameter object that was passed to the command.
 ///

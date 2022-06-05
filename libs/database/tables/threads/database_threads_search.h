@@ -35,7 +35,8 @@ static inline thread_t *db_search_thread_by_id(database_t *db, const id_t id)
 static inline thread_t *db_search_thread_by_uuid(database_t *db,
 const char *uuid)
 {
-    return ((thread_t *)llist_search(db->threads, &thread_uuid_compare, uuid));
+    return ((thread_t *)llist_search(db->threads, &thread_uuid_compare,
+    uuid));
 }
 
 ///

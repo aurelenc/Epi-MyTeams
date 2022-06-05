@@ -29,7 +29,8 @@ const id_t id)
     if (!users_id)
         return (0);
     for (int i = 0; i < llist_get_size(found->users_teams); i++) {
-        users_id[i] = ((id_pair_t *)llist_get(found->users_teams, i))->user_id;
+        users_id[i] =
+        ((id_pair_t *)llist_get(found->users_teams, i))->user_id;
     }
     users_id[llist_get_size(found->users_teams)] = 0;
     found->users = llist_multiple_search(db->users, user_id_array_compare,
@@ -53,7 +54,8 @@ const id_t id)
     if (!teams_id)
         return (0);
     for (int i = 0; i < llist_get_size(found->users_teams); i++) {
-        teams_id[i] = ((id_pair_t *)llist_get(found->users_teams, i))->team_id;
+        teams_id[i] =
+        ((id_pair_t *)llist_get(found->users_teams, i))->team_id;
     }
     teams_id[llist_get_size(found->users_teams)] = 0;
     found->teams = llist_multiple_search(db->teams, team_id_array_compare,

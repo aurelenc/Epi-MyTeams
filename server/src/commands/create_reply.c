@@ -47,7 +47,8 @@ static int *get_relation(int thread_id, int discussion_id)
 
 static int send_success(TEAMS_A, msg_t *msg)
 {
-    int len = strlen(THIS_CLIENT.team->uuid) + strlen(THIS_CLIENT.thread->uuid)
+    int len =
+    strlen(THIS_CLIENT.team->uuid) + strlen(THIS_CLIENT.thread->uuid)
     + strlen(THIS_CLIENT.user->uuid) + strlen(msg->content) + 20;
     char *buff = calloc(sizeof(char), len);
 

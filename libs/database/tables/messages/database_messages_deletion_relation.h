@@ -12,8 +12,8 @@
 #include "message_search.h"
 
 ///
-/// @brief It deletes a message from the database if it has the same user id as
-/// the one passed in
+/// @brief It deletes a message from the database if it has the same user
+/// id as the one passed in
 ///
 /// @param db The database to delete the message from.
 /// @param user_id The id of the user to delete the message of.
@@ -42,8 +42,8 @@ const id_t thread_id)
 }
 
 ///
-/// @brief It deletes a message from the database if it has the same discussion
-/// id as the one passed in
+/// @brief It deletes a message from the database if it has the same
+/// discussion id as the one passed in
 ///
 /// @param db The database to delete the message from.
 /// @param discu_id The id of the discussion to delete the message of.

@@ -9,7 +9,8 @@
 #define LIB_MYTEAMS_LOGGING_SERVER_H
 
 /*
-** As the server never initialize an action all function here are called events
+** As the server never initialize an action all function here are
+** called events
 */
 
 /**
@@ -80,7 +81,8 @@ char const *reply_body);
 ** Commands:
 ** /subscribe "team_uuid"
 **/
-int server_event_user_subscribed(char const *team_uuid, char const *user_uuid);
+int server_event_user_subscribed(char const *team_uuid,
+char const *user_uuid);
 
 /**
 ** @brief Must be called when a user unsubscribe from a team
