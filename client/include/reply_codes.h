@@ -5,8 +5,7 @@
 ** reply_codes
 */
 
-#ifndef REPLY_CODES_H_
-#define REPLY_CODES_H_
+#pragma once
 
 #include "client.h"
 
@@ -64,5 +63,3 @@ int client_reply(int reply_code, char **tab_response, char *input);
 #define GET_LOGI 66
 
 #define NOT_IMPLEMENTED 99
-
-#endif /* !REPLY_CODES_H_ */
