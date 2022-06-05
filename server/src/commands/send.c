@@ -79,6 +79,14 @@ user_t *user_one, user_t *user_two, id_t *ids)
     }
 }
 
+static void send_all(TEAMS_A, user_t *user_one, id_t *ids)
+{
+    add_msg_to_db(TEAMS_PARAM, user_one, THIS_CLIENT.user, ids);
+    get_reply_msg(TEAMS_PARAM, user_one->uuid, THIS_ARG[2]);
+    server_event_private_message_sended(THIS_CLIENT.user->uuid,
+    user_one->uuid, THIS_ARG[2]);
+}
+
 int command_send(TEAMS_A)
 {
     user_t *user_one = 0;
@@ -98,9 +106,6 @@ int command_send(TEAMS_A)
     }
     ids[0] = user_one->id;
     ids[1] = THIS_CLIENT.user->id;
-    add_msg_to_db(TEAMS_PARAM, user_one, THIS_CLIENT.user, ids);
-    get_reply_msg(TEAMS_PARAM, user_one->uuid, THIS_ARG[2]);
-    server_event_private_message_sended(THIS_CLIENT.user->uuid,
-    user_one->uuid, THIS_ARG[2]);
+    send_all(param, user_one, ids);
     return SUCCESS;
 }
