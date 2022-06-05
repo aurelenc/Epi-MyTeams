@@ -60,8 +60,8 @@ int client_reply(int reply_code, char **tab_response, char *input);
 #define GET_CHANNEL 62
 #define GET_THREAD 63
 #define GET_REPLY 64
-#define GET_LOGI 65
-#define GET_LOGO 66
+#define GET_LOGO 65
+#define GET_LOGI 66
 
 #define NOT_IMPLEMENTED 99
 

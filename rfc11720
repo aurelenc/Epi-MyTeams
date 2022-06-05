@@ -194,6 +194,10 @@ The objectives of the myTeams project RFC is to allow communication between myTe
     - Get a message THREAD
 - 64
     - Get a message REPLY
+- 65
+    - Get Log out event
+- 66
+    - Get a Log in event
 
 - 99
     - Not implemented
