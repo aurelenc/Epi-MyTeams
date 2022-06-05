@@ -52,9 +52,9 @@ static int send_success(TEAMS_A, msg_t *msg)
     + strlen(THIS_CLIENT.user->uuid) + strlen(msg->content) + 20;
     char *buff = calloc(sizeof(char), len);
 
-    snprintf(buff, len, "[ \"%s\" \"%s\" \"%ld\" \"%s\"]",
+    snprintf(buff, len, "[ \"%s\" \"%s\" \"%ld\" \"%s\" \"%s\"]",
     THIS_CLIENT.thread->uuid, THIS_CLIENT.user->uuid, msg->timestamp,
-    msg->content);
+    msg->content, THIS_CLIENT.team->uuid);
     printf("%s\n", buff);
     for (int i = 0; i < MAX_CLIENTS; i++) {
         if (!TEAMS_CLIENTS[i].socket != 0 || !TEAMS_CLIENTS[i].user)
