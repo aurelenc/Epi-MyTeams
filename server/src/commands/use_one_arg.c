@@ -11,6 +11,7 @@
 #include "tables/threads/database_threads_search.h"
 #include "tables/channels/database_channels_search.h"
 #include "tables/users_x_teams/database_users_x_teams_search.h"
+#include <stdio.h>
 
 static bool is_cli_in_team(database_t *db, client_sock_t *client,
 team_t *team)
@@ -64,6 +65,7 @@ int command_use_one_arg(TEAMS_A)
     team_t *team = db_search_team_by_uuid(THIS_DB, THIS_ARG[1]);
     channel_t *channel = 0;
     thread_t *thread = 0;
+    char team_uuid_format[UUID_SIZE + 10] = {0};
 
     if (team) {
         return do_team_actions(param, team);
@@ -76,5 +78,6 @@ int command_use_one_arg(TEAMS_A)
     if (thread) {
         return do_thread_actions(param, thread);
     }
-    return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
+    snprintf(team_uuid_format, MAX_BUFF_SIZE, "[ \"%s\"]", THIS_ARG[1]);
+    return client_reply(PARAM_CID, UNKNOWN_TEAM, team_uuid_format);
 }
