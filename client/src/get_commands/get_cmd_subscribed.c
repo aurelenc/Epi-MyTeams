@@ -21,7 +21,7 @@ int subscribed_responses(char **tab, char *code_response)
             client_print_users(tab[i + 1], tab[i + 3], atoi(tab[i + 5]));
     if (!strcmp(code_response, "41"))
         for (int i = 0; tab[i + 6]; i = i + 6)
-            client_print_teams(tab[1], tab[3], tab[5]);
+            client_print_teams(tab[i + 1], tab[i + 3], tab[i + 5]);
     free(tab);
     return 0;
 }

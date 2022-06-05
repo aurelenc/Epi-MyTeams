@@ -35,7 +35,6 @@ void read_message(client_t *client, char *buff)
     memset(buff, 0, strlen(buff));
     if (read(client->socket, buff, (int)4e+6) <= 0)
         exit(0);
-    printf("message = [%s]\n", buff);
     client_reply(atoi(strncpy(response, buff, 2)), tab_message, buff);
 }
 
@@ -48,9 +47,8 @@ void running_teams(client_t *client, char *buff)
     FD_SET(0, &client->rfd);
     if (select(FD_SETSIZE, &client->rfd, &client->wfd, NULL, NULL) < 0)
         exit(84);
-    if (FD_ISSET(client->socket, &client->rfd)) {
+    if (FD_ISSET(client->socket, &client->rfd))
         read_message(client, buff);
-    }
     if (FD_ISSET(client->socket, &client->wfd)) {
         memset(buff, 0, strlen(buff));
         if (FD_ISSET(0, &client->rfd))
