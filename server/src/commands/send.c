@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "logging_server.h"
 
 static void send_to_other_user(client_sock_t *clients, int id, char *uuid,
 char *msg)
@@ -99,5 +100,7 @@ int command_send(TEAMS_A)
     ids[1] = THIS_CLIENT.user->id;
     add_msg_to_db(TEAMS_PARAM, user_one, THIS_CLIENT.user, ids);
     get_reply_msg(TEAMS_PARAM, user_one->uuid, THIS_ARG[2]);
+    server_event_private_message_sended(THIS_CLIENT.user->uuid,
+    user_one->uuid, THIS_ARG[2]);
     return SUCCESS;
 }
