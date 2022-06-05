@@ -13,8 +13,7 @@ void create_client(client_t *client, char **av)
     if (client->socket == -1) {
         printf("socket creation failed...\n");
         exit(0);
-    }
-    else
+    } else
         printf("Socket successfully created..\n");
     bzero(&client->servaddr, sizeof(client->servaddr));
     client->servaddr.sin_family = AF_INET;
