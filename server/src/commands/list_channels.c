@@ -34,7 +34,7 @@ int command_list_channels(TEAMS_A)
     iterator = THIS_DB->channels->first;
     if (!iterator)
         return client_reply(PARAM_CID, PRINT_ALL_CHANNELS, EMPTY_REPLY);
-    write_client_buff(PARAM_CID, "00:");
+    write_client_buff(PARAM_CID, "42:");
     fill_message(param, iterator);
     write_client_buff(PARAM_CID, "\n");
     return SUCCESS;

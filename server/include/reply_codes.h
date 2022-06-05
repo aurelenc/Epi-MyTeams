@@ -5,8 +5,7 @@
 ** reply_codes
 */
 
-#ifndef REPLY_CODES_H_
-#define REPLY_CODES_H_
+#pragma once
 
 #define PARAM_CID TEAMS_CLIENTS, param->id
 
@@ -35,7 +34,6 @@ int client_reply(client_sock_t *clients, int cliend_id, int code, char *msg);
 #define TOO_MANY_REQUESTS 12
 #define FORBIDDEN 13
 #define NOT_FOUND 14
-
 
 #define UNKNOWN_CLIENT_ERROR 20
 #define UNRECOGNIZED_COMMAND 21
@@ -68,5 +66,3 @@ int client_reply(client_sock_t *clients, int cliend_id, int code, char *msg);
 #define GET_LOGI 66
 
 #define NOT_IMPLEMENTED 99
-
-#endif /* !REPLY_CODES_H_ */
