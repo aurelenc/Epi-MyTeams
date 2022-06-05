@@ -13,8 +13,6 @@
 #include <time.h>
 #include <stdio.h>
 
-#include "tables/users_x_teams/users_x_teams.h"
-
 static char *is_user_connected(client_sock_t *clients, unsigned int user_id)
 {
     for (int i = 0; i < MAX_CLIENTS; i++) {
