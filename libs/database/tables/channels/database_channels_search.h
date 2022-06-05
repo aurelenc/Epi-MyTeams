@@ -19,9 +19,11 @@
 ///
 /// @return A pointer to a channel_t struct.
 ///
-static inline channel_t *db_search_channel_by_id(database_t *db, const id_t id)
+static inline channel_t *db_search_channel_by_id(
+database_t *db, const id_t id)
 {
-    return ((channel_t *)llist_search(db->channels, &channel_id_compare, &id));
+    return ((channel_t *)
+            llist_search(db->channels, &channel_id_compare, &id));
 }
 
 ///

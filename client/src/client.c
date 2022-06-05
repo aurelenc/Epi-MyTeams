@@ -77,9 +77,8 @@ int my_teams_client(int ac, char **av)
     memset(buff, 0, MAX);
     setbuf(stdout, NULL);
     set_sigint_handler();
-    while (client->is_connected) {
+    while (client->is_connected)
         running_teams(client, buff);
-    }
     free(buff);
     return 0;
 }

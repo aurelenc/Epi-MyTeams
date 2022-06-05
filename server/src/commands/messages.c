@@ -22,7 +22,7 @@ static void fill_message(TEAMS_A, node_t *it)
     while (it) {
         memset(message, 0, MAX_BUFF_SIZE);
         snprintf(message, MAX_BUFF_SIZE, "[\"%s\" \"%ld\" \"%s\"]",
-        db_search_user_by_id(THIS_DB, ((msg_t *)(it->data))->id)->uuid,
+        db_search_user_by_id(THIS_DB, ((msg_t *)(it->data))->user_id)->uuid,
         ((msg_t *)(it->data))->timestamp,
         ((msg_t *)(it->data))->content);
         printf("%s\n", message);

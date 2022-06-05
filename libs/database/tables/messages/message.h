@@ -27,8 +27,8 @@ typedef struct msg_s
 ///
 /// @param content the content of the message
 /// @param user_id the id of the user who posted the message
-/// @param relation an array of 2 integers, the first one is the thread id, the
-/// second one is the discussion id.
+/// @param relation an array of 2 integers, the first one is the thread
+/// id, the second one is the discussion id.
 ///
 /// @return A pointer to a message structure.
 ///

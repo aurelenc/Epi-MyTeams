@@ -13,7 +13,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-static void write_all_users_x_teams_in_file(llist_t *users_x_teams, FILE *fptr)
+static void write_all_users_x_teams_in_file(llist_t *users_x_teams,
+FILE *fptr)
 {
     node_t *nptr = users_x_teams->first;
     id_pair_t *pair;

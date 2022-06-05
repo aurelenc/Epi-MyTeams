@@ -148,8 +148,8 @@ bool llist_delete_at(llist_t *list, unsigned int position);
 /// @brief It deletes a node in the list that matches the search criteria
 ///
 /// @param list the list to search
-/// @param search_fun a function that takes two void pointers as parameters and
-/// returns an bool.
+/// @param search_fun a function that takes two void pointers as parameters
+/// and returns an bool.
 /// @param search the data to search for
 ///
 /// @return A boolean value.
@@ -184,8 +184,8 @@ void *llist_front(llist_t *list);
 void *llist_back(llist_t *list);
 
 ///
-/// @brief It takes a node from the list at the given position, and returns the
-/// data from that node
+/// @brief It takes a node from the list at the given
+/// position, and returns the data from that node
 ///
 /// @param list The list to get the data from.
 /// @param position The position of the node to get.
@@ -198,8 +198,8 @@ void *llist_get(llist_t *list, unsigned int position);
 /// @brief It searches for a data in the list that matches the search criteria
 ///
 /// @param list the list to search
-/// @param search_fun a function that takes two void pointers as parameters and
-/// returns an bool.
+/// @param search_fun a function that takes two void pointers
+/// as parameters and returns an bool.
 /// @param search the data to search for
 ///
 /// @return The data of the node that matches the search criteria.

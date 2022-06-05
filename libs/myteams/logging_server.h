@@ -5,11 +5,11 @@
 ** a file containing libs functions that should be called in myteams_server
 */
 
-#ifndef LIB_MYTEAMS_LOGGING_SERVER_H
-#define LIB_MYTEAMS_LOGGING_SERVER_H
+#pragma once
 
 /*
-** As the server never initialize an action all function here are called events
+** As the server never initialize an action all function here are
+** called events
 */
 
 /**
@@ -80,7 +80,8 @@ char const *reply_body);
 ** Commands:
 ** /subscribe "team_uuid"
 **/
-int server_event_user_subscribed(char const *team_uuid, char const *user_uuid);
+int server_event_user_subscribed(char const *team_uuid,
+char const *user_uuid);
 
 /**
 ** @brief Must be called when a user unsubscribe from a team
@@ -148,6 +149,3 @@ char const *sender_uuid,
 char const *receiver_uuid,
 char const *message_body);
 
-
-
-#endif /* LIB_MYTEAMS_LOGGING_SERVER_H */

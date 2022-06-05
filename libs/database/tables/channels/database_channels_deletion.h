@@ -39,8 +39,8 @@ const char *uuid)
 }
 
 ///
-/// @brief It deletes a channel from the database if it has the same team id as
-/// the one passed in
+/// @brief It deletes a channel from the database if it has the same team id
+/// as the one passed in
 ///
 /// @param db The database to delete the channel from.
 /// @param team_id The id of the team to delete the channel of.

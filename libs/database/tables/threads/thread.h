@@ -22,8 +22,8 @@ typedef struct thread_s {
 } thread_t;
 
 ///
-/// @brief It creates a thread_t structure and initializes it with the given id
-/// and channel
+/// @brief It creates a thread_t structure and initializes
+/// it with the given id and channel
 ///
 /// @param channel the id of the channel
 ///

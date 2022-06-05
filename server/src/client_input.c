@@ -56,7 +56,8 @@ void find_command(TEAMS_A)
     if (cbuff_pop(THIS_CLIENT.rbuf, buff, MAX_BUFF_SIZE) != BUFFER_OK)
         return;
     for (size_t i = 0; commands[i].func != NULL; i++) {
-        printf("%s\t%s:%ld\n", buff, commands[i].cmd, strlen(commands[i].cmd));
+        printf("%s\t%s:%ld\n", buff, commands[i].cmd,
+        strlen(commands[i].cmd));
         if (strncmp(buff, commands[i].cmd,
         strlen(commands[i].cmd)) == 0) {
             exec_cmd(TEAMS_PARAM, i);

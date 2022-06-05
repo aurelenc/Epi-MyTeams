@@ -5,8 +5,7 @@
 ** get_command
 */
 
-#ifndef GET_COMMAND_H_
-#define GET_COMMAND_H_
+#pragma once
 
 #include <stdlib.h>
 #include <stdbool.h>
@@ -49,5 +48,3 @@ bool arg_is_good(int ac, char **av);
 char **send_command(char *av, char **tab_response, char *command, int socket);
 int print_message(char **tab_res, int reply_code);
 int parse_command(char *input, int socket);
-
-#endif /* !GET_COMMAND_H_ */

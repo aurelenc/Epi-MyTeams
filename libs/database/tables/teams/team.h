@@ -17,7 +17,8 @@ typedef struct team_s {
 } team_t;
 
 ///
-/// @brief It creates a team_t structure and initializes it with the given name
+/// @brief It creates a team_t structure and initializes it with the given
+/// name
 ///
 /// @param name The name of the team.
 /// @param name The description of the team.

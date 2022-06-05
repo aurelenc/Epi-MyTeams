@@ -11,6 +11,7 @@
 #include "tables/threads/database_threads_search.h"
 #include "tables/channels/database_channels_search.h"
 #include "tables/users_x_teams/database_users_x_teams_search.h"
+#include <stdio.h>
 
 static bool is_cli_in_team(database_t *db, client_sock_t *client,
 team_t *team)
@@ -31,6 +32,7 @@ team_t *team)
 static int do_channel_actions(TEAMS_A, channel_t *channel)
 {
     thread_t *thread = db_search_thread_by_uuid(THIS_DB, THIS_ARG[2]);
+    char team_uuid_format[UUID_SIZE + 10] = {0};
 
     if (channel->team_id != THIS_CLIENT.team->id
     || !is_cli_in_team(THIS_DB, &THIS_CLIENT, THIS_CLIENT.team)) {
@@ -41,12 +43,14 @@ static int do_channel_actions(TEAMS_A, channel_t *channel)
         THIS_CLIENT.thread = thread;
         return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
     }
-    return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
+    snprintf(team_uuid_format, UUID_SIZE + 9, "[ \"%s\"]", THIS_ARG[2]);
+    return client_reply(PARAM_CID, UNKNOWN_THREAD, team_uuid_format);
 }
 
 static int do_team_actions(TEAMS_A, team_t *team)
 {
     channel_t *channel = db_search_channel_by_uuid(THIS_DB, THIS_ARG[2]);
+    char team_uuid_format[UUID_SIZE + 10] = {0};
 
     if (!is_cli_in_team(THIS_DB, &THIS_CLIENT, team)) {
         return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
@@ -57,20 +61,23 @@ static int do_team_actions(TEAMS_A, team_t *team)
         THIS_CLIENT.thread = 0;
         return client_reply(PARAM_CID, SUCCESS, EMPTY_REPLY);
     }
-    return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
+    snprintf(team_uuid_format, UUID_SIZE + 9, "[ \"%s\"]", THIS_ARG[2]);
+    return client_reply(PARAM_CID, UNKNOWN_CHANNEL, team_uuid_format);
 }
 
 int command_use_two_arg(TEAMS_A)
 {
     team_t *team = db_search_team_by_uuid(THIS_DB, THIS_ARG[1]);
     channel_t *channel = 0;
+    char team_uuid_format[UUID_SIZE + 10] = {0};
 
     if (team) {
         return do_team_actions(param, team);
     }
     channel = db_search_channel_by_uuid(THIS_DB, THIS_ARG[1]);
     if (channel) {
-        do_channel_actions(param, channel);
+        return do_channel_actions(param, channel);
     }
-    return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
+    snprintf(team_uuid_format, UUID_SIZE + 9, "[ \"%s\"]", THIS_ARG[1]);
+    return client_reply(PARAM_CID, UNKNOWN_TEAM, team_uuid_format);
 }
