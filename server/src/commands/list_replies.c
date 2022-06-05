@@ -18,8 +18,10 @@ static void fill_message(TEAMS_A, node_t *it)
     char message[MAX_BUFF_SIZE + 1] = {0};
 
     while (it) {
-        if (((msg_t *)it->data)->thread_id != THIS_CLIENT.thread->id)
+        if (((msg_t *)it->data)->thread_id != THIS_CLIENT.thread->id) {
+            it = it->next;
             continue;
+        }
         memset(message, 0, MAX_BUFF_SIZE);
         snprintf(message, MAX_BUFF_SIZE, "[\"%s\" \"%s\" \"%ld\" \"%s\"]",
         db_search_msg_by_id(THIS_DB, ((msg_t *)(it->data))->thread_id)->uuid,
@@ -39,7 +41,7 @@ int command_list_replies(TEAMS_A)
     iterator = THIS_DB->messages->first;
     if (!iterator)
         return client_reply(PARAM_CID, PRINT_ALL_REPLIES, EMPTY_REPLY);
-    write_client_buff(PARAM_CID, "00:");
+    write_client_buff(PARAM_CID, "44:");
     fill_message(param, iterator);
     write_client_buff(PARAM_CID, "\n");
     return SUCCESS;

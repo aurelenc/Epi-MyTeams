@@ -5,8 +5,7 @@
 ** commands
 */
 
-#ifndef COMMANDS_H_
-#define COMMANDS_H_
+#pragma once
 
 #include "server.h"
 
@@ -172,6 +171,3 @@ int command_info_thread(TEAMS_A);
 /// @param param The command param structure
 /// @return The reply code
 int command_info_user(TEAMS_A);
-
-
-#endif /* !COMMANDS_H_ */
