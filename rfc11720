@@ -33,10 +33,10 @@ The objectives of the myTeams project RFC is to allow communication between myTe
     -   This protocol is used to subscribe to the event of a team and its sub directories (enable reception of all events from a team)
         -   team_uuid: UUID of the selected team
 
-- SUBT
+- SUBD
     -   This protocol is used to list all subscribed teams
 
-- SUBU <SP> ["team_uuid"] <EOL>
+- SUBD <SP> ["team_uuid"] <EOL>
     -   This protocol is used to list all users subscribed to a team
         -   team_uuid: UUID of the selected team
 
