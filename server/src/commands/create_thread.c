@@ -16,16 +16,18 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static bool is_in_team(command_param_t *param)
+
+static bool is_cli_in_team(database_t *db, client_sock_t *client,
+team_t *team)
 {
     id_pair_t pair;
     id_pair_t *search = 0;
 
-    if (!THIS_CLIENT.team)
+    if (!team)
         return false;
-    pair.team_id = THIS_CLIENT.team->id;
-    pair.user_id = THIS_CLIENT.user->id;
-    search = db_search_user_team_by_pair(param->srv->db, &pair);
+    pair.team_id = team->id;
+    pair.user_id = client->user->id;
+    search = db_search_user_team_by_pair(db, &pair);
     if (!search)
         return false;
     return true;
@@ -43,6 +45,8 @@ static int send_success(TEAMS_A, thread_t *thread)
     printf("%s\n", buff);
     for (int i = 0; i < MAX_CLIENTS; i++) {
         if (TEAMS_CLIENTS[i].socket == 0 || !TEAMS_CLIENTS[i].user)
+            continue;
+        if (!is_cli_in_team(THIS_DB, &TEAMS_CLIENTS[i], TEAMS_CLIENTS->team))
             continue;
         if (i == param->id)
             client_reply(param->clients, i, CREATE_THREAD, buff);
@@ -92,7 +96,7 @@ int command_create_thread(TEAMS_A)
         return client_reply(param->clients, param->id, MISSING_PARAMETER, "");
     } else if (param->arg.nb > 3)
         return client_reply(param->clients, param->id, INVALID_FORMAT, "");
-    if (!is_in_team(param))
+    if (!is_cli_in_team(THIS_DB, &THIS_CLIENT, THIS_CLIENT.team))
         return client_reply(PARAM_CID, FORBIDDEN, EMPTY_REPLY);
     if (thread_already_exists(param))
         return send_already_exists(param);
